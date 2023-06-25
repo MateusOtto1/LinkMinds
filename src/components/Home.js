@@ -33,13 +33,13 @@ const Home = () =>{
                             <h3 className="criadorJogo">Criado por: Mateus</h3>
                         </button>
                         <button className="post" onClick={handleClick}>
-                            <h1 className="nomeJogo">Vôlei</h1>
-                            <h3 className="dataJogo">17/07/2023 - 15:30</h3>
+                            <h1 className="nomeJogo">Basquete</h1>
+                            <h3 className="dataJogo">20/07/2023 - 14:30</h3>
                             <h3 className="criadorJogo">Criado por: Mateus</h3>
                         </button>
                         <button className="post" onClick={handleClick}>
-                            <h1 className="nomeJogo">Vôlei</h1>
-                            <h3 className="dataJogo">17/07/2023 - 15:30</h3>
+                            <h1 className="nomeJogo">Valorant</h1>
+                            <h3 className="dataJogo">10/07/2023 - 20:30</h3>
                             <h3 className="criadorJogo">Criado por: Mateus</h3>
                         </button>                      
                     </div>

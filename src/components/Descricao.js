@@ -17,7 +17,7 @@ const Descricao = () => {
     return (
         <>
             <div className="Fundo">
-                <h2 className="TextoInfoDescricao"><span className="spanTexto">Informações</span> sobre o evento</h2>
+                <h2 className="TextoInfoDescricao"><span className="spanTextoDesc">Informações</span> sobre o evento</h2>
                 <div className="bordaDescricao">
                     <div className="fundoMenorDescricao">
                         <h1 className="descricao">Descrição</h1>
@@ -25,6 +25,7 @@ const Descricao = () => {
                         <div className="descricoes">
                             <h3 className="dataJogoDescricao"><span className="spanTexto">Data:</span> 17/07/2023</h3>
                             <h3 className="horaJogoDescricao"><span className="spanTexto">Hora:</span> 15:30</h3>
+                            <h3 className="dataJogoDescricao"><span className="spanTexto">Local:</span> Quadra do Parcão</h3>
                             <h3 className="criadorJogoDescricao"><span className="spanTexto">Criado por:</span> Mateus Otto</h3>
                             <h3 className="marcadosDescricao"><span className="spanTexto">4</span>  Pessoas já marcaram presença neste evento</h3>
                         </div>
