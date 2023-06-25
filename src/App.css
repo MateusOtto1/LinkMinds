@@ -1,0 +1,275 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700;1,800&display=swap');
+*{
+  padding: 0;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.spanTitulo{
+  letter-spacing: 0px;
+  font-size: 40px;
+  font-weight:600;
+  color:#4B8E1A;
+}
+
+.spanTexto{
+  color:#4B8E1A;
+}
+
+.Fundo{
+  text-align: center;
+  align-items: center;
+  color: #ffffff;
+  width: 100%;
+  height: 97vh;
+}
+
+.tituloEntrar{
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-top: 50px;
+}
+
+.textoInfo{
+  margin-top: 25px;
+  width: 325px;
+  margin-left: 8vw;
+}
+
+.bordaEntrar{
+  margin-top: 50px;
+  margin-left: 3.8vw;
+  width: 360px;
+  height: 310px;
+  background-image: linear-gradient(135deg, #7A28FF,#70FF00);
+  border-radius: 25px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.fundoMenorEntrar{
+  width: 350px;
+  height: 300px;
+  background-image: linear-gradient(#202020, #4b228d);
+  border-radius: 20px;
+}
+
+.educar{
+  margin-top: 25px;
+  width: 250px;
+  margin-left: 45px;
+}
+
+.Google{
+  margin-top: 35px;
+  color: #ffffff;
+  width: 60vw;
+  height: 7vh;
+  border-radius: 15px;
+  border: 2px solid #603b9c;
+  background-color: #202020;
+  font-size: 20px;
+  font-weight:600;
+}
+
+.Google:hover{
+  border: 2px solid #4B8E1A;
+  background-color: #603b9c;
+}
+
+/*Bio*/
+
+.bordaBio{
+  margin-top: 50px;
+  margin-left: 3.8vw;
+  width: 360px;
+  height: 580px;
+  background-image: linear-gradient(135deg, #7A28FF,#70FF00);
+  border-radius: 25px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.fundoMenorBio{
+  width: 350px;
+  height: 570px;
+  background-image: linear-gradient(#202020, #4b228d);
+  border-radius: 20px;
+}
+
+.Bio{
+  font-size: 40px;
+  margin-top: 3vh;
+  color: #4B8E1A;
+}
+
+.inputBio{
+  color: #ffffff;
+  font-size: 17px;
+  margin-top: 4vh;
+  height: 6vh;
+  width: 80vw;
+  border: none;
+  background-color: #202020;
+  border-bottom: 3px solid #603b9c;
+  border-radius: 15px;
+  padding-left: 15px;
+}
+
+.salvarBio{
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 25px;
+  height: 6vh;
+  width: 45vw;
+  margin-top: 5vh;
+  background-color: #330085;
+  border-radius: 15px;
+  border:2px solid #4B8E1A;
+}
+
+.homeNome{
+  margin-top: 3vh;
+}
+
+
+/* Home */
+
+.HomePreparamos{
+  margin-top: 2.5vh;
+  margin-left: 12vw;
+  width:75vw;
+}
+
+.bordaHome{
+  margin-top: 50px;
+  margin-left: 3.8vw;
+  width: 360px;
+  height: 525px;
+  background-image: linear-gradient(135deg, #7A28FF,#70FF00);
+  border-radius: 25px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.fundoMenorHome{
+  width: 350px;
+  height: 515px;
+  background-image: linear-gradient(#202020, #4b228d);
+  border-radius: 20px;
+}
+
+.todosPostsHome{
+  margin-top:2vh;
+}
+
+.post{
+  margin-top: 2vh;
+  width: 80vw;
+  height: 12vh;
+  background-color: #3f1e74;
+  border-radius: 50px;
+  border: 3px solid #4B8E1A;
+  color: #dbdbdb;
+}
+
+/* Descrição Jogo*/
+
+.bordaDescricao{
+  margin-top: 40px;
+  margin-left: 3.8vw;
+  width: 360px;
+  height: 460px;
+  background-image: linear-gradient(135deg, #7A28FF,#70FF00);
+  border-radius: 25px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.fundoMenorDescricao{
+  width: 350px;
+  height: 450px;
+  background-image: linear-gradient(#202020, #4b228d);
+  border-radius: 20px;
+}
+
+.descricao{
+  margin-top: 3vh;
+  color: #4B8E1A;
+}
+
+.descricoes{
+  width: 70vw;
+  height: 35vh;
+  text-align: start;
+  margin-left: 13vw;
+}
+
+.nomeJogoDescricao{
+  margin-top: 3vh;
+  color:#4B8E1A;
+}
+
+.dataJogoDescricao{
+  margin-top: 2vh;
+}
+
+.horaJogoDescricao{
+  margin-top: 2vh;
+}
+
+.criadorJogoDescricao{
+  margin-top: 2vh;
+}
+
+.marcadosDescricao{
+  margin-top: 2vh;
+}
+
+.MarcarPresenca{
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 25px;
+  height: 8vh;
+  width: 75vw;
+  margin-top: 5vh;
+  background-color: #330085;
+  border-radius: 15px;
+  border:2px solid #4B8E1A;
+}
+
+.MarcarPresenca:hover{
+  color: #ffffff;
+  background-color: #4B8E1A;
+  border:2px solid #330085;
+}
+
+.navbar{
+  margin-top: 4vh;
+  margin-left: 10vw;
+  width: 80vw;
+  height: 7vh;
+  background-color: #251D33;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 50px;
+}
+
+.imgCasa{
+  margin-left: 7vw;
+}
+
+.imgPessoa{
+  margin-right: 5vw;
+}
+
+.TextoInfoDescricao{
+  margin-top: 3vh;
+  margin-left: 22vw;
+  width:55vw;
+}
