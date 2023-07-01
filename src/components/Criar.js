@@ -5,6 +5,8 @@ import pessoa from "../imagens/Pessoa.png";
 import { useState, useContext, useEffect } from "react";
 import { AuthGoogleContext } from "../contexts/authGoogle";
 import axios from "axios";
+import MaskedInput from "./MaskInput";
+import MaskedInputHora from "./MaskInputHora";
 
 const Criar = () => {
     const navigate = useNavigate();
@@ -13,6 +15,7 @@ const Criar = () => {
     const [hora, setHora] = useState('');
     const [local, setLocal] = useState('');
     const {email} = useContext(AuthGoogleContext);
+    const {nome} = useContext(AuthGoogleContext);
     const [preencha, setPreencha] = useState('');
 
     useEffect(() => {
@@ -31,10 +34,10 @@ const Criar = () => {
         if(evento=='' || data=='' || hora=='' || local==''){
             setPreencha('Preencha todos os campos');
         }else{
-            axios.post('http://localhost:3001/posts', {email, evento, data, hora, local}).then(result => console.log(result)).catch(err => console.log(err));
+            axios.post('http://localhost:3001/posts', {email, nome, evento, data, hora, local}).then(result => console.log(result)).catch(err => console.log(err));
             navigate('/Home');
         }   
-    }
+    };
 
     function handleClickHome() {
         navigate('/Home');
@@ -49,13 +52,13 @@ const Criar = () => {
     return (
         <>
             <div className="Fundo">
-            <h1 className="homeNome"><span className="spanTexto">Criar</span>post</h1>
+            <h1 className="criar"><span className="spanTexto">Criar</span>post</h1>
                 <div className="bordaBio"> 
                     <div className="fundoMenorBio">
                         <form>
                             <input type="text" placeholder="Nome do Esporte/Jogo" className="inputCriar" onChange={(e) => setEvento(e.target.value)}/>
-                            <input type="text" placeholder="00/00/0000" className="inputCriar" onChange={(e) => setData(e.target.value)}/>
-                            <input type="text" placeholder="00:00" className="inputCriar" onChange={(e) => setHora(e.target.value)}/>
+                            <MaskedInput value={data} onChange={(e) => setData(e.target.value)}/>
+                            <MaskedInputHora value={hora} onChange={(e) => setHora(e.target.value)}/>
                             <input type="text" placeholder="Local" className="inputCriar" onChange={(e) => setLocal(e.target.value)}/>
                             <p className="preencha">{preencha}</p>
                             <button className="criarPost" onClick={handleSubmit} >Criar</button>

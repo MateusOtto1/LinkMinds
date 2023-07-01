@@ -28,22 +28,22 @@ const Bio = () =>{
         if(apelido=='' || idade=='' || interesses=='' || descricao==''){
             setPreencha('Preencha todos os campos');
         }else{
-            axios.put('http://localhost:3001/usuario', {email,apelido, idade, interesses, descricao}).then(result => console.log(result)).catch(err => console.log(err));
+            axios.put('http://localhost:3001/usuario', {email, apelido, idade, interesses, descricao}).then(result => console.log(result)).catch(err => console.log(err));
             navigate('/Home');
         }   
     }
     return(
         <>
             <div className="Fundo"> 
-                <h1 className="tituloEntrar"><span className="spanTitulo">Bem</span>vindo!</h1>
+                <h1 className="tituloEntrar"><span className="spanTitulo">Sobre</span> você!</h1>
                 <div className="bordaBio"> 
                     <div className="fundoMenorBio">
                         <h1 className="Bio">Bio</h1>
                         <form>
                             <input type="text" placeholder="Apelido" className="inputBio" onChange={(e) => setApelido(e.target.value)}/>
-                            <input type="text" placeholder="Idade" className="inputBio" onChange={(e) => setIdade(e.target.value)}/>
+                            <input type="number" placeholder="Idade" className="inputBio" onChange={(e) => setIdade(e.target.value)}/>
                             <input type="text" placeholder="Interesses" className="inputBio" onChange={(e) => setInteresses(e.target.value)}/>
-                            <input type="text" placeholder="Descriçôes" className="inputBio" onChange={(e) => setDescricao(e.target.value)}/>
+                            <input type="text" placeholder="Sobre Você" className="inputBio" onChange={(e) => setDescricao(e.target.value)}/>
                             <p className="preencha">{preencha}</p>
                             <button className="salvarBio" onClick={handleSubmit} >Salvar</button>
                         </form>

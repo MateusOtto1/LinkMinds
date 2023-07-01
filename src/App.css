@@ -28,12 +28,20 @@
   font-weight: 500;
   letter-spacing: 1px;
   margin-top: 50px;
+  width: 60vw;
+  margin-left: 20vw;
+  border-radius: 15px;
+  border-bottom: 3px solid hsl(258, 100%, 55%);
+  box-shadow: 0px 3px 3px 0px #7A28FF;
 }
 
 .textoInfo{
-  margin-top: 25px;
-  width: 325px;
-  margin-left: 8vw;
+  margin-top: 3vh;
+  width: 85vw;
+  margin-left: 7.5vw;
+  border-radius: 15px;
+  border-bottom: 3px solid #4B8E1A;
+  box-shadow: 0px 5px 5px 0px #7A28FF;
 }
 
 .bordaEntrar{
@@ -55,10 +63,13 @@
   border-radius: 20px;
 }
 
-.educar{
+.textoEmail{
   margin-top: 25px;
   width: 250px;
   margin-left: 45px;
+  border-radius: 15px;
+  border-bottom: 2px solid #4B8E1A;
+  box-shadow: 0px 3px 3px 0px #7A28FF;
 }
 
 .Google{
@@ -113,7 +124,7 @@
   width: 80vw;
   border: none;
   background-color: #202020;
-  border-bottom: 3px solid #603b9c;
+  box-shadow: 0px 5px 5px 0px #7A28FF;
   border-radius: 15px;
   padding-left: 15px;
 }
@@ -130,21 +141,33 @@
   border:2px solid #4B8E1A;
 }
 
-.homeNome{
-  margin-top: 3vh;
-}
-
-
 /* Home */
 
+.homeNome{
+  margin-left: 17vw;
+  margin-top: 3vh;
+  width:65vw;
+  border-radius: 15px;
+  border-bottom: 3px solid #4B8E1A;
+  box-shadow: 0px 5px 5px 0px #7A28FF;
+}
+
 .HomePreparamos{
-  margin-top: 2.5vh;
+  margin-top: 2vh;
   margin-left: 12vw;
   width:75vw;
 }
 
+.todosPostsHome{
+  margin-left: 24.5vw;
+  margin-top: 2vh;
+  width:50vw;
+  border-radius: 15px;
+  border-bottom: 4px solid #4B8E1A;
+}
+
 .bordaHome{
-  margin-top: 50px;
+  margin-top: 2vh;
   margin-left: 3.8vw;
   width: 360px;
   height: 525px;
@@ -160,19 +183,16 @@
   height: 515px;
   background-image: linear-gradient(#202020, #4b228d);
   border-radius: 20px;
-}
-
-.todosPostsHome{
-  margin-top:2vh;
+  overflow-y: scroll;
 }
 
 .post{
   margin-top: 2vh;
   width: 80vw;
   height: 12vh;
-  background-color: #3f1e74;
+  background-color: #2d115c;
   border-radius: 50px;
-  border: 3px solid #4B8E1A;
+  border: 3px solid #70FF0059;
   color: #dbdbdb;
 }
 
@@ -254,8 +274,9 @@
 }
 
 .navbar{
-  margin-top: 4vh;
-  margin-left: 10vw;
+  position: fixed;
+  bottom:1.5vh;
+  left:4.5vh;
   width: 80vw;
   height: 7vh;
   background-color: #251D33;
@@ -280,6 +301,14 @@
 }
 
 /* Criar Posts */
+.criar{
+  margin-left: 25vw;
+  margin-top: 3vh;
+  width:50vw;
+  border-radius: 15px;
+  border-bottom: 3px solid #4B8E1A;
+  box-shadow: 0px 5px 5px 0px #7A28FF;
+}
 
 .inputCriar{
   color: #ffffff;
@@ -307,19 +336,33 @@
 }
 
 /* Perfil */
+.Perfil{
+  margin-left: 27vw;
+  margin-top: 1vh;
+  width:45vw;
+  border-radius: 15px;
+  border-bottom: 3px solid #4B8E1A;
+  box-shadow: 0px 5px 5px 0px #7A28FF;
+}
+
+.fundoMenor{
+  margin-top: 2vh;
+  border-radius: 15px;
+  border-top: 3px solid #5ad800;
+}
 
 .FundoPerfil{
   text-align: center;
   align-items: center;
   color: #ffffff;
   width: 100%;
+  min-height: 100vh;
 }
 
 .divNome{
   margin-left: 4.5vh;
   margin-top: 2vh;
   width: 80vw;
-  height: 4vh;
   display: flex;
   justify-content: space-between;
 }
@@ -349,7 +392,7 @@
   margin-top: 2vh;
   margin-left: 3.8vw;
   width: 360px;
-  height: 460px;
+  height: 400px;
   background-image: linear-gradient(135deg, #7A28FF,#70FF00);
   border-radius: 25px;
   justify-content: center;
@@ -359,11 +402,27 @@
 
 .fundoMenorPerfil{
   width: 350px;
-  height: 450px;
+  height: 390px;
   background-image: linear-gradient(#202020, #4b228d);
   border-radius: 20px;
+  overflow-y: scroll;
 }
 
 .todosPostsPerfil{
   margin-top:2vh;
+  margin-left: 27vw;
+  width: 45vw;
+  border-radius: 15px;
+  border-bottom: 3px solid #4B8E1A;
+  box-shadow: 0px 5px 5px 0px #7A28FF;
+}
+
+.alterarPerfil{
+  margin-top: 0.5vh;
+  width: 15vw;
+  height: 4vh;
+  background-color: #2d115c;
+  border-radius: 50px;
+  border: 3px solid #6fff008f;
+  color: #dbdbdb;
 }

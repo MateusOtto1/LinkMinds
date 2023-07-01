@@ -16,8 +16,8 @@ export const AuthGoogleProvider = ({ children }) => {
   // useEffect(() => {
   //   const checkUserLogged = async () => {
   //     try{
-  //       const response = await axios.get('http://localhost:3001/usuario', {email}).then(result => console.log(result)).catch(err => console.log(err));
-  //       setEmail(response);
+  //       const response = await axios.post('http://localhost:3001/usuario', {email}).then(result => console.log(result)).catch(err => console.log(err));
+  //       setUser(response);
   //     }catch(err){
   //       console.log(err);
   //     }
@@ -53,7 +53,7 @@ export const AuthGoogleProvider = ({ children }) => {
   }
 
   return (
-    <AuthGoogleContext.Provider value={{signed: !!email, email, signInGoogle, signOut }}>
+    <AuthGoogleContext.Provider value={{signed: !!email, email, signInGoogle, signOut, nome}}>
       {children}
     </AuthGoogleContext.Provider>
   );
