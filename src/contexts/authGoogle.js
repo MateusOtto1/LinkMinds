@@ -12,18 +12,10 @@ export const AuthGoogleProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [email, setEmail] = useState('');
   const [nome, setNome] = useState('');
-
-  // useEffect(() => {
-  //   const checkUserLogged = async () => {
-  //     try{
-  //       const response = await axios.post('http://localhost:3001/usuario', {email}).then(result => console.log(result)).catch(err => console.log(err));
-  //       setUser(response);
-  //     }catch(err){
-  //       console.log(err);
-  //     }
-  //   };
-  //   checkUserLogged();
-  // });
+  const [apelido, setApelido] = useState('');
+  const [idade, setIdade] = useState('');
+  const [interesses, setInteresses] = useState('');
+  const [descricao, setDescricao] = useState('');
 
   function signInGoogle() {
     signInWithPopup(auth, provider)
@@ -36,7 +28,7 @@ export const AuthGoogleProvider = ({ children }) => {
         setEmail(email);
         const nome = user.displayName;
         setNome(nome);
-        axios.post('http://localhost:3001/usuario', { email, nome }).then(result => console.log(result)).catch(err => console.log(err));
+        axios.post('http://localhost:3001/usuario', { email, nome, apelido, idade, interesses, descricao }).then(result => result).catch(err => console.log(err));
       })
       .catch((error) => {
         const errorCode = error.code;

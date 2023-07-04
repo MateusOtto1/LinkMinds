@@ -5,13 +5,13 @@ import pessoa from "../imagens/Pessoa.png";
 
 const Descricao = () => {
     const navigate = useNavigate();
-    function handleClickHome(){
+    function handleClickHome() {
         navigate('/Home');
     };
-    function handleClickCreate(){
+    function handleClickCreate() {
         navigate('/Criar');
     };
-    function handleClickPerfil(){
+    function handleClickPerfil() {
         navigate('/Perfil');
     };
     return (
@@ -33,9 +33,9 @@ const Descricao = () => {
                 </div>
                 <button className="MarcarPresenca">Marcar Presença</button>
                 <div className="navbar">
-                    <img className="imgCasa" src={casaColorida} onClick={handleClickHome}/>
-                    <img className="imgCriar" src={criar} onClick={handleClickCreate}/>
-                    <img className="imgPessoa" src={pessoa} onClick={handleClickPerfil}/>
+                    <img className="imgCasa" src={casaColorida} onClick={handleClickHome} />
+                    <img className="imgCriar" src={criar} onClick={handleClickCreate} />
+                    <img className="imgPessoa" src={pessoa} onClick={handleClickPerfil} />
                 </div>
             </div>
         </>

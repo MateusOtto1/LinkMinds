@@ -14,11 +14,11 @@ export const AppRoutes = () => {
       <Fragment>
         <Routes>
             <Route path="/" element={<Entrar />}/>
-            <Route path="/Bio" element={<PrivateRoutes />}>
-                <Route path="/Bio" element={<Bio />}/>
-            </Route>
             <Route path="/Home" element={<PrivateRoutes />}>
                 <Route path="/Home" element={<Home />}/>
+            </Route>
+            <Route path="/Bio" element={<PrivateRoutes />}>
+                <Route path="/Bio" element={<Bio />}/>
             </Route>
             <Route path="/Descricao" element={<PrivateRoutes />}>
                 <Route path="/Descricao" element={<Descricao />}/>

@@ -51,7 +51,8 @@ const Perfil = () => {
             <div className="FundoPerfil">
                 <h1 className="Perfil"><span className="spanTexto">Seu </span>perfil</h1>
                 <div className="fundoMenor">
-                    <h3>{usuarios.apelido}</h3>
+                    <h3 className="apelido">Apelido</h3>
+                    <h3 className="apelidoUsuario">{usuarios.apelido}</h3>
                     <div className="divNome">
                         <h2 className="nomePerfil">{usuarios.nome}</h2>
                         <h4 className="idadePerfil">{usuarios.idade} anos</h4>
@@ -59,6 +60,7 @@ const Perfil = () => {
                             <img className="imgLapis" src={lapis} />
                         </button>
                     </div>
+                    <h3 className="apelido">Sobre Você</h3>
                     <h4 className="descricaoPerfil">{usuarios.descricao}</h4>
                     <h3 className="meusInteresses">Meus interesses</h3>
                     <h4 className="interesses">{usuarios.interesses}</h4>

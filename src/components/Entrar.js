@@ -28,7 +28,7 @@ const Entrar = () => {
         );
     }
     else {
-        return <Navigate to="/Bio"/>;
+        return <Navigate to="/Home" />;
     }
 }
 export default Entrar;

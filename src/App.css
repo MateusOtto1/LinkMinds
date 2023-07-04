@@ -347,8 +347,8 @@
 
 .fundoMenor{
   margin-top: 2vh;
-  border-radius: 15px;
-  border-top: 3px solid #5ad800;
+  border-radius: 50px;
+  border-top: 4px solid #53b60c;
 }
 
 .FundoPerfil{
@@ -356,7 +356,16 @@
   align-items: center;
   color: #ffffff;
   width: 100%;
-  min-height: 100vh;
+  min-height: 110vh;
+}
+
+.apelido{
+  margin-top: 1vh;
+  color: #4B8E1A;
+}
+.apelidoUsuario{
+  margin-left: 4.5vh;
+  width: 80vw;
 }
 
 .divNome{
@@ -373,7 +382,7 @@
 
 .descricaoPerfil{
   margin-left: 4.5vh;
-  margin-top: 3vh;
+  margin-top: 1vh;
   width: 80vw;
 }
 
@@ -409,7 +418,7 @@
 }
 
 .todosPostsPerfil{
-  margin-top:2vh;
+  margin-top:4vh;
   margin-left: 27vw;
   width: 45vw;
   border-radius: 15px;
