@@ -2,6 +2,7 @@ import { useNavigate, Navigate } from "react-router-dom";
 import casaColorida from "../imagens/CasaColorida.png";
 import criar from "../imagens/Criar.png";
 import pessoa from "../imagens/Pessoa.png";
+import esportes from "../imagens/Esportes.png";
 import { useContext, useEffect } from "react";
 import { AuthGoogleContext } from "../contexts/authGoogle";
 import axios from "axios";
@@ -62,9 +63,14 @@ const Home = () => {
                             {posts.map((post, index) => {
                                 return (
                                     <button className="post" onClick={handleClick} key={index}>
-                                        <h1 className="nomeJogo">{post.evento}</h1>
-                                        <h3 className="dataJogo">{post.data} - {post.hora}</h3>
-                                        <h3 className="criadorJogo">Criado por: {post.nome}</h3>
+                                        <div className="fundoPost">
+                                            <img className="imgEsportes" src={esportes} />
+                                            <div className="descricaoPost">
+                                                <h1 className="nomeJogo">{post.evento}</h1>
+                                                <h3 className="dataJogo">{post.data} - {post.hora}</h3>
+                                                <h3 className="criadorJogo">Criado por: {post.nome}</h3>
+                                            </div>
+                                        </div>
                                     </button>
                                 )
                             })}

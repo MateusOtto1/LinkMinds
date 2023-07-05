@@ -17,24 +17,43 @@ const Criar = () => {
     const { email } = useContext(AuthGoogleContext);
     const { nome } = useContext(AuthGoogleContext);
     const [preencha, setPreencha] = useState('');
+    const [posts, setPosts] = useState([]);
+    const [postExistente, setPostExistente] = useState([false]);
 
     useEffect(() => {
         const checkInput = async () => {
+            posts.map((post) => {
+                if (evento == post.evento && data == post.data && hora == post.hora && local == post.local) {
+                    setPreencha('Post já existente');
+                    setPostExistente(true);
+                }
+                else {
+                    setPostExistente(false);
+                }
+            });
             if (evento == '' || data == '' || hora == '' || local == '') {
                 setPreencha('Preencha todos os campos');
-            } else {
+            }else {
                 setPreencha('');
             }
         };
         checkInput();
     }, [evento, data, hora, local]);
 
-    const handleSubmit = (e) => {
+    useEffect(() => {
+        const getPost = async () => {
+            const response = await axios.post('http://localhost:3001/postsInfo', { email });
+            setPosts(response.data);
+        };
+        getPost();
+    }, []);
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (evento == '' || data == '' || hora == '' || local == '') {
-            setPreencha('Preencha todos os campos');
+        if (evento == '' || data == '' || hora == '' || local == '' || postExistente == true) {
+            setPreencha('Post já existente');
         } else {
-            axios.post('http://localhost:3001/posts', { email, nome, evento, data, hora, local }).then(result => console.log(result)).catch(err => console.log(err));
+            await axios.post('http://localhost:3001/posts', { email, nome, evento, data, hora, local }).then(result => console.log(result)).catch(err => console.log(err));
             navigate('/Home');
         }
     };

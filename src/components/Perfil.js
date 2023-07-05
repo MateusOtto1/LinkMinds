@@ -6,6 +6,7 @@ import criar from "../imagens/Criar.png";
 import pessoaColorida from "../imagens/PessoaColorida.png";
 import lapis from "../imagens/Lapis.png";
 import axios from "axios";
+import esportes from "../imagens/Esportes.png";
 
 const Perfil = () => {
     const { signOut } = useContext(AuthGoogleContext);
@@ -70,9 +71,14 @@ const Perfil = () => {
                             {posts.map((post, index) => {
                                 return (
                                     <button className="post" onClick={handleClick} key={index}>
-                                        <h1 className="nomeJogo">{post.evento}</h1>
-                                        <h3 className="dataJogo">{post.data} - {post.hora}</h3>
-                                        <h3 className="criadorJogo">Criado por: {post.nome}</h3>
+                                        <div className="fundoPost">
+                                            <img className="imgEsportes" src={esportes} />
+                                            <div className="descricaoPost">
+                                                <h1 className="nomeJogo">{post.evento}</h1>
+                                                <h3 className="dataJogo">{post.data} - {post.hora}</h3>
+                                                <h3 className="criadorJogo">Criado por: {post.nome}</h3>
+                                            </div>
+                                        </div>
                                     </button>
                                 );
                             })}

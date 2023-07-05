@@ -33,6 +33,13 @@
   border-radius: 15px;
   border-bottom: 3px solid hsl(258, 100%, 55%);
   box-shadow: 0px 3px 3px 0px #7A28FF;
+  animation: tituloEntrar 3s forwards;
+}
+
+@keyframes tituloEntrar {
+  0% {
+    transform: translateX(-50px);
+  }
 }
 
 .textoInfo{
@@ -42,6 +49,13 @@
   border-radius: 15px;
   border-bottom: 3px solid #4B8E1A;
   box-shadow: 0px 5px 5px 0px #7A28FF;
+  animation: textoInfo 3s forwards;
+}
+
+@keyframes textoInfo {
+  0% {
+    transform: translateX(20px);
+  }
 }
 
 .bordaEntrar{
@@ -69,7 +83,7 @@
   margin-left: 45px;
   border-radius: 15px;
   border-bottom: 2px solid #4B8E1A;
-  box-shadow: 0px 3px 3px 0px #7A28FF;
+  box-shadow: 0px 1px 1px 0px #7A28FF;
 }
 
 .Google{
@@ -82,11 +96,22 @@
   background-color: #202020;
   font-size: 20px;
   font-weight:600;
+  animation: Google 3s infinite;
+  box-shadow: 0px 4px 4px 0px #7A28FF;
+}
+
+@keyframes Google {
+  0% {
+    transform: translateY(3px);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
 }
 
 .Google:hover{
   border: 2px solid #4B8E1A;
-  background-color: #603b9c;
+  background-color: #2b0a5f;
 }
 
 /*Bio*/
@@ -150,12 +175,26 @@
   border-radius: 15px;
   border-bottom: 3px solid #4B8E1A;
   box-shadow: 0px 5px 5px 0px #7A28FF;
+  animation: homeNome 3s forwards;
+}
+
+@keyframes homeNome {
+  0% {
+    transform: translateX(-50px);
+  }
 }
 
 .HomePreparamos{
   margin-top: 2vh;
   margin-left: 12vw;
   width:75vw;
+  animation: homePreparamos 3s forwards;
+}
+
+@keyframes homePreparamos {
+  0% {
+    transform: translateX(50px);
+  }
 }
 
 .todosPostsHome{
@@ -190,10 +229,28 @@
   margin-top: 2vh;
   width: 80vw;
   height: 12vh;
-  background-color: #2d115c;
+  background-color: #250b52;
   border-radius: 50px;
-  border: 3px solid #70FF0059;
+  border: 4px solid #6fff0070;
   color: #dbdbdb;
+  box-shadow: 0px 5px 5px 0px #7A28FF;
+  animation: post 3s infinite;
+}
+
+@keyframes post {
+  0% {
+    transform: translateY(3px);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
+}
+
+.fundoPost{
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+  display:flex;
 }
 
 /* Descrição Jogo*/
@@ -225,6 +282,13 @@
 .descricao{
   margin-top: 3vh;
   color: #4B8E1A;
+  animation: descricao 3s forwards;
+}
+
+@keyframes descricao {
+  0% {
+    transform: translateX(20px);
+  }
 }
 
 .descricoes{
@@ -237,6 +301,7 @@
 .nomeJogoDescricao{
   margin-top: 3vh;
   color:#4B8E1A;
+  animation: TextoInfoDescricao 3s forwards;
 }
 
 .dataJogoDescricao{
@@ -262,20 +327,25 @@
   height: 8vh;
   width: 75vw;
   margin-top: 5vh;
-  background-color: #330085;
+  background-color: #2e0969;
   border-radius: 15px;
-  border:2px solid #4B8E1A;
+  border:3px solid #4B8E1A;
+  animation: MarcarPresenca 3s infinite;
+  box-shadow: 0px 4px 4px 0px #7A28FF;
 }
 
-.MarcarPresenca:hover{
-  color: #ffffff;
-  background-color: #4B8E1A;
-  border:2px solid #330085;
+@keyframes MarcarPresenca {
+  0% {
+    transform: translateY(3px);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
 }
 
 .navbar{
   position: fixed;
-  bottom:1.5vh;
+  bottom:2.5vh;
   left:4.5vh;
   width: 80vw;
   height: 7vh;
@@ -298,6 +368,16 @@
   margin-top: 3vh;
   margin-left: 19.5vw;
   width:60vw;
+  border-radius: 15px;
+  border-bottom: 3px solid #4B8E1A;
+  box-shadow: 0px 5px 5px 0px #7A28FF;
+  animation: TextoInfoDescricao 3s forwards;
+}
+
+@keyframes TextoInfoDescricao {
+  0% {
+    transform: translateX(-20px);
+  }
 }
 
 /* Criar Posts */
@@ -308,6 +388,13 @@
   border-radius: 15px;
   border-bottom: 3px solid #4B8E1A;
   box-shadow: 0px 5px 5px 0px #7A28FF;
+  animation: criar 3s forwards;
+}
+
+@keyframes criar {
+  0% {
+    transform: translateX(-50px);
+  }
 }
 
 .inputCriar{
@@ -318,11 +405,15 @@
   width: 80vw;
   border: none;
   background-color: #202020;
-  border-bottom: 3px solid #603b9c;
   border-radius: 15px;
   padding-left: 15px;
+  box-shadow: 0px 4px 4px 0px #7A28FF;
 }
 
+.preencha{
+  margin-top: 2.5vh;
+}
+  
 .criarPost{
   color: #ffffff;
   font-weight: 600;
@@ -330,9 +421,20 @@
   height: 7vh;
   width: 50vw;
   margin-top: 5vh;
-  background-color: #330085;
+  background-color: #2e056e;
   border-radius: 15px;
-  border:2px solid #4B8E1A;
+  border: 3px solid #275a02;
+  animation: criarPost 3s infinite;
+  box-shadow: 0px 5px 5px 0px #7A28FF;
+}
+
+@keyframes criarPost {
+  0% {
+    transform: translateY(3px);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
 }
 
 /* Perfil */
@@ -343,6 +445,13 @@
   border-radius: 15px;
   border-bottom: 3px solid #4B8E1A;
   box-shadow: 0px 5px 5px 0px #7A28FF;
+  animation: Perfil 3s forwards;
+}
+
+@keyframes Perfil {
+  0% {
+    transform: translateX(50px);
+  }
 }
 
 .fundoMenor{
@@ -356,16 +465,24 @@
   align-items: center;
   color: #ffffff;
   width: 100%;
-  min-height: 110vh;
+  min-height: 100vh;
 }
 
 .apelido{
   margin-top: 1vh;
   color: #4B8E1A;
 }
+
 .apelidoUsuario{
   margin-left: 4.5vh;
   width: 80vw;
+  animation: apelidoUsuario 2s forwards;
+}
+
+@keyframes apelidoUsuario {
+  0% {
+    transform: translateX(-70px);
+  }
 }
 
 .divNome{
@@ -384,6 +501,13 @@
   margin-left: 4.5vh;
   margin-top: 1vh;
   width: 80vw;
+  animation: descricaoPerfil 2s forwards;
+}
+
+@keyframes descricaoPerfil {
+  0% {
+    transform: translateX(50px);
+  }
 }
 
 .meusInteresses{
@@ -395,6 +519,13 @@
   margin-left: 4.5vh;
   margin-top:1vh;
   width: 80vw;
+  animation: interesses 2s forwards;
+}
+
+@keyframes interesses {
+  0% {
+    transform: translateX(-70px);
+  }
 }
 
 .bordaPerfil{
@@ -423,7 +554,14 @@
   width: 45vw;
   border-radius: 15px;
   border-bottom: 3px solid #4B8E1A;
-  box-shadow: 0px 5px 5px 0px #7A28FF;
+  box-shadow: 0px 2px 2px 0px #7A28FF;
+  animation: todosPostsPerfil 3s forwards;
+}
+
+@keyframes todosPostsPerfil {
+  0% {
+    transform: translateX(-50px);
+  }
 }
 
 .alterarPerfil{
@@ -434,4 +572,15 @@
   border-radius: 50px;
   border: 3px solid #6fff008f;
   color: #dbdbdb;
+  box-shadow: 0px 3px 3px 0px #7A28FF;
+  animation: alterarPerfil 3s infinite;
+}
+
+@keyframes alterarPerfil {
+  0% {
+    transform: translateY(3px);
+  }
+  100% {
+    transform: translateY(-3px);
+  }
 }

@@ -1,9 +1,21 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useContext } from 'react-router-dom';
 import casaColorida from "../imagens/CasaColorida.png";
 import criar from "../imagens/Criar.png";
 import pessoa from "../imagens/Pessoa.png";
+import { AuthGoogleContext } from "../contexts/authGoogle";
 
 const Descricao = () => {
+    // const { email } = useContext(AuthGoogleContext);
+    // const [posts, setPosts] = useState([]);
+
+    // useEffect(() => {
+    //     const getPosts = async () => {
+    //         const response = await axios.post('http://localhost:3001/postsHome', {  });
+    //         setPosts(response.data);
+    //     };
+    //     getPosts();
+    // });
+
     const navigate = useNavigate();
     function handleClickHome() {
         navigate('/Home');
