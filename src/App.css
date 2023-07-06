@@ -280,8 +280,10 @@
 }
 
 .descricao{
-  margin-top: 3vh;
+  margin-top: 1vh;
   color: #4B8E1A;
+  border-radius: 15px;
+  border-bottom: 4px solid #4B8E1A;
   animation: descricao 3s forwards;
 }
 

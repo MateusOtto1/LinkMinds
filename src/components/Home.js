@@ -14,7 +14,7 @@ const Home = () => {
     const { email } = useContext(AuthGoogleContext);
     const [posts, setPosts] = useState([]);
     const [usuarios, setUsuarios] = useState({});
-
+    
     useEffect(() => {
         const getUsuario = async () => {
             const response = await axios.post('http://localhost:3001/usuarioInfo', { email });
