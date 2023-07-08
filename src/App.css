@@ -452,7 +452,7 @@
 
 @keyframes Perfil {
   0% {
-    transform: translateX(50px);
+    transform: translateX(30px);
   }
 }
 
@@ -478,12 +478,14 @@
 .apelidoUsuario{
   margin-left: 4.5vh;
   width: 80vw;
+  border-radius: 15px;
+  border-bottom: 3px solid #4B8E1A;
   animation: apelidoUsuario 2s forwards;
 }
 
 @keyframes apelidoUsuario {
   0% {
-    transform: translateX(-70px);
+    transform: translateX(-30px);
   }
 }
 
@@ -503,12 +505,14 @@
   margin-left: 4.5vh;
   margin-top: 1vh;
   width: 80vw;
+  border-radius: 15px;
+  border-bottom: 3px solid #4B8E1A;
   animation: descricaoPerfil 2s forwards;
 }
 
 @keyframes descricaoPerfil {
   0% {
-    transform: translateX(50px);
+    transform: translateX(30px);
   }
 }
 
@@ -521,12 +525,14 @@
   margin-left: 4.5vh;
   margin-top:1vh;
   width: 80vw;
+  border-radius: 15px;
+  border-bottom: 3px solid #4B8E1A;
   animation: interesses 2s forwards;
 }
 
 @keyframes interesses {
   0% {
-    transform: translateX(-70px);
+    transform: translateX(-30px);
   }
 }
 
@@ -534,7 +540,7 @@
   margin-top: 2vh;
   margin-left: 3.8vw;
   width: 360px;
-  height: 400px;
+  height: 280px;
   background-image: linear-gradient(135deg, #7A28FF,#70FF00);
   border-radius: 25px;
   justify-content: center;
@@ -544,7 +550,7 @@
 
 .fundoMenorPerfil{
   width: 350px;
-  height: 390px;
+  height: 270px;
   background-image: linear-gradient(#202020, #4b228d);
   border-radius: 20px;
   overflow-y: scroll;
@@ -562,7 +568,7 @@
 
 @keyframes todosPostsPerfil {
   0% {
-    transform: translateX(-50px);
+    transform: translateX(-30px);
   }
 }
 

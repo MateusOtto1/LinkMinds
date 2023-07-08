@@ -11,12 +11,12 @@ import esportes from "../imagens/Esportes.png";
 const Perfil = () => {
     const { signOut } = useContext(AuthGoogleContext);
     const navigate = useNavigate();
-    const { email } = useContext(AuthGoogleContext);
     const [usuarios, setUsuarios] = useState({});
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
         const getUsuario = async () => {
+            const email = localStorage.getItem('email');
             const response = await axios.post('http://localhost:3001/usuarioInfo', { email });
             setUsuarios(response.data);
         };
@@ -25,6 +25,7 @@ const Perfil = () => {
 
     useEffect(() => {
         const getPosts = async () => {
+            const email = localStorage.getItem('email');
             const response = await axios.post('http://localhost:3001/postsInfo', { email });
             setPosts(response.data);
         };
@@ -75,7 +76,7 @@ const Perfil = () => {
                                             <img className="imgEsportes" src={esportes} />
                                             <div className="descricaoPost">
                                                 <h1 className="nomeJogo">{post.evento}</h1>
-                                                <h3 className="dataJogo">{post.data} - {post.hora}</h3>
+                                                <h3 className="dataJogo">{post.data} * {post.hora}</h3>
                                                 <h3 className="criadorJogo">Criado por: {post.nome}</h3>
                                             </div>
                                         </div>

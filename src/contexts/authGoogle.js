@@ -17,6 +17,16 @@ export const AuthGoogleProvider = ({ children }) => {
   const [interesses, setInteresses] = useState('');
   const [descricao, setDescricao] = useState('');
 
+  useEffect(()=>{
+    const loadStorage = ()=>{
+      const emailStorage = localStorage.getItem('email');
+      if(emailStorage){
+        setEmail(emailStorage);
+      }
+    };
+    loadStorage();
+  }, [])
+
   function signInGoogle() {
     signInWithPopup(auth, provider)
       .then((result) => {
@@ -28,6 +38,7 @@ export const AuthGoogleProvider = ({ children }) => {
         setEmail(email);
         const nome = user.displayName;
         setNome(nome);
+        localStorage.setItem('email', email);
         axios.post('http://localhost:3001/usuario', { email, nome, apelido, idade, interesses, descricao }).then(result => result).catch(err => console.log(err));
       })
       .catch((error) => {

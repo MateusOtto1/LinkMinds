@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { AuthGoogleContext } from "../contexts/authGoogle";
 import { useNavigate } from "react-router-dom";
 
 const Bio = () => {
@@ -8,7 +7,6 @@ const Bio = () => {
     const [idade, setIdade] = useState('');
     const [interesses, setInteresses] = useState('');
     const [descricao, setDescricao] = useState('');
-    const { email } = useContext(AuthGoogleContext);
     const [preencha, setPreencha] = useState('');
     const navigate = useNavigate();
 
@@ -28,7 +26,8 @@ const Bio = () => {
         if (apelido == '' || idade == '' || interesses == '' || descricao == '') {
             setPreencha('Preencha todos os campos');
         } else {
-           await axios.put('http://localhost:3001/usuario', { email, apelido, idade, interesses, descricao }).then(result => console.log(result)).catch(err => console.log(err));
+            const email = localStorage.getItem('email');
+            await axios.put('http://localhost:3001/usuario', { email, apelido, idade, interesses, descricao }).then(result => console.log(result)).catch(err => console.log(err));
             navigate('/Home');
         }
     }

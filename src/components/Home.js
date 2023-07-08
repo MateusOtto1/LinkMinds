@@ -3,22 +3,22 @@ import casaColorida from "../imagens/CasaColorida.png";
 import criar from "../imagens/Criar.png";
 import pessoa from "../imagens/Pessoa.png";
 import esportes from "../imagens/Esportes.png";
-import { useContext, useEffect } from "react";
-import { AuthGoogleContext } from "../contexts/authGoogle";
+import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 
 const Home = () => {
     const navigate = useNavigate();
-    const { nome } = useContext(AuthGoogleContext);
-    const { email } = useContext(AuthGoogleContext);
+    const [nome, setNome] = useState('');
     const [posts, setPosts] = useState([]);
     const [usuarios, setUsuarios] = useState({});
-    
+
     useEffect(() => {
         const getUsuario = async () => {
+            const email = localStorage.getItem('email');
             const response = await axios.post('http://localhost:3001/usuarioInfo', { email });
             setUsuarios(response.data);
+            setNome(response.data.nome);
         };
         getUsuario();
     }, []);
@@ -67,7 +67,7 @@ const Home = () => {
                                             <img className="imgEsportes" src={esportes} />
                                             <div className="descricaoPost">
                                                 <h1 className="nomeJogo">{post.evento}</h1>
-                                                <h3 className="dataJogo">{post.data} - {post.hora}</h3>
+                                                <h3 className="dataJogo">{post.data} * {post.hora}</h3>
                                                 <h3 className="criadorJogo">Criado por: {post.nome}</h3>
                                             </div>
                                         </div>

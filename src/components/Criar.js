@@ -2,11 +2,8 @@ import { useNavigate } from "react-router-dom";
 import casa from "../imagens/Casa.png";
 import criarColorido from "../imagens/CriarColorido.png";
 import pessoa from "../imagens/Pessoa.png";
-import { useState, useContext, useEffect } from "react";
-import { AuthGoogleContext } from "../contexts/authGoogle";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import MaskedInput from "./MaskInput";
-import MaskedInputHora from "./MaskInputHora";
 
 const Criar = () => {
     const navigate = useNavigate();
@@ -14,9 +11,8 @@ const Criar = () => {
     const [data, setData] = useState('');
     const [hora, setHora] = useState('');
     const [local, setLocal] = useState('');
-    const { email } = useContext(AuthGoogleContext);
-    const { nome } = useContext(AuthGoogleContext);
     const [preencha, setPreencha] = useState('');
+    const [nome, setNome] = useState('');
     const [posts, setPosts] = useState([]);
     const [postExistente, setPostExistente] = useState([false]);
 
@@ -41,7 +37,17 @@ const Criar = () => {
     }, [evento, data, hora, local]);
 
     useEffect(() => {
+        const getUser = async () => {
+            const email = localStorage.getItem('email');
+            const response = await axios.post('http://localhost:3001/usuarioInfo', { email });
+            setNome(response.data.nome);
+        };
+        getUser();
+    }, []);
+
+    useEffect(() => {
         const getPost = async () => {
+            const email = localStorage.getItem('email');
             const response = await axios.post('http://localhost:3001/postsInfo', { email });
             setPosts(response.data);
         };
@@ -51,8 +57,9 @@ const Criar = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (evento == '' || data == '' || hora == '' || local == '' || postExistente == true) {
-            setPreencha('Post já existente');
+            setPreencha('Preencha todos os campos');
         } else {
+            const email = localStorage.getItem('email');
             await axios.post('http://localhost:3001/posts', { email, nome, evento, data, hora, local }).then(result => console.log(result)).catch(err => console.log(err));
             navigate('/Home');
         }
@@ -76,8 +83,8 @@ const Criar = () => {
                     <div className="fundoMenorBio">
                         <form>
                             <input type="text" placeholder="Nome do Esporte/Jogo" className="inputCriar" onChange={(e) => setEvento(e.target.value)} />
-                            <MaskedInput value={data} onChange={(e) => setData(e.target.value)} />
-                            <MaskedInputHora value={hora} onChange={(e) => setHora(e.target.value)} />
+                            <input type="date" className="inputCriar" onChange={(e) => setData(e.target.value)} />
+                            <input type="time" className="inputCriar" onChange={(e) => setHora(e.target.value)} />
                             <input type="text" placeholder="Local" className="inputCriar" onChange={(e) => setLocal(e.target.value)} />
                             <p className="preencha">{preencha}</p>
                             <button className="criarPost" onClick={handleSubmit} >Criar</button>
