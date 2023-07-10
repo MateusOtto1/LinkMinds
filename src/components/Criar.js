@@ -57,7 +57,7 @@ const Criar = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (evento == '' || data == '' || hora == '' || local == '' || postExistente == true) {
-            setPreencha('Preencha todos os campos');
+            setPreencha('Você já criou este post ou não preencheu todos os campos');
         } else {
             const email = localStorage.getItem('email');
             await axios.post('http://localhost:3001/posts', { email, nome, evento, data, hora, local }).then(result => console.log(result)).catch(err => console.log(err));

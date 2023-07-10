@@ -7,6 +7,7 @@ const Entrar = () => {
     async function handleLoginFromGoogle() {
         await signInGoogle();
     }
+
     if (!signed) {
         return (
             <>

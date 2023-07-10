@@ -40,6 +40,10 @@ export const AuthGoogleProvider = ({ children }) => {
         setNome(nome);
         localStorage.setItem('email', email);
         axios.post('http://localhost:3001/usuario', { email, nome, apelido, idade, interesses, descricao }).then(result => result).catch(err => console.log(err));
+
+        setTimeout(()=>{
+          localStorage.removeItem('email');
+        }, 259200000);
       })
       .catch((error) => {
         const errorCode = error.code;
