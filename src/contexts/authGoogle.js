@@ -11,6 +11,7 @@ export const AuthGoogleProvider = ({ children }) => {
   const auth = getAuth(app);
   const [user, setUser] = useState(null);
   const [email, setEmail] = useState('');
+  const [foto, setFoto] = useState('');
   const [nome, setNome] = useState('');
   const [apelido, setApelido] = useState('');
   const [idade, setIdade] = useState('');
@@ -38,8 +39,10 @@ export const AuthGoogleProvider = ({ children }) => {
         setEmail(email);
         const nome = user.displayName;
         setNome(nome);
+        const foto = user.photoURL;
+        setFoto(foto);
         localStorage.setItem('email', email);
-        axios.post('http://localhost:3001/usuario', { email, nome, apelido, idade, interesses, descricao }).then(result => result).catch(err => console.log(err));
+        axios.post('http://localhost:3001/usuario', { email, nome, foto, apelido, idade, interesses, descricao }).then(result => result).catch(err => console.log(err));
 
         setTimeout(()=>{
           localStorage.removeItem('email');

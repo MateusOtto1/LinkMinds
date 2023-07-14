@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import casa from "../imagens/Casa.png";
 import criarColorido from "../imagens/CriarColorido.png";
 import pessoa from "../imagens/Pessoa.png";
+import lupa from "../imagens/lupa.png";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -60,6 +61,9 @@ const Criar = () => {
             setPreencha('Você já criou este post ou não preencheu todos os campos');
         } else {
             const email = localStorage.getItem('email');
+            const dataBr = data.split('-');
+            const dataFormatada = `${dataBr[2]}/${dataBr[1]}/${dataBr[0]}`;
+            const data = dataFormatada;
             await axios.post('http://localhost:3001/posts', { email, nome, evento, data, hora, local }).then(result => console.log(result)).catch(err => console.log(err));
             navigate('/Home');
         }
@@ -74,11 +78,14 @@ const Criar = () => {
     function handleClickPerfil() {
         navigate('/Perfil');
     };
+    function handleClickPesquisa() {
+        navigate('/Usuarios');
+    }
 
     return (
         <>
             <div className="Fundo">
-                <h1 className="criar"><span className="spanTexto">Criar</span>post</h1>
+                <h1 className="criar"><span className="spanTexto">Criar</span> post</h1>
                 <div className="bordaBio">
                     <div className="fundoMenorBio">
                         <form>
@@ -94,6 +101,7 @@ const Criar = () => {
                 <div className="navbar">
                     <img className="imgCasa" src={casa} onClick={handleClickHome} />
                     <img className="imgCriar" src={criarColorido} onClick={handleClickCreate} />
+                    <img className="imgLupa" src={lupa} onClick={handleClickPesquisa} />
                     <img className="imgPessoa" src={pessoa} onClick={handleClickPerfil} />
                 </div>
             </div>

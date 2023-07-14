@@ -168,9 +168,17 @@
 
 /* Home */
 
+.FundoHome{
+  text-align: center;
+  align-items: center;
+  color: #ffffff;
+  width: 100%;
+  min-height: 99vh;
+}
+
 .homeNome{
   margin-left: 17vw;
-  margin-top: 3vh;
+  margin-top: 1vh;
   width:65vw;
   border-radius: 15px;
   border-bottom: 3px solid #4B8E1A;
@@ -205,11 +213,24 @@
   border-bottom: 4px solid #4B8E1A;
 }
 
+.inputPesquisaHome{
+  color: #ffffff;
+  font-size: 17px;
+  margin-top: 2vh;
+  height: 6vh;
+  width: 80vw;
+  border: none;
+  background-color: #202020;
+  border-radius: 15px;
+  padding-left: 15px;
+  box-shadow: 0px 4px 4px 0px #7A28FF;
+}
+
 .bordaHome{
   margin-top: 2vh;
   margin-left: 3.8vw;
   width: 360px;
-  height: 525px;
+  height: 480px;
   background-image: linear-gradient(135deg, #7A28FF,#70FF00);
   border-radius: 25px;
   justify-content: center;
@@ -219,7 +240,7 @@
 
 .fundoMenorHome{
   width: 350px;
-  height: 515px;
+  height: 470px;
   background-image: linear-gradient(#202020, #4b228d);
   border-radius: 20px;
   overflow-y: scroll;
@@ -348,8 +369,8 @@
 .navbar{
   position: fixed;
   bottom:2.5vh;
-  left:4.5vh;
-  width: 80vw;
+  left:2.2vh;
+  width: 90vw;
   height: 7vh;
   background-color: #251D33;
   display: flex;
@@ -467,7 +488,7 @@
   align-items: center;
   color: #ffffff;
   width: 100%;
-  min-height: 100vh;
+  min-height: 99vh;
 }
 
 .apelido{
@@ -590,5 +611,112 @@
   }
   100% {
     transform: translateY(-3px);
+  }
+}
+
+/* Pesquisa */
+
+.FundoPesquisa{
+  text-align: center;
+  align-items: center;
+  color: #ffffff;
+  width: 100%;
+  min-height: 97vh;
+}
+
+.pesquisaEncontre{
+  margin-top: 3vh;
+  border-bottom:#275a02 3px solid;
+  border-radius: 15px;
+  box-shadow: 0px 4px 4px 0px #7A28FF;
+  width: 80vw;
+  margin-left: 4.5vh;
+  animation: pesquisaEncontre 3s forwards;
+}
+
+@keyframes pesquisaEncontre {
+  0% {
+    transform: translateX(-30px);
+  }
+}
+
+.inputPesquisa{
+  color: #ffffff;
+  font-size: 17px;
+  margin-top: 2vh;
+  height: 6vh;
+  width: 80vw;
+  border: none;
+  background-color: #202020;
+  border-radius: 15px;
+  padding-left: 15px;
+  box-shadow: 0px 4px 4px 0px #7A28FF;
+}
+
+.bordaPesquisa{
+  margin-top: 3vh;
+  margin-left: 3.8vw;
+  width: 360px;
+  height: 500px;
+  background-image: linear-gradient(135deg, #7A28FF,#70FF00);
+  border-radius: 25px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.fundoMenorPesquisa{
+  width: 350px;
+  height: 490px;
+  background-image: linear-gradient(#202020, #4b228d);
+  border-radius: 20px;
+  overflow-y: scroll;
+}
+
+.fundoUsuario{
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+  display:flex;
+}
+
+.pesquisaUsuario{
+  margin-top: 2vh;
+  width: 85vw;
+  height: 7vh;
+  background-color: #2d115c;
+  border-radius: 50px;
+  border: 3px solid #6fff008f;
+  box-shadow: 0px 3px 3px 0px #7A28FF;
+}
+
+.nomeUsuario{
+  margin-left: 3vw;
+  margin-top: 1.1vh;
+  color: #ffffff;
+  font-size: 1.4rem;
+}
+
+.imgUsuario{
+  width: 6.3vh;
+  height: 6.3vh;
+  border-radius: 50%;
+}
+
+/* Perfil Pesquisa */
+
+.PerfilPesquisa{
+  margin-left: 10vw;
+  margin-top: 1vh;
+  width:80vw;
+  border-radius: 15px;
+  border-bottom: 3px solid #4B8E1A;
+  box-shadow: 0px 5px 5px 0px #7A28FF;
+  animation: Perfil 3s forwards;
+}
+
+@keyframes PerfilPesquisa {
+  0% {
+    transform: translateX(30px);
   }
 }

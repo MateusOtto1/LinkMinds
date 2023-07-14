@@ -3,35 +3,24 @@ import { AuthGoogleContext } from "../contexts/authGoogle";
 import { useNavigate } from "react-router-dom";
 import casa from "../imagens/Casa.png";
 import criar from "../imagens/Criar.png";
-import pessoaColorida from "../imagens/PessoaColorida.png";
+import pessoa from "../imagens/Pessoa.png";
 import lapis from "../imagens/Lapis.png";
 import axios from "axios";
 import esportes from "../imagens/Esportes.png";
-import lupa from "../imagens/lupa.png";
+import lupaColorida from "../imagens/lupaColorida.png";
 
 const Perfil = (props) => {
-    const { signOut } = useContext(AuthGoogleContext);
     const navigate = useNavigate();
-    const [usuarios, setUsuarios] = useState({});
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        const getUsuario = async () => {
-            const email = localStorage.getItem('email');
-            const response = await axios.post('http://localhost:3001/usuarioInfo', { email });
-            setUsuarios(response.data);
-        };
-        getUsuario();
-    }, []);
-
-    useEffect(() => {
         const getPosts = async () => {
-            const email = localStorage.getItem('email');
-            const response = await axios.post('http://localhost:3001/postsInfo', { email });
+            const nome = props.usuarioSelecionado.nome;
+            const response = await axios.post('http://localhost:3001/postsPerfilPesquisa', { nome });
             setPosts(response.data);
-        };
+        }
         getPosts();
-    }, []);
+    },[]);
 
     function handleClick(e, post) {
         e.stopPropagation();
@@ -47,9 +36,6 @@ const Perfil = (props) => {
     function handleClickPerfil() {
         navigate('/Perfil');
     };
-    function handleClickAlterar() {
-        navigate('/Bio');
-    };
     function handleClickPesquisa() {
         navigate('/Usuarios');
     }
@@ -57,22 +43,19 @@ const Perfil = (props) => {
     return (
         <>
             <div className="FundoPerfil">
-                <h1 className="Perfil"><span className="spanTexto">Seu </span>perfil</h1>
+                <h1 className="PerfilPesquisa">{props.usuarioSelecionado.nome}</h1>
                 <div className="fundoMenor">
                     <h3 className="apelido">Apelido</h3>
-                    <h3 className="apelidoUsuario">{usuarios.apelido}</h3>
+                    <h3 className="apelidoUsuario">{props.usuarioSelecionado.apelido}</h3>
                     <div className="divNome">
-                        <h2 className="nomePerfil">{usuarios.nome}</h2>
-                        <h4 className="idadePerfil">{usuarios.idade} anos</h4>
-                        <button className="alterarPerfil" onClick={handleClickAlterar}>
-                            <img className="imgLapis" src={lapis} />
-                        </button>
+                        <h2 className="nomePerfil">{props.usuarioSelecionado.nome}</h2>
+                        <h4 className="idadePerfil">{props.usuarioSelecionado.idade} anos</h4>
                     </div>
-                    <h3 className="apelido">Sobre Você</h3>
-                    <h4 className="descricaoPerfil">{usuarios.descricao}</h4>
-                    <h3 className="meusInteresses">Meus interesses</h3>
-                    <h4 className="interesses">{usuarios.interesses}</h4>
-                    <h2 className="todosPostsPerfil">Meus <span className="spanTexto">Posts</span></h2>
+                    <h3 className="apelido">Sobre {props.usuarioSelecionado.nome}</h3>
+                    <h4 className="descricaoPerfil">{props.usuarioSelecionado.descricao}</h4>
+                    <h3 className="meusInteresses">Interesses</h3>
+                    <h4 className="interesses">{props.usuarioSelecionado.interesses}</h4>
+                    <h2 className="todosPostsPerfil"><span className="spanTexto">Posts</span></h2>
                     <div className="bordaPerfil">
                         <div className="fundoMenorPerfil">
                             {posts.map((post, index) => {
@@ -91,13 +74,11 @@ const Perfil = (props) => {
                             })}
                         </div>
                     </div>
-                    {/* <button onClick={() => signOut()}>sair</button> */}
                     <div className="navbar">
                         <img className="imgCasa" src={casa} onClick={handleClickHome} />
                         <img className="imgCriar" src={criar} onClick={handleClickCreate} />
-                        <img className="imgPesquisa" src={lupa} onClick={handleClickPesquisa} />
-                        <img className="imgPessoa" src={pessoaColorida} onClick={handleClickPerfil} />
-                        
+                        <img className="imgPesquisa" src={lupaColorida} onClick={handleClickPesquisa} />
+                        <img className="imgPessoa" src={pessoa} onClick={handleClickPerfil} />  
                     </div>
                 </div>
             </div>
