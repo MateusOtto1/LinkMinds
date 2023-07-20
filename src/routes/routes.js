@@ -9,6 +9,7 @@ import Descricao from "../components/Descricao";
 import Criar from "../components/Criar";
 import Usuarios from "../components/Usuarios"
 import PerfilPesquisa from "../components/PerfilPesquisa";
+import Participantes from "../components/Participantes";
 import { useState } from "react";
 
 export const AppRoutes = () => {
@@ -40,6 +41,9 @@ export const AppRoutes = () => {
             </Route>
             <Route path="/PerfilPesquisa" element={<PrivateRoutes />}>
                 <Route path="/PerfilPesquisa" element={<PerfilPesquisa setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} />}/>
+            </Route>
+            <Route path="/Participantes" element={<PrivateRoutes />}>
+                <Route path="/Participantes" element={<Participantes setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} />}/>
             </Route>
         </Routes>
       </Fragment>

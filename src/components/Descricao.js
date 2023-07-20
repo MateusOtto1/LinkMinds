@@ -1,13 +1,48 @@
-import { useNavigate, useContext } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import casaColorida from "../imagens/CasaColorida.png";
 import criar from "../imagens/Criar.png";
 import pessoa from "../imagens/Pessoa.png";
 import lupa from "../imagens/lupa.png";
-import { AuthGoogleContext } from "../contexts/authGoogle";
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 
 const Descricao = (props) => {
-
     const navigate = useNavigate();
+    const [emailUsuariosPresenca, setEmailUsuariosPresenca] = useState('');
+    const [verificaPresenca, setVerificaPresenca] = useState([false]);
+    const [usuarioPosts, setUsuarioPosts] = useState([]);
+    const [posts, setPosts] = useState([]);
+    const [presencaPost, setPresencaPost] = useState('');
+    const [meuPost, setMeuPost] = useState([false]);
+
+    useEffect(() => {
+        const getUsuario = async () => {
+            setEmailUsuariosPresenca(localStorage.getItem('email'));
+        };
+        getUsuario();
+    }, []);
+
+    useEffect(() => {
+        const getPostPresenca = async () => {
+            const evento = props.postSelecionado.evento;
+            const data = props.postSelecionado.data;
+            const hora = props.postSelecionado.hora;
+            const local = props.postSelecionado.local;
+            const nome = props.postSelecionado.nome;
+            const response = await axios.post('http://localhost:3001/postsPresencaInfo', { evento, data, hora, local, nome });
+            setPosts(response.data);
+            setPresencaPost(response.data.presenca);
+            setUsuarioPosts(response.data.usuariosPresenca);
+            if(emailUsuariosPresenca == posts.email){
+                setMeuPost(true);
+            }else{
+               setMeuPost(false);
+            }
+            usuarioPosts.find((post) => post == emailUsuariosPresenca) ? setVerificaPresenca(true) : setVerificaPresenca(false);
+        };
+        getPostPresenca();
+    });
+
     function handleClickHome() {
         navigate('/Home');
     };
@@ -19,6 +54,39 @@ const Descricao = (props) => {
     };
     function handleClickPesquisa() {
         navigate('/Usuarios');
+    };
+
+    function handleClickPresenca() {
+        const presenca = presencaPost+1;
+        const evento = props.postSelecionado.evento;
+        const data = props.postSelecionado.data;
+        const hora = props.postSelecionado.hora;
+        const local = props.postSelecionado.local;
+        const nome = props.postSelecionado.nome;
+        const usuariosPresenca = props.postSelecionado.usuariosPresenca;
+        usuariosPresenca.push(emailUsuariosPresenca);
+        axios.put('http://localhost:3001/postsPresenca', { presenca, evento, data, hora, local, nome, usuariosPresenca }).then(result => console.log(result)).catch(err => console.log(err));
+    };
+
+    function handleClickDesmarcarPresenca() {
+        const presenca = presencaPost-1;
+        const evento = props.postSelecionado.evento;
+        const data = props.postSelecionado.data;
+        const hora = props.postSelecionado.hora;
+        const local = props.postSelecionado.local;
+        const nome = props.postSelecionado.nome;
+        const usuariosPresenca = props.postSelecionado.usuariosPresenca;
+        const index = usuariosPresenca.indexOf(emailUsuariosPresenca);
+        if (index > -1) {
+            usuariosPresenca.splice(index, 1);
+        }
+        axios.put('http://localhost:3001/postsPresenca', { presenca, evento, data, hora, local, nome, usuariosPresenca }).then(result => console.log(result)).catch(err => console.log(err));
+    }
+
+    function handleClickParticipantes(e, posts) {
+        e.stopPropagation();
+        props.setPostSelecionado(posts);
+        navigate('/Participantes');
     }
 
     return (
@@ -34,11 +102,15 @@ const Descricao = (props) => {
                             <h3 className="horaJogoDescricao"><span className="spanTexto">Hora:</span> {props.postSelecionado.hora}</h3>
                             <h3 className="dataJogoDescricao"><span className="spanTexto">Local:</span> {props.postSelecionado.local}</h3>
                             <h3 className="criadorJogoDescricao"><span className="spanTexto">Criado por:</span> {props.postSelecionado.nome}</h3>
-                            <h3 className="marcadosDescricao"><span className="spanTexto">4</span>  Pessoas já marcaram presença neste evento</h3>
+                            <h3 className="marcadosDescricao"><span className="spanTexto">{presencaPost}</span>  Pessoas já marcaram presença neste evento</h3>
                         </div>
+                        <button className="btnParticipantes" onClick={(e) => handleClickParticipantes(e, posts)}>Participantes</button>
                     </div>
                 </div>
-                <button className="MarcarPresenca">Marcar Presença</button>
+                {
+                    meuPost == true ? <div></div> :
+                        verificaPresenca == false ? <button className="MarcarPresenca" onClick={handleClickPresenca}>Marcar presença</button> : <button className="MarcarPresenca" onClick={handleClickDesmarcarPresenca}>Desmarcar presença</button>
+                }
                 <div className="navbar">
                     <img className="imgCasa" src={casaColorida} onClick={handleClickHome} />
                     <img className="imgCriar" src={criar} onClick={handleClickCreate} />

@@ -58,7 +58,7 @@ export const AuthGoogleProvider = ({ children }) => {
 
   function signOut() {
     localStorage.clear();
-    setUser(null);
+    setEmail(null);
     return <Navigate to="/" />;
   }
 

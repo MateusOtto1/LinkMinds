@@ -9,7 +9,7 @@ import axios from "axios";
 const Criar = () => {
     const navigate = useNavigate();
     const [evento, setEvento] = useState('');
-    const [data, setData] = useState('');
+    const [dataEUA, setDataEUA] = useState('');
     const [hora, setHora] = useState('');
     const [local, setLocal] = useState('');
     const [preencha, setPreencha] = useState('');
@@ -20,7 +20,7 @@ const Criar = () => {
     useEffect(() => {
         const checkInput = async () => {
             posts.map((post) => {
-                if (evento == post.evento && data == post.data && hora == post.hora && local == post.local) {
+                if (evento == post.evento && dataEUA == post.data && hora == post.hora && local == post.local) {
                     setPreencha('Post já existente');
                     setPostExistente(true);
                 }
@@ -28,14 +28,14 @@ const Criar = () => {
                     setPostExistente(false);
                 }
             });
-            if (evento == '' || data == '' || hora == '' || local == '') {
+            if (evento == '' || dataEUA == '' || hora == '' || local == '') {
                 setPreencha('Preencha todos os campos');
             }else {
                 setPreencha('');
             }
         };
         checkInput();
-    }, [evento, data, hora, local]);
+    }, [evento, dataEUA, hora, local]);
 
     useEffect(() => {
         const getUser = async () => {
@@ -57,14 +57,14 @@ const Criar = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (evento == '' || data == '' || hora == '' || local == '' || postExistente == true) {
+        if (evento == '' || dataEUA == '' || hora == '' || local == '' || postExistente == true) {
             setPreencha('Você já criou este post ou não preencheu todos os campos');
         } else {
             const email = localStorage.getItem('email');
-            const dataBr = data.split('-');
-            const dataFormatada = `${dataBr[2]}/${dataBr[1]}/${dataBr[0]}`;
-            const data = dataFormatada;
-            await axios.post('http://localhost:3001/posts', { email, nome, evento, data, hora, local }).then(result => console.log(result)).catch(err => console.log(err));
+            const dataBr = dataEUA.split('-');
+            const data = `${dataBr[2]}/${dataBr[1]}/${dataBr[0]}`;
+            const presenca = 0;
+            await axios.post('http://localhost:3001/posts', { email, nome, evento, data, hora, local, presenca }).then(result => console.log(result)).catch(err => console.log(err));
             navigate('/Home');
         }
     };
@@ -90,7 +90,7 @@ const Criar = () => {
                     <div className="fundoMenorBio">
                         <form>
                             <input type="text" placeholder="Nome do Esporte/Jogo" className="inputCriar" onChange={(e) => setEvento(e.target.value)} />
-                            <input type="date" className="inputCriar" onChange={(e) => setData(e.target.value)} />
+                            <input type="date" className="inputCriar" onChange={(e) => setDataEUA(e.target.value)} />
                             <input type="time" className="inputCriar" onChange={(e) => setHora(e.target.value)} />
                             <input type="text" placeholder="Local" className="inputCriar" onChange={(e) => setLocal(e.target.value)} />
                             <p className="preencha">{preencha}</p>

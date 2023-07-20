@@ -1,10 +1,8 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthGoogleContext } from "../contexts/authGoogle";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import casa from "../imagens/Casa.png";
 import criar from "../imagens/Criar.png";
 import pessoa from "../imagens/Pessoa.png";
-import lapis from "../imagens/Lapis.png";
 import axios from "axios";
 import esportes from "../imagens/Esportes.png";
 import lupaColorida from "../imagens/lupaColorida.png";
