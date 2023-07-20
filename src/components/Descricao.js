@@ -89,6 +89,16 @@ const Descricao = (props) => {
         navigate('/Participantes');
     }
 
+    function handleClickExcluirPost() {
+        const evento = props.postSelecionado.evento;
+        const data = props.postSelecionado.data;
+        const hora = props.postSelecionado.hora;
+        const local = props.postSelecionado.local;
+        const nome = props.postSelecionado.nome;
+        axios.delete('http://localhost:3001/excluirPost', { data: { evento, data, hora, local, nome } }).then(result => console.log(result)).catch(err => console.log(err));
+        navigate('/Home');
+    }
+
     return (
         <>
             <div className="Fundo">
@@ -108,7 +118,7 @@ const Descricao = (props) => {
                     </div>
                 </div>
                 {
-                    meuPost == true ? <div></div> :
+                    meuPost == true ? <button className="MarcarPresenca" onClick={handleClickExcluirPost}>Excluir evento</button> :
                         verificaPresenca == false ? <button className="MarcarPresenca" onClick={handleClickPresenca}>Marcar presença</button> : <button className="MarcarPresenca" onClick={handleClickDesmarcarPresenca}>Desmarcar presença</button>
                 }
                 <div className="navbar">

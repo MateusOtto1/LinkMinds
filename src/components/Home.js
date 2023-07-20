@@ -30,7 +30,7 @@ const Home = (props) => {
         const getPosts = async () => {
             const response = await axios.post('http://localhost:3001/postsHome');
             setPosts(response.data);
-            if (busca == '') {
+            if (busca == "") {
                 setPesquisa(response.data);
             }
         };
@@ -83,18 +83,28 @@ const Home = (props) => {
                         <div className="bordaHome">
                             <div className="fundoMenorHome">
                                 {Pesquisa.map((post, index) => {
-                                    return (
-                                        <button className="post" onClick={(e) => handleClick(e, post)} key={index}>
-                                            <div className="fundoPost">
-                                                <img className="imgEsportes" src={esportes} />
-                                                <div className="descricaoPost">
-                                                    <h1 className="nomeJogo">{post.evento}</h1>
-                                                    <h3 className="dataJogo">{post.data} * {post.hora}</h3>
-                                                    <h3 className="criadorJogo">Criado por: {post.nome}</h3>
+                                    const dia = new Date().getDate();
+                                    const mes = new Date().getMonth() + 1;
+                                    const ano = new Date().getFullYear();
+                                    const dataPost = post.data.split('/');
+                                    if (dataPost[1] >= mes && dataPost[2] >= ano) {
+                                        return (
+                                            <button className="post" onClick={(e) => handleClick(e, post)} key={index}>
+                                                <div className="fundoPost">
+                                                    <img className="imgEsportes" src={esportes} />
+                                                    <div className="descricaoPost">
+                                                        <h1 className="nomeJogo">{post.evento}</h1>
+                                                        <h3 className="dataJogo">{post.data} * {post.hora}</h3>
+                                                        <h3 className="criadorJogo">Criado por: {post.nome}</h3>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </button>
-                                    )
+                                            </button>
+                                        )
+                                    } else {
+                                        return (
+                                            <div></div>
+                                        )
+                                    }
                                 })}
                             </div>
                         </div>
