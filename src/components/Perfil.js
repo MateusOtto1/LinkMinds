@@ -1,13 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthGoogleContext } from "../contexts/authGoogle";
 import { useNavigate } from "react-router-dom";
-import casa from "../imagens/Casa.png";
-import criar from "../imagens/Criar.png";
-import pessoaColorida from "../imagens/PessoaColorida.png";
-import lapis from "../imagens/Lapis.png";
 import axios from "axios";
-import esportes from "../imagens/Esportes.png";
-import lupa from "../imagens/lupa.png";
+import lapis from "../imagens/editar.svg";
+import "../css/style-perfil.css";
 
 const Perfil = (props) => {
     const { signOut } = useContext(AuthGoogleContext);
@@ -18,8 +14,9 @@ const Perfil = (props) => {
     useEffect(() => {
         const getUsuario = async () => {
             const email = localStorage.getItem('email');
-            const response = await axios.post('http://localhost:3001/usuarioInfo', { email });
+            const response = await axios.post('https://server-linkme.onrender.com/usuarioInfo', { email });
             setUsuarios(response.data);
+            document.querySelector('.img-perfil').style.backgroundImage = `url(${response.data.foto})`;
         };
         getUsuario();
     }, []);
@@ -27,80 +24,59 @@ const Perfil = (props) => {
     useEffect(() => {
         const getPosts = async () => {
             const email = localStorage.getItem('email');
-            const response = await axios.post('http://localhost:3001/postsInfo', { email });
+            const response = await axios.post('https://server-linkme.onrender.com/postsInfo', { email });
             setPosts(response.data);
         };
         getPosts();
     }, []);
 
-    function handleClick(e, post) {
-        e.stopPropagation();
-        props.setPostSelecionado(post);
-        navigate('/Descricao');
-    };
-    function handleClickHome() {
-        navigate('/Home');
-    };
-    function handleClickCreate() {
-        navigate('/Criar');
-    };
-    function handleClickPerfil() {
-        navigate('/Perfil');
-    };
-    function handleClickAlterar() {
-        navigate('/Bio');
-    };
-    function handleClickPesquisa() {
-        navigate('/Usuarios');
-    }
-
     return (
         <>
-            <div className="FundoPerfil">
-                <h1 className="Perfil"><span className="spanTexto">Seu </span>perfil</h1>
-                <div className="fundoMenor">
-                    <h3 className="apelido">Apelido</h3>
-                    <h3 className="apelidoUsuario">{usuarios.apelido}</h3>
-                    <div className="divNome">
-                        <h2 className="nomePerfil">{usuarios.nome}</h2>
-                        <h4 className="idadePerfil">{usuarios.idade} anos</h4>
-                        <button className="alterarPerfil" onClick={handleClickAlterar}>
-                            <img className="imgLapis" src={lapis} />
-                        </button>
+            <div className="main-perfil">
+                <div className="img-perfil"></div>
+                <section className="conteudo">
+                    <div className="top-perfil">
+                        <h1 className="nome-perfil">{usuarios.apelido}</h1>
+                        <h2 className="idade-perfil">{usuarios.idade} Anos</h2>
                     </div>
-                    <h3 className="apelido">Sobre Você</h3>
-                    <h4 className="descricaoPerfil">{usuarios.descricao}</h4>
-                    <h3 className="meusInteresses">Meus interesses</h3>
-                    <h4 className="interesses">{usuarios.interesses}</h4>
-                    <h2 className="todosPostsPerfil">Meus <span className="spanTexto">Posts</span></h2>
-                    <div className="bordaPerfil">
-                        <div className="fundoMenorPerfil">
-                            {posts.map((post, index) => {
-                                return (
-                                    <button className="post" onClick={(e) => handleClick(e, post)} key={index}>
-                                        <div className="fundoPost">
-                                            <img className="imgEsportes" src={esportes} />
-                                            <div className="descricaoPost">
-                                                <h1 className="nomeJogo">{post.evento}</h1>
-                                                <h3 className="dataJogo">{post.data} * {post.hora}</h3>
-                                                <h3 className="criadorJogo">Criado por: {post.nome}</h3>
-                                            </div>
-                                        </div>
-                                    </button>
-                                );
-                            })}
-                        </div>
-                    </div>
-                    {/* <button onClick={() => signOut()}>sair</button> */}
-                    <div className="navbar">
-                        <img className="imgCasa" src={casa} onClick={handleClickHome} />
-                        <img className="imgCriar" src={criar} onClick={handleClickCreate} />
-                        <img className="imgPesquisa" src={lupa} onClick={handleClickPesquisa} />
-                        <img className="imgPessoa" src={pessoaColorida} onClick={handleClickPerfil} />
-                        
-                    </div>
+                </section>
+                <section className="bio">
+                    <h1 className="bio-header">Bio</h1>
+                    <h1 className="bio-text"><span class="verde-aspas">"</span>{usuarios.descricao}<span className="verde-aspas">"</span></h1>
+                </section>
+                <div className="btn-editar" onClick={(e) => props.handleClickAlterarBio(e)}>
+                    <img src={lapis} alt="" />
+                    <button className="btn">Editar Perfil</button>
                 </div>
+                <section className="meus-interesses">
+                    <h1 className="inter-header">Interesses</h1>
+                    <div className="interesse-card">
+                        <p className="inter-title">{usuarios.interesses}</p>
+                    </div>
+                </section>
+                <section className="meus-posts">
+                    <h1 className="post-header">Posts</h1>
+                    <div className="posts-main">
+                        {posts.map((post, index) => {
+                            return (
+                                <div className="post-card" key={index}>
+                                    <div className="post-top">
+                                        <div className="img-post"></div>
+                                        <div className="post-text">
+                                            <h1 className="post-title">{post.evento}</h1>
+                                            <p className="post-dia">{post.data}</p>
+                                        </div>
+                                    </div>
+                                    <button className="btn-detalhe" onClick={(e) => props.handleClickAtivaDescricao(e, post)}>Ver detalhes</button>
+                                </div>
+
+                            );
+                        })}
+
+                    </div>
+                </section>
             </div>
+
         </>
     );
 }

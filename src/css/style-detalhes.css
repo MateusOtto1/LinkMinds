@@ -1,0 +1,194 @@
+.main-detalhes{
+    margin-top: 6rem;
+}
+
+header{
+    display: flex;
+    flex-direction: column;
+}
+
+.header-img-detalhes{
+    width: 22.5rem;
+    height: 22.5rem;
+    border-radius: 1.875rem;
+    object-fit: cover;
+    box-shadow: 4px 0px 15px 0px rgba(0, 0, 0, 0.25);
+}
+
+.header-title-detalhes{
+    color: #4ECCA3;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-top: -2.5rem;
+}
+
+.detalhes-container{
+    width: 22.5rem;
+    min-height: 18.875rem;
+    border-radius: 2.4375rem;
+    background: #232931;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-detalhes{
+    width: 100%;
+    display: flex;
+    font-size: 0.6rem; 
+}
+
+.top-text-detalhes{
+    margin-top: 0.5rem;
+    color: #fff;
+    margin-left: 0;
+    
+}
+
+.foto{
+    width: 4.375rem;
+    height: 4.375rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 100%;
+}
+
+.criado span{
+    text-decoration: 3px underline;
+    text-decoration-color: #4ECCA3;
+}
+
+h2{
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+.participantes-top{
+    font-weight: 700;
+    font-size: 1rem;
+    color: #4ECCA3;
+    line-height:2.0625rem;
+    justify-content: flex-start;
+    display: flex;
+    align-items: flex-start;
+    margin-left: 0;
+}
+
+.participantes-top img{
+    width: 2.0625rem;
+    height: 2.0625rem;
+    margin: 0;
+}
+
+.local-img{
+    width: 20.4375rem;
+    height: 9.9375rem;
+    border-radius: 1.875rem;
+    object-fit: cover;
+}
+
+.localizacao{
+    margin: 0.25rem auto;
+    text-align: center;
+    color: #FFF;
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: 700;
+}
+
+.nome-local{
+    color: #FFF;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-top: -1.5rem;
+}
+
+.main-participantes{
+    margin-top: 5rem;
+}
+
+.participantes{
+    margin-top: 0.5rem;
+    color: #4ECCA3;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.participantes-container{
+    width: 22.5rem;
+    border-radius: 2.4375rem;
+    background: #232931;
+}
+
+.participar-detalhes{
+    margin: 2rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 21.5625rem;
+    height: 4.0625rem;
+    border-radius: 3.125rem;
+    box-shadow: 0px 0px 0px 3px #4ECCA3;
+    border: 3px solid #1A1E24;
+    background: linear-gradient(126deg, #4ECCA3 0%, #268A69 100%);
+    color: #232931;
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.participante-pfp{
+    width: 4.375rem;
+    height: 4.375rem;
+    border-radius: 100%;
+    margin: 0.5rem;
+}
+
+.o-participante{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-bottom: #4ecca25e 4px solid;
+    border-radius: 4rem;
+    
+}
+
+.nome-participante{
+    color: #FFF;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-left: 0.5rem;
+}
+
+.header-cadastro{
+    color: #4ECCA3;
+    font-family: Poppins;
+    font-size: 4rem;
+    width: 100%;
+    font-style: italic;
+    font-weight: 700;
+    line-height: normal;
+    text-align: center;
+}
+
+.btnParticipantes{
+    height: 3rem;
+    border-radius: 3.125rem;
+    color: #232931;
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-style: italic;
+    margin: 2rem auto;
+    background: #4ECCA3;
+    box-shadow: 0px 0px 15px 0px rgba(78, 204, 163, 0.50);
+    border: 0;
+    outline: none;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    display: flex;
+}

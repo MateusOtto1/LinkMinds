@@ -1,0 +1,207 @@
+.main-perfil{
+    margin-top: 4.1875rem;
+    width: 100%;
+    min-height: 100vh;
+    padding-bottom: 5rem;
+    background: linear-gradient(180deg, #232931 0%, #181C22 100%) #232931;
+}
+
+.img-perfil{
+    width: 100%;
+    height: 24.0625rem;
+    /* background: url(../imagens/minhacara.svg); */
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.conteudo{
+    z-index: 1;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    border-radius: 1.5625rem 1.5625rem 0 0;
+    margin-top: -2rem;
+    background: #181C22;
+}
+
+.top-perfil{
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    border-bottom: #4ecca3 5px solid;
+}
+
+.nome-perfil{
+    color: #fff;
+    font-weight: 700;
+    font-size: 2.25rem;
+}
+
+.idade-perfil{
+    color: #fff;
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+.bio{
+    margin-top: 2rem;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.bio-header{
+    color:#4ecca3;
+    font-size: 2.25rem;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.bio-text{
+    position: relative;
+    color: #FFF;
+    font-size: 1.25rem;
+    font-style: italic;
+    font-weight: 700;
+    margin-top: -1.8555rem;
+    width: 90%;
+
+}
+
+.verde-aspas{
+    color: #4ecca3;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn-editar{
+    margin-top: 1rem;
+    display: flex;
+    width: 15.5625rem;
+    cursor: pointer;
+    border-radius: 1.5625rem;
+    background: #232931;
+}
+
+.btn-editar img{
+    margin-left: 0;
+    height: 100%;
+}
+
+.btn{
+    border: none;
+    margin-right: 0;
+    width: 11.5625rem;
+    text-align: center;
+    border-radius: 1.5625rem;
+    background: #393E46;
+    align-items: center;
+    padding: 0.2rem;
+    display: flex;
+    color: #FFF;
+    align-items: center;
+    justify-content: center;
+    font-size:1.5rem;
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: #4ecca3;
+}
+
+.meus-interesses{
+    width: 100%;
+    margin-top: 1rem;
+    text-align: center;
+    display: flex;
+    gap: 0.7rem;
+    flex-direction: column;
+}
+
+.inter-header, .post-header{
+    color: #4ecca3;
+    font-size: 2rem;
+    font-style: italic;
+    font-weight: 700;
+    text-align: center;
+}
+
+.interesse-card{
+    width: 21.75rem;
+    height: 3.75rem;
+    border-radius: 1.875rem;
+    border: 3px solid #4ECCA3;
+    background: url(../imagens/fundo-card.svg), lightgray 50% / cover no-repeat;
+}
+
+.inter-title{
+    border-radius: 1.875rem;
+    background:linear-gradient(90deg, #232931 0%, rgba(0, 0, 0, 0.00) 100%);
+    line-height: 3.75rem;
+    font-size: 1.7rem;
+    color: #FFF;
+    font-weight: 500;
+    width: 100%;
+}
+
+.meus-posts{
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+}
+
+.post-card{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.btn-detalhe{
+    width: 13.1875rem;
+    height: 2.5rem;
+    font-size: 1.5rem;
+    color: #181C22;
+    font-weight: 700;
+    outline: none;
+    border: 0;
+    border-radius: 1.25rem;
+    background: #4ECCA3;
+    box-shadow: 0px 0px 4px 0px #4ECCA3;
+    margin-right: 0;
+    margin-top: -1rem;
+}
+
+.post-top{
+    display: flex;
+    flex-direction: row;
+    color: #FFF;
+    justify-content: center;
+    align-items: center;
+    width: 95vw;
+    height: 5rem;
+    border-radius: 2.5rem;
+    background: #232931;
+}
+
+.img-post{
+    width: 5rem;
+    height: 5rem;
+    border-radius: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    background: url(../imagens/fundo-card.svg);
+    background-size: cover;
+    background-position: center;
+}
+
+.post-text{
+    margin-left: 0.5rem;
+    margin-top: 0;
+}
+
+.post-title{
+    margin-top: 0;
+}

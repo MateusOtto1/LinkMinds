@@ -1,0 +1,76 @@
+#criar-header{
+    color: #4ECCA3;
+    font-family: Poppins;
+    font-size: 4rem;
+    font-style: italic;
+    font-weight: 700;
+    line-height: normal;
+    text-align: center;
+}
+
+.main-criar{
+    margin-top: 4.1875rem;
+}
+
+.inp-header{
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 1.875rem;
+
+    font-weight: 700;
+    line-height: normal;
+    margin-left: 0.8rem;
+}
+
+.inp-criar{
+    width: 85vw;
+    height: 3.75rem;
+    flex-shrink: 0;
+    border-radius: 1.25rem;
+    border: 3px solid #4ECCA3;
+    background: #232931;
+    margin-bottom: 0.5rem;
+    outline: none;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    align-self: center;
+}
+
+.inp-criar::placeholder{
+    color: rgba(255, 255, 255, 0.12);
+    font-size: 1rem;
+    align-self: center;
+}
+
+#wrapper-criar{
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+}
+
+#btn-criar{
+    margin-top: 1rem;
+    width: 90%;
+    border-radius: 3.125rem;
+    border: 3px solid #1A1E24;
+    background: linear-gradient(126deg, #4ECCA3 0%, #268A69 100%);
+    box-shadow: 0px 0px 0px 3px #4ECCA3, 0px 0px 0px 0px rgba(70, 197, 170, 0.10), 0px 8px 19px 0px rgba(70, 197, 170, 0.10), 0px 34px 34px 0px rgba(70, 197, 170, 0.09), 0px 76px 46px 0px rgba(70, 197, 170, 0.05), 0px 135px 54px 0px rgba(70, 197, 170, 0.01), 0px 211px 59px 0px rgba(70, 197, 170, 0.00);
+    margin-bottom: 8rem;
+    height: 4.0625rem;
+    color: #1B2026;
+    font-family: Poppins;
+    font-size: 2.2rem;
+    font-style: italic;
+    font-weight: 700;
+    align-content: center;
+    
+}
+
+.preencha{
+    color: #FFF;
+    width: 90%;
+    text-align: center;
+}

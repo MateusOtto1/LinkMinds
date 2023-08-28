@@ -1,0 +1,51 @@
+*{
+    margin: 0 auto;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    
+}
+
+body{
+    background: url(../imagens/bgtop.svg)#181C22;
+    background-size: cover;
+    background-size: 600%;
+    background-position: 0% 0%;
+    width: 100vw;
+    height: fit-content;
+    align-items: center;
+}
+
+#wrapper-login{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15%;
+}
+
+#logo-login{
+    
+    margin-top: 45%;
+    width: 20rem;
+    height: 6rem;
+}
+
+#container-login{
+    padding: 0.5rem;
+    border-radius: 3.125rem;
+    border: 3px solid #1A1E24;
+    background: linear-gradient(126deg, #4ECCA3 0%, #268A69 100%);
+    box-shadow: 0px 0px 0px 3px #4ECCA3;
+}
+
+#logar{
+    color: #181C22;
+    text-align: center;
+    font-size: 1.875rem;
+    font-style: italic;
+    font-weight: 700;
+    text-decoration: none;
+    padding-left: 4rem;
+    padding-right: 4rem;
+}

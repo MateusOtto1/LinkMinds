@@ -1,0 +1,183 @@
+.pesquisar{
+    border-radius: 2.03125rem;
+    border: 3px solid #4ECCA3;
+    background: #232931;
+    width: 90vw;
+    height: 3.125rem;
+    font-size: 1rem;
+    color: #fff;
+    padding-left: 1rem;
+    display: flex;
+    outline: none;
+    margin-top: 6rem;
+}
+
+.categorias-container{
+    width: 90vw;
+    
+    border-radius: 2rem;
+    overflow: hidden;
+    min-height: 20vh;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.header-pesquisa{
+    color: #4ECCA3;
+    font-size: 3rem;
+    font-style: italic;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.categoria{
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100%;
+    height: 25vh;
+    color: #fff;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, #181C22 100%), url(../imagens/fundo-card.svg);
+    background-position: center;
+    background-size: cover;
+}
+
+.categoria-title{
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.user-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.user-body{
+    display: flex;
+    flex-direction: row;
+    color: #fff;
+    width: 90%;
+    border-radius: 2.1875rem;
+    background: #232931;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.user-body img{
+    border-radius: 100%;
+    width: 4.375rem;
+    height: 4.375rem;
+    object-fit: cover;
+    margin:auto 0;
+}
+
+.username{
+    margin-left: 1rem;
+    font-size: 1.3rem;
+}
+
+.user-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 2.1875rem;
+    border: 3px solid #181C22;
+    background: #4ECCA3;
+    box-shadow: 0px 0px 0px 3px #4ECCA3;
+    position: absolute;
+    right: 1rem;
+}
+
+.user-btn img{
+    width: 90%;
+    height: 90%;
+
+}
+
+.card-body{
+    height: fit-content;
+    padding: 0 0 1rem 0;
+}
+
+.card{
+    height: 22.6875rem;
+    background: url(../imagens/fundo-card.svg);
+    background-size: cover;
+    background-position: center;
+    border-radius: 2.28125rem;
+}
+
+.card-top{
+    border-radius: 2.28125rem 2.28125rem 0 0;
+    width: 100%;
+    min-height: 4.5625rem;
+    border-bottom: 3px solid #4ECCA3;
+    background: #232931;
+    display: flex;
+    gap: 0;
+}
+
+.pfp{
+    margin: 0%;
+    width: 4.15rem;
+    border-radius: 100%;
+    height: 100%;
+}
+
+.textos-card{
+    align-items: center;
+    margin-left: 0.88rem;
+}
+
+span{
+    text-decoration: underline;
+    text-decoration-color: #4ECCA3;
+}
+
+.info{
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.nome-card{
+    margin-top: 0.7rem;
+    color: #232931;
+    font-family: Poppins;
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding:0 0.5rem 0 0.5rem;
+    background-color: #4ECCA3;
+    width: fit-content;
+    margin-left: 0;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 3px 0px #4ECCA3;
+}
+
+.participar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1.5625rem;
+    background: #4ECCA3;
+    box-shadow: 0px 0px 15px 0px rgba(78, 204, 163, 0.50);
+    border: 0;
+    margin-top: -1.5rem;
+    width: 16rem;
+    height: 3.125rem;
+    color: #181C22;
+    font-family: Poppins;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}

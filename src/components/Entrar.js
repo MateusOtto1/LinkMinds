@@ -1,35 +1,31 @@
 import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { AuthGoogleContext } from "../contexts/authGoogle";
+import logo from "../imagens/logo.svg";
+import "../css/style.css";
 
 const Entrar = () => {
     const { signInGoogle, signed } = useContext(AuthGoogleContext);
     async function handleLoginFromGoogle() {
         await signInGoogle();
     }
-
+   
     if (!signed) {
         return (
             <>
-                <div className="Fundo">
-                    <div className="tituloEntrar">
-                        <h1><span className="spanTitulo">Link</span>Minds</h1>
+                <body>
+                    <div id="wrapper-login">
+                        <img src={logo} alt="" id="logo-login"/>
+                            <div id="container-login">
+                                <a id="logar" onClick = { handleLoginFromGoogle }>Entrar</a>
+                            </div>
                     </div>
-                    <div className="textoInfo">
-                        <h3>"Esse é um <span className="spanTexto">aplicativo</span> feito com o intuito de melhorar a <span className="spanTexto">vida social</span> de <span className="spanTexto">pessoas</span> de uma maneira mais <span className="spanTexto">eficiente</span>"</h3>
-                    </div>
-                    <div className="bordaEntrar">
-                        <div className="fundoMenorEntrar">
-                            <h3 className="textoEmail"><span className="spanTexto">Entre</span> através de sua conta do <span className="spanTexto">Google</span></h3>
-                            <button className="Google" onClick={handleLoginFromGoogle}><span className="spanTexto">Logar</span> com Google</button>
-                        </div>
-                    </div>
-                </div>
+                </body>
             </>
         );
     }
     else {
-        return <Navigate to="/Home" />;
+        return <Navigate to="/LinkMinds" />;
     }
 }
 export default Entrar;

@@ -1,12 +1,8 @@
 import { useNavigate, Navigate } from "react-router-dom";
-import casaColorida from "../imagens/CasaColorida.png";
-import criar from "../imagens/Criar.png";
-import pessoa from "../imagens/Pessoa.png";
-import esportes from "../imagens/Esportes.png";
-import lupa from "../imagens/lupa.png";
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
+import "../css/style-home.css";
 
 const Home = (props) => {
     const navigate = useNavigate();
@@ -19,7 +15,7 @@ const Home = (props) => {
     useEffect(() => {
         const getUsuario = async () => {
             const email = localStorage.getItem('email');
-            const response = await axios.post('http://localhost:3001/usuarioInfo', { email });
+            const response = await axios.post('https://server-linkme.onrender.com/usuarioInfo', { email });
             setUsuarios(response.data);
             setNome(response.data.nome);
         };
@@ -28,7 +24,7 @@ const Home = (props) => {
 
     useEffect(() => {
         const getPosts = async () => {
-            const response = await axios.post('http://localhost:3001/postsHome');
+            const response = await axios.post('https://server-linkme.onrender.com/postsHome');
             setPosts(response.data);
             if (busca == "") {
                 setPesquisa(response.data);
@@ -37,84 +33,46 @@ const Home = (props) => {
         getPosts();
     }, []);
 
-    useEffect(() => {
-        const pesquisaInput = async () => {
-            const postsPesquisa = posts.filter((post) => post.evento.toLowerCase().includes(busca.toLowerCase()));
-            setPesquisa(postsPesquisa);
-        };
-        pesquisaInput();
-    }, [busca]);
-
-    function handleClick(e, post) {
-        e.stopPropagation();
-        props.setPostSelecionado(post);
-        navigate('/Descricao');
-    };
-    function handleClickHome() {
-        navigate('/Home');
-    };
-    function handleClickCreate() {
-        navigate('/Criar');
-    };
-    function handleClickPerfil() {
-        navigate('/Perfil');
-    };
-    function handleClickPesquisa() {
-        navigate('/Usuarios');
-    }
-
     if (usuarios.apelido == "") {
-        return <Navigate to="/Bio" />
+        return <Navigate to="/Cadastro" />
     }
     else {
         return (
             <>
-                <div className="FundoHome">
-                    <div className="homeNome">
-                        <h1>{nome}</h1>
-                    </div>
-                    <div className="fundoMenor">
-                        <h3 className="HomePreparamos"><span className="spanTexto">Veja</span> o que <span className="spanTexto">preparamos</span> para <span className="spanTexto">você!</span></h3>
+                <div id="wrapper">
+                    <h1 id="bv">Bem Vindo</h1>
+                    <h1 id="nome">{usuarios.apelido}</h1>
+                </div>
+                <h1 id="posts-recomendados">Posts recomendados</h1>
+                <div id="posts">
 
-                        <input type="text" className="inputPesquisaHome" placeholder="Busque eventos aqui!" value={busca} onChange={(e) => setBusca(e.target.value)} />
-                        <div className="todosPostsHome">
-                            <h2>Todos os <span className="spanTexto">Posts</span></h2>
-                        </div>
-                        <div className="bordaHome">
-                            <div className="fundoMenorHome">
-                                {Pesquisa.map((post, index) => {
-                                    const dia = new Date().getDate();
-                                    const mes = new Date().getMonth() + 1;
-                                    const ano = new Date().getFullYear();
-                                    const dataPost = post.data.split('/');
-                                    if (dataPost[1] >= mes && dataPost[2] >= ano) {
-                                        return (
-                                            <button className="post" onClick={(e) => handleClick(e, post)} key={index}>
-                                                <div className="fundoPost">
-                                                    <img className="imgEsportes" src={esportes} />
-                                                    <div className="descricaoPost">
-                                                        <h1 className="nomeJogo">{post.evento}</h1>
-                                                        <h3 className="dataJogo">{post.data} * {post.hora}</h3>
-                                                        <h3 className="criadorJogo">Criado por: {post.nome}</h3>
-                                                    </div>
-                                                </div>
-                                            </button>
-                                        )
-                                    } else {
-                                        return (
-                                            <div></div>
-                                        )
-                                    }
-                                })}
+                    {Pesquisa.map((post, index) => {
+                        const dia = new Date().getDate();
+                        const mes = new Date().getMonth() + 1;
+                        const ano = new Date().getFullYear();
+                        const dataPost = post.data.split('/');
+                        if (dataPost[1] >= mes && dataPost[2] >= ano) {
+                            return (
+                            <div className="card-body" key={index}>
+                                <div className="card">
+                                    <div className="card-top">
+                                        <img src={post.foto} alt="" className="pfp" />
+                                        <div className="textos-card">
+                                            <p className="nome-card">{post.nome}</p>
+                                            <p className="info">Bora {post.evento} as <span>{post.hora} do dia {post.data}</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button className="participar" onClick={(e) => props.handleClickAtivaDescricao(e, post)}>Descrição</button>
                             </div>
-                        </div>
-                        <div className="navbar">
-                            <img className="imgCasa" src={casaColorida} onClick={handleClickHome} />
-                            <img className="imgCriar" src={criar} onClick={handleClickCreate} />
-                            <img className="imgLupa" src={lupa} onClick={handleClickPesquisa} />
-                            <img className="imgPessoa" src={pessoa} onClick={handleClickPerfil} />
-                        </div>
-                    </div>
+                            )
+                        } else {
+                            return (
+                                <div></div>
+                            )
+                        }
+                    })}
+
                 </div>
             </>
         );

@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import casaColorida from "../imagens/CasaColorida.png";
-import criar from "../imagens/Criar.png";
-import pessoa from "../imagens/Pessoa.png";
-import lupa from "../imagens/lupa.png";
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import '../css/style-detalhes.css';
+import fundoCard from '../imagens/fundo-card.svg';
+import boneco from "../imagens/basil-user-solid.svg";
+import fotoCimol from "../imagens/rectangle-108.svg";
 
 const Descricao = (props) => {
     const navigate = useNavigate();
@@ -29,35 +29,22 @@ const Descricao = (props) => {
             const hora = props.postSelecionado.hora;
             const local = props.postSelecionado.local;
             const nome = props.postSelecionado.nome;
-            const response = await axios.post('http://localhost:3001/postsPresencaInfo', { evento, data, hora, local, nome });
+            const response = await axios.post('https://server-linkme.onrender.com/postsPresencaInfo', { evento, data, hora, local, nome });
             setPosts(response.data);
             setPresencaPost(response.data.presenca);
             setUsuarioPosts(response.data.usuariosPresenca);
-            if(emailUsuariosPresenca == posts.email){
+            if (emailUsuariosPresenca == posts.email) {
                 setMeuPost(true);
-            }else{
-               setMeuPost(false);
+            } else {
+                setMeuPost(false);
             }
             usuarioPosts.find((post) => post == emailUsuariosPresenca) ? setVerificaPresenca(true) : setVerificaPresenca(false);
         };
         getPostPresenca();
     });
 
-    function handleClickHome() {
-        navigate('/Home');
-    };
-    function handleClickCreate() {
-        navigate('/Criar');
-    };
-    function handleClickPerfil() {
-        navigate('/Perfil');
-    };
-    function handleClickPesquisa() {
-        navigate('/Usuarios');
-    };
-
     function handleClickPresenca() {
-        const presenca = presencaPost+1;
+        const presenca = presencaPost + 1;
         const evento = props.postSelecionado.evento;
         const data = props.postSelecionado.data;
         const hora = props.postSelecionado.hora;
@@ -65,11 +52,11 @@ const Descricao = (props) => {
         const nome = props.postSelecionado.nome;
         const usuariosPresenca = props.postSelecionado.usuariosPresenca;
         usuariosPresenca.push(emailUsuariosPresenca);
-        axios.put('http://localhost:3001/postsPresenca', { presenca, evento, data, hora, local, nome, usuariosPresenca }).then(result => console.log(result)).catch(err => console.log(err));
+        axios.put('https://server-linkme.onrender.com/postsPresenca', { presenca, evento, data, hora, local, nome, usuariosPresenca }).then(result => console.log(result)).catch(err => console.log(err));
     };
 
     function handleClickDesmarcarPresenca() {
-        const presenca = presencaPost-1;
+        const presenca = presencaPost - 1;
         const evento = props.postSelecionado.evento;
         const data = props.postSelecionado.data;
         const hora = props.postSelecionado.hora;
@@ -80,13 +67,7 @@ const Descricao = (props) => {
         if (index > -1) {
             usuariosPresenca.splice(index, 1);
         }
-        axios.put('http://localhost:3001/postsPresenca', { presenca, evento, data, hora, local, nome, usuariosPresenca }).then(result => console.log(result)).catch(err => console.log(err));
-    }
-
-    function handleClickParticipantes(e, posts) {
-        e.stopPropagation();
-        props.setPostSelecionado(posts);
-        navigate('/Participantes');
+        axios.put('https://server-linkme.onrender.com/postsPresenca', { presenca, evento, data, hora, local, nome, usuariosPresenca }).then(result => console.log(result)).catch(err => console.log(err));
     }
 
     function handleClickExcluirPost() {
@@ -95,39 +76,41 @@ const Descricao = (props) => {
         const hora = props.postSelecionado.hora;
         const local = props.postSelecionado.local;
         const nome = props.postSelecionado.nome;
-        axios.delete('http://localhost:3001/excluirPost', { data: { evento, data, hora, local, nome } }).then(result => console.log(result)).catch(err => console.log(err));
-        navigate('/Home');
+        axios.delete('https://server-linkme.onrender.com/excluirPost', { data: { evento, data, hora, local, nome } }).then(result => console.log(result)).catch(err => console.log(err));
+        navigate('/');
     }
-
     return (
         <>
-            <div className="Fundo">
-                <h2 className="TextoInfoDescricao"><span className="spanTextoDesc">Informações</span> sobre o evento</h2>
-                <div className="bordaDescricao">
-                    <div className="fundoMenorDescricao">
-                        <h1 className="descricao">Descrição</h1>
-                        <h2 className="nomeJogoDescricao">{props.postSelecionado.evento}</h2>
-                        <div className="descricoes">
-                            <h3 className="dataJogoDescricao"><span className="spanTexto">Data:</span> {props.postSelecionado.data}</h3>
-                            <h3 className="horaJogoDescricao"><span className="spanTexto">Hora:</span> {props.postSelecionado.hora}</h3>
-                            <h3 className="dataJogoDescricao"><span className="spanTexto">Local:</span> {props.postSelecionado.local}</h3>
-                            <h3 className="criadorJogoDescricao"><span className="spanTexto">Criado por:</span> {props.postSelecionado.nome}</h3>
-                            <h3 className="marcadosDescricao"><span className="spanTexto">{presencaPost}</span>  Pessoas já marcaram presença neste evento</h3>
+            <div className='main-detalhes'>
+                <header>
+                    <img src={fundoCard} alt="" className="header-img-detalhes" />
+                    <h1 className="header-title-detalhes">{props.postSelecionado.evento}</h1>
+                </header>
+
+                <div className="detalhes-container">
+                    <div className="top-detalhes">
+                        <img src={props.postSelecionado.foto} alt="" className="foto" />
+                        <div className="top-text-detalhes">
+                            <h1 className="criado">Criado por <span class="username-span">{props.postSelecionado.nome}</span></h1>
+                            <h2 className="marcado">Marcado para o dia {props.postSelecionado.data} as {props.postSelecionado.hora}</h2>
+                            <h2 className="participantes-top"><img src={boneco} alt="" />{presencaPost} participantes</h2>
                         </div>
-                        <button className="btnParticipantes" onClick={(e) => handleClickParticipantes(e, posts)}>Participantes</button>
+                    </div>
+                    <div className="local-detalhes">
+                        <h1 className="localizacao">LOCALIZAÇÃO</h1>
+                        <img src={fotoCimol} alt="" className="local-img" />
+                        <h1 className="nome-local">{props.postSelecionado.local}</h1>
                     </div>
                 </div>
+
+                <button className="btnParticipantes" onClick={(e) => props.handleClickVerParticipantes(e, posts)}>Ver Participantes</button>
+
                 {
-                    meuPost == true ? <button className="MarcarPresenca" onClick={handleClickExcluirPost}>Excluir evento</button> :
-                        verificaPresenca == false ? <button className="MarcarPresenca" onClick={handleClickPresenca}>Marcar presença</button> : <button className="MarcarPresenca" onClick={handleClickDesmarcarPresenca}>Desmarcar presença</button>
+                    meuPost == true ? <button className="participar-detalhes" onClick={handleClickExcluirPost}>Excluir evento</button> :
+                        verificaPresenca == false ? <button className="participar-detalhes" onClick={handleClickPresenca}>Marcar presença</button> : <button className="participar-detalhes" onClick={handleClickDesmarcarPresenca}>Desmarcar presença</button>
                 }
-                <div className="navbar">
-                    <img className="imgCasa" src={casaColorida} onClick={handleClickHome} />
-                    <img className="imgCriar" src={criar} onClick={handleClickCreate} />
-                    <img className="imgLupa" src={lupa} onClick={handleClickPesquisa} />
-                    <img className="imgPessoa" src={pessoa} onClick={handleClickPerfil} />
-                </div>
             </div>
+
         </>
     );
 }

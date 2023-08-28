@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import casa from "../imagens/Casa.png";
-import criar from "../imagens/Criar.png";
-import pessoa from "../imagens/Pessoa.png";
 import axios from "axios";
-import esportes from "../imagens/Esportes.png";
-import lupaColorida from "../imagens/lupaColorida.png";
+import "../css/style-perfil.css";
 
 const Perfil = (props) => {
     const navigate = useNavigate();
@@ -13,73 +9,54 @@ const Perfil = (props) => {
 
     useEffect(() => {
         const getPosts = async () => {
+            document.querySelector('.img-perfil').style.backgroundImage = `url(${props.usuarioSelecionado.foto})`;
             const nome = props.usuarioSelecionado.nome;
-            const response = await axios.post('http://localhost:3001/postsPerfilPesquisa', { nome });
+            const response = await axios.post('https://server-linkme.onrender.com/postsPerfilPesquisa', { nome });
             setPosts(response.data);
         }
         getPosts();
-    },[]);
-
-    function handleClick(e, post) {
-        e.stopPropagation();
-        props.setPostSelecionado(post);
-        navigate('/Descricao');
-    };
-    function handleClickHome() {
-        navigate('/Home');
-    };
-    function handleClickCreate() {
-        navigate('/Criar');
-    };
-    function handleClickPerfil() {
-        navigate('/Perfil');
-    };
-    function handleClickPesquisa() {
-        navigate('/Usuarios');
-    }
-
+    }, []);
+    
     return (
         <>
-            <div className="FundoPerfil">
-                <h1 className="PerfilPesquisa">{props.usuarioSelecionado.nome}</h1>
-                <div className="fundoMenor">
-                    <h3 className="apelido">Apelido</h3>
-                    <h3 className="apelidoUsuario">{props.usuarioSelecionado.apelido}</h3>
-                    <div className="divNome">
-                        <h2 className="nomePerfil">{props.usuarioSelecionado.nome}</h2>
-                        <h4 className="idadePerfil">{props.usuarioSelecionado.idade} anos</h4>
-                    </div>
-                    <h3 className="apelido">Sobre {props.usuarioSelecionado.nome}</h3>
-                    <h4 className="descricaoPerfil">{props.usuarioSelecionado.descricao}</h4>
-                    <h3 className="meusInteresses">Interesses</h3>
-                    <h4 className="interesses">{props.usuarioSelecionado.interesses}</h4>
-                    <h2 className="todosPostsPerfil"><span className="spanTexto">Posts</span></h2>
-                    <div className="bordaPerfil">
-                        <div className="fundoMenorPerfil">
-                            {posts.map((post, index) => {
-                                return (
-                                    <button className="post" onClick={(e) => handleClick(e, post)} key={index}>
-                                        <div className="fundoPost">
-                                            <img className="imgEsportes" src={esportes} />
-                                            <div className="descricaoPost">
-                                                <h1 className="nomeJogo">{post.evento}</h1>
-                                                <h3 className="dataJogo">{post.data} * {post.hora}</h3>
-                                                <h3 className="criadorJogo">Criado por: {post.nome}</h3>
-                                            </div>
-                                        </div>
-                                    </button>
-                                );
-                            })}
-                        </div>
-                    </div>
-                    <div className="navbar">
-                        <img className="imgCasa" src={casa} onClick={handleClickHome} />
-                        <img className="imgCriar" src={criar} onClick={handleClickCreate} />
-                        <img className="imgPesquisa" src={lupaColorida} onClick={handleClickPesquisa} />
-                        <img className="imgPessoa" src={pessoa} onClick={handleClickPerfil} />  
-                    </div>
+            <div className="img-perfil"></div>
+            <section className="conteudo">
+                <div className="top-perfil">
+                    <h1 className="nome-perfil">{props.usuarioSelecionado.apelido}</h1>
+                    <h2 className="idade-perfil">{props.usuarioSelecionado.idade} Anos</h2>
                 </div>
-            </div>
+            </section>
+            <section className="bio">
+                <h1 className="bio-header">Bio</h1>
+                <h1 className="bio-text"><span class="verde-aspas">"</span>{props.usuarioSelecionado.descricao}<span className="verde-aspas">"</span></h1>
+            </section>
+            <section className="meus-interesses">
+                <h1 className="inter-header">Interesses de {props.usuarioSelecionado.apelido}</h1>
+                <div className="interesse-card">
+                    <p className="inter-title">{props.usuarioSelecionado.interesses}</p>
+                </div>
+            </section>
+            <section className="meus-posts">
+                <h1 className="post-header">Posts</h1>
+                <div className="posts-main">
+                    {posts.map((post, index) => {
+                        return (
+                            <div className="post-card" key={index}>
+                                <div className="post-top">
+                                    <div className="img-post"></div>
+                                    <div className="post-text">
+                                        <h1 className="post-title">{post.evento}</h1>
+                                        <p className="post-dia">{post.data}</p>
+                                    </div>
+                                </div>
+                                <button className="btn-detalhe" onClick={(e) => props.handleClickAtivaDescricao(e, post)} >Ver detalhes</button>
+                            </div>
+
+                        );
+                    })}
+
+                </div>
+            </section>
         </>
     );
 }

@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import casa from "../imagens/Casa.png";
-import criar from "../imagens/Criar.png";
-import pessoa from "../imagens/Pessoa.png";
 import axios from "axios";
-import lupaColorida from "../imagens/lupaColorida.png";
+import "../css/style-pesquisa.css";
+import seta from "../imagens/seta.svg";
 
 const Usuarios = (props) => {
     const navigate = useNavigate();
     const [usuarios, setUsuarios] = useState([]);
     const [busca, setBusca] = useState('');
     const [Pesquisa, setPesquisa] = useState([]);
+    const [pesquisaPost, setPesquisaPost] = useState([]);
+    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
         const getUsuarios = async () => {
-            const response = await axios.post('http://localhost:3001/pesquisaUsuario');
+            const response = await axios.post('https://server-linkme.onrender.com/pesquisaUsuario');
             setUsuarios(response.data);
             if (busca == '') {
                 setPesquisa(response.data);
@@ -24,60 +24,75 @@ const Usuarios = (props) => {
     }, []);
 
     useEffect(() => {
+        const getPosts = async () => {
+            const response = await axios.post('https://server-linkme.onrender.com/postsHome');
+            setPosts(response.data);
+            if (busca == "") {
+                setPesquisaPost(response.data);
+            }
+        };
+        getPosts();
+    }, []);
+
+    useEffect(() => {
         const pesquisaInput = async () => {
             const usuariosPesquisa = usuarios.filter((usuario) => usuario.nome.toLowerCase().includes(busca.toLowerCase()));
+            const postsPesquisa = posts.filter((post) => post.evento.toLowerCase().includes(busca.toLowerCase()));
             setPesquisa(usuariosPesquisa);
+            setPesquisaPost(postsPesquisa);
         };
         pesquisaInput();
     }, [busca]);
 
-    function handleClickHome() {
-        navigate('/Home');
-    };
-    function handleClickCreate() {
-        navigate('/Criar');
-    };
-    function handleClickPerfil() {
-        navigate('/Perfil');
-    };
-    function handleClickPesquisa() {
-        navigate('/Usuarios');
-    };
-    function handleClick(e,usuario) {
-        e.stopPropagation();
-        props.setUsuarioSelecionado(usuario);
-        navigate('/PerfilPesquisa');
-    };
-
     return (
         <>
-            <div className="FundoPesquisa">
-                <h1 className="pesquisaEncontre">Encontre outras <span className="spanTexto">pessoas</span></h1>
-                <div className="fundoMenor">
-                    <input type="text" className="inputPesquisa" placeholder="Busque usuários aqui!" value={busca} onChange={(e) => setBusca(e.target.value)} />
-                    <div className="bordaPesquisa">
-                        <div className="fundoMenorPesquisa">
-                            {Pesquisa.map((usuario, index) => {
-                                return (
-                                    <button className="pesquisaUsuario" onClick={(e) => handleClick(e, usuario)} key={index}>
-                                        <div className="fundoUsuario">
-                                            <img className="imgUsuario" src={usuario.foto} />
-                                            <div className="descricaoUsuario">
-                                                <h2 className="nomeUsuario">{usuario.nome}</h2>
-                                            </div>
-                                        </div>
-                                    </button>
-                                )
-                            })}
+            <input type="text" placeholder="O que desejas procurar?" className="pesquisar" value={busca} onChange={(e) => setBusca(e.target.value)} />
+            <h1 className="header-pesquisa">
+                Usuários
+            </h1>
+            <div className="user-container">
+                {Pesquisa.map((usuario, index) => {
+                    return (
+                        <div className="user-body" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)} key={index}>
+                            <img src={usuario.foto} alt="" />
+                            <h1 className="username">{usuario.nome}</h1>
+                            <button className="user-btn"><img src={seta} alt="" /></button>
                         </div>
-                    </div>
-                </div>
-                <div className="navbar">
-                    <img className="imgCasa" src={casa} onClick={handleClickHome} />
-                    <img className="imgCriar" src={criar} onClick={handleClickCreate} />
-                    <img className="imgPesquisa" src={lupaColorida} onClick={handleClickPesquisa} />
-                    <img className="imgPessoa" src={pessoa} onClick={handleClickPerfil} />
-                </div>
+                    )
+                })}
+            </div>
+
+            <h1 className="header-pesquisa">
+                Eventos
+            </h1>
+
+            <div className="eventos-container">
+            {pesquisaPost.map((post, index) => {
+                        const dia = new Date().getDate();
+                        const mes = new Date().getMonth() + 1;
+                        const ano = new Date().getFullYear();
+                        const dataPost = post.data.split('/');
+                        if (dataPost[1] >= mes && dataPost[2] >= ano) {
+                            return (
+                            <div className="card-body" key={index}>
+                                <div className="card">
+                                    <div className="card-top">
+                                        <img src={post.foto} alt="" className="pfp" />
+                                        <div className="textos-card">
+                                            <p className="nome-card">{post.nome}</p>
+                                            <p className="info">Bora {post.evento} as <span>{post.hora} do dia {post.data}</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button className="participar" onClick={(e) => props.handleClickAtivaDescricao(e, post)}>Descrição</button>
+                            </div>
+                            )
+                        } else {
+                            return (
+                                <div></div>
+                            )
+                        }
+                    })}
             </div>
         </>
     );

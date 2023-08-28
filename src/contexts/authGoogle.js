@@ -42,7 +42,7 @@ export const AuthGoogleProvider = ({ children }) => {
         const foto = user.photoURL;
         setFoto(foto);
         localStorage.setItem('email', email);
-        axios.post('http://localhost:3001/usuario', { email, nome, foto, apelido, idade, interesses, descricao }).then(result => result).catch(err => console.log(err));
+        axios.post('https://server-linkme.onrender.com/usuario', { email, nome, foto, apelido, idade, interesses, descricao }).then(result => result).catch(err => console.log(err));
 
         setTimeout(()=>{
           localStorage.removeItem('email');
