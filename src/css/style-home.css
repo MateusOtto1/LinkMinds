@@ -39,6 +39,7 @@
 }
 
 #posts-recomendados{
+    margin-top: 0.5rem;
     text-align: center;
     color: #4ECCA3;
     font-family: Poppins;
@@ -49,14 +50,14 @@
 }
 
 .card-body{
-    width: 100%;
+    width: 93%;
     height: fit-content;
     padding: 0 0 1rem 0;
     animation: fadeIn 1s ease-in-out;
 }
 
 .card{
-    height: 22.6875rem;
+    height: 18rem;
     background: url(../imagens/fundo-card.svg);
     background-size: cover;
     background-position: center;
@@ -66,7 +67,7 @@
 .card-top{
     border-radius: 2.28125rem 2.28125rem 0 0;
     width: 100%;
-    min-height: 4.5625rem;
+    height: 5rem;
     border-bottom: 3px solid #4ECCA3;
     background: #232931;
     display: flex;
@@ -74,15 +75,17 @@
 }
 
 .pfp{
-    margin: 0%;
+    margin: 5px;
+    margin-right: 0;
     width: 4.15rem;
     border-radius: 100%;
-    height: 100%;
+    height: 4.15rem;
 }
 
 .textos-card{
     align-items: center;
     margin-left: 0.88rem;
+    width: 75%;
 }
 
 span{
@@ -103,7 +106,7 @@ span{
     margin-top: 0.7rem;
     color: #232931;
     font-family: Poppins;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;

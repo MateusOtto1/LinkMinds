@@ -89,7 +89,10 @@ const Descricao = (props) => {
 
                 <div className="detalhes-container">
                     <div className="top-detalhes">
-                        <img src={props.postSelecionado.foto} alt="" className="foto" />
+                        <div className="foto-container">
+                             <img src={props.postSelecionado.foto} alt="" className="foto" />
+                        </div>
+                       
                         <div className="top-text-detalhes">
                             <h1 className="criado">Criado por <span className="username-span">{props.postSelecionado.nome}</span></h1>
                             <h2 className="marcado">Marcado para o dia {props.postSelecionado.data} as {props.postSelecionado.hora}</h2>
