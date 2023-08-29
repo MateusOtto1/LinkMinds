@@ -8,7 +8,7 @@
 
 .img-perfil{
     width: 100vw;
-    height: 45vh;
+    height: 50vh;
     /* background: url(../imagens/minhacara.svg); */
     background-position: center;
     background-size: cover;
@@ -206,7 +206,9 @@
     margin-top: 0;
 }
 
-@media (min-width: 768px) {
+
+
+@media (min-width: 1000px) {
     .conteudo{
         width: 100%;
         margin-top: 0;
@@ -218,7 +220,7 @@
         background-blend-mode: color;
     }
     .bio{
-        margin-top: 0.5rem;
+        margin-top: 0;
     }
     .wrapper-perfil-top{
         width: 90%;
@@ -229,7 +231,7 @@
         align-items: flex-start;
     }
     .wrapper-perfil-left{
-        width: 55vw;
+        width: 50vw;
         display: flex;
         flex-direction: column;
         justify-content: start;
@@ -237,11 +239,12 @@
         border-radius: 1.875rem;
         background: #232931;
         box-shadow: 0px 0px 0px 0px rgba(35, 41, 49, 0.10), 7px 19px 44px 0px rgba(35, 41, 49, 0.10), 28px 74px 79px 0px rgba(35, 41, 49, 0.09), 63px 167px 107px 0px rgba(35, 41, 49, 0.05), 111px 297px 127px 0px rgba(35, 41, 49, 0.01), 174px 464px 139px 0px rgba(35, 41, 49, 0.00);
-        height: 55vh;
+        height: 50vh;
         margin-top: 0;
+        flex-shrink: 1;
     }
     .wrapper-perfil-bottom{
-        width: 90%;
+        width: 85%;
         border-radius: 1.875rem;
         background: #232931;
         box-shadow: 0px 0px 0px 0px rgba(35, 41, 49, 0.10), 7px 19px 44px 0px rgba(35, 41, 49, 0.10), 28px 74px 79px 0px rgba(35, 41, 49, 0.09), 63px 167px 107px 0px rgba(35, 41, 49, 0.05), 111px 297px 127px 0px rgba(35, 41, 49, 0.01), 174px 464px 139px 0px rgba(35, 41, 49, 0.00);
@@ -285,19 +288,24 @@
         background: #1c2129;
     }
     .img-perfil{
-        width: 30vw;
-        height: 55vh;
+        flex: 1;
+        height: 50vh;
+        aspect-ratio: 4 / 4;
+        flex-shrink: 0;
         border-radius: 1.875rem;
         box-shadow: 0px 0px 0px 0px rgba(35, 41, 49, 0.10), 7px 19px 44px 0px rgba(35, 41, 49, 0.10), 28px 74px 79px 0px rgba(35, 41, 49, 0.09), 63px 167px 107px 0px rgba(35, 41, 49, 0.05), 111px 297px 127px 0px rgba(35, 41, 49, 0.01), 174px 464px 139px 0px rgba(35, 41, 49, 0.00);
+        width: fit-content;
+        margin: auto 4rem;
     }
     .nome-perfil {
-        font-size: 5vw;
+        font-size: 4vw;
     }
     .bio-header{
-        font-size: 4VW;
+        font-size: 3.5VW;
     }
     .idade-perfil{
-        font-size: 3VW;
+        margin-left: 1rem;
+        font-size: 2VW;
     }
     .bio-text{
         font-size: 2vw;
