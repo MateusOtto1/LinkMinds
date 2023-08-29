@@ -10,13 +10,14 @@
 }
 
 #bv{
+    width: 100%;
     color: rgba(78, 204, 163, 0.54);
     font-family: Poppins;
     font-size: 3rem;
     font-style: italic;
     font-weight: 700;
     line-height: normal;
-    margin-top: 0;
+
 }
 
 #nome{
@@ -31,6 +32,12 @@
     font-weight: 700;
 }
 
+#posts{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr;
+}
+
 #posts-recomendados{
     text-align: center;
     color: #4ECCA3;
@@ -42,6 +49,7 @@
 }
 
 .card-body{
+    width: 100%;
     height: fit-content;
     padding: 0 0 1rem 0;
     animation: fadeIn 1s ease-in-out;
@@ -124,4 +132,65 @@ span{
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+}
+
+@media (min-width: 800px) {
+    #posts-recomendados{
+        text-align: start;
+        width: 50%;
+        margin-left: 4rem;
+    }
+    #nome-perfil{
+        font-size: 2.2rem;
+        width: 50%;
+        margin-left: 1rem;
+    }
+    #nav-imgs{
+        gap: 3rem;
+    }
+    .nav-titles{
+        font-size: 2.2rem;
+        width: 24rem;
+    }
+    .navs{
+        width: 3rem;
+    }
+    #body{
+        background-size: 400%;
+    }
+    #bv{
+        width: 50%;
+        font-size: 4rem;
+    }
+    #nome{
+        width: 50%;
+        margin-top: -4rem;
+        font-size: 4rem;
+    }
+    .card-body{
+        width: 95%;   
+    }
+    #nav-perfil img{
+        width: 8rem;
+        height: 8rem;
+    }
+    #posts{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 1400px) {
+    #bv{
+        width: 50%;
+        font-size: 6rem;
+    }
+    #nome{
+        width: 50%;
+        margin-top: -6rem;
+        font-size: 6rem;
+    }
+    
+    #posts{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
 }

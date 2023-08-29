@@ -46,33 +46,33 @@ const Bio = () => {
 
     return (
         <>
-            <div class="main-editar">
+            <div className="main-editar">
 
-                <img src={usuarios.foto} alt="" class="pfp-editar" />
+                <img src={usuarios.foto} alt="" className="pfp-editar" />
 
-                <div class="inputs-editar">
+                <div className="inputs-editar">
 
-                    <div class="editar-input">
-                        <label for="nome">Apelido <img src={lapis} alt="" /></label>
-                        <input type="text" name="nome" class="input-style" placeholder="Seu Apelido" onChange={(e) => setApelido(e.target.value)} />
+                    <div className="editar-input">
+                        <label >Apelido <img src={lapis} alt="" /></label>
+                        <input type="text" name="nome" className="input-style" placeholder="Seu Apelido" onChange={(e) => setApelido(e.target.value)} />
                     </div>
 
-                    <div class="editar-input">
-                        <label for="idade">Idade <img src={lapis} alt="" /></label>
-                        <input type="number" name="idade" class="input-style" placeholder="Sua Idade" onChange={(e) => setIdade(e.target.value)} />
+                    <div className="editar-input">
+                        <label >Idade <img src={lapis} alt="" /></label>
+                        <input type="number" name="idade" className="input-style" placeholder="Sua Idade" onChange={(e) => setIdade(e.target.value)} />
                     </div>
 
-                    <div class="editar-input">
-                        <label for="idade">Interesses <img src={lapis} alt="" /></label>
-                        <input type="text" name="idade" class="input-style" placeholder="Seus Interesses" onChange={(e) => setInteresses(e.target.value)} />
+                    <div className="editar-input">
+                        <label >Interesses <img src={lapis} alt="" /></label>
+                        <input type="text" name="idade" className="input-style" placeholder="Seus Interesses" onChange={(e) => setInteresses(e.target.value)} />
                     </div>
 
-                    <div class="editar-input">
+                    <div className="editar-input">
                         <label>Bio <img src={lapis} alt="" /></label>
-                        <textarea name="bio" id="" cols="30" rows="5" class="input-style" onChange={(e) => setDescricao(e.target.value)}></textarea>
+                        <textarea name="bio" id="" cols="30" rows="5" className="input-style" onChange={(e) => setDescricao(e.target.value)}></textarea>
                     </div>
                     <p className="preencha">{preencha}</p>
-                    <button class="editar-btn-confirmar" onClick={handleSubmit}>Confirmar</button>
+                    <button className="editar-btn-confirmar" onClick={handleSubmit}>Confirmar</button>
 
                 </div>
 

@@ -28,10 +28,10 @@ const Perfil = (props) => {
             </section>
             <section className="bio">
                 <h1 className="bio-header">Bio</h1>
-                <h1 className="bio-text"><span class="verde-aspas">"</span>{props.usuarioSelecionado.descricao}<span className="verde-aspas">"</span></h1>
+                <h1 className="bio-text"><span className="verde-aspas">"</span>{props.usuarioSelecionado.descricao}<span className="verde-aspas">"</span></h1>
             </section>
             <section className="meus-interesses">
-                <h1 className="inter-header">Interesses de {props.usuarioSelecionado.apelido}</h1>
+                <h1 className="inter-header">Interesses</h1>
                 <div className="interesse-card">
                     <p className="inter-title">{props.usuarioSelecionado.interesses}</p>
                 </div>

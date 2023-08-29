@@ -47,7 +47,7 @@ const NavBar = () => {
             bodyfalso.style.height = "95vh";
             bodyfalso.style.borderRadius = "35px";
             bodyfalso.style.transition = "0.3s ease-in-out";
-            document.querySelector("#body").style.transition = "45.5s";
+            document.querySelector("#body").style.transition = "background 45.5s";
             document.querySelector("#body").style.backgroundPosition = "0% 0%";
             bodyfalso.style.boxShadow = "0px 0px 0px 0px rgba(78, 204, 163, 0.13), -13px 9px 35px 0px rgba(78, 204, 163, 0.13), -51px 38px 64px 0px rgba(78, 204, 163, 0.11), -116px 85px 86px 0px rgba(78, 204, 163, 0.07), -206px 152px 102px 0px rgba(78, 204, 163, 0.02), -322px 237px 112px 0px rgba(78, 204, 163, 0.00)"
             nav.style.visibility = "visible";
@@ -231,7 +231,7 @@ const NavBar = () => {
                         <div id="botao">
                             <button id="btn-hamb" onClick={handleToggleNav}><img src={hamburger} alt="" id="hamb" /></button>
                         </div>
-                        <img src={logo} alt="" id="logo" />
+                        <img src={logo} onClick={handleClickHome} alt="" id="logo" />
                     </nav>
                     <div className="main">
                         {home ? <Home setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} setDescricao={setDescricao} descricao={descricao} handleClickAtivaDescricao={handleClickAtivaDescricao}/> : null}

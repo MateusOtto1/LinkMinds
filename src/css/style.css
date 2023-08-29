@@ -20,15 +20,14 @@ body{
     height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     gap: 15%;
 }
 
 #logo-login{
-    
-    margin-top: 45%;
-    width: 20rem;
-    height: 6rem;
+    width: 70vw;
+    height: fit-content;
 }
 
 #container-login{
@@ -48,4 +47,5 @@ body{
     text-decoration: none;
     padding-left: 4rem;
     padding-right: 4rem;
+    
 }
