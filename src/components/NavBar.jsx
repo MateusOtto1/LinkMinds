@@ -2,14 +2,14 @@ import "../css/style-base.css";
 import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import axios from "axios";
-import Perfil from "../components/Perfil";
-import Home from "../components/Home";
-import Bio from "../components/Bio";
-import Descricao from "../components/Descricao";
-import Criar from "../components/Criar";
-import Usuarios from "../components/Usuarios"
-import PerfilPesquisa from "../components/PerfilPesquisa";
-import Participantes from "../components/Participantes";
+import Perfil from "./Perfil";
+import Home from "./Home";
+import Bio from "./Bio";
+import Descricao from "./Descricao";
+import Criar from "./Criar";
+import Usuarios from "./Usuarios"
+import PerfilPesquisa from "./PerfilPesquisa";
+import Participantes from "./Participantes";
 import homeIcon from "../imagens/home.svg";
 import pesquisarIcon from "../imagens/pesquisar.svg";
 import criarIcon from "../imagens/criar.svg";

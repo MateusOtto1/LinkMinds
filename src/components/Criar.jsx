@@ -41,7 +41,6 @@ const Criar = () => {
             const response = await axios.post('https://server-linkme.onrender.com/usuarioInfo', { email });
             setNome(response.data.nome);
             setFoto(response.data.foto);
-            
         };
         getUser();
     }, []);
@@ -64,7 +63,7 @@ const Criar = () => {
             const dataBr = dataEUA.split('-');
             const data = `${dataBr[2]}/${dataBr[1]}/${dataBr[0]}`;
             const presenca = 0;
-            await axios.post('https://server-linkme.onrender.com/posts', { email, nome, evento, data, hora, local, presenca, foto });
+            axios.post('https://server-linkme.onrender.com/posts', { email, nome, evento, data, hora, local, presenca, foto });
             navigate('/');
         }
     };
@@ -94,7 +93,6 @@ const Criar = () => {
                     <button id="btn-criar" onClick={handleSubmit}>Criar Evento</button>
                 </div>
             </div>
-
         </>
     );
 }

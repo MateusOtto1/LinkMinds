@@ -30,6 +30,8 @@ const Perfil = (props) => {
         getPosts();
     }, []);
 
+    
+
     return (
         <>
             <div className="main-perfil">

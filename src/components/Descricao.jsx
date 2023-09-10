@@ -53,6 +53,7 @@ const Descricao = (props) => {
         const usuariosPresenca = props.postSelecionado.usuariosPresenca;
         usuariosPresenca.push(emailUsuariosPresenca);
         axios.put('https://server-linkme.onrender.com/postsPresenca', { presenca, evento, data, hora, local, nome, usuariosPresenca }).then(result => console.log(result)).catch(err => console.log(err));
+        navigate('/');
     };
 
     function handleClickDesmarcarPresenca() {
@@ -68,6 +69,7 @@ const Descricao = (props) => {
             usuariosPresenca.splice(index, 1);
         }
         axios.put('https://server-linkme.onrender.com/postsPresenca', { presenca, evento, data, hora, local, nome, usuariosPresenca }).then(result => console.log(result)).catch(err => console.log(err));
+        navigate('/');
     }
 
     function handleClickExcluirPost() {
