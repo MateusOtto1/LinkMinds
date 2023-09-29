@@ -17,6 +17,7 @@ import chatsIcon from "../imagens/chats.svg";
 import perfilIcon from "../imagens/perfil.svg";
 import logo from "../imagens/logo.svg";
 import hamburger from "../imagens/hamburger.svg";
+import Cookies from "js-cookie";
 
 const NavBar = () => {
     const navigate = useNavigate();
@@ -108,8 +109,8 @@ const NavBar = () => {
 
     useEffect(() => {
         const getUsuario = async () => {
-            const email = localStorage.getItem('email');
-            const response = await axios.post('https://server-linkme.onrender.com/usuarioInfo', { email });
+            const token = Cookies.get('token');
+            const response = await axios.post('http://localhost:3001/usuarioInfo', { token });
             setUsuarios(response.data);
             setNome(response.data.nome);
         };

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import seta from "../imagens/seta.svg";
+import Cookies from 'js-cookie';
 
 const Participantes = (props) => {
     const navigate = useNavigate();
@@ -16,7 +17,8 @@ const Participantes = (props) => {
             const hora = props.postSelecionado.hora;
             const local = props.postSelecionado.local;
             const nome = props.postSelecionado.nome;
-            const response = await axios.post('https://server-linkme.onrender.com/postsPresencaInfo', { evento, data, hora, local, nome });
+            const token = Cookies.get('token');
+            const response = await axios.post('http://localhost:3001/postsPresencaInfo', { token, evento, data, hora, local, nome });
             setParticipantes(response.data.usuariosPresenca);
         };
         getParticipantes();
@@ -24,7 +26,8 @@ const Participantes = (props) => {
 
     useEffect(() => {
         const getUsuarios = async () => {
-            const response = await axios.post('https://server-linkme.onrender.com/pesquisaUsuario');
+            const token = Cookies.get('token');
+            const response = await axios.post('http://localhost:3001/pesquisaUsuario', { token });
             setUsuarios(response.data);
             participantes.map((participante) => {
                 const email = participante;

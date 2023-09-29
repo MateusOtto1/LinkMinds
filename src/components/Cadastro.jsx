@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../css/style-editar.css";
+import Cookies from 'js-cookie';
 
 const Bio = () => {
     const [apelido, setApelido] = useState('');
@@ -14,8 +15,8 @@ const Bio = () => {
 
     useEffect(() => {
         const getUsuario = async () => {
-            const email = localStorage.getItem('email');
-            const response = await axios.post('https://server-linkme.onrender.com/usuarioInfo', { email });
+            const token = Cookies.get('token');
+            const response = await axios.post('http://localhost:3001/usuarioInfo', { token });
             setUsuarios(response.data);
         };
         getUsuario();
@@ -37,8 +38,8 @@ const Bio = () => {
         if (apelido == '' || idade == '' || interesses == '' || descricao == '') {
             setPreencha('Preencha todos os campos');
         } else {
-            const email = localStorage.getItem('email');
-            await axios.put('https://server-linkme.onrender.com/usuario', { email, apelido, idade, interesses, descricao }).then(result => console.log(result)).catch(err => console.log(err));
+            const token = Cookies.get('token');
+            await axios.put('http://localhost:3001/usuario', { token, apelido, idade, interesses, descricao }).then(result => console.log(result)).catch(err => console.log(err));
             navigate('/');
         }
     }

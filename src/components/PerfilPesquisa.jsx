@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../css/style-perfil.css";
+import Cookies from 'js-cookie';
 
 const Perfil = (props) => {
     const navigate = useNavigate();
@@ -11,7 +12,8 @@ const Perfil = (props) => {
         const getPosts = async () => {
             document.querySelector('.img-perfil').style.backgroundImage = `url(${props.usuarioSelecionado.foto})`;
             const nome = props.usuarioSelecionado.nome;
-            const response = await axios.post('https://server-linkme.onrender.com/postsPerfilPesquisa', { nome });
+            const token = Cookies.get('token');
+            const response = await axios.post('http://localhost:3001/postsPerfilPesquisa', { token, nome });
             setPosts(response.data);
         }
         getPosts();

@@ -3,6 +3,7 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { app } from "../services/firebaseConfig";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
+import Cookies from 'js-cookie';
 const provider = new GoogleAuthProvider();
 
 export const AuthGoogleContext = createContext({});
@@ -12,6 +13,7 @@ export const AuthGoogleProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [email, setEmail] = useState('');
   const [foto, setFoto] = useState('');
+  const [token, setToken] = useState('');
   const [nome, setNome] = useState('');
   const [apelido, setApelido] = useState('');
   const [idade, setIdade] = useState('');
@@ -20,9 +22,9 @@ export const AuthGoogleProvider = ({ children }) => {
 
   useEffect(()=>{
     const loadStorage = ()=>{
-      const emailStorage = localStorage.getItem('email');
-      if(emailStorage){
-        setEmail(emailStorage);
+      const tokenStorage = Cookies.get('token');
+      if(tokenStorage){
+        setToken(tokenStorage);
       }
     };
     loadStorage();
@@ -33,6 +35,7 @@ export const AuthGoogleProvider = ({ children }) => {
       .then((result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
+        setToken(token);
         const user = result.user;
         setUser(user);
         const email = user.email;
@@ -41,12 +44,15 @@ export const AuthGoogleProvider = ({ children }) => {
         setNome(nome);
         const foto = user.photoURL;
         setFoto(foto);
-        localStorage.setItem('email', email);
-        axios.post('https://server-linkme.onrender.com/usuario', { email, nome, foto, apelido, idade, interesses, descricao }).then(result => result).catch(err => console.log(err));
-
-        setTimeout(()=>{
-          localStorage.removeItem('email');
+        Cookies.set('token', token);
+        setTimeout(() => {
+          const cookie = Cookies.get("token");
+          if (cookie) {
+            Cookies.remove("token");
+          }
         }, 259200000);
+        axios.put('http://localhost:3001/token', { email, token }).then(result => result).catch(err => console.log(err));
+        axios.post('http://localhost:3001/usuario', { email, nome, foto, apelido, idade, interesses, descricao, token }).then(result => result).catch(err => console.log(err));
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -63,7 +69,7 @@ export const AuthGoogleProvider = ({ children }) => {
   }
 
   return (
-    <AuthGoogleContext.Provider value={{signed: !!email, email, signInGoogle, signOut, nome}}>
+    <AuthGoogleContext.Provider value={{signed: !!token, token, signInGoogle, signOut, nome}}>
       {children}
     </AuthGoogleContext.Provider>
   );

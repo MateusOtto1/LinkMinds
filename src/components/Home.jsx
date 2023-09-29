@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import "../css/style-home.css";
+import Cookies from 'js-cookie';
 
 const Home = (props) => {
     const navigate = useNavigate();
@@ -14,8 +15,8 @@ const Home = (props) => {
 
     useEffect(() => {
         const getUsuario = async () => {
-            const email = localStorage.getItem('email');
-            const response = await axios.post('https://server-linkme.onrender.com/usuarioInfo', { email });
+            const token = Cookies.get('token');
+            const response = await axios.post('http://localhost:3001/usuarioInfo', { token });
             setUsuarios(response.data);
             setNome(response.data.nome);
         };
@@ -24,7 +25,8 @@ const Home = (props) => {
 
     useEffect(() => {
         const getPosts = async () => {
-            const response = await axios.post('https://server-linkme.onrender.com/postsHome');
+            const token = Cookies.get('token');
+            const response = await axios.post('http://localhost:3001/postsHome', { token });
             setPosts(response.data);
             if (busca == "") {
                 setPesquisa(response.data);

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../css/style-pesquisa.css";
 import seta from "../imagens/seta.svg";
+import Cookies from 'js-cookie';
 
 const Usuarios = (props) => {
     const navigate = useNavigate();
@@ -14,7 +15,8 @@ const Usuarios = (props) => {
 
     useEffect(() => {
         const getUsuarios = async () => {
-            const response = await axios.post('https://server-linkme.onrender.com/pesquisaUsuario');
+            const token = Cookies.get('token');
+            const response = await axios.post('http://localhost:3001/pesquisaUsuario', { token });
             setUsuarios(response.data);
             if (busca == '') {
                 setPesquisa(response.data);
@@ -25,7 +27,8 @@ const Usuarios = (props) => {
 
     useEffect(() => {
         const getPosts = async () => {
-            const response = await axios.post('https://server-linkme.onrender.com/postsHome');
+            const token = Cookies.get('token');
+            const response = await axios.post('http://localhost:3001/postsHome', { token });
             setPosts(response.data);
             if (busca == "") {
                 setPesquisaPost(response.data);

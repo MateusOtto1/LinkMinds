@@ -4,18 +4,21 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import lapis from "../imagens/editar.svg";
 import "../css/style-perfil.css";
+import Cookies from 'js-cookie';
 
 const Perfil = (props) => {
     const { signOut } = useContext(AuthGoogleContext);
     const navigate = useNavigate();
     const [usuarios, setUsuarios] = useState({});
     const [posts, setPosts] = useState([]);
+    const [email, setEmail] = useState('');
 
     useEffect(() => {
         const getUsuario = async () => {
-            const email = localStorage.getItem('email');
-            const response = await axios.post('https://server-linkme.onrender.com/usuarioInfo', { email });
+            const token = Cookies.get('token');
+            const response = await axios.post('http://localhost:3001/usuarioInfo', { token });
             setUsuarios(response.data);
+            setEmail(response.data.email);
             document.querySelector('.img-perfil').style.backgroundImage = `url(${response.data.foto})`;
         };
         getUsuario();
@@ -23,8 +26,8 @@ const Perfil = (props) => {
 
     useEffect(() => {
         const getPosts = async () => {
-            const email = localStorage.getItem('email');
-            const response = await axios.post('https://server-linkme.onrender.com/postsInfo', { email });
+            const token = Cookies.get('token');
+            const response = await axios.post('http://localhost:3001/postsInfo', { token, email });
             setPosts(response.data);
         };
         getPosts();

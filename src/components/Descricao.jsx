@@ -5,6 +5,7 @@ import '../css/style-detalhes.css';
 import fundoCard from '../imagens/fundo-card.svg';
 import boneco from "../imagens/basil-user-solid.svg";
 import fotoCimol from "../imagens/rectangle-108.svg";
+import Cookies from 'js-cookie';
 
 const Descricao = (props) => {
     const navigate = useNavigate();
@@ -17,7 +18,9 @@ const Descricao = (props) => {
 
     useEffect(() => {
         const getUsuario = async () => {
-            setEmailUsuariosPresenca(localStorage.getItem('email'));
+            const token = Cookies.get('token');
+            const response = await axios.post('http://localhost:3001/usuarioInfo', { token });
+            setEmailUsuariosPresenca(response.data.email);
         };
         getUsuario();
     }, []);
@@ -29,7 +32,8 @@ const Descricao = (props) => {
             const hora = props.postSelecionado.hora;
             const local = props.postSelecionado.local;
             const nome = props.postSelecionado.nome;
-            const response = await axios.post('https://server-linkme.onrender.com/postsPresencaInfo', { evento, data, hora, local, nome });
+            const token = Cookies.get('token');
+            const response = await axios.post('http://localhost:3001/postsPresencaInfo', { token, evento, data, hora, local, nome });
             setPosts(response.data);
             setPresencaPost(response.data.presenca);
             setUsuarioPosts(response.data.usuariosPresenca);
@@ -52,7 +56,8 @@ const Descricao = (props) => {
         const nome = props.postSelecionado.nome;
         const usuariosPresenca = props.postSelecionado.usuariosPresenca;
         usuariosPresenca.push(emailUsuariosPresenca);
-        axios.put('https://server-linkme.onrender.com/postsPresenca', { presenca, evento, data, hora, local, nome, usuariosPresenca }).then(result => console.log(result)).catch(err => console.log(err));
+        const token = Cookies.get('token');
+        axios.put('http://localhost:3001/postsPresenca', { token, presenca, evento, data, hora, local, nome, usuariosPresenca }).then(result => console.log(result)).catch(err => console.log(err));
         navigate('/');
     };
 
@@ -68,7 +73,8 @@ const Descricao = (props) => {
         if (index > -1) {
             usuariosPresenca.splice(index, 1);
         }
-        axios.put('https://server-linkme.onrender.com/postsPresenca', { presenca, evento, data, hora, local, nome, usuariosPresenca }).then(result => console.log(result)).catch(err => console.log(err));
+        const token = Cookies.get('token');
+        axios.put('http://localhost:3001/postsPresenca', { token, presenca, evento, data, hora, local, nome, usuariosPresenca }).then(result => console.log(result)).catch(err => console.log(err));
         navigate('/');
     }
 
@@ -78,7 +84,8 @@ const Descricao = (props) => {
         const hora = props.postSelecionado.hora;
         const local = props.postSelecionado.local;
         const nome = props.postSelecionado.nome;
-        axios.delete('https://server-linkme.onrender.com/excluirPost', { data: { evento, data, hora, local, nome } }).then(result => console.log(result)).catch(err => console.log(err));
+        const token = Cookies.get('token');
+        axios.delete('http://localhost:3001/excluirPost', { token, data: { evento, data, hora, local, nome } }).then(result => console.log(result)).catch(err => console.log(err));
         navigate('/');
     }
     return (
