@@ -33,8 +33,6 @@ const Perfil = (props) => {
         getPosts();
     }, []);
 
-    
-
     return (
         <>
             <div className="main-perfil">
@@ -57,6 +55,10 @@ const Perfil = (props) => {
                         <div className="btn-editar" onClick={(e) => props.handleClickAlterarBio(e)}>
                             <img src={lapis} alt="" />
                             <button className="btn">Editar Perfil</button>
+                        </div>
+                        <div>
+                            <button className="btn-seguidores" onClick={(e) => props.handleClickSeguidores(e)}>Seguidores</button>
+                            <button className="btn-seguindo" onClick={(e) => props.handleClickSeguindo(e)}>Seguindo</button>
                         </div>
 
                     </div>

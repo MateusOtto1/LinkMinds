@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "../css/style-editar.css";
 import Cookies from 'js-cookie';
 
-const Bio = () => {
+const Cadastro = () => {
     const [apelido, setApelido] = useState('');
     const [idade, setIdade] = useState('');
     const [interesses, setInteresses] = useState('');
@@ -83,4 +83,4 @@ const Bio = () => {
     );
 
 }
-export default Bio;
+export default Cadastro;

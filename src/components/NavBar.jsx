@@ -10,6 +10,8 @@ import Criar from "./Criar";
 import Usuarios from "./Usuarios"
 import PerfilPesquisa from "./PerfilPesquisa";
 import Participantes from "./Participantes";
+import Seguidores from "./Seguidores";
+import Seguindo from "./Seguindo";
 import homeIcon from "../imagens/home.svg";
 import pesquisarIcon from "../imagens/pesquisar.svg";
 import criarIcon from "../imagens/criar.svg";
@@ -36,6 +38,8 @@ const NavBar = () => {
     const [descricao, setDescricao] = useState(false);
     const [perfilPesquisa, setPerfilPesquisa] = useState(false);
     const [verParticipantes, setVerParticipantes] = useState(false);
+    const [seguidores, setSeguidores] = useState(false);
+    const [seguindo, setSeguindo] = useState(false);
 
     const [postSelecionado, setPostSelecionado] = useState({});
     const [usuarioSelecionado, setUsuarioSelecionado] = useState({});
@@ -126,6 +130,8 @@ const NavBar = () => {
         setPerfilPesquisa(false);
         setVerParticipantes(false);
         setBio(false);
+        setSeguidores(false);
+        setSeguindo(false);
         handleBodyClick();
     };
     function handleClickCreate() {
@@ -137,6 +143,8 @@ const NavBar = () => {
         setPerfilPesquisa(false);
         setVerParticipantes(false);
         setBio(false);
+        setSeguidores(false);
+        setSeguindo(false);
         handleBodyClick();
     };
     function handleClickPerfil() {
@@ -148,6 +156,8 @@ const NavBar = () => {
         setPerfilPesquisa(false);
         setVerParticipantes(false);
         setBio(false);
+        setSeguidores(false);
+        setSeguindo(false);
         handleBodyClick();
     };
     function handleClickPesquisa() {
@@ -159,6 +169,8 @@ const NavBar = () => {
         setPerfilPesquisa(false);
         setVerParticipantes(false);
         setBio(false);
+        setSeguidores(false);
+        setSeguindo(false);
         handleBodyClick();
     };
 
@@ -173,6 +185,8 @@ const NavBar = () => {
         setPerfilPesquisa(false);
         setVerParticipantes(false);
         setBio(false);
+        setSeguidores(false);
+        setSeguindo(false);
     };
 
     function handleClickPesquisaUsuario(e, usuario) {
@@ -186,6 +200,8 @@ const NavBar = () => {
         setDescricao(false);
         setVerParticipantes(false);
         setBio(false);
+        setSeguidores(false);
+        setSeguindo(false);
     };
 
     function handleClickVerParticipantes(e, posts) {
@@ -199,11 +215,43 @@ const NavBar = () => {
         setCriar(false);
         setPerfilPesquisa(false);
         setBio(false);
+        setSeguidores(false);
+        setSeguindo(false);
     };
 
     function handleClickAlterarBio(e) {
         e.stopPropagation();
         setBio(true);
+        setVerParticipantes(false);
+        setDescricao(false);
+        setPesquisa(false);
+        setHome(false);
+        setPerfil(false);
+        setCriar(false);
+        setPerfilPesquisa(false);
+        setSeguidores(false);
+        setSeguindo(false);
+    };
+
+    function handleClickSeguidores(e) {
+        e.stopPropagation();
+        setSeguidores(true);
+        setBio(false);
+        setVerParticipantes(false);
+        setDescricao(false);
+        setPesquisa(false);
+        setHome(false);
+        setPerfil(false);
+        setCriar(false);
+        setPerfilPesquisa(false);
+        setSeguindo(false);
+    };
+
+    function handleClickSeguindo(e) {
+        e.stopPropagation();
+        setSeguindo(true);
+        setSeguidores(false);
+        setBio(false);
         setVerParticipantes(false);
         setDescricao(false);
         setPesquisa(false);
@@ -240,11 +288,13 @@ const NavBar = () => {
                         {home ? <Home setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} setDescricao={setDescricao} descricao={descricao} handleClickAtivaDescricao={handleClickAtivaDescricao}/> : null}
                         {pesquisa ? <Usuarios setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} handleClickPesquisaUsuario={handleClickPesquisaUsuario} handleClickAtivaDescricao={handleClickAtivaDescricao}/> : null}
                         {criar ? <Criar /> : null}
-                        {perfil ? <Perfil setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickAtivaDescricao={handleClickAtivaDescricao} handleClickAlterarBio={handleClickAlterarBio}/> : null}
+                        {perfil ? <Perfil setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickAtivaDescricao={handleClickAtivaDescricao} handleClickAlterarBio={handleClickAlterarBio} handleClickSeguidores={handleClickSeguidores} handleClickSeguindo={handleClickSeguindo}/> : null}
                         {descricao ? <Descricao setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickVerParticipantes={handleClickVerParticipantes}/> : null}
                         {bio ? <Bio /> : null}
                         {perfilPesquisa ? <PerfilPesquisa setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickAtivaDescricao={handleClickAtivaDescricao}/> : null}
                         {verParticipantes ? <Participantes setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickPesquisaUsuario={handleClickPesquisaUsuario}/> : null}
+                        {seguidores ? <Seguidores handleClickPesquisaUsuario={handleClickPesquisaUsuario} setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado}/> : null}
+                        {seguindo ? <Seguindo handleClickPesquisaUsuario={handleClickPesquisaUsuario} setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado}/> : null}
                     </div>
                 </div>
 
