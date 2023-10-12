@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import seta from "../imagens/seta.svg";
 import Cookies from 'js-cookie';
 
-const Participantes = (props) => {
-    const navigate = useNavigate();
-    const [participantes, setParticipantes] = useState([]);
-    const [usuarios, setUsuarios] = useState([]);
-    const [usuariosParticipantes, setUsuariosParticipantes] = useState([]);
+const SeguidoresPP = (props) => {
+    const [seguindo, setSeguindo] = useState([]);
+    const [usuariosSeguindo, setUsuariosSeguindo] = useState([]);
+    const [verificaSeguindo, setVerificaSeguindo] = useState(false);
     const [email, setEmail] = useState('');
 
     useEffect(() => {
@@ -22,44 +20,48 @@ const Participantes = (props) => {
     });
 
     useEffect(() => {
-        const getParticipantes = async () => {
-            const evento = props.postSelecionado.evento;
-            const data = props.postSelecionado.data;
-            const hora = props.postSelecionado.hora;
-            const local = props.postSelecionado.local;
-            const nome = props.postSelecionado.nome;
-            const token = Cookies.get('token');
-            const response = await axios.post('http://localhost:3001/postsPresencaInfo', { token, evento, data, hora, local, nome });
-            setParticipantes(response.data.usuariosPresenca);
+        const getUsuario = async () => {
+            setSeguindo(props.usuarioSelecionado.usuariosSeguindo);
         };
-        getParticipantes();
-    }, []);
+        getUsuario();
+    }, [verificaSeguindo]);
 
     useEffect(() => {
-        const getUsuarios = async () => {
+        const verificaSeguindo = async () => {
+            await seguindo;
+            if (seguindo.length == 0) {
+                setVerificaSeguindo(false);
+            } else {
+                setVerificaSeguindo(true);
+            }
+        };
+        verificaSeguindo();
+    }, [seguindo]); 
+    
+    useEffect(() => {
+        const getSeguindo = async () => {
             const token = Cookies.get('token');
             const response = await axios.post('http://localhost:3001/pesquisaUsuario', { token });
-            setUsuarios(response.data);
-            participantes.map((participante) => {
-                const email = participante;
-                usuarios.map((usuario) => {
+            seguindo.map((seguidor) => {
+                const email = seguidor;
+                response.data.map((usuario) => {
                     if (usuario.email == email) {
-                        setUsuariosParticipantes((usuariosParticipantes) => [...usuariosParticipantes, usuario]);
+                        setUsuariosSeguindo((usuariosSeguindo) => [...usuariosSeguindo, usuario]);
                     }
                 });
             });
         };
-        getUsuarios();
-    }, [participantes]);
+        getSeguindo();
+    },[seguindo]);
 
     return (
         <>
             <div className="main-participantes">
                 <h1 className="participantes">
-                    Participantes
+                    Seguindo
                 </h1>
                 <div className="user-container">
-                    {usuariosParticipantes.map((usuario, index) => {
+                    {usuariosSeguindo.map((usuario, index) => {
                         if (usuario.email == email) {
                             return (
                                 <div className="user-body" onClick={(e) => props.handleClickPerfil(e)} key={index}>
@@ -84,4 +86,4 @@ const Participantes = (props) => {
         </>
     );
 }
-export default Participantes;
+export default SeguidoresPP;

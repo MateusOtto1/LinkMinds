@@ -3,17 +3,25 @@ import axios from "axios";
 import seta from "../imagens/seta.svg";
 import Cookies from 'js-cookie';
 
-const Seguidores = (props) => {
+const SeguidoresPP = (props) => {
     const [seguidores, setSeguidores] = useState([]);
-    const [usuarios, setUsuarios] = useState([]);
     const [usuariosSeguidores, setUsuariosSeguidores] = useState([]);
     const [verificaSeguidores, setVerificaSeguidores] = useState(false);
+    const [email, setEmail] = useState('');
 
     useEffect(() => {
         const getUsuario = async () => {
             const token = Cookies.get('token');
             const response = await axios.post('http://localhost:3001/usuarioInfo', { token });
-            setSeguidores(response.data.usuariosSeguidores);
+            setEmail(response.data.email);
+            console.log(email);
+        };
+        getUsuario();
+    });
+    
+    useEffect(() => {
+        const getUsuario = async () => {
+            setSeguidores(props.usuarioSelecionado.usuariosSeguidores);
         };
         getUsuario();
     }, [verificaSeguidores]);
@@ -28,16 +36,15 @@ const Seguidores = (props) => {
             }
         };
         verificaSeguidores();
-    }, [seguidores]);
-
+    }, [seguidores]); 
+    
     useEffect(() => {
         const getSeguidores = async () => {
             const token = Cookies.get('token');
             const response = await axios.post('http://localhost:3001/pesquisaUsuario', { token });
-            setUsuarios(response.data);
             seguidores.map((seguidor) => {
                 const email = seguidor;
-                usuarios.map((usuario) => {
+                response.data.map((usuario) => {
                     if (usuario.email == email) {
                         setUsuariosSeguidores((usuariosSeguidores) => [...usuariosSeguidores, usuario]);
                     }
@@ -45,7 +52,7 @@ const Seguidores = (props) => {
             });
         };
         getSeguidores();
-    }, [seguidores]);
+    },[seguidores]);
 
     return (
         <>
@@ -55,13 +62,23 @@ const Seguidores = (props) => {
                 </h1>
                 <div className="user-container">
                     {usuariosSeguidores.map((usuario, index) => {
-                        return (
-                            <div className="user-body" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)} key={index}>
-                                <img src={usuario.foto} alt="" />
-                                <h1 className="username">{usuario.nome}</h1>
-                                <button className="user-btn"><img src={seta} alt="" /></button>
-                            </div>
-                        )
+                        if (usuario.email == email) {
+                            return (
+                                <div className="user-body" onClick={(e) => props.handleClickPerfil(e)} key={index}>
+                                    <img src={usuario.foto} alt="" />
+                                    <h1 className="username">{usuario.nome}</h1>
+                                    <button className="user-btn"><img src={seta} alt="" /></button>
+                                </div>
+                            )
+                        } else {
+                            return (
+                                <div className="user-body" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)} key={index}>
+                                    <img src={usuario.foto} alt="" />
+                                    <h1 className="username">{usuario.nome}</h1>
+                                    <button className="user-btn"><img src={seta} alt="" /></button>
+                                </div>
+                            )
+                        }
                     })}
                 </div>
             </div>
@@ -69,4 +86,4 @@ const Seguidores = (props) => {
         </>
     );
 }
-export default Seguidores;
+export default SeguidoresPP;

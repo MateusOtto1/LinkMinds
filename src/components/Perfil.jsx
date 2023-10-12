@@ -18,11 +18,10 @@ const Perfil = (props) => {
             const token = Cookies.get('token');
             const response = await axios.post('http://localhost:3001/usuarioInfo', { token });
             setUsuarios(response.data);
-            setEmail(response.data.email);
-            document.querySelector('.img-perfil').style.backgroundImage = `url(${response.data.foto})`;
+            setEmail(usuarios.email);
         };
         getUsuario();
-    }, []);
+    });
 
     useEffect(() => {
         const getPosts = async () => {
@@ -31,14 +30,16 @@ const Perfil = (props) => {
             setPosts(response.data);
         };
         getPosts();
-    }, []);
+    });
 
     return (
         <>
             <div className="main-perfil">
                 <div className="wrapper-perfil-top">
 
-                    <div className="img-perfil"></div>
+                    <div className="img-perfil" style={{
+        backgroundImage: `url(${usuarios.foto})`,
+      }}></div>
 
                     <div className="wrapper-perfil-left">
 

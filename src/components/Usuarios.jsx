@@ -12,6 +12,17 @@ const Usuarios = (props) => {
     const [Pesquisa, setPesquisa] = useState([]);
     const [pesquisaPost, setPesquisaPost] = useState([]);
     const [posts, setPosts] = useState([]);
+    const [email, setEmail] = useState('');
+
+
+    useEffect(() => {
+        const getEmail = async () => {
+            const token = Cookies.get('token');
+            const response = await axios.post('http://localhost:3001/usuarioInfo', { token });
+            setEmail(response.data.email);
+        };
+        getEmail();
+    });
 
     useEffect(() => {
         const getUsuarios = async () => {
@@ -55,13 +66,15 @@ const Usuarios = (props) => {
             </h1>
             <div className="user-container">
                 {Pesquisa.map((usuario, index) => {
-                    return (
-                        <div className="user-body" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)} key={index}>
-                            <img src={usuario.foto} alt="" />
-                            <h1 className="username">{usuario.nome}</h1>
-                            <button className="user-btn"><img src={seta} alt="" /></button>
-                        </div>
-                    )
+                    if (usuario.email != email) {
+                        return (
+                            <div className="user-body" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)} key={index}>
+                                <img src={usuario.foto} alt="" />
+                                <h1 className="username">{usuario.nome}</h1>
+                                <button className="user-btn"><img src={seta} alt="" /></button>
+                            </div>
+                        )
+                    }
                 })}
             </div>
 
@@ -70,32 +83,36 @@ const Usuarios = (props) => {
             </h1>
 
             <div className="eventos-container">
-            {pesquisaPost.map((post, index) => {
-                        const dia = new Date().getDate();
-                        const mes = new Date().getMonth() + 1;
-                        const ano = new Date().getFullYear();
-                        const dataPost = post.data.split('/');
-                        if (dataPost[1] >= mes && dataPost[2] >= ano) {
-                            return (
-                            <div className="card-body" key={index}>
-                                <div className="card">
-                                    <div className="card-top">
-                                        <img src={post.foto} alt="" className="pfp" />
-                                        <div className="textos-card">
-                                            <p className="nome-card">{post.nome}</p>
-                                            <p className="info">Bora {post.evento} as <span>{post.hora} do dia {post.data}</span></p>
+                {pesquisaPost.map((post, index) => {
+                    const dia = new Date().getDate();
+                    const mes = new Date().getMonth() + 1;
+                    const ano = new Date().getFullYear();
+                    const dataPost = post.data.split('/');
+                    if (dataPost[1] >= mes && dataPost[2] >= ano) {
+                        if (dataPost[0] >= dia) {
+                            if (post.email != email) {
+                                return (
+                                    <div className="card-body" key={index}>
+                                        <div className="card">
+                                            <div className="card-top">
+                                                <img src={post.foto} alt="" className="pfp" />
+                                                <div className="textos-card">
+                                                    <p className="nome-card">{post.nome}</p>
+                                                    <p className="info">Bora {post.evento} as <span>{post.hora} do dia {post.data}</span></p>
+                                                </div>
+                                            </div>
                                         </div>
+                                        <button className="participar" onClick={(e) => props.handleClickAtivaDescricao(e, post)}>Descrição</button>
                                     </div>
-                                </div>
-                                <button className="participar" onClick={(e) => props.handleClickAtivaDescricao(e, post)}>Descrição</button>
-                            </div>
-                            )
-                        } else {
-                            return (
-                                <div></div>
-                            )
+                                )
+                            }
                         }
-                    })}
+                    } else {
+                        return (
+                            <div></div>
+                        )
+                    }
+                })}
             </div>
         </>
     );

@@ -7,6 +7,7 @@ const Seguindo = (props) => {
     const [seguindo, setSeguindo] = useState([]);
     const [usuarios, setUsuarios] = useState([]);
     const [usuariosSeguindo, setUsuariosSeguindo] = useState([]);
+    const [verificaSeguindo, setVerificaSeguindo] = useState(false);
 
     useEffect(() => {
         const getUsuario = async () => {
@@ -15,7 +16,19 @@ const Seguindo = (props) => {
             setSeguindo(response.data.usuariosSeguindo);
         };
         getUsuario();
-    },[]);
+    }, [verificaSeguindo]);
+
+    useEffect(() => {
+        const verificaSeguindo = async () => {
+            await seguindo;
+            if (seguindo.length != 0) {
+                setVerificaSeguindo(true);
+            } else {
+                setVerificaSeguindo(false);
+            }
+        };
+        verificaSeguindo();
+    }, [seguindo]);
 
     useEffect(() => {
         const getSeguindo = async () => {
@@ -34,12 +47,11 @@ const Seguindo = (props) => {
         getSeguindo();
     }, [seguindo]);
 
-
     return (
         <>
             <div className="main-participantes">
                 <h1 className="participantes">
-                    Seguidores
+                    Seguindo
                 </h1>
                 <div className="user-container">
                     {usuariosSeguindo.map((usuario, index) => {

@@ -9,10 +9,10 @@ const Perfil = (props) => {
     const [posts, setPosts] = useState([]);
     const [usuario, setUsuario] = useState({});
     const [verificaSeguir, setVerificaSeguir] = useState(false);
+    const [usuarioSelecionado, setUsuarioSelecionado] = useState([]);
 
     useEffect(() => {
         const getPosts = async () => {
-            document.querySelector('.img-perfil').style.backgroundImage = `url(${props.usuarioSelecionado.foto})`;
             const nome = props.usuarioSelecionado.nome;
             const token = Cookies.get('token');
             const response = await axios.post('http://localhost:3001/postsPerfilPesquisa', { token, nome });
@@ -25,9 +25,7 @@ const Perfil = (props) => {
         const getSeguidores = async () => {
             const seguidores = props.usuarioSelecionado.usuariosSeguidores;
             seguidores.map((seguidor) => {
-                if(seguidor == 0){
-                    setVerificaSeguir(false);
-                }else{
+                if(seguidor == usuario.email){
                     setVerificaSeguir(true);
                 }
             })
@@ -43,6 +41,16 @@ const Perfil = (props) => {
         };
         getUsuario();
     }, []);
+
+    useEffect(() => {
+        const getUsuarioSelecionado = async () => {
+            const token = Cookies.get('token');
+            const email = props.usuarioSelecionado.email;
+            const response = await axios.post('http://localhost:3001/usuarioSelecionado', { token, email });
+            setUsuarioSelecionado(response.data);
+        };
+        getUsuarioSelecionado();
+    });
 
     const handleClickSeguir = async () => {
         const token = Cookies.get('token');
@@ -79,7 +87,7 @@ const Perfil = (props) => {
             <div className="main-perfil">
                 <div className="wrapper-perfil-top">
 
-                    <div className="img-perfil"></div>
+                    <div className="img-perfil" style={{ backgroundImage: `url(${props.usuarioSelecionado.foto})`}}></div>
 
                     <div className="wrapper-perfil-left">
                         <section className="conteudo">
@@ -96,8 +104,8 @@ const Perfil = (props) => {
                             {
                                 verificaSeguir ? <button className="btn-parar-seguir" onClick={handleClickPararDeSeguir}>Parar de Seguir</button> : <button className="btn-seguir" onClick={handleClickSeguir}>Seguir</button>
                             }
-                            <button className="btn-seguidores" onClick={(e) => props.handleClickSeguidores(e)}>Seguidores</button>
-                            <button className="btn-seguindo" onClick={(e) => props.handleClickSeguindo(e)}>Seguindo</button>
+                            <button className="btn-seguidores" onClick={(e) => props.handleClickSeguidoresPP(e, usuarioSelecionado)}>Seguidores</button>
+                            <button className="btn-seguindo" onClick={(e) => props.handleClickSeguindoPP(e, usuarioSelecionado)}>Seguindo</button>
                         </div>
                     </div>
                 </div>

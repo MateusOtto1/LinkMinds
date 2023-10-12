@@ -12,6 +12,8 @@ import PerfilPesquisa from "./PerfilPesquisa";
 import Participantes from "./Participantes";
 import Seguidores from "./Seguidores";
 import Seguindo from "./Seguindo";
+import SeguidoresPP from "./SeguidoresPP";
+import SeguindoPP from "./SeguindoPP";
 import homeIcon from "../imagens/home.svg";
 import pesquisarIcon from "../imagens/pesquisar.svg";
 import criarIcon from "../imagens/criar.svg";
@@ -40,6 +42,8 @@ const NavBar = () => {
     const [verParticipantes, setVerParticipantes] = useState(false);
     const [seguidores, setSeguidores] = useState(false);
     const [seguindo, setSeguindo] = useState(false);
+    const [seguidoresPP, setSeguidoresPP] = useState(false);
+    const [seguindoPP, setSeguindoPP] = useState(false);
 
     const [postSelecionado, setPostSelecionado] = useState({});
     const [usuarioSelecionado, setUsuarioSelecionado] = useState({});
@@ -132,6 +136,8 @@ const NavBar = () => {
         setBio(false);
         setSeguidores(false);
         setSeguindo(false);
+        setSeguidoresPP(false);
+        setSeguindoPP(false);
         handleBodyClick();
     };
     function handleClickCreate() {
@@ -145,9 +151,12 @@ const NavBar = () => {
         setBio(false);
         setSeguidores(false);
         setSeguindo(false);
+        setSeguidoresPP(false);
+        setSeguindoPP(false);
         handleBodyClick();
     };
-    function handleClickPerfil() {
+    function handleClickPerfil(e) {
+        e.stopPropagation();
         setPerfil(true);
         setHome(false);
         setPesquisa(false);
@@ -158,6 +167,8 @@ const NavBar = () => {
         setBio(false);
         setSeguidores(false);
         setSeguindo(false);
+        setSeguidoresPP(false);
+        setSeguindoPP(false);
         handleBodyClick();
     };
     function handleClickPesquisa() {
@@ -171,6 +182,8 @@ const NavBar = () => {
         setBio(false);
         setSeguidores(false);
         setSeguindo(false);
+        setSeguidoresPP(false);
+        setSeguindoPP(false);
         handleBodyClick();
     };
 
@@ -187,6 +200,8 @@ const NavBar = () => {
         setBio(false);
         setSeguidores(false);
         setSeguindo(false);
+        setSeguidoresPP(false);
+        setSeguindoPP(false);
     };
 
     function handleClickPesquisaUsuario(e, usuario) {
@@ -202,6 +217,8 @@ const NavBar = () => {
         setBio(false);
         setSeguidores(false);
         setSeguindo(false);
+        setSeguidoresPP(false);
+        setSeguindoPP(false);
     };
 
     function handleClickVerParticipantes(e, posts) {
@@ -217,6 +234,8 @@ const NavBar = () => {
         setBio(false);
         setSeguidores(false);
         setSeguindo(false);
+        setSeguidoresPP(false);
+        setSeguindoPP(false);
     };
 
     function handleClickAlterarBio(e) {
@@ -231,6 +250,8 @@ const NavBar = () => {
         setPerfilPesquisa(false);
         setSeguidores(false);
         setSeguindo(false);
+        setSeguidoresPP(false);
+        setSeguindoPP(false);
     };
 
     function handleClickSeguidores(e) {
@@ -245,11 +266,47 @@ const NavBar = () => {
         setCriar(false);
         setPerfilPesquisa(false);
         setSeguindo(false);
+        setSeguidoresPP(false);
+        setSeguindoPP(false);
     };
 
     function handleClickSeguindo(e) {
         e.stopPropagation();
         setSeguindo(true);
+        setSeguidores(false);
+        setBio(false);
+        setVerParticipantes(false);
+        setDescricao(false);
+        setPesquisa(false);
+        setHome(false);
+        setPerfil(false);
+        setCriar(false);
+        setPerfilPesquisa(false);
+        setSeguidoresPP(false);
+        setSeguindoPP(false);
+    };
+
+    function handleClickSeguidoresPP(e) {
+        e.stopPropagation();
+        setSeguidoresPP(true);
+        setSeguindoPP(false);
+        setSeguindo(false);
+        setSeguidores(false);
+        setBio(false);
+        setVerParticipantes(false);
+        setDescricao(false);
+        setPesquisa(false);
+        setHome(false);
+        setPerfil(false);
+        setCriar(false);
+        setPerfilPesquisa(false);
+    };
+
+    function handleClickSeguindoPP(e) {
+        e.stopPropagation();
+        setSeguindoPP(true);
+        setSeguidoresPP(false);
+        setSeguindo(false);
         setSeguidores(false);
         setBio(false);
         setVerParticipantes(false);
@@ -291,10 +348,12 @@ const NavBar = () => {
                         {perfil ? <Perfil setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickAtivaDescricao={handleClickAtivaDescricao} handleClickAlterarBio={handleClickAlterarBio} handleClickSeguidores={handleClickSeguidores} handleClickSeguindo={handleClickSeguindo}/> : null}
                         {descricao ? <Descricao setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickVerParticipantes={handleClickVerParticipantes}/> : null}
                         {bio ? <Bio /> : null}
-                        {perfilPesquisa ? <PerfilPesquisa setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickAtivaDescricao={handleClickAtivaDescricao}/> : null}
-                        {verParticipantes ? <Participantes setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickPesquisaUsuario={handleClickPesquisaUsuario}/> : null}
+                        {perfilPesquisa ? <PerfilPesquisa setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickAtivaDescricao={handleClickAtivaDescricao} handleClickPerfil={handleClickPerfil} handleClickSeguidoresPP={handleClickSeguidoresPP} handleClickSeguindoPP={handleClickSeguindoPP}/> : null}
+                        {verParticipantes ? <Participantes setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickPesquisaUsuario={handleClickPesquisaUsuario} handleClickPerfil={handleClickPerfil}/> : null}
                         {seguidores ? <Seguidores handleClickPesquisaUsuario={handleClickPesquisaUsuario} setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado}/> : null}
                         {seguindo ? <Seguindo handleClickPesquisaUsuario={handleClickPesquisaUsuario} setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado}/> : null}
+                        {seguidoresPP ? <SeguidoresPP handleClickPesquisaUsuario={handleClickPesquisaUsuario} setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} handleClickPerfil={handleClickPerfil}/> : null}
+                        {seguindoPP ? <SeguindoPP handleClickPesquisaUsuario={handleClickPesquisaUsuario} setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} handleClickPerfil={handleClickPerfil}/> : null}
                     </div>
                 </div>
 
