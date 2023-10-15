@@ -20,7 +20,6 @@ const Seguidores = (props) => {
 
     useEffect(() => {
         const verificaSeguidores = async () => {
-            await seguidores;
             if (seguidores.length == 0) {
                 setVerificaSeguidores(false);
             } else {
@@ -28,13 +27,14 @@ const Seguidores = (props) => {
             }
         };
         verificaSeguidores();
-    }, [seguidores]);
+    }, [verificaSeguidores]);
 
     useEffect(() => {
         const getSeguidores = async () => {
             const token = Cookies.get('token');
             const response = await axios.post('http://localhost:3001/pesquisaUsuario', { token });
             setUsuarios(response.data);
+            setUsuariosSeguidores([]);
             seguidores.map((seguidor) => {
                 const email = seguidor;
                 usuarios.map((usuario) => {

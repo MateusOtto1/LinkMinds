@@ -89,23 +89,21 @@ const Usuarios = (props) => {
                     const ano = new Date().getFullYear();
                     const dataPost = post.data.split('/');
                     if (dataPost[1] >= mes && dataPost[2] >= ano) {
-                        if (dataPost[0] >= dia) {
-                            if (post.email != email) {
-                                return (
-                                    <div className="card-body" key={index}>
-                                        <div className="card">
-                                            <div className="card-top">
-                                                <img src={post.foto} alt="" className="pfp" />
-                                                <div className="textos-card">
-                                                    <p className="nome-card">{post.nome}</p>
-                                                    <p className="info">Bora {post.evento} as <span>{post.hora} do dia {post.data}</span></p>
-                                                </div>
+                        if (post.email != email) {
+                            return (
+                                <div className="card-body" key={index}>
+                                    <div className="card">
+                                        <div className="card-top">
+                                            <img src={post.foto} alt="" className="pfp" />
+                                            <div className="textos-card">
+                                                <p className="nome-card">{post.nome}</p>
+                                                <p className="info">Bora {post.evento} as <span>{post.hora} do dia {post.data}</span></p>
                                             </div>
                                         </div>
-                                        <button className="participar" onClick={(e) => props.handleClickAtivaDescricao(e, post)}>Descrição</button>
                                     </div>
-                                )
-                            }
+                                    <button className="participar" onClick={(e) => props.handleClickAtivaDescricao(e, post)}>Descrição</button>
+                                </div>
+                            )
                         }
                     } else {
                         return (

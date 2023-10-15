@@ -10,8 +10,6 @@ const Home = (props) => {
     const [nome, setNome] = useState('');
     const [posts, setPosts] = useState([]);
     const [usuarios, setUsuarios] = useState({});
-    const [busca, setBusca] = useState('');
-    const [Pesquisa, setPesquisa] = useState([]);
 
     useEffect(() => {
         const getUsuario = async () => {
@@ -28,9 +26,6 @@ const Home = (props) => {
             const token = Cookies.get('token');
             const response = await axios.post('http://localhost:3001/postsHome', { token });
             setPosts(response.data);
-            if (busca == "") {
-                setPesquisa(response.data);
-            }
         };
         getPosts();
     });
@@ -48,13 +43,12 @@ const Home = (props) => {
                 <h1 id="posts-recomendados">Posts recomendados</h1>
                 <div id="posts">
 
-                    {Pesquisa.map((post, index) => {
+                    {posts.map((post, index) => {
                         const dia = new Date().getDate();
                         const mes = new Date().getMonth() + 1;
                         const ano = new Date().getFullYear();
                         const dataPost = post.data.split('/');
                         if (dataPost[1] >= mes && dataPost[2] >= ano) {
-                            if (dataPost[0] >= dia) {
                                 return (
                                     <div className="card-body" key={index}>
                                         <div className="card">
@@ -69,7 +63,6 @@ const Home = (props) => {
                                         <button className="participar" onClick={(e) => props.handleClickAtivaDescricao(e, post)}>Descrição</button>
                                     </div>
                                 )
-                            }
                         } else {
                             return (
                                 <div></div>

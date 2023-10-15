@@ -6,6 +6,7 @@ import Perfil from "./Perfil";
 import Home from "./Home";
 import Bio from "./Bio";
 import Descricao from "./Descricao";
+import TipoEvento from "./TipoEvento";
 import Criar from "./Criar";
 import Usuarios from "./Usuarios"
 import PerfilPesquisa from "./PerfilPesquisa";
@@ -44,6 +45,7 @@ const NavBar = () => {
     const [seguindo, setSeguindo] = useState(false);
     const [seguidoresPP, setSeguidoresPP] = useState(false);
     const [seguindoPP, setSeguindoPP] = useState(false);
+    const [tipoEvento, setTipoEvento] = useState(false);
 
     const [postSelecionado, setPostSelecionado] = useState({});
     const [usuarioSelecionado, setUsuarioSelecionado] = useState({});
@@ -129,6 +131,23 @@ const NavBar = () => {
         setHome(true);
         setPesquisa(false);
         setPerfil(false);
+        setTipoEvento(false);
+        setCriar(false);
+        setDescricao(false);
+        setPerfilPesquisa(false);
+        setVerParticipantes(false);
+        setBio(false);
+        setSeguidores(false);
+        setSeguindo(false);
+        setSeguidoresPP(false);
+        setSeguindoPP(false);
+        handleBodyClick();
+    };
+    function handleClickTipoEvento() {
+        setTipoEvento(true);
+        setHome(false);
+        setPesquisa(false);
+        setPerfil(false);
         setCriar(false);
         setDescricao(false);
         setPerfilPesquisa(false);
@@ -142,6 +161,7 @@ const NavBar = () => {
     };
     function handleClickCreate() {
         setCriar(true);
+        setTipoEvento(false);
         setHome(false);
         setPesquisa(false);
         setPerfil(false);
@@ -160,6 +180,7 @@ const NavBar = () => {
         setPerfil(true);
         setHome(false);
         setPesquisa(false);
+        setTipoEvento(false);
         setCriar(false);
         setDescricao(false);
         setPerfilPesquisa(false);
@@ -175,6 +196,7 @@ const NavBar = () => {
         setPesquisa(true);
         setHome(false);
         setPerfil(false);
+        setTipoEvento(false);
         setCriar(false);
         setDescricao(false);
         setPerfilPesquisa(false);
@@ -194,6 +216,7 @@ const NavBar = () => {
         setPesquisa(false);
         setHome(false);
         setPerfil(false);
+        setTipoEvento(false);
         setCriar(false);
         setPerfilPesquisa(false);
         setVerParticipantes(false);
@@ -211,6 +234,7 @@ const NavBar = () => {
         setPesquisa(false);
         setHome(false);
         setPerfil(false);
+        setTipoEvento(false);
         setCriar(false);
         setDescricao(false);
         setVerParticipantes(false);
@@ -229,6 +253,7 @@ const NavBar = () => {
         setPesquisa(false);
         setHome(false);
         setPerfil(false);
+        setTipoEvento(false);
         setCriar(false);
         setPerfilPesquisa(false);
         setBio(false);
@@ -246,6 +271,7 @@ const NavBar = () => {
         setPesquisa(false);
         setHome(false);
         setPerfil(false);
+        setTipoEvento(false);
         setCriar(false);
         setPerfilPesquisa(false);
         setSeguidores(false);
@@ -263,6 +289,7 @@ const NavBar = () => {
         setPesquisa(false);
         setHome(false);
         setPerfil(false);
+        setTipoEvento(false);
         setCriar(false);
         setPerfilPesquisa(false);
         setSeguindo(false);
@@ -280,6 +307,7 @@ const NavBar = () => {
         setPesquisa(false);
         setHome(false);
         setPerfil(false);
+        setTipoEvento(false);
         setCriar(false);
         setPerfilPesquisa(false);
         setSeguidoresPP(false);
@@ -298,6 +326,7 @@ const NavBar = () => {
         setPesquisa(false);
         setHome(false);
         setPerfil(false);
+        setTipoEvento(false);
         setCriar(false);
         setPerfilPesquisa(false);
     };
@@ -314,6 +343,7 @@ const NavBar = () => {
         setPesquisa(false);
         setHome(false);
         setPerfil(false);
+        setTipoEvento(false);
         setCriar(false);
         setPerfilPesquisa(false);
     };
@@ -329,7 +359,7 @@ const NavBar = () => {
                     <div id="nav-imgs">
                         <a className="nav-titles" onClick={handleClickHome}><img src={homeIcon} alt="" className="navs" />Home</a>
                         <a className="nav-titles" onClick={handleClickPesquisa}><img src={pesquisarIcon} alt="" className="navs" />Pesquisar</a>
-                        <a className="nav-titles" onClick={handleClickCreate}><img src={criarIcon} alt="" className="navs" />Criar</a>
+                        <a className="nav-titles" onClick={handleClickTipoEvento}><img src={criarIcon} alt="" className="navs" />Criar</a>
                         <a className="nav-titles" ><img src={chatsIcon} alt="" className="navs" />Chats</a>
                         <a className="nav-titles" onClick={handleClickPerfil}><img src={perfilIcon} alt="" className="navs" />Perfil</a>
                     </div>
@@ -344,6 +374,7 @@ const NavBar = () => {
                     <div className="main">
                         {home ? <Home setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} setDescricao={setDescricao} descricao={descricao} handleClickAtivaDescricao={handleClickAtivaDescricao}/> : null}
                         {pesquisa ? <Usuarios setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} handleClickPesquisaUsuario={handleClickPesquisaUsuario} handleClickAtivaDescricao={handleClickAtivaDescricao}/> : null}
+                        {tipoEvento ? <TipoEvento handleClickCreate={handleClickCreate} /> : null}
                         {criar ? <Criar /> : null}
                         {perfil ? <Perfil setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickAtivaDescricao={handleClickAtivaDescricao} handleClickAlterarBio={handleClickAlterarBio} handleClickSeguidores={handleClickSeguidores} handleClickSeguindo={handleClickSeguindo}/> : null}
                         {descricao ? <Descricao setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickVerParticipantes={handleClickVerParticipantes}/> : null}

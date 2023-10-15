@@ -20,7 +20,6 @@ const Seguindo = (props) => {
 
     useEffect(() => {
         const verificaSeguindo = async () => {
-            await seguindo;
             if (seguindo.length != 0) {
                 setVerificaSeguindo(true);
             } else {
@@ -28,13 +27,14 @@ const Seguindo = (props) => {
             }
         };
         verificaSeguindo();
-    }, [seguindo]);
+    }, [verificaSeguindo]);
 
     useEffect(() => {
         const getSeguindo = async () => {
             const token = Cookies.get('token');
             const response = await axios.post('http://localhost:3001/pesquisaUsuario', { token });
             setUsuarios(response.data);
+            setUsuariosSeguindo([]);
             seguindo.map((seguindo) => {
                 const email = seguindo;
                 usuarios.map((usuario) => {
@@ -65,7 +65,6 @@ const Seguindo = (props) => {
                     })}
                 </div>
             </div>
-
         </>
     );
 }

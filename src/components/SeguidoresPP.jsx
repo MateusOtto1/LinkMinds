@@ -14,7 +14,6 @@ const SeguidoresPP = (props) => {
             const token = Cookies.get('token');
             const response = await axios.post('http://localhost:3001/usuarioInfo', { token });
             setEmail(response.data.email);
-            console.log(email);
         };
         getUsuario();
     });
@@ -28,7 +27,6 @@ const SeguidoresPP = (props) => {
 
     useEffect(() => {
         const verificaSeguidores = async () => {
-            await seguidores;
             if (seguidores.length == 0) {
                 setVerificaSeguidores(false);
             } else {
@@ -36,12 +34,13 @@ const SeguidoresPP = (props) => {
             }
         };
         verificaSeguidores();
-    }, [seguidores]); 
+    }, [verificaSeguidores]); 
     
     useEffect(() => {
         const getSeguidores = async () => {
             const token = Cookies.get('token');
             const response = await axios.post('http://localhost:3001/pesquisaUsuario', { token });
+            setUsuariosSeguidores([]);
             seguidores.map((seguidor) => {
                 const email = seguidor;
                 response.data.map((usuario) => {

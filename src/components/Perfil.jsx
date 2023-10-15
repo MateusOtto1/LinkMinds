@@ -12,6 +12,9 @@ const Perfil = (props) => {
     const [usuarios, setUsuarios] = useState({});
     const [posts, setPosts] = useState([]);
     const [email, setEmail] = useState('');
+    const [interesses, setInteresses] = useState([]);
+    const [execucoes, setExecucoes] = useState(0);
+    const [contador, setContador] = useState(0);
 
     useEffect(() => {
         const getUsuario = async () => {
@@ -19,9 +22,10 @@ const Perfil = (props) => {
             const response = await axios.post('http://localhost:3001/usuarioInfo', { token });
             setUsuarios(response.data);
             setEmail(usuarios.email);
+            setInteresses(response.data.interesses);
         };
         getUsuario();
-    });
+    }, [execucoes]);
 
     useEffect(() => {
         const getPosts = async () => {
@@ -30,7 +34,14 @@ const Perfil = (props) => {
             setPosts(response.data);
         };
         getPosts();
-    });
+    },[usuarios]);
+
+    useEffect(() => {
+        if (contador < 15) {
+            setExecucoes(execucoes + 1);
+            setContador(contador + 1);
+        }
+    }, [contador]);
 
     return (
         <>
@@ -38,8 +49,8 @@ const Perfil = (props) => {
                 <div className="wrapper-perfil-top">
 
                     <div className="img-perfil" style={{
-        backgroundImage: `url(${usuarios.foto})`,
-      }}></div>
+                        backgroundImage: `url(${usuarios.foto})`,
+                    }}></div>
 
                     <div className="wrapper-perfil-left">
 
@@ -70,9 +81,15 @@ const Perfil = (props) => {
                 <div className="wrapper-perfil-bottom">
                     <section className="meus-interesses">
                         <h1 className="inter-header">Interesses</h1>
-                        <div className="interesse-card">
-                            <p className="inter-title">{usuarios.interesses}</p>
-                        </div>
+                        {
+                            interesses.map((interesse, index) => {
+                                return (
+                                    <div className="interesse-card" key={index}>
+                                        <p className="inter-title">{interesse}</p>
+                                    </div>
+                                );
+                            })
+                        } 
                     </section>
                     <section className="meus-posts">
                         <h1 className="post-header">Posts</h1>

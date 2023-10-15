@@ -14,28 +14,32 @@ const Criar = () => {
     const [nome, setNome] = useState('');
     const [foto, setFoto] = useState('');
     const [posts, setPosts] = useState([]);
-    const [postExistente, setPostExistente] = useState([false]);
+    const [postExistente, setPostExistente] = useState(false);
     const [email, setEmail] = useState('');
+    const [dataBrasil, setDataBrasil] = useState('');
     
     useEffect(() => {
         const checkInput = async () => {
+            const dataBr = dataEUA.split('-');
+            const data = `${dataBr[2]}/${dataBr[1]}/${dataBr[0]}`;
+            setDataBrasil(data);
             posts.map((post) => {
-                if (evento == post.evento && dataEUA == post.data && hora == post.hora && local == post.local) {
-                    setPreencha('Post já existente');
+                if (evento == post.evento && dataBrasil == post.data && hora == post.hora && local == post.local) {
                     setPostExistente(true);
                 }
-                else {
-                    setPostExistente(false);
-                }
             });
-            if (evento == '' || dataEUA == '' || hora == '' || local == '') {
-                setPreencha('Preencha todos os campos');
+            if(evento == '' || dataEUA == '' || hora == '' || local == ''){
+                setPreencha('Você não preencheu todos os campos');
+                setPostExistente(false);
             } else {
                 setPreencha('');
             }
+            if(postExistente == true){
+                setPreencha('Você já criou este post');
+            }
         };
         checkInput();
-    }, [evento, dataEUA, hora, local]);
+    });
 
     useEffect(() => {
         const getUser = async () => {
@@ -55,7 +59,7 @@ const Criar = () => {
             setPosts(response.data);
         };
         getPost();
-    }, []);
+    });
 
     const handleSubmit = async (e) => {
         e.preventDefault();

@@ -7,10 +7,13 @@ import Cookies from 'js-cookie';
 const Cadastro = () => {
     const [apelido, setApelido] = useState('');
     const [idade, setIdade] = useState('');
-    const [interesses, setInteresses] = useState('');
+    const [interesses, setInteresses] = useState([]);
     const [descricao, setDescricao] = useState('');
     const [preencha, setPreencha] = useState('');
     const [usuarios, setUsuarios] = useState({});
+    const [listaInteresse, setListaInteresse] = useState([]);
+    const [pesquisaInteresse, setPesquisaInteresse] = useState([]);
+    const [pesquisa, setPesquisa] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -18,6 +21,11 @@ const Cadastro = () => {
             const token = Cookies.get('token');
             const response = await axios.post('http://localhost:3001/usuarioInfo', { token });
             setUsuarios(response.data);
+            const response2 = await axios.get('http://localhost:3001/listaInteresse');
+            setListaInteresse(response2.data);
+            if(pesquisaInteresse == ''){
+                setPesquisa(response2.data);
+            }
         };
         getUsuario();
     }, []);
@@ -33,16 +41,34 @@ const Cadastro = () => {
         checkInput();
     }, [apelido, idade, interesses, descricao]);
 
+    const handleChangeInteresses = (e) => {
+        const valorCheckbox = e.target.value;
+        const indice = interesses.indexOf(valorCheckbox);
+        if (e.target.checked) {
+            setInteresses([...interesses, valorCheckbox]);
+        } else {
+            setInteresses(interesses.filter((item) => item !== valorCheckbox));
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (apelido == '' || idade == '' || interesses == '' || descricao == '') {
+        if (apelido == '' || idade == '' || interesses.length == 0 || descricao == '') {
             setPreencha('Preencha todos os campos');
         } else {
             const token = Cookies.get('token');
             await axios.put('http://localhost:3001/usuario', { token, apelido, idade, interesses, descricao }).then(result => console.log(result)).catch(err => console.log(err));
             navigate('/');
         }
-    }
+    };
+
+    useEffect(() => {
+        const pesquisaInput = async () => {
+            const interessesPesquisa = listaInteresse.filter((interesse) => interesse.nome.toLowerCase().includes(pesquisaInteresse.toLowerCase()));
+            setPesquisa(interessesPesquisa);
+        };
+        pesquisaInput();
+    }, [pesquisaInteresse]);
 
     return (
         <>
@@ -63,16 +89,25 @@ const Cadastro = () => {
                         <label >Idade </label>
                         <input type="number" name="idade" className="input-style" placeholder="Sua Idade" onChange={(e) => setIdade(e.target.value)} />
                     </div>
-
-                    <div className="editar-input">
-                        <label >Interesses </label>
-                        <input type="text" name="idade" className="input-style" placeholder="Seus Interesses" onChange={(e) => setInteresses(e.target.value)} />
-                    </div>
-
                     <div className="editar-input">
                         <label>Bio </label>
                         <textarea name="bio" id="" cols="30" rows="5" className="input-style" onChange={(e) => setDescricao(e.target.value)}></textarea>
                     </div>
+                    <div className="editar-input">
+                        <label >Interesses </label>
+                        <input type="text" placeholder="Procurar Interesse..." className="pesquisar" value={pesquisaInteresse} onChange={(e) => setPesquisaInteresse(e.target.value)} />
+                        {
+                           pesquisa.map((interesse, index) => {
+                                return(
+                                    <div key={index}>
+                                        <h1>{interesse.nome}</h1>
+                                        <input type="checkbox" name="checkbox" value={interesse.nome} onChange={handleChangeInteresses}/>
+                                    </div>
+                                )
+                           })
+                        }
+                    </div>
+
                     <p className="preencha">{preencha}</p>
                     <button className="editar-btn-confirmar" onClick={handleSubmit}>Confirmar</button>
 

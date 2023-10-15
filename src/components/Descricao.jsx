@@ -85,7 +85,7 @@ const Descricao = (props) => {
         const local = props.postSelecionado.local;
         const nome = props.postSelecionado.nome;
         const token = Cookies.get('token');
-        axios.delete('http://localhost:3001/excluirPost', { token, data: { evento, data, hora, local, nome } }).then(result => console.log(result)).catch(err => console.log(err));
+        axios.delete('http://localhost:3001/excluirPost', { data: { token, evento, data, hora, local, nome }}).then(result => console.log(result)).catch(err => console.log(err));
         navigate('/');
     }
     return (
