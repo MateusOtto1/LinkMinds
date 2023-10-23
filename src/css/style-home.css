@@ -58,7 +58,6 @@
 
 .card{
     height: 18rem;
-    background: url(../imagens/fundo-card.svg);
     background-size: cover;
     background-position: center;
     border-radius: 2.28125rem;

@@ -59,7 +59,7 @@ const TipoEvento = (props) => {
     },[execucoes]);
 
     useEffect(() => {
-        if (contador < 15) {
+        if (contador < 25) {
             setExecucoes(execucoes + 1);
             setContador(contador + 1);
         }
@@ -79,7 +79,7 @@ const TipoEvento = (props) => {
                                 listaInteresseUsuario.map((interesse, index) => {
                                     return (
                                         <div key={index}>
-                                            <button className="btnInteresse">{interesse.nome}</button>
+                                            <button className="btnInteresse" onClick={(e) => props.handleClickCreate(e, interesse)}>{interesse.nome}</button>
                                         </div>
                                     )
                                 })
@@ -89,7 +89,7 @@ const TipoEvento = (props) => {
                                 listaEsporte.map((interesse, index) => {
                                     return (
                                         <div key={index}>
-                                            <button className="btnInteresse">{interesse.nome}</button>
+                                            <button className="btnInteresse" onClick={(e) => props.handleClickCreate(e, interesse)}>{interesse.nome}</button>
                                         </div>
                                     )
                                 })
@@ -99,7 +99,7 @@ const TipoEvento = (props) => {
                                 listaJogos.map((interesse, index) => {
                                     return (
                                         <div key={index}>
-                                            <button className="btnInteresse">{interesse.nome}</button>
+                                            <button className="btnInteresse" onClick={(e) => props.handleClickCreate(e, interesse)}>{interesse.nome}</button>
                                         </div>
                                     )
                                 })
@@ -109,7 +109,7 @@ const TipoEvento = (props) => {
                                 listaFesta.map((interesse, index) => {
                                     return (
                                         <div key={index}>
-                                            <button className="btnInteresse">{interesse.nome}</button>
+                                            <button className="btnInteresse" onClick={(e) => props.handleClickCreate(e, interesse)}>{interesse.nome}</button>
                                         </div>
                                     )
                                 })

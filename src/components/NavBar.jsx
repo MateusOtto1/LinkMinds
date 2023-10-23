@@ -1,9 +1,10 @@
 import "../css/style-base.css";
 import { useEffect, useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Perfil from "./Perfil";
 import Home from "./Home";
+import Presencas from "./Presencas";
+import Interesses from "./Interesses";
 import Bio from "./Bio";
 import Descricao from "./Descricao";
 import TipoEvento from "./TipoEvento";
@@ -25,18 +26,19 @@ import hamburger from "../imagens/hamburger.svg";
 import Cookies from "js-cookie";
 
 const NavBar = () => {
-    const navigate = useNavigate();
     const [nome, setNome] = useState('');
     const [usuarios, setUsuarios] = useState({});
+    const [execucoes, setExecucoes] = useState(0);
+    const [contador, setContador] = useState(0);
     const [flag, setFlag] = useState(0);
-    // const [isSwiping, setIsSwiping] = useState(false);
-    // const btn_hamb = document.getElementById("btn-hamb");
     const bodyfalso = document.getElementById("bodyfalso");
     const nav = document.getElementById("navdentro");
     const [home, setHome] = useState(true);
     const [pesquisa, setPesquisa] = useState(false);
     const [criar, setCriar] = useState(false);
+    const [presencas, setPresencas] = useState(false);
     const [perfil, setPerfil] = useState(false);
+    const [interesses, setInteresses] = useState(false);
     const [bio, setBio] = useState(false);
     const [descricao, setDescricao] = useState(false);
     const [perfilPesquisa, setPerfilPesquisa] = useState(false);
@@ -49,24 +51,22 @@ const NavBar = () => {
 
     const [postSelecionado, setPostSelecionado] = useState({});
     const [usuarioSelecionado, setUsuarioSelecionado] = useState({});
+    const [interesseSelecionado, setInteresseSelecionado] = useState({});
 
     const handleToggleNav = () => {
         if (flag === 0) {
             console.log("abrindo");
-            bodyfalso.style.marginRight = "-55%";
-            bodyfalso.style.scale = "85%";
+            bodyfalso.style.marginRight = "-60%";
+            bodyfalso.style.scale = "90%";
             bodyfalso.style.height = "95vh";
-            bodyfalso.style.borderRadius = "35px";
-            bodyfalso.style.transition = "0.3s ease-in-out";
+            bodyfalso.style.borderRadius = "15px";
+            bodyfalso.style.transition = "0.3s";
             bodyfalso.style.cursor = "pointer";
-            document.querySelector("#body").style.transition = "background 45.5s";
-            document.querySelector("#body").style.backgroundPosition = "0% 0%";
-            bodyfalso.style.boxShadow = "0px 0px 0px 0px rgba(78, 204, 163, 0.13), -13px 9px 35px 0px rgba(78, 204, 163, 0.13), -51px 38px 64px 0px rgba(78, 204, 163, 0.11), -116px 85px 86px 0px rgba(78, 204, 163, 0.07), -206px 152px 102px 0px rgba(78, 204, 163, 0.02), -322px 237px 112px 0px rgba(78, 204, 163, 0.00)"
             nav.style.visibility = "visible";
             nav.style.display = "flex";
-            nav.style.animation = "fadeIn 0.3s ease-in-out";
-            nav.style.transition = "0.3s ease-in-out";
-            nav.style.marginLeft = "1rem";
+            nav.style.animation = "fadeIn 0.3s";
+            nav.style.transition = "0.3s";
+            nav.style.marginLeft = ".5rem";
             nav.style.opacity = "100%";
             setFlag(1);
         }
@@ -96,27 +96,6 @@ const NavBar = () => {
         }
     };
 
-    // setIsSwiping(false);
-    // const navbar = document.getElementById('navbar');
-
-    // const handleSwipeRight = (event) => {
-    //     if (isSwiping) {
-    //         return;
-    //       }
-    //       setIsSwiping(true);
-    //       const touch = event.changedTouches[0];
-    //       const navbarWidth = navbar.offsetWidth; 
-    //       const touchAreaWidth = 1000; // largura
-    //       const minHorizontalSwipe = 30;
-    //       if (touch.pageX > navbarWidth - touchAreaWidth &&
-    //           touch.pageX - touch.clientX < minHorizontalSwipe) {
-    //         btn_hamb.click();
-    //       }
-    //       setTimeout(() => {
-    //         setIsSwiping(false);
-    //       }, 750);
-    // };
-
     useEffect(() => {
         const getUsuario = async () => {
             const token = Cookies.get('token');
@@ -125,7 +104,14 @@ const NavBar = () => {
             setNome(response.data.nome);
         };
         getUsuario();
-    }, []);
+    }, [execucoes]);
+
+    useEffect(() => {
+        if (contador < 25) {
+            setExecucoes(execucoes + 1);
+            setContador(contador + 1);
+        }
+    }, [contador]);
 
     function handleClickHome() {
         setHome(true);
@@ -141,6 +127,8 @@ const NavBar = () => {
         setSeguindo(false);
         setSeguidoresPP(false);
         setSeguindoPP(false);
+        setPresencas(false);
+        setInteresses(false);
         handleBodyClick();
     };
     function handleClickTipoEvento() {
@@ -157,9 +145,13 @@ const NavBar = () => {
         setSeguindo(false);
         setSeguidoresPP(false);
         setSeguindoPP(false);
+        setPresencas(false);
+        setInteresses(false);
         handleBodyClick();
     };
-    function handleClickCreate() {
+    function handleClickCreate(e, interesse) {
+        e.stopPropagation();
+        setInteresseSelecionado(interesse);
         setCriar(true);
         setTipoEvento(false);
         setHome(false);
@@ -173,8 +165,31 @@ const NavBar = () => {
         setSeguindo(false);
         setSeguidoresPP(false);
         setSeguindoPP(false);
+        setPresencas(false);
+        setInteresses(false);
         handleBodyClick();
     };
+
+    function handleClickPresencas() {
+        setPresencas(true);
+        setHome(false);
+        setPesquisa(false);
+        setPerfil(false);
+        setTipoEvento(false);
+        setCriar(false);
+        setDescricao(false);
+        setPerfilPesquisa(false);
+        setVerParticipantes(false);
+        setBio(false);
+        setSeguidores(false);
+        setSeguindo(false);
+        setSeguidoresPP(false);
+        setSeguindoPP(false);
+        setInteresses(false);
+        handleBodyClick();
+    };
+
+
     function handleClickPerfil(e) {
         e.stopPropagation();
         setPerfil(true);
@@ -190,8 +205,31 @@ const NavBar = () => {
         setSeguindo(false);
         setSeguidoresPP(false);
         setSeguindoPP(false);
+        setPresencas(false);
+        setInteresses(false);
         handleBodyClick();
     };
+
+    function handleClickInteresses(e, usuario) {
+        e.stopPropagation();
+        setUsuarioSelecionado(usuario);
+        setInteresses(true);
+        setHome(false);
+        setPesquisa(false);
+        setPerfil(false);
+        setTipoEvento(false);
+        setCriar(false);
+        setDescricao(false);
+        setPerfilPesquisa(false);
+        setVerParticipantes(false);
+        setBio(false);
+        setSeguidores(false);
+        setSeguindo(false);
+        setSeguidoresPP(false);
+        setSeguindoPP(false);
+        handleBodyClick();
+    };
+
     function handleClickPesquisa() {
         setPesquisa(true);
         setHome(false);
@@ -206,6 +244,8 @@ const NavBar = () => {
         setSeguindo(false);
         setSeguidoresPP(false);
         setSeguindoPP(false);
+        setPresencas(false);
+        setInteresses(false);
         handleBodyClick();
     };
 
@@ -225,6 +265,8 @@ const NavBar = () => {
         setSeguindo(false);
         setSeguidoresPP(false);
         setSeguindoPP(false);
+        setPresencas(false);
+        setInteresses(false);
     };
 
     function handleClickPesquisaUsuario(e, usuario) {
@@ -243,6 +285,8 @@ const NavBar = () => {
         setSeguindo(false);
         setSeguidoresPP(false);
         setSeguindoPP(false);
+        setPresencas(false);
+        setInteresses(false);
     };
 
     function handleClickVerParticipantes(e, posts) {
@@ -261,6 +305,8 @@ const NavBar = () => {
         setSeguindo(false);
         setSeguidoresPP(false);
         setSeguindoPP(false);
+        setPresencas(false);
+        setInteresses(false);
     };
 
     function handleClickAlterarBio(e) {
@@ -278,6 +324,8 @@ const NavBar = () => {
         setSeguindo(false);
         setSeguidoresPP(false);
         setSeguindoPP(false);
+        setPresencas(false);
+        setInteresses(false);
     };
 
     function handleClickSeguidores(e) {
@@ -295,6 +343,8 @@ const NavBar = () => {
         setSeguindo(false);
         setSeguidoresPP(false);
         setSeguindoPP(false);
+        setPresencas(false);
+        setInteresses(false);
     };
 
     function handleClickSeguindo(e) {
@@ -312,6 +362,8 @@ const NavBar = () => {
         setPerfilPesquisa(false);
         setSeguidoresPP(false);
         setSeguindoPP(false);
+        setPresencas(false);
+        setInteresses(false);
     };
 
     function handleClickSeguidoresPP(e) {
@@ -329,6 +381,8 @@ const NavBar = () => {
         setTipoEvento(false);
         setCriar(false);
         setPerfilPesquisa(false);
+        setPresencas(false);
+        setInteresses(false);
     };
 
     function handleClickSeguindoPP(e) {
@@ -346,6 +400,8 @@ const NavBar = () => {
         setTipoEvento(false);
         setCriar(false);
         setPerfilPesquisa(false);
+        setPresencas(false);
+        setInteresses(false);
     };
 
     return (
@@ -360,7 +416,8 @@ const NavBar = () => {
                         <a className="nav-titles" onClick={handleClickHome}><img src={homeIcon} alt="" className="navs" />Home</a>
                         <a className="nav-titles" onClick={handleClickPesquisa}><img src={pesquisarIcon} alt="" className="navs" />Pesquisar</a>
                         <a className="nav-titles" onClick={handleClickTipoEvento}><img src={criarIcon} alt="" className="navs" />Criar</a>
-                        <a className="nav-titles" ><img src={chatsIcon} alt="" className="navs" />Chats</a>
+                        <a className="nav-titles" onClick={handleClickPresencas}><img src={chatsIcon} alt="" className="navs" />Presenças</a>
+                        <a className="nav-titles" onClick={handleClickInteresses}><img src={perfilIcon} alt="" className="navs" />Interesses</a>
                         <a className="nav-titles" onClick={handleClickPerfil}><img src={perfilIcon} alt="" className="navs" />Perfil</a>
                     </div>
                 </div>
@@ -374,9 +431,11 @@ const NavBar = () => {
                     <div className="main">
                         {home ? <Home setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} setDescricao={setDescricao} descricao={descricao} handleClickAtivaDescricao={handleClickAtivaDescricao}/> : null}
                         {pesquisa ? <Usuarios setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} handleClickPesquisaUsuario={handleClickPesquisaUsuario} handleClickAtivaDescricao={handleClickAtivaDescricao}/> : null}
-                        {tipoEvento ? <TipoEvento handleClickCreate={handleClickCreate} /> : null}
-                        {criar ? <Criar /> : null}
+                        {tipoEvento ? <TipoEvento handleClickCreate={handleClickCreate} interesseSelecionado={interesseSelecionado} setInteresseSelecionado={setInteresseSelecionado} /> : null}
+                        {criar ? <Criar interesseSelecionado={interesseSelecionado} /> : null}
+                        {presencas ? <Presencas setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickAtivaDescricao={handleClickAtivaDescricao}/> : null}
                         {perfil ? <Perfil setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickAtivaDescricao={handleClickAtivaDescricao} handleClickAlterarBio={handleClickAlterarBio} handleClickSeguidores={handleClickSeguidores} handleClickSeguindo={handleClickSeguindo}/> : null}
+                        {interesses ? <Interesses setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} handleClickPesquisaUsuario={handleClickPesquisaUsuario} /> : null}
                         {descricao ? <Descricao setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickVerParticipantes={handleClickVerParticipantes}/> : null}
                         {bio ? <Bio /> : null}
                         {perfilPesquisa ? <PerfilPesquisa setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickAtivaDescricao={handleClickAtivaDescricao} handleClickPerfil={handleClickPerfil} handleClickSeguidoresPP={handleClickSeguidoresPP} handleClickSeguindoPP={handleClickSeguindoPP}/> : null}

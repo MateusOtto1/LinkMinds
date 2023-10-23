@@ -82,7 +82,7 @@ const Bio = () => {
 
                     <div className="editar-input">
                         <label >Apelido <img src={lapis} alt="" /></label>
-                        <input type="text" name="nome" className="input-style" placeholder="Seu Apelido" onChange={(e) => setApelido(e.target.value)} />
+                        <input type="text" maxlength="10" name="nome" className="input-style" placeholder="Seu Apelido" onChange={(e) => setApelido(e.target.value)} />
                     </div>
 
                     <div className="editar-input">
@@ -92,7 +92,7 @@ const Bio = () => {
 
                     <div className="editar-input">
                         <label>Bio <img src={lapis} alt="" /></label>
-                        <textarea name="bio" id="" cols="30" rows="5" className="input-style" onChange={(e) => setDescricao(e.target.value)}></textarea>
+                        <textarea name="bio" maxlength="150" id="" cols="30" rows="5" className="input-style" onChange={(e) => setDescricao(e.target.value)}></textarea>
                     </div>                    
                     
                     <div className="editar-input">

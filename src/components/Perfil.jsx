@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthGoogleContext } from "../contexts/authGoogle";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import lapis from "../imagens/editar.svg";
 import "../css/style-perfil.css";
@@ -8,13 +7,13 @@ import Cookies from 'js-cookie';
 
 const Perfil = (props) => {
     const { signOut } = useContext(AuthGoogleContext);
-    const navigate = useNavigate();
     const [usuarios, setUsuarios] = useState({});
     const [posts, setPosts] = useState([]);
     const [email, setEmail] = useState('');
     const [interesses, setInteresses] = useState([]);
     const [execucoes, setExecucoes] = useState(0);
     const [contador, setContador] = useState(0);
+    const [novaUrl, setNovaUrl] = useState('');
 
     useEffect(() => {
         const getUsuario = async () => {
@@ -23,6 +22,12 @@ const Perfil = (props) => {
             setUsuarios(response.data);
             setEmail(usuarios.email);
             setInteresses(response.data.interesses);
+            if (!usuarios || !usuarios.foto) {
+                return null;
+            }
+            const urlOriginal = usuarios.foto;
+            const novaFoto = urlOriginal.replace(/s96-c/, 's1000-c');
+            setNovaUrl(novaFoto);
         };
         getUsuario();
     }, [execucoes]);
@@ -31,13 +36,13 @@ const Perfil = (props) => {
         const getPosts = async () => {
             const token = Cookies.get('token');
             const response = await axios.post('http://localhost:3001/postsInfo', { token, email });
-            setPosts(response.data);
+            setPosts(response.data.reverse());
         };
         getPosts();
     },[usuarios]);
 
     useEffect(() => {
-        if (contador < 15) {
+        if (contador < 25) {
             setExecucoes(execucoes + 1);
             setContador(contador + 1);
         }
@@ -48,9 +53,7 @@ const Perfil = (props) => {
             <div className="main-perfil">
                 <div className="wrapper-perfil-top">
 
-                    <div className="img-perfil" style={{
-                        backgroundImage: `url(${usuarios.foto})`,
-                    }}></div>
+                    <div className="img-perfil" style={{backgroundImage: `url(${novaUrl})`}}></div>
 
                     <div className="wrapper-perfil-left">
 
@@ -71,6 +74,7 @@ const Perfil = (props) => {
                         <div>
                             <button className="btn-seguidores" onClick={(e) => props.handleClickSeguidores(e)}>Seguidores</button>
                             <button className="btn-seguindo" onClick={(e) => props.handleClickSeguindo(e)}>Seguindo</button>
+                            <button className="btn-deslogar" onClick={signOut}>Deslogar</button>
                         </div>
 
                     </div>
@@ -98,7 +102,7 @@ const Perfil = (props) => {
                                 return (
                                     <div className="post-card" key={index}>
                                         <div className="post-top">
-                                            <div className="img-post"></div>
+                                            <div className="img-post" style={{backgroundImage: `url(${post.imagemEvento})`}}></div>
                                             <div className="post-text">
                                                 <h1 className="post-title">{post.evento}</h1>
                                                 <p className="post-dia">{post.data}</p>

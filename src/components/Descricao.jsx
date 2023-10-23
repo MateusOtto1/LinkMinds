@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import '../css/style-detalhes.css';
-import fundoCard from '../imagens/fundo-card.svg';
 import boneco from "../imagens/basil-user-solid.svg";
 import fotoCimol from "../imagens/rectangle-108.svg";
 import Cookies from 'js-cookie';
@@ -15,6 +14,8 @@ const Descricao = (props) => {
     const [posts, setPosts] = useState([]);
     const [presencaPost, setPresencaPost] = useState('');
     const [meuPost, setMeuPost] = useState([false]);
+    const [execucoes, setExecucoes] = useState(0);
+    const [contador, setContador] = useState(0);
 
     useEffect(() => {
         const getUsuario = async () => {
@@ -45,7 +46,14 @@ const Descricao = (props) => {
             usuarioPosts.find((post) => post == emailUsuariosPresenca) ? setVerificaPresenca(true) : setVerificaPresenca(false);
         };
         getPostPresenca();
-    });
+    },[execucoes]);
+
+    useEffect(() => {
+        if (contador < 15) {
+            setExecucoes(execucoes + 1);
+            setContador(contador + 1);
+        }
+    }, [contador]);
 
     function handleClickPresenca() {
         const presenca = presencaPost + 1;
@@ -92,7 +100,7 @@ const Descricao = (props) => {
         <>
             <div className='main-detalhes'>
                 <header>
-                    <img src={fundoCard} alt="" className="header-img-detalhes" />
+                    <img src={props.postSelecionado.imagemEvento} alt="" className="header-img-detalhes" />
                     <h1 className="header-title-detalhes">{props.postSelecionado.evento}</h1>
                 </header>
 

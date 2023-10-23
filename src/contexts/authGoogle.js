@@ -63,8 +63,13 @@ export const AuthGoogleProvider = ({ children }) => {
   }
 
   function signOut() {
-    localStorage.clear();
-    setEmail(null);
+    auth.signOut().then(() => {
+      setUser(null);
+      setToken('');
+      Cookies.remove('token');
+    }).catch((error) => {
+      console.log(error);
+    });
     return <Navigate to="/" />;
   }
 

@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import seta from "../imagens/seta.svg";
 import Cookies from 'js-cookie';
 
 const Participantes = (props) => {
-    const navigate = useNavigate();
     const [participantes, setParticipantes] = useState([]);
     const [usuarios, setUsuarios] = useState([]);
     const [usuariosParticipantes, setUsuariosParticipantes] = useState([]);
