@@ -7,32 +7,26 @@ const Seguindo = (props) => {
     const [seguindo, setSeguindo] = useState([]);
     const [usuarios, setUsuarios] = useState([]);
     const [usuariosSeguindo, setUsuariosSeguindo] = useState([]);
-    const [verificaSeguindo, setVerificaSeguindo] = useState(false);
 
     useEffect(() => {
         const getUsuario = async () => {
             const token = Cookies.get('token');
-            const response = await axios.post('http://localhost:3001/usuarioInfo', { token });
+            const headers = {
+                "x-access-token": token
+            }
+            const response = await axios.get('https://server-link-minds.vercel.app/usuarioInfo', { headers });
             setSeguindo(response.data.usuariosSeguindo);
         };
         getUsuario();
-    }, [verificaSeguindo]);
-
-    useEffect(() => {
-        const verificaSeguindo = async () => {
-            if (seguindo.length != 0) {
-                setVerificaSeguindo(true);
-            } else {
-                setVerificaSeguindo(false);
-            }
-        };
-        verificaSeguindo();
-    }, [verificaSeguindo]);
+    }, [seguindo.length == 0]);
 
     useEffect(() => {
         const getSeguindo = async () => {
             const token = Cookies.get('token');
-            const response = await axios.post('http://localhost:3001/pesquisaUsuario', { token });
+            const headers = {
+                "x-access-token": token
+            }
+            const response = await axios.get('https://server-link-minds.vercel.app/pesquisaUsuario', { headers });
             setUsuarios(response.data);
             setUsuariosSeguindo([]);
             seguindo.map((seguindo) => {

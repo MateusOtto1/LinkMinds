@@ -8,38 +8,35 @@ const Presencas = (props) => {
     const [posts, setPosts] = useState([]);
     const [presencas, setPresencas] = useState([]);
     const [usuarios, setUsuarios] = useState({});
-    const [execucoes, setExecucoes] = useState(0);
-    const [contador, setContador] = useState(0);
 
     useEffect(() => {
         const getUsuario = async () => {
             const token = Cookies.get('token');
-            const response = await axios.post('http://localhost:3001/usuarioInfo', { token });
+            const headers = {
+                "x-access-token": token
+            }
+            const response = await axios.get('https://server-link-minds.vercel.app/usuarioInfo', { headers });
             setUsuarios(response.data);
         };
         getUsuario();
-    }, []);
+    }, [usuarios.length == 0]);
 
     useEffect(() => {
         const getPosts = async () => {
             const token = Cookies.get('token');
-            const response = await axios.post('http://localhost:3001/postsHome', { token });
-            setPresencas(response.data);
-            setPosts([]);
+            const headers = {
+                "x-access-token": token
+            }
+            const response = await axios.get('https://server-link-minds.vercel.app/postsHome', { headers });
+            setPresencas(response.data.reverse());
             const postsPresenca = presencas.filter((presenca) => {
                 return presenca.usuariosPresenca.includes(usuarios.email);
             });
             setPosts(postsPresenca);
         };
         getPosts();
-    }, [execucoes]);
+    }, [presencas.length == 0]);
 
-    useEffect(() => {
-        if (contador < 15) {
-            setExecucoes(execucoes + 1);
-            setContador(contador + 1);
-        }
-    }, [contador]);
     return (
         <>
             <div id="wrapper">

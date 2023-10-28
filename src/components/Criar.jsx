@@ -31,16 +31,18 @@ const Criar = (props) => {
             const data = `${dataBr[2]}/${dataBr[1]}/${dataBr[0]}`;
             setDataBrasil(data);
             setPostExistente(false);
+            setPodeCriar(false);
             posts.map((post) => {
                 if (evento == post.evento && dataBrasil == post.data && hora == post.hora && local == post.local) {
                     setPostExistente(true);
+                    setPodeCriar(false);
                 }
             });
             if (precisaLocal == true) {
                 if (dataEUA == '' || hora == '' || local == '') {
-                    setPreencha('Você não preencheu todos os campos');
                     setPodeCriar(false);
                     setPostExistente(false);
+                    setPreencha('Você não preencheu todos os campos');
                 } else {
                     setPreencha('');
                     setPodeCriar(true);
@@ -55,36 +57,40 @@ const Criar = (props) => {
                     setPodeCriar(true);
                 }
             }
-                if (postExistente == true) {
-                    setPreencha('Você já criou este post');
-                    setPodeCriar(false);
-                }else{
-                    setPodeCriar(true);
-                    setPreencha('');
-                }
-            };
-            checkInput();
-        });
+            if (postExistente == true) {
+                setPreencha('Você já criou este post');
+                setPodeCriar(false);
+            }
+        };
+        checkInput();
+    });
 
     useEffect(() => {
         const getUser = async () => {
             const token = Cookies.get('token');
-            const response = await axios.post('http://localhost:3001/usuarioInfo', { token });
+            const headers = {
+                "x-access-token": token
+            }
+            const response = await axios.get('https://server-link-minds.vercel.app/usuarioInfo', { headers });
             setNome(response.data.nome);
             setFoto(response.data.foto);
             setEmail(response.data.email);
         };
         getUser();
-    }, []);
+    }, [email == '']);
 
     useEffect(() => {
         const getPost = async () => {
             const token = Cookies.get('token');
-            const response = await axios.post('http://localhost:3001/postsInfo', { token, email });
+            const headers = {
+                "x-access-token": token,
+                "email": email
+            };
+            const response = await axios.get('https://server-link-minds.vercel.app/postsInfo', { headers });
             setPosts(response.data);
         };
         getPost();
-    });
+    }, [email == "" && posts.length == 0]);
 
     useEffect(() => {
         const tipoInteresse = async () => {
@@ -112,14 +118,14 @@ const Criar = (props) => {
             const dataBr = dataEUA.split('-');
             const data = `${dataBr[2]}/${dataBr[1]}/${dataBr[0]}`;
             const presenca = 0;
-            const token = Cookies.get('token');
-            axios.post('http://localhost:3001/posts', { token, email, nome, evento, tipoEvento, descricao, data, hora, local, presenca, foto, imagemEvento });
+            const token2 = Cookies.get('token');
+            axios.post('https://server-link-minds.vercel.app/posts', { token2, email, nome, evento, tipoEvento, descricao, data, hora, local, presenca, foto, imagemEvento });
             navigate('/');
         }
     };
 
     useEffect(() => {
-        if (contador < 15) {
+        if (contador < 30) {
             setExecucoes(execucoes + 1);
             setContador(contador + 1);
         }
@@ -134,7 +140,7 @@ const Criar = (props) => {
                         <div className="body-inp">
                             <p className="inp-header">Descrição do evento</p>
                             <p>Opcional</p>
-                            <input type="text" maxlength="100" placeholder="Digite Aqui" className="inp-criar" onChange={(e) => setDescricao(e.target.value)} />
+                            <input type="text" maxLength="100" placeholder="Digite Aqui" className="inp-criar" onChange={(e) => setDescricao(e.target.value)} />
                         </div>
                         <div className="body-inp">
                             <p className="inp-header">Data</p>

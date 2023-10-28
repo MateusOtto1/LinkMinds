@@ -12,11 +12,14 @@ const SeguidoresPP = (props) => {
     useEffect(() => {
         const getUsuario = async () => {
             const token = Cookies.get('token');
-            const response = await axios.post('http://localhost:3001/usuarioInfo', { token });
+            const headers = {
+                "x-access-token": token
+            }
+            const response = await axios.get('https://server-link-minds.vercel.app/usuarioInfo', { headers });
             setEmail(response.data.email);
         };
         getUsuario();
-    });
+    }, [email == '']);
     
     useEffect(() => {
         const getUsuario = async () => {
@@ -39,7 +42,10 @@ const SeguidoresPP = (props) => {
     useEffect(() => {
         const getSeguidores = async () => {
             const token = Cookies.get('token');
-            const response = await axios.post('http://localhost:3001/pesquisaUsuario', { token });
+            const headers = {
+                "x-access-token": token
+            }
+            const response = await axios.get('https://server-link-minds.vercel.app/pesquisaUsuario', { headers });
             setUsuariosSeguidores([]);
             seguidores.map((seguidor) => {
                 const email = seguidor;

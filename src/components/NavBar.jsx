@@ -9,6 +9,7 @@ import Bio from "./Bio";
 import Descricao from "./Descricao";
 import TipoEvento from "./TipoEvento";
 import Criar from "./Criar";
+import EventoSeguidores from "./EventoSeguidores";
 import Usuarios from "./Usuarios"
 import PerfilPesquisa from "./PerfilPesquisa";
 import Participantes from "./Participantes";
@@ -28,8 +29,6 @@ import Cookies from "js-cookie";
 const NavBar = () => {
     const [nome, setNome] = useState('');
     const [usuarios, setUsuarios] = useState({});
-    const [execucoes, setExecucoes] = useState(0);
-    const [contador, setContador] = useState(0);
     const [flag, setFlag] = useState(0);
     const bodyfalso = document.getElementById("bodyfalso");
     const nav = document.getElementById("navdentro");
@@ -48,6 +47,7 @@ const NavBar = () => {
     const [seguidoresPP, setSeguidoresPP] = useState(false);
     const [seguindoPP, setSeguindoPP] = useState(false);
     const [tipoEvento, setTipoEvento] = useState(false);
+    const [eventoSeguidores, setEventoSeguidores] = useState(false);
 
     const [postSelecionado, setPostSelecionado] = useState({});
     const [usuarioSelecionado, setUsuarioSelecionado] = useState({});
@@ -99,19 +99,15 @@ const NavBar = () => {
     useEffect(() => {
         const getUsuario = async () => {
             const token = Cookies.get('token');
-            const response = await axios.post('http://localhost:3001/usuarioInfo', { token });
+            const headers = {
+                "x-access-token": token
+            }
+            const response = await axios.get('https://server-link-minds.vercel.app/usuarioInfo', { headers });
             setUsuarios(response.data);
             setNome(response.data.nome);
         };
         getUsuario();
-    }, [execucoes]);
-
-    useEffect(() => {
-        if (contador < 25) {
-            setExecucoes(execucoes + 1);
-            setContador(contador + 1);
-        }
-    }, [contador]);
+    }, []);
 
     function handleClickHome() {
         setHome(true);
@@ -129,6 +125,7 @@ const NavBar = () => {
         setSeguindoPP(false);
         setPresencas(false);
         setInteresses(false);
+        setEventoSeguidores(false);
         handleBodyClick();
     };
     function handleClickTipoEvento() {
@@ -147,6 +144,7 @@ const NavBar = () => {
         setSeguindoPP(false);
         setPresencas(false);
         setInteresses(false);
+        setEventoSeguidores(false);
         handleBodyClick();
     };
     function handleClickCreate(e, interesse) {
@@ -167,6 +165,7 @@ const NavBar = () => {
         setSeguindoPP(false);
         setPresencas(false);
         setInteresses(false);
+        setEventoSeguidores(false);
         handleBodyClick();
     };
 
@@ -186,9 +185,9 @@ const NavBar = () => {
         setSeguidoresPP(false);
         setSeguindoPP(false);
         setInteresses(false);
+        setEventoSeguidores(false);
         handleBodyClick();
     };
-
 
     function handleClickPerfil(e) {
         e.stopPropagation();
@@ -207,6 +206,7 @@ const NavBar = () => {
         setSeguindoPP(false);
         setPresencas(false);
         setInteresses(false);
+        setEventoSeguidores(false);
         handleBodyClick();
     };
 
@@ -225,6 +225,28 @@ const NavBar = () => {
         setBio(false);
         setSeguidores(false);
         setSeguindo(false);
+        setSeguidoresPP(false);
+        setSeguindoPP(false);
+        setPresencas(false);
+        setEventoSeguidores(false);
+        handleBodyClick();
+    };
+
+    function handleClickEventoSeguidores() {
+        setEventoSeguidores(true);
+        setInteresses(false);
+        setHome(false);
+        setPesquisa(false);
+        setPerfil(false);
+        setTipoEvento(false);
+        setCriar(false);
+        setDescricao(false);
+        setPerfilPesquisa(false);
+        setVerParticipantes(false);
+        setBio(false);
+        setSeguidores(false);
+        setSeguindo(false);
+        setPresencas(false);
         setSeguidoresPP(false);
         setSeguindoPP(false);
         handleBodyClick();
@@ -246,6 +268,7 @@ const NavBar = () => {
         setSeguindoPP(false);
         setPresencas(false);
         setInteresses(false);
+        setEventoSeguidores(false);
         handleBodyClick();
     };
 
@@ -267,6 +290,7 @@ const NavBar = () => {
         setSeguindoPP(false);
         setPresencas(false);
         setInteresses(false);
+        setEventoSeguidores(false);
     };
 
     function handleClickPesquisaUsuario(e, usuario) {
@@ -287,6 +311,7 @@ const NavBar = () => {
         setSeguindoPP(false);
         setPresencas(false);
         setInteresses(false);
+        setEventoSeguidores(false);
     };
 
     function handleClickVerParticipantes(e, posts) {
@@ -307,6 +332,7 @@ const NavBar = () => {
         setSeguindoPP(false);
         setPresencas(false);
         setInteresses(false);
+        setEventoSeguidores(false);
     };
 
     function handleClickAlterarBio(e) {
@@ -326,6 +352,7 @@ const NavBar = () => {
         setSeguindoPP(false);
         setPresencas(false);
         setInteresses(false);
+        setEventoSeguidores(false);
     };
 
     function handleClickSeguidores(e) {
@@ -345,6 +372,7 @@ const NavBar = () => {
         setSeguindoPP(false);
         setPresencas(false);
         setInteresses(false);
+        setEventoSeguidores(false);
     };
 
     function handleClickSeguindo(e) {
@@ -364,6 +392,7 @@ const NavBar = () => {
         setSeguindoPP(false);
         setPresencas(false);
         setInteresses(false);
+        setEventoSeguidores(false);
     };
 
     function handleClickSeguidoresPP(e) {
@@ -383,6 +412,7 @@ const NavBar = () => {
         setPerfilPesquisa(false);
         setPresencas(false);
         setInteresses(false);
+        setEventoSeguidores(false);
     };
 
     function handleClickSeguindoPP(e) {
@@ -402,6 +432,7 @@ const NavBar = () => {
         setPerfilPesquisa(false);
         setPresencas(false);
         setInteresses(false);
+        setEventoSeguidores(false);
     };
 
     return (
@@ -418,6 +449,7 @@ const NavBar = () => {
                         <a className="nav-titles" onClick={handleClickTipoEvento}><img src={criarIcon} alt="" className="navs" />Criar</a>
                         <a className="nav-titles" onClick={handleClickPresencas}><img src={chatsIcon} alt="" className="navs" />Presenças</a>
                         <a className="nav-titles" onClick={handleClickInteresses}><img src={perfilIcon} alt="" className="navs" />Interesses</a>
+                        <a className="nav-titles" onClick={handleClickEventoSeguidores}><img src={perfilIcon} alt="" className="navs" />Eventos de seguidores</a>
                         <a className="nav-titles" onClick={handleClickPerfil}><img src={perfilIcon} alt="" className="navs" />Perfil</a>
                     </div>
                 </div>
@@ -434,6 +466,7 @@ const NavBar = () => {
                         {tipoEvento ? <TipoEvento handleClickCreate={handleClickCreate} interesseSelecionado={interesseSelecionado} setInteresseSelecionado={setInteresseSelecionado} /> : null}
                         {criar ? <Criar interesseSelecionado={interesseSelecionado} /> : null}
                         {presencas ? <Presencas setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickAtivaDescricao={handleClickAtivaDescricao}/> : null}
+                        {eventoSeguidores ? <EventoSeguidores setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickAtivaDescricao={handleClickAtivaDescricao}/> : null}
                         {perfil ? <Perfil setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickAtivaDescricao={handleClickAtivaDescricao} handleClickAlterarBio={handleClickAlterarBio} handleClickSeguidores={handleClickSeguidores} handleClickSeguindo={handleClickSeguindo}/> : null}
                         {interesses ? <Interesses setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} handleClickPesquisaUsuario={handleClickPesquisaUsuario} /> : null}
                         {descricao ? <Descricao setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickVerParticipantes={handleClickVerParticipantes}/> : null}

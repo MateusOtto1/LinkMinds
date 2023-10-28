@@ -12,11 +12,14 @@ const Participantes = (props) => {
     useEffect(() => {
         const getUsuario = async () => {
             const token = Cookies.get('token');
-            const response = await axios.post('http://localhost:3001/usuarioInfo', { token });
+            const headers = {
+                "x-access-token": token
+            }
+            const response = await axios.get('https://server-link-minds.vercel.app/usuarioInfo', { headers });
             setEmail(response.data.email);
         };
         getUsuario();
-    });
+    }, [email == '']);
 
     useEffect(() => {
         const getParticipantes = async () => {
@@ -25,18 +28,22 @@ const Participantes = (props) => {
             const hora = props.postSelecionado.hora;
             const local = props.postSelecionado.local;
             const nome = props.postSelecionado.nome;
-            const token = Cookies.get('token');
-            const response = await axios.post('http://localhost:3001/postsPresencaInfo', { token, evento, data, hora, local, nome });
+            const token2 = Cookies.get('token');
+            const response = await axios.post('https://server-link-minds.vercel.app/postsPresencaInfo', { token2, evento, data, hora, local, nome });
             setParticipantes(response.data.usuariosPresenca);
         };
         getParticipantes();
-    }, []);
+    }, [participantes.length == 0]);
 
     useEffect(() => {
         const getUsuarios = async () => {
             const token = Cookies.get('token');
-            const response = await axios.post('http://localhost:3001/pesquisaUsuario', { token });
+            const headers = {
+                "x-access-token": token
+            }
+            const response = await axios.get('https://server-link-minds.vercel.app/pesquisaUsuario', { headers });
             setUsuarios(response.data);
+            setUsuariosParticipantes([]);
             participantes.map((participante) => {
                 const email = participante;
                 usuarios.map((usuario) => {

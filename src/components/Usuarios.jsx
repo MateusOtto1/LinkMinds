@@ -11,41 +11,49 @@ const Usuarios = (props) => {
     const [pesquisaPost, setPesquisaPost] = useState([]);
     const [posts, setPosts] = useState([]);
     const [email, setEmail] = useState('');
-    const [execucoes, setExecucoes] = useState(0);
-    const [contador, setContador] = useState(0);
 
     useEffect(() => {
         const getEmail = async () => {
             const token = Cookies.get('token');
-            const response = await axios.post('http://localhost:3001/usuarioInfo', { token });
+            const headers = {
+                "x-access-token": token
+            }
+            const response = await axios.get('https://server-link-minds.vercel.app/usuarioInfo', { headers });
             setEmail(response.data.email);
         };
         getEmail();
-    },[execucoes]);
+    },[email == '']);
 
     useEffect(() => {
         const getUsuarios = async () => {
             const token = Cookies.get('token');
-            const response = await axios.post('http://localhost:3001/pesquisaUsuario', { token });
+            const headers = {
+                "x-access-token": token,
+                "email": email
+            };
+            const response = await axios.get('https://server-link-minds.vercel.app/pesquisaUsuario', { headers });
             setUsuarios(response.data);
             if (busca == '') {
                 setPesquisa(response.data);
             }
         };
         getUsuarios();
-    }, []);
+    }, [usuarios.length == 0]);
 
     useEffect(() => {
         const getPosts = async () => {
             const token = Cookies.get('token');
-            const response = await axios.post('http://localhost:3001/postsHome', { token });
+            const headers = {
+                "x-access-token": token
+            }
+            const response = await axios.get('https://server-link-minds.vercel.app/postsHome', { headers });
             setPosts(response.data.reverse());
             if (busca == "") {
                 setPesquisaPost(response.data);
             }
         };
         getPosts();
-    }, []);
+    }, [posts.length == 0]);
 
     useEffect(() => {
         const pesquisaInput = async () => {
@@ -56,13 +64,6 @@ const Usuarios = (props) => {
         };
         pesquisaInput();
     }, [busca]);
-
-    useEffect(() => {
-        if (contador < 25) {
-            setExecucoes(execucoes + 1);
-            setContador(contador + 1);
-        }
-    }, [contador]);
 
     return (
         <>

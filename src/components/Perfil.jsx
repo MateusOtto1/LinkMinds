@@ -11,14 +11,15 @@ const Perfil = (props) => {
     const [posts, setPosts] = useState([]);
     const [email, setEmail] = useState('');
     const [interesses, setInteresses] = useState([]);
-    const [execucoes, setExecucoes] = useState(0);
-    const [contador, setContador] = useState(0);
     const [novaUrl, setNovaUrl] = useState('');
 
     useEffect(() => {
         const getUsuario = async () => {
             const token = Cookies.get('token');
-            const response = await axios.post('http://localhost:3001/usuarioInfo', { token });
+            const headers = {
+                "x-access-token": token
+            }
+            const response = await axios.get('https://server-link-minds.vercel.app/usuarioInfo', { headers });
             setUsuarios(response.data);
             setEmail(usuarios.email);
             setInteresses(response.data.interesses);
@@ -30,23 +31,20 @@ const Perfil = (props) => {
             setNovaUrl(novaFoto);
         };
         getUsuario();
-    }, [execucoes]);
+    }, [email == '']);
 
     useEffect(() => {
         const getPosts = async () => {
             const token = Cookies.get('token');
-            const response = await axios.post('http://localhost:3001/postsInfo', { token, email });
+            const headers = {
+                "x-access-token": token,
+                "email": email
+            };
+            const response = await axios.get('https://server-link-minds.vercel.app/postsInfo', { headers });
             setPosts(response.data.reverse());
         };
         getPosts();
     },[usuarios]);
-
-    useEffect(() => {
-        if (contador < 25) {
-            setExecucoes(execucoes + 1);
-            setContador(contador + 1);
-        }
-    }, [contador]);
 
     return (
         <>

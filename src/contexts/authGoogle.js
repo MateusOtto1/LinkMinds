@@ -51,8 +51,9 @@ export const AuthGoogleProvider = ({ children }) => {
             Cookies.remove("token");
           }
         }, 259200000);
-        axios.put('http://localhost:3001/token', { email, token }).then(result => result).catch(err => console.log(err));
-        axios.post('http://localhost:3001/usuario', { email, nome, foto, apelido, idade, interesses, descricao, token }).then(result => result).catch(err => console.log(err));
+        const token2 = token;
+        axios.put('https://server-link-minds.vercel.app/token', { email, token2 }).then(result => result).catch(err => console.log(err));
+        axios.post('https://server-link-minds.vercel.app/usuario', { email, nome, foto, apelido, idade, interesses, descricao, token2 }).then(result => result).catch(err => console.log(err));
       })
       .catch((error) => {
         const errorCode = error.code;

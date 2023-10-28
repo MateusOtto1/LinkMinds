@@ -15,15 +15,17 @@ const Bio = () => {
     const [listaInteresse, setListaInteresse] = useState([]);
     const [pesquisaInteresse, setPesquisaInteresse] = useState([]);
     const [pesquisa, setPesquisa] = useState([]);
-
     const navigate = useNavigate();
 
     useEffect(() => {
         const getUsuario = async () => {
             const token = Cookies.get('token');
-            const response = await axios.post('http://localhost:3001/usuarioInfo', { token });
+            const headers = {
+                "x-access-token": token
+            }
+            const response = await axios.get('https://server-link-minds.vercel.app/usuarioInfo', { headers });
             setUsuarios(response.data);
-            const response2 = await axios.get('http://localhost:3001/listaInteresse');
+            const response2 = await axios.get('https://server-link-minds.vercel.app/listaInteresse', { headers });
             setListaInteresse(response2.data);
             if(pesquisaInteresse == ''){
                 setPesquisa(response2.data);
@@ -58,8 +60,8 @@ const Bio = () => {
         if (apelido == '' || idade == '' || interesses == '' || descricao == '') {
             setPreencha('Preencha todos os campos');
         } else {
-            const token = Cookies.get('token');
-            await axios.put('http://localhost:3001/usuario', { token, apelido, idade, interesses, descricao }).then(result => console.log(result)).catch(err => console.log(err));
+            const token2 = Cookies.get('token');
+            await axios.put('https://server-link-minds.vercel.app/usuario', { token2, apelido, idade, interesses, descricao }).then(result => console.log(result)).catch(err => console.log(err));
             navigate('/');
         }
     };

@@ -14,17 +14,18 @@ const Descricao = (props) => {
     const [posts, setPosts] = useState([]);
     const [presencaPost, setPresencaPost] = useState('');
     const [meuPost, setMeuPost] = useState([false]);
-    const [execucoes, setExecucoes] = useState(0);
-    const [contador, setContador] = useState(0);
 
     useEffect(() => {
         const getUsuario = async () => {
             const token = Cookies.get('token');
-            const response = await axios.post('http://localhost:3001/usuarioInfo', { token });
+            const headers = {
+                "x-access-token": token
+            }
+            const response = await axios.get('https://server-link-minds.vercel.app/usuarioInfo', { headers });
             setEmailUsuariosPresenca(response.data.email);
         };
         getUsuario();
-    }, []);
+    }, [emailUsuariosPresenca == '']);
 
     useEffect(() => {
         const getPostPresenca = async () => {
@@ -33,8 +34,8 @@ const Descricao = (props) => {
             const hora = props.postSelecionado.hora;
             const local = props.postSelecionado.local;
             const nome = props.postSelecionado.nome;
-            const token = Cookies.get('token');
-            const response = await axios.post('http://localhost:3001/postsPresencaInfo', { token, evento, data, hora, local, nome });
+            const token2 = Cookies.get('token');
+            const response = await axios.post('https://server-link-minds.vercel.app/postsPresencaInfo', { token2, evento, data, hora, local, nome });
             setPosts(response.data);
             setPresencaPost(response.data.presenca);
             setUsuarioPosts(response.data.usuariosPresenca);
@@ -46,14 +47,7 @@ const Descricao = (props) => {
             usuarioPosts.find((post) => post == emailUsuariosPresenca) ? setVerificaPresenca(true) : setVerificaPresenca(false);
         };
         getPostPresenca();
-    },[execucoes]);
-
-    useEffect(() => {
-        if (contador < 15) {
-            setExecucoes(execucoes + 1);
-            setContador(contador + 1);
-        }
-    }, [contador]);
+    });
 
     function handleClickPresenca() {
         const presenca = presencaPost + 1;
@@ -64,8 +58,8 @@ const Descricao = (props) => {
         const nome = props.postSelecionado.nome;
         const usuariosPresenca = props.postSelecionado.usuariosPresenca;
         usuariosPresenca.push(emailUsuariosPresenca);
-        const token = Cookies.get('token');
-        axios.put('http://localhost:3001/postsPresenca', { token, presenca, evento, data, hora, local, nome, usuariosPresenca }).then(result => console.log(result)).catch(err => console.log(err));
+        const token2 = Cookies.get('token');
+        axios.put('https://server-link-minds.vercel.app/postsPresenca', { token2, presenca, evento, data, hora, local, nome, usuariosPresenca }).then(result => console.log(result)).catch(err => console.log(err));
         navigate('/');
     };
 
@@ -81,8 +75,8 @@ const Descricao = (props) => {
         if (index > -1) {
             usuariosPresenca.splice(index, 1);
         }
-        const token = Cookies.get('token');
-        axios.put('http://localhost:3001/postsPresenca', { token, presenca, evento, data, hora, local, nome, usuariosPresenca }).then(result => console.log(result)).catch(err => console.log(err));
+        const token2 = Cookies.get('token');
+        axios.put('https://server-link-minds.vercel.app/postsPresenca', { token2, presenca, evento, data, hora, local, nome, usuariosPresenca }).then(result => console.log(result)).catch(err => console.log(err));
         navigate('/');
     }
 
@@ -92,8 +86,8 @@ const Descricao = (props) => {
         const hora = props.postSelecionado.hora;
         const local = props.postSelecionado.local;
         const nome = props.postSelecionado.nome;
-        const token = Cookies.get('token');
-        axios.delete('http://localhost:3001/excluirPost', { data: { token, evento, data, hora, local, nome }}).then(result => console.log(result)).catch(err => console.log(err));
+        const token2 = Cookies.get('token');
+        axios.delete('https://server-link-minds.vercel.app/excluirPost', { data: { token2, evento, data, hora, local, nome }}).then(result => console.log(result)).catch(err => console.log(err));
         navigate('/');
     }
     return (

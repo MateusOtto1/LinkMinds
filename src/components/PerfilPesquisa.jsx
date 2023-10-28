@@ -11,18 +11,32 @@ const PerfilPesquisa = (props) => {
     const [verificaSeguir, setVerificaSeguir] = useState(false);
     const [usuarioSelecionado, setUsuarioSelecionado] = useState([]);
     const [novaUrl, setNovaUrl] = useState('');
-    const [execucoes, setExecucoes] = useState(0);
-    const [contador, setContador] = useState(0);
+
+    useEffect(() => {
+        const getUsuario = async () => {
+            const token = Cookies.get('token');
+            const headers = {
+                "x-access-token": token
+            }
+            const response = await axios.get('https://server-link-minds.vercel.app/usuarioInfo', { headers });
+            setUsuario(response.data);
+        };
+        getUsuario();
+    },[usuario.length == 0]);
 
     useEffect(() => {
         const getPosts = async () => {
             const email = props.usuarioSelecionado.email;
             const token = Cookies.get('token');
-            const response = await axios.post('http://localhost:3001/postsPerfilPesquisa', { token, email });
+            const headers = {
+                "x-access-token": token,
+                "email": email
+            };
+            const response = await axios.get('https://server-link-minds.vercel.app/postsPerfilPesquisa', { headers });
             setPosts(response.data.reverse());
         }
         getPosts();
-    }, []);
+    }, [posts.length == 0 ]);
 
     useEffect(() => {
         const getSeguidores = async () => {
@@ -34,63 +48,51 @@ const PerfilPesquisa = (props) => {
             })
         }
         getSeguidores();
-    }, [execucoes]);
-
-    useEffect(() => {
-        const getUsuario = async () => {
-            const token = Cookies.get('token');
-            const response = await axios.post('http://localhost:3001/usuarioInfo', { token });
-            setUsuario(response.data);
-        };
-        getUsuario();
-    }, []);
-
-    useEffect(() => {
-        if (contador < 25) {
-            setExecucoes(execucoes + 1);
-            setContador(contador + 1);
-        }
-    }, [contador]);
+    }, [usuario]);
 
     useEffect(() => {
         const getUsuarioSelecionado = async () => {
             const token = Cookies.get('token');
             const email = props.usuarioSelecionado.email;
-            const response = await axios.post('http://localhost:3001/usuarioSelecionado', { token, email });
+            const headers = {
+                "x-access-token": token,
+                "email": email
+            };
+            const response = await axios.get('https://server-link-minds.vercel.app/usuarioSelecionado', { headers });
             setUsuarioSelecionado(response.data);
             const urlOriginal = props.usuarioSelecionado.foto;
             setNovaUrl(urlOriginal.replace(/s96-c/, 's1000-c'));
         };
         getUsuarioSelecionado();
-    });
+    },[usuarioSelecionado.length == 0]);
 
     const handleClickSeguir = async () => {
-        const token = Cookies.get('token');
+        const token2 = Cookies.get('token');
         const email = usuario.email;
         const usuarioSelecionadoEmail = props.usuarioSelecionado.email;
         const usuariosSeguindo = usuario.usuariosSeguindo;
         usuariosSeguindo.push(usuarioSelecionadoEmail);
-        axios.put('http://localhost:3001/seguindo', { token, email, usuariosSeguindo });
+        axios.put('https://server-link-minds.vercel.app/seguindo', { token2, email, usuariosSeguindo });
 
         const usuariosSeguidores = props.usuarioSelecionado.usuariosSeguidores;
         usuariosSeguidores.push(email);
-        axios.put('http://localhost:3001/seguidores', { token, usuarioSelecionadoEmail, usuariosSeguidores });
+        axios.put('https://server-link-minds.vercel.app/seguidores', { token2, usuarioSelecionadoEmail, usuariosSeguidores });
         navigate('/');
     };
 
     const handleClickPararDeSeguir = async () => {
-        const token = Cookies.get('token');
+        const token2 = Cookies.get('token');
         const email = usuario.email;
         const usuarioSelecionadoEmail = props.usuarioSelecionado.email;
         const usuariosSeguindo = usuario.usuariosSeguindo;
         const index = usuariosSeguindo.indexOf(usuarioSelecionadoEmail);
         usuariosSeguindo.splice(index, 1);
-        axios.put('http://localhost:3001/seguindo', { token, email, usuariosSeguindo });
+        axios.put('https://server-link-minds.vercel.app/seguindo', { token2, email, usuariosSeguindo });
 
         const usuariosSeguidores = props.usuarioSelecionado.usuariosSeguidores;
         const index2 = usuariosSeguidores.indexOf(email);
         usuariosSeguidores.splice(index2, 1);
-        axios.put('http://localhost:3001/seguidores', { token, usuarioSelecionadoEmail, usuariosSeguidores });
+        axios.put('https://server-link-minds.vercel.app/seguidores', { token2, usuarioSelecionadoEmail, usuariosSeguidores });
         navigate('/');
     };
 

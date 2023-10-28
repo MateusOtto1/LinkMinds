@@ -10,30 +10,25 @@ const Interesses = (props) => {
     const [Pesquisa, setPesquisa] = useState([]);
     const [email, setEmail] = useState('');
     const [interesses, setInteresses] = useState([]);
-    const [execucoes, setExecucoes] = useState(0);
-    const [contador, setContador] = useState(0);
 
     useEffect(() => {
         const getEmail = async () => {
             const token = Cookies.get('token');
-            const response = await axios.post('http://localhost:3001/usuarioInfo', { token });
+            const headers = {
+                "x-access-token": token
+            }
+            const response = await axios.get('https://server-link-minds.vercel.app/usuarioInfo', { headers });
             setEmail(response.data.email);
             setInteresses(response.data.interesses);
-        };
-        getEmail();
-    },[execucoes]);
 
-    useEffect(() => {
-        const getUsuarios = async () => {
-            const token = Cookies.get('token');
-            const response = await axios.post('http://localhost:3001/pesquisaUsuario', { token });
-            setUsuarios(response.data);
+            const response2 = await axios.get('https://server-link-minds.vercel.app/pesquisaUsuario', { headers });
+            setUsuarios(response2.data);
             if (busca == '') {
-                setPesquisa(response.data);
+                setPesquisa(response2.data);
             }
         };
-        getUsuarios();
-    }, []);
+        getEmail();
+    },[email == '']);
 
     useEffect(() => {
         const pesquisaInput = async () => {
@@ -42,13 +37,6 @@ const Interesses = (props) => {
         };
         pesquisaInput();
     }, [busca]);
-
-    useEffect(() => {
-        if (contador < 25) {
-            setExecucoes(execucoes + 1);
-            setContador(contador + 1);
-        }
-    }, [contador]);
 
     return (
         <>

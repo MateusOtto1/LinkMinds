@@ -7,8 +7,6 @@ const TipoEvento = (props) => {
     const [listaInteresse, setListaInteresse] = useState([]);
     const [usuarios, setUsuarios] = useState([]);
     const [interesses, setInteresses] = useState([]);
-    const [execucoes, setExecucoes] = useState(0);
-    const [contador, setContador] = useState(0);
     const [listaInteresseUsuario, setListaInteresseUsuario] = useState([]);
     const [listaEsporte, setListaEsporte] = useState([]);
     const [listaJogos, setListaJogos] = useState([]);
@@ -17,16 +15,23 @@ const TipoEvento = (props) => {
     useEffect(() => {
         const getUsuario = async () => {
             const token = Cookies.get('token');
-            const response = await axios.post('http://localhost:3001/usuarioInfo', { token });
+            const headers = {
+                "x-access-token": token
+            }
+            const response = await axios.get('https://server-link-minds.vercel.app/usuarioInfo', { headers });
             setUsuarios(response.data);
             setInteresses(response.data.interesses);
         };
         getUsuario();
-    }, [execucoes]);
+    }, [interesses.length == 0]);
 
     useEffect(() => {
         const getInteresse = async () => {
-            const response = await axios.get('http://localhost:3001/listaInteresse');
+            const token = Cookies.get('token');
+            const headers = {
+                "x-access-token": token
+            }
+            const response = await axios.get('https://server-link-minds.vercel.app/listaInteresse', { headers });
             setListaInteresse(response.data);
             setListaInteresseUsuario([]);
             listaInteresse.map((interesse) => {
@@ -56,14 +61,7 @@ const TipoEvento = (props) => {
             });
         };
         getInteresse();
-    },[execucoes]);
-
-    useEffect(() => {
-        if (contador < 25) {
-            setExecucoes(execucoes + 1);
-            setContador(contador + 1);
-        }
-    }, [contador]);
+    },[interesses]);
 
     return (
         <>
