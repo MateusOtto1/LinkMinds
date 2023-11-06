@@ -48,11 +48,19 @@ body{
     background: linear-gradient(221deg, #232931 -0.32%, #181D22 57.41%);
     background-position: center;
     overflow-y: scroll;
-    height: fit-content;
+    min-height: 100vh;
     display: flex;
     width: 100vw;
     align-items: flex-start;
     overflow-x: clip;
+    padding: 0;
+    margin: 0;
+}
+
+#body{
+    width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 
