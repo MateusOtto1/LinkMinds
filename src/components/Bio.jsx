@@ -27,7 +27,7 @@ const Bio = () => {
             setUsuarios(response.data);
             const response2 = await axios.get('https://server-link-minds.vercel.app/listaInteresse', { headers });
             setListaInteresse(response2.data);
-            if(pesquisaInteresse == ''){
+            if (pesquisaInteresse == '') {
                 setPesquisa(response2.data);
             }
         };
@@ -84,7 +84,7 @@ const Bio = () => {
 
                     <div className="editar-input">
                         <label >Apelido <img src={lapis} alt="" /></label>
-                        <input type="text" maxlength="10" name="nome" className="input-style" placeholder="Seu Apelido" onChange={(e) => setApelido(e.target.value)} />
+                        <input type="text" maxLength="10" name="nome" className="input-style" placeholder="Seu Apelido" onChange={(e) => setApelido(e.target.value)} />
                     </div>
 
                     <div className="editar-input">
@@ -94,22 +94,29 @@ const Bio = () => {
 
                     <div className="editar-input">
                         <label>Bio <img src={lapis} alt="" /></label>
-                        <textarea name="bio" maxlength="150" id="" cols="30" rows="5" className="input-style" onChange={(e) => setDescricao(e.target.value)}></textarea>
-                    </div>                    
-                    
+                        <textarea name="bio" maxLength="150" id="" cols="30" rows="5" className="input-style" onChange={(e) => setDescricao(e.target.value)}></textarea>
+                    </div>
+
                     <div className="editar-input">
                         <label >Interesses </label>
-                        <input type="text" placeholder="Procurar Interesse..." className="pesquisar" value={pesquisaInteresse} onChange={(e) => setPesquisaInteresse(e.target.value)} />
-                        {
-                           pesquisa.map((interesse, index) => {
-                                return(
-                                    <div key={index}>
-                                        <h1>{interesse.nome}</h1>
-                                        <input type="checkbox" name="checkbox" value={interesse.nome} onChange={handleChangeInteresses}/>
-                                    </div>
-                                )
-                           })
-                        }
+                        <input type="text" placeholder="Procurar Interesse..." className="input-style" value={pesquisaInteresse} onChange={(e) => setPesquisaInteresse(e.target.value)} />
+                        <div className="inter-container inter-editar">
+                            {
+                                pesquisa.map((interesse, index) => {
+                                    return (
+
+                                        <label className="interesse-card inter-bio-cont" key={index} style={{ backgroundImage: `url(${interesse.imagem})` }}>
+                                            <input type="checkbox" name="checkbox" className="check-btn" value={interesse.nome} onChange={handleChangeInteresses} />
+                                            <p className="inter-title" >{interesse.nome}</p>
+                                        </label>
+
+
+                                    )
+                                })
+
+                            }
+                        </div>
+
                     </div>
 
                     <p className="preencha">{preencha}</p>

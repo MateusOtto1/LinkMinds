@@ -22,7 +22,7 @@ const Usuarios = (props) => {
             setEmail(response.data.email);
         };
         getEmail();
-    },[email == '']);
+    }, [email == '']);
 
     useEffect(() => {
         const getUsuarios = async () => {
@@ -67,58 +67,67 @@ const Usuarios = (props) => {
 
     return (
         <>
-            <input type="text" placeholder="O que desejas procurar?" className="pesquisar" value={busca} onChange={(e) => setBusca(e.target.value)} />
-            <h1 className="header-pesquisa">
-                Usuários
-            </h1>
-            <div className="user-container">
-                {Pesquisa.map((usuario, index) => {
-                    if (usuario.email != email) {
-                        return (
-                            <div className="user-body" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)} key={index}>
-                                <img src={usuario.foto} alt="" />
-                                <h1 className="username">{usuario.nome}</h1>
-                                <button className="user-btn"><img src={seta} alt="" /></button>
-                            </div>
-                        )
-                    }
-                })}
-            </div>
-
-            <h1 className="header-pesquisa">
-                Eventos
-            </h1>
-
-            <div className="eventos-container">
-                {pesquisaPost.map((post, index) => {
-                    const dia = new Date().getDate();
-                    const mes = new Date().getMonth() + 1;
-                    const ano = new Date().getFullYear();
-                    const dataPost = post.data.split('/');
-                    if (dataPost[1] >= mes && dataPost[2] >= ano) {
-                        if (post.email != email) {
+            <div className="main-pesquisa">
+                <input type="text" placeholder="O que desejas procurar?" className="pesquisar" value={busca} onChange={(e) => setBusca(e.target.value)} />
+                <div className="header-perfil-container">
+                    <h1 className="inter-header">Usuários</h1>
+                    <div className="linha-verde"></div>
+                </div>
+                <div className="user-container">
+                    {Pesquisa.map((usuario, index) => {
+                        if (usuario.email != email) {
                             return (
-                                <div className="card-body" key={index}>
-                                    <div className="card" style={{backgroundImage: `url(${post.imagemEvento})`}}>
-                                        <div className="card-top">
-                                            <img src={post.foto} alt="" className="pfp" />
-                                            <div className="textos-card">
-                                                <p className="nome-card">{post.nome}</p>
-                                                <p className="info">{post.evento} as <span>{post.hora} do dia {post.data}</span></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button className="participar" onClick={(e) => props.handleClickAtivaDescricao(e, post)}>Descrição</button>
+                                <div className="container-pesquisar">
+                                    <div className="user-body" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)} key={index}>
+                                        <img src={usuario.foto} alt="" />
+                                        <h1 className="username">{usuario.nome}</h1>
+
+                                    </div> 
+                                    <button className="user-btn">&gt;</button>
                                 </div>
+
                             )
                         }
-                    } else {
-                        return (
-                            <div></div>
-                        )
-                    }
-                })}
+                    })}
+                </div>
+
+                <div className="header-perfil-container">
+                    <h1 className="inter-header">Eventos</h1>
+                    <div className="linha-verde"></div>
+                </div>
+
+                <div className="eventos-container">
+                    {pesquisaPost.map((post, index) => {
+                        const dia = new Date().getDate();
+                        const mes = new Date().getMonth() + 1;
+                        const ano = new Date().getFullYear();
+                        const dataPost = post.data.split('/');
+                        if (dataPost[1] >= mes && dataPost[2] >= ano) {
+                            if (post.email != email) {
+                                return (
+                                    <div className="card-body" key={index}>
+                                        <div className="card" style={{ backgroundImage: `url(${post.imagemEvento})` }}>
+                                            <div className="card-top">
+                                                <img src={post.foto} alt="" className="pfp" />
+                                                <div className="textos-card">
+                                                    <p className="nome-card">{post.nome}</p>
+                                                    <p className="info">{post.evento} as <span>{post.hora} do dia {post.data}</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button className="participar" onClick={(e) => props.handleClickAtivaDescricao(e, post)}>Descrição</button>
+                                    </div>
+                                )
+                            }
+                        } else {
+                            return (
+                                <div></div>
+                            )
+                        }
+                    })}
+                </div>
             </div>
+
         </>
     );
 }

@@ -12,6 +12,7 @@ const Perfil = (props) => {
     const [email, setEmail] = useState('');
     const [interesses, setInteresses] = useState([]);
     const [novaUrl, setNovaUrl] = useState('');
+    const [listaInteresses, setListaInteresses] = useState([]);
 
     useEffect(() => {
         const getUsuario = async () => {
@@ -34,6 +35,18 @@ const Perfil = (props) => {
     }, [email == '']);
 
     useEffect(() => {
+        const getInteresses = async () => {
+            const token = Cookies.get('token');
+            const headers = {
+                "x-access-token": token
+            }
+            const response = await axios.get('https://server-link-minds.vercel.app/listaInteresse', { headers });
+            setListaInteresses(response.data);
+        };
+        getInteresses();
+    }, [listaInteresses.length == 0]);
+
+    useEffect(() => {
         const getPosts = async () => {
             const token = Cookies.get('token');
             const headers = {
@@ -44,14 +57,14 @@ const Perfil = (props) => {
             setPosts(response.data.reverse());
         };
         getPosts();
-    },[usuarios]);
+    }, [usuarios]);
 
     return (
         <>
             <div className="main-perfil">
                 <div className="wrapper-perfil-top">
 
-                    <div className="img-perfil" style={{backgroundImage: `url(${novaUrl})`}}></div>
+                    <div className="img-perfil" style={{ backgroundImage: `url(${novaUrl})` }}></div>
 
                     <div className="wrapper-perfil-left">
 
@@ -69,10 +82,10 @@ const Perfil = (props) => {
                             <img src={lapis} alt="" />
                             <button className="btn">Editar Perfil</button>
                         </div>
-                        <div>
-                            <button className="btn-seguidores" onClick={(e) => props.handleClickSeguidores(e)}>Seguidores</button>
-                            <button className="btn-seguindo" onClick={(e) => props.handleClickSeguindo(e)}>Seguindo</button>
-                            <button className="btn-deslogar" onClick={signOut}>Deslogar</button>
+                        <div className="seg-container">
+                            <button className="btn-seg" onClick={(e) => props.handleClickSeguidores(e)}>Seguidores</button>
+                            <button className="btn-seg" onClick={(e) => props.handleClickSeguindo(e)}>Seguindo</button>
+                            <button className="btn-seg" id="deslogar" onClick={signOut}>Deslogar</button>
                         </div>
 
                     </div>
@@ -82,33 +95,61 @@ const Perfil = (props) => {
 
                 <div className="wrapper-perfil-bottom">
                     <section className="meus-interesses">
-                        <h1 className="inter-header">Interesses</h1>
-                        {
-                            interesses.map((interesse, index) => {
-                                return (
-                                    <div className="interesse-card" key={index}>
-                                        <p className="inter-title">{interesse}</p>
-                                    </div>
-                                );
-                            })
-                        } 
+                        <div className="header-perfil-container">
+                          <h1 className="inter-header">Interesses</h1>  
+                          <div className="linha-verde"></div>
+                        </div>
+                        
+                        <div className="inter-container">
+                            {
+                                listaInteresses
+                                    .filter((interesse) => interesses.includes(interesse.nome))
+                                    .map((interesse, index) => (
+                                        <div
+                                            className="interesse-card"
+                                            key={index}
+                                            style={{ backgroundImage: `url(${interesse.imagem})` }}
+                                        >
+                                            <p className="inter-title">{interesse.nome}</p>
+                                        </div>
+                                    ))
+                            }
+                        </div>
+
                     </section>
                     <section className="meus-posts">
-                        <h1 className="post-header">Posts</h1>
+                    <div className="header-perfil-container">
+                          <h1 className="inter-header">Posts</h1>  
+                          <div className="linha-verde"></div>
+                        </div>
                         <div className="posts-main">
                             {posts.map((post, index) => {
                                 return (
-                                    <div className="post-card" key={index}>
-                                        <div className="post-top">
-                                            <div className="img-post" style={{backgroundImage: `url(${post.imagemEvento})`}}></div>
-                                            <div className="post-text">
-                                                <h1 className="post-title">{post.evento}</h1>
-                                                <p className="post-dia">{post.data}</p>
+                                    <div className="card-body" key={index}>
+                                        <div
+                                            className="card"
+                                            style={{ backgroundImage: `url(${post.imagemEvento})` }}
+                                        >
+                                            <div className="card-top">
+                                                <img src={post.foto} alt="" className="pfp" />
+                                                <div className="textos-card">
+                                                    <p className="nome-card">{post.nome}</p>
+                                                    <p className="info">
+                                                        {post.evento} as{" "}
+                                                        <span>
+                                                            {post.hora} do dia {post.data}
+                                                        </span>
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
-                                        <button className="btn-detalhe" onClick={(e) => props.handleClickAtivaDescricao(e, post)}>Ver detalhes</button>
+                                        <button
+                                            className="participar"
+                                            onClick={(e) => props.handleClickAtivaDescricao(e, post)}
+                                        >
+                                            Descrição
+                                        </button>
                                     </div>
-
                                 );
                             })}
 

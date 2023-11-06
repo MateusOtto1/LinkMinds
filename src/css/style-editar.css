@@ -51,7 +51,7 @@ label{
     padding: 0 1rem;
     min-height: 3.75rem;
     border-radius: 1.25rem;
-    border: 3px solid #4ECCA3;
+    border: 3px solid #3e7a65;
     background: #232931;
     color: #fff;
     font-size: 1.5rem;
@@ -73,7 +73,7 @@ label img{
     width: 23rem;
     height: 4.0625rem;
     background: linear-gradient(126deg, #4ECCA3 0%, #268A69 100%);
-    border: 3px solid #1A1E24;
+    border: 3px solid #3e7a65;
     border-radius: 3.125rem;
     box-shadow: 0px 0px 0px 3px #4ECCA3;
     display: flex;
@@ -88,3 +88,40 @@ label img{
     font-style: italic;
     
 }
+
+.check-btn{
+    opacity: 0;
+    position: absolute;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.inter-bio-cont{
+    cursor: pointer;
+}
+
+.inter-bio-cont input:checked ~ p{
+    background: url(../imagens/checked.svg);
+    background-position: right;
+    background-size: cover;
+}
+
+.inter-editar{
+    width: 80vw;
+}
+
+.inter-editar label{
+    margin: 0 auto;
+}
+
+@media screen and (min-width: 1000px) {
+    .main-editar{
+        width: 90%;
+    }
+    .pfp-editar{
+        height: 30rem;
+        width: 30rem;
+    }
+}
+

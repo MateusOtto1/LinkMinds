@@ -1,31 +1,60 @@
 *{
     margin: 0 auto;
     font-family: 'Poppins', sans-serif;
-    
+    scroll-behavior: smooth;
 }
+
+button, a:hover{
+    cursor: pointer;
+}
+
+::selection{
+    color: #181C22;
+    background: #4ECCA3;
+}
+
+
+::-webkit-scrollbar {
+    width: 13px;
+}
+
+::-webkit-scrollbar-track {
+    background: #181D22;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #3e7a65;
+    border-radius: 20px;
+    border: 3px solid #181D22;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4ECCA3;
+}
+
+::-webkit-scrollbar-horizontal {
+    display: none;
+}
+
 
 html{
     scroll-behavior: smooth;
     width: 100vw;
-    overflow-x: clip;
+    
     background: #0A0D10;
 }
 
 body{
     background: linear-gradient(221deg, #232931 -0.32%, #181D22 57.41%);
     background-position: center;
-    overflow-x: hidden;
     overflow-y: scroll;
     height: fit-content;
     display: flex;
     width: 100vw;
     align-items: flex-start;
+    overflow-x: clip;
 }
 
-::-webkit-scrollbar{
-    visibility: hidden;
-    display: none !important;
-}
 
 #bodyfalso{
     overflow: hidden;
@@ -132,7 +161,12 @@ nav{
     line-height: normal;
 }
 
-@keyframes fadeIn {  
+/* ::-webkit-scrollbar{
+    visibility: hidden;
+    display: none !important;
+} */
+
+@keyframes scaleIn{
     from {  
         opacity: 0;  
         transform: scale(.85);
@@ -141,6 +175,28 @@ nav{
     to {  
         opacity: 1;  
         transform: scale(1);
+    }  
+}
+
+@keyframes scaleOut{
+    from {  
+        opacity: 1;  
+        transform: scale(1);
+    }  
+ 
+    to {  
+        opacity: 0;  
+        transform: scale(.85);
+    }  
+}
+
+@keyframes fadeIn {  
+    from {  
+        opacity: 0;  
+    }  
+ 
+    to {  
+        opacity: 1;  
     }  
 }
 
@@ -155,21 +211,13 @@ nav{
 }
 
 #nav-imgs{
-    margin-top: .5rem;
     height: fit-content;
     margin-left: 0;
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    padding-bottom: 5vh;
     width: 100%;
 }
 
 .nav-titles{
     width: 100%;
-    overflow-x: visible;
     text-decoration: none;
     color: #FFF;
     font-family: Poppins;
@@ -182,13 +230,15 @@ nav{
     cursor: pointer;
     margin-left: 0;
     gap: 10px;
-    
     background: linear-gradient(0deg, #3e7a65, #3e7a65) no-repeat right bottom / 0 var(--bg-h);
     transition: background-size 350ms, transform .2s;
     --bg-h: 100%;
-    padding: 15px 15px 15px 15px;
-    overflow: visible;
+    padding: 15px;
+    margin-left: 4px;
+    margin-top: 4px;
+    margin-bottom: 2vh;
     outline: 3px #2329314a solid;
+    
 }
 
 
@@ -209,4 +259,6 @@ nav{
     margin-left: 5vw;
     line-height: 4.1875rem;
     color: #4ECCA3;
+    font-size: 24px;
 }
+

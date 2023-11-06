@@ -1,19 +1,8 @@
 *{
     margin: 0 auto;
     font-family: 'Poppins', sans-serif;
-    overflow-x: hidden;
-    
 }
 
-body{
-    background: url(../imagens/bgtop.svg)#181C22;
-    background-size: cover;
-    background-size: 600%;
-    background-position: 0% 0%;
-    width: 100vw;
-    height: fit-content;
-    align-items: center;
-}
 
 #wrapper-login{
     width: 100vw;
@@ -47,5 +36,17 @@ body{
     text-decoration: none;
     padding-left: 4rem;
     padding-right: 4rem;
-    
+}
+
+#logar:hover{
+    cursor: pointer;
+}
+
+@media(min-width: 900px){
+    #container-login{
+        scale: 135%;
+    }
+    #logo-login{
+        width: 30vw;
+    }
 }

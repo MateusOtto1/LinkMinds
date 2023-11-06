@@ -56,7 +56,13 @@ const NavBar = () => {
     const handleToggleNav = () => {
         if (flag === 0) {
             console.log("abrindo");
-            bodyfalso.style.marginRight = "-60%";
+            if (screen.width < 800) {
+                bodyfalso.style.marginRight = "-60%";
+            }
+            else {
+                bodyfalso.style.marginRight = "-25%";
+            }
+            bodyfalso.style.opacity = ".5";
             bodyfalso.style.scale = "90%";
             bodyfalso.style.height = "95vh";
             bodyfalso.style.borderRadius = "15px";
@@ -64,7 +70,7 @@ const NavBar = () => {
             bodyfalso.style.cursor = "pointer";
             nav.style.visibility = "visible";
             nav.style.display = "flex";
-            nav.style.animation = "fadeIn 0.3s";
+            nav.style.animation = "scaleIn 0.3s";
             nav.style.transition = "0.3s";
             nav.style.marginLeft = ".5rem";
             nav.style.opacity = "100%";
@@ -76,7 +82,7 @@ const NavBar = () => {
         if (flag === 1) {
             setFlag(0);
             bodyfalso.style.cursor = "";
-            nav.style.animation = "fadeOut 0.3s ease-in-out";
+            nav.style.animation = "scaleOut 0.3s";
             setTimeout(function () {
                 bodyfalso.style.boxShadow = "";
                 bodyfalso.style.scale = "";
@@ -84,12 +90,13 @@ const NavBar = () => {
                 bodyfalso.style.borderRadius = "";
                 nav.style.display = "";
                 nav.style.opacity = "0%";
-                nav.style.marginLeft = "";
+                bodyfalso.style.opacity = "";
+                nav.style.marginLeft = ""; 
+                bodyfalso.style.filter = "";
                 setTimeout(function () {
                     nav.style.visibility = "";
+                   
                     bodyfalso.style.height = "";
-                    document.querySelector("#body").style.backgroundPosition = "";
-                    document.querySelector("#body").style.transition = "0s";
                 }, 500);
             }, 100);
 
@@ -458,7 +465,6 @@ const NavBar = () => {
                         <div id="botao">
                             <button id="btn-hamb" onClick={handleToggleNav}><img src={hamburger} alt="" id="hamb" /></button>
                         </div>
-                        <img src={logo} onClick={handleClickHome} alt="" id="logo" />
                     </nav>
                     <div className="main">
                         {home ? <Home setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} setDescricao={setDescricao} descricao={descricao} handleClickAtivaDescricao={handleClickAtivaDescricao}/> : null}

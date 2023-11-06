@@ -36,7 +36,7 @@ const Home = (props) => {
             }
         };
         getUsuario();
-    }, [posts.length == 0]);
+    }, [posts.length == 0 && usuarios.apelido == undefined]);
 
     if (usuarios.apelido == "") {
         return <Navigate to="/Cadastro" />

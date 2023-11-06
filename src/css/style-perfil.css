@@ -1,5 +1,5 @@
 .main-perfil{
-    margin-top: 4.1875rem;
+
     width: 100%;
     min-height: 100vh;
     padding-bottom: 5rem;
@@ -46,14 +46,14 @@
 }
 
 .bio{
-    margin-top: 2rem;
+    padding-top: 2rem;
     text-align: center;
     align-items: center;
     justify-content: center;
 }
 
 .bio-header{
-    color:#4ecca3;
+    color:#3e7a65;
     font-size: 2.25rem;
     font-weight: 700;
     font-style: italic;
@@ -83,6 +83,7 @@
     cursor: pointer;
     border-radius: 1.5625rem;
     background: #232931;
+    transition: .2s ease-in-out;
 }
 
 .btn-editar img{
@@ -119,7 +120,7 @@
 }
 
 .inter-header, .post-header{
-    color: #4ecca3;
+    color: #3e7a65;
     font-size: 2rem;
     font-style: italic;
     font-weight: 700;
@@ -127,21 +128,33 @@
 }
 
 .interesse-card{
-    width: 21.75rem;
-    height: 3.75rem;
-    border-radius: 1.875rem;
-    border: 3px solid #4ECCA3;
-    background: url(../imagens/Voronoi\ \(Flat\).png), rgba(78, 204, 163, 0.1) 50% / cover no-repeat;
+    height: 10vh;
+    width: 95%;
+    border-radius: 10px;
+    overflow: hidden;
+    background: url(../imagens/fundo-card.svg);
+    background-position: 50% 50%;
+    background-size: 100%;
+    transition: .5s ease-in-out;
+    font-size: 1.7rem;
+}
+
+.interesse-card:hover{
+    scale: 102%;
+    font-size: 32px;
+    background-size: 105%;
+    background-position: 30% 50%;
 }
 
 .inter-title{
-    border-radius: 1.875rem;
-    background:linear-gradient(90deg, #232931 0%, rgba(0, 0, 0, 0.00) 100%);
-    line-height: 3.75rem;
-    font-size: 1.7rem;
+    background: linear-gradient(to left, rgb(24, 28, 34, 0) 0%, rgb(24, 28, 34, 1) 100%);
+    line-height: 10vh;
+    
     color: #FFF;
     font-weight: 500;
     width: 100%;
+    text-align: left;
+    padding-left: 2vw;
 }
 
 .meus-posts{
@@ -150,6 +163,10 @@
     display: flex;
     flex-direction: column;
     width: 100vw;
+}
+
+.posts-main{
+    width: 100%;
 }
 
 .post-card{
@@ -205,6 +222,88 @@
     margin-top: 0;
 }
 
+.inter-container{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        width: 100%;
+        row-gap: 2vh;
+}
+
+@media screen and (min-width: 1000px) {
+    .inter-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .interesses-card {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 1500px) {
+    .inter-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .interesses-card {
+        width: 100%;
+    }
+}
+
+.seg-container{
+    width: 98%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1%;
+    margin-top: 2vh;
+}
+
+.btn-seg{
+    margin: 0;
+    outline: none;
+    border: 2px #3e7a65 solid;
+    width: 30%;
+    height: 5vh;
+    background: #232931;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 15px;
+    transition: .3s;
+    font-weight: 700;
+}
+.btn-seg:hover{
+    scale: 105%;
+    color: #4ECCA3;
+    border: 4px #4ECCA3 solid;
+}
+#deslogar{
+    border: 2px rgba(163, 66, 66, 0.575) solid;
+    flex: 1;
+}
+#deslogar:hover{
+    border: 4px rgba(237, 89, 89, 0.575) solid;
+    color:rgba(237, 89, 89, 0.575);
+}
+
+.btn-editar:hover{
+    background: #4ECCA3;
+    box-shadow: 0px 0px 15px 0px rgba(78, 204, 163, 0.50);
+}
+
+.header-perfil-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.linha-verde{
+    width: 70%;
+    height: 1.5vh;
+    background: #3e7a65;
+    border-radius: 10px ;
+    margin: 0 1vh;
+}
 
 
 @media (min-width: 1000px) {
@@ -219,15 +318,36 @@
         background-blend-mode: color;
     }
     .bio{
-        margin-top: 0;
+        padding-top: 0;
     }
+    .btn-seg{
+        font-size: 24px;
+    }
+
+    .meus-posts{
+        width: 100%;
+        align-items: center;
+    }
+
+    .posts-main {
+        width: 95%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        padding-bottom: 5vh;
+        margin: 0 ;
+    }
+
+
     .wrapper-perfil-top{
         width: 90%;
-        margin: 2rem auto;
+        margin: 0 auto;
+        padding-top: 2vh;
         display: flex;
         flex-direction: row;
-        justify-content: flex-start;
-        align-items: flex-start;
+        justify-content: center;
+        align-items: center;
+        gap: 2vw;
     }
     .wrapper-perfil-left{
         width: 50vw;
@@ -240,74 +360,41 @@
         box-shadow: 0px 0px 0px 0px rgba(35, 41, 49, 0.10), 7px 19px 44px 0px rgba(35, 41, 49, 0.10), 28px 74px 79px 0px rgba(35, 41, 49, 0.09), 63px 167px 107px 0px rgba(35, 41, 49, 0.05), 111px 297px 127px 0px rgba(35, 41, 49, 0.01), 174px 464px 139px 0px rgba(35, 41, 49, 0.00);
         height: 50vh;
         margin-top: 0;
-        flex-shrink: 1;
     }
     .wrapper-perfil-bottom{
-        width: 85%;
+        width: 90%;
         border-radius: 1.875rem;
         background: #232931;
         box-shadow: 0px 0px 0px 0px rgba(35, 41, 49, 0.10), 7px 19px 44px 0px rgba(35, 41, 49, 0.10), 28px 74px 79px 0px rgba(35, 41, 49, 0.09), 63px 167px 107px 0px rgba(35, 41, 49, 0.05), 111px 297px 127px 0px rgba(35, 41, 49, 0.01), 174px 464px 139px 0px rgba(35, 41, 49, 0.00);
     }
     .post-header,.inter-header{
-        width: 100%;
-        font-size: 4rem;
-    }
-    .interesse-card{
-        width: 70%;
-        height: 20vh;
-        background-size: cover;
-        background-position: center;
-    }
-    .post-card{
-        width: 80%;
-    }
-    .post-top{
-        width: 90%;
-        border: 3px solid #4ECCA3;
-    }
-    .meus-posts{
-        width: 100%;
-    }
-    .posts-main{
-        width: 100%;
-        margin: 0 ;
-    }
-    .inter-title{
-        height: 100%;
-    }
-    .btn-detalhe{
-        width: 30vw;
-        height: 4vh;
-        margin-right: 2rem;
-        margin-bottom: 2rem;
+        font-size: 3.5rem;
     }
     .btn-editar{
-        scale: 135%;
+        scale: 115%;
         margin-top: 2rem;
         background: #1c2129;
     }
     .img-perfil{
         flex: 1;
-        height: 50vh;
-        aspect-ratio: 4 / 4;
-        flex-shrink: 0;
+        width: 50vw;
+        aspect-ratio: 1 / 1;
         border-radius: 1.875rem;
         box-shadow: 0px 0px 0px 0px rgba(35, 41, 49, 0.10), 7px 19px 44px 0px rgba(35, 41, 49, 0.10), 28px 74px 79px 0px rgba(35, 41, 49, 0.09), 63px 167px 107px 0px rgba(35, 41, 49, 0.05), 111px 297px 127px 0px rgba(35, 41, 49, 0.01), 174px 464px 139px 0px rgba(35, 41, 49, 0.00);
         width: fit-content;
-        margin: auto 4rem;
     }
     .nome-perfil {
-        font-size: 4vw;
+        font-size: 3vw;
     }
     .bio-header{
-        font-size: 3.5VW;
+        font-size: 3VW;
     }
     .idade-perfil{
         margin-left: 1rem;
         font-size: 2VW;
     }
     .bio-text{
-        font-size: 2vw;
-        margin-top: -3vw;
+        font-size: 1.5vw;
+        margin-top: -2.32vw;
     }
 }
