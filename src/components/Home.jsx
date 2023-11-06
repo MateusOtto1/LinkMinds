@@ -45,7 +45,7 @@ const Home = (props) => {
         return (
             <>
                 <div id="wrapper">
-                    <h1 id="bv">Bem Vindo</h1>
+                    <h1 id="bv">BEM-VINDO</h1>
                     <h1 id="nome">{usuarios.apelido}</h1>
                 </div>
                 <h1 id="posts-recomendados">Posts recomendados</h1>

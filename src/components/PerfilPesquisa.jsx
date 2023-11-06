@@ -178,30 +178,34 @@ const PerfilPesquisa = (props) => {
                                     Seguir
                                 </button>
                             )}
-                            <button
-                                className="btn-seg"
-                                onClick={(e) =>
-                                    props.handleClickSeguidoresPP(e, usuarioSelecionado)
-                                }
-                            >
-                                Seguidores
-                            </button>
-                            <button
-                                className="btn-seg"
-                                onClick={(e) =>
-                                    props.handleClickSeguindoPP(e, usuarioSelecionado)
-                                }
-                            >
-                                Seguindo
-                            </button>
+                            <div className="seg-c-2">
+
+
+                                <button
+                                    className="btn-seg"
+                                    onClick={(e) =>
+                                        props.handleClickSeguidoresPP(e, usuarioSelecionado)
+                                    }
+                                >
+                                    Seguidores
+                                </button>
+                                <button
+                                    className="btn-seg"
+                                    onClick={(e) =>
+                                        props.handleClickSeguindoPP(e, usuarioSelecionado)
+                                    }
+                                >
+                                    Seguindo
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div className="wrapper-perfil-bottom">
                     <section className="meus-interesses">
                         <div className="header-perfil-container">
-                          <h1 className="inter-header">Interesses</h1>  
-                          <div className="linha-verde"></div>
+                            <h1 className="inter-header">Interesses</h1>
+                            <div className="linha-verde"></div>
                         </div>
                         <div className="inter-container" >
                             {
@@ -220,9 +224,9 @@ const PerfilPesquisa = (props) => {
                         </div>
                     </section>
                     <section className="meus-posts">
-                    <div className="header-perfil-container">
-                          <h1 className="inter-header">Posts</h1>  
-                          <div className="linha-verde"></div>
+                        <div className="header-perfil-container">
+                            <h1 className="inter-header">Posts</h1>
+                            <div className="linha-verde"></div>
                         </div>
                         <div className="posts-main">
                             {posts.map((post, index) => {

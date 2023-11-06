@@ -44,16 +44,20 @@ const Seguindo = (props) => {
     return (
         <>
             <div className="main-participantes">
-                <h1 className="participantes">
-                    Seguindo
-                </h1>
-                <div className="user-container">
+            <div className="header-perfil-container">
+                          <h1 className="inter-header">Seguindo</h1>  
+                          <div className="linha-verde"></div>
+                        </div>
+                <div className="user-container-seg">
                     {usuariosSeguindo.map((usuario, index) => {
                         return (
-                            <div className="user-body" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)} key={index}>
-                                <img src={usuario.foto} alt="" />
-                                <h1 className="username">{usuario.nome}</h1>
-                                <button className="user-btn"><img src={seta} alt="" /></button>
+                            <div className="container-pesquisar">
+                                <div className="user-body" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)} key={index}>
+                                    <img src={usuario.foto} alt="" />
+                                    <h1 className="username">{usuario.nome}</h1>
+
+                                </div>
+                                <button className="user-btn" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)}>&gt;</button>
                             </div>
                         )
                     })}

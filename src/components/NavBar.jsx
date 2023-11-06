@@ -56,13 +56,12 @@ const NavBar = () => {
     const handleToggleNav = () => {
         if (flag === 0) {
             console.log("abrindo");
-            if (screen.width < 800) {
+            if (window.innerWidth < 800) {
                 bodyfalso.style.marginRight = "-60%";
             }
             else {
                 bodyfalso.style.marginRight = "-25%";
             }
-            bodyfalso.style.opacity = ".5";
             bodyfalso.style.scale = "90%";
             bodyfalso.style.height = "95vh";
             bodyfalso.style.borderRadius = "15px";
@@ -90,7 +89,6 @@ const NavBar = () => {
                 bodyfalso.style.borderRadius = "";
                 nav.style.display = "";
                 nav.style.opacity = "0%";
-                bodyfalso.style.opacity = "";
                 nav.style.marginLeft = ""; 
                 bodyfalso.style.filter = "";
                 setTimeout(function () {

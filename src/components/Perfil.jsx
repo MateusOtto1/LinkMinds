@@ -83,9 +83,13 @@ const Perfil = (props) => {
                             <button className="btn">Editar Perfil</button>
                         </div>
                         <div className="seg-container">
-                            <button className="btn-seg" onClick={(e) => props.handleClickSeguidores(e)}>Seguidores</button>
-                            <button className="btn-seg" onClick={(e) => props.handleClickSeguindo(e)}>Seguindo</button>
                             <button className="btn-seg" id="deslogar" onClick={signOut}>Deslogar</button>
+                            <div className="seg-c-2">
+                                <button className="btn-seg" onClick={(e) => props.handleClickSeguidores(e)}>Seguidores</button>
+                                <button className="btn-seg" onClick={(e) => props.handleClickSeguindo(e)}>Seguindo</button>
+                            </div>
+
+                            
                         </div>
 
                     </div>
@@ -96,10 +100,10 @@ const Perfil = (props) => {
                 <div className="wrapper-perfil-bottom">
                     <section className="meus-interesses">
                         <div className="header-perfil-container">
-                          <h1 className="inter-header">Interesses</h1>  
-                          <div className="linha-verde"></div>
+                            <h1 className="inter-header">Interesses</h1>
+                            <div className="linha-verde"></div>
                         </div>
-                        
+
                         <div className="inter-container">
                             {
                                 listaInteresses
@@ -118,9 +122,9 @@ const Perfil = (props) => {
 
                     </section>
                     <section className="meus-posts">
-                    <div className="header-perfil-container">
-                          <h1 className="inter-header">Posts</h1>  
-                          <div className="linha-verde"></div>
+                        <div className="header-perfil-container">
+                            <h1 className="inter-header">Posts</h1>
+                            <div className="linha-verde"></div>
                         </div>
                         <div className="posts-main">
                             {posts.map((post, index) => {

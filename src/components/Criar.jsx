@@ -135,7 +135,11 @@ const Criar = (props) => {
         return (
             <>
                 <div className="main-criar">
-                    <h1 id="criar-header" data-text="Criar Post">Criar Post</h1>
+                <div className="tipo-title">
+                    <h1>
+                        Quase lá!
+                    </h1>
+                </div>
                     <div id="wrapper-criar">
                         <div className="body-inp">
                             <p className="inp-header">Descrição do evento</p>

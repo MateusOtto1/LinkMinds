@@ -83,7 +83,7 @@ const Usuarios = (props) => {
                                         <h1 className="username">{usuario.nome}</h1>
 
                                     </div> 
-                                    <button className="user-btn">&gt;</button>
+                                    <button className="user-btn" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)}>&gt;</button>
                                 </div>
 
                             )

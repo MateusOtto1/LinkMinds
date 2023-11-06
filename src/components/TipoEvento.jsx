@@ -61,59 +61,83 @@ const TipoEvento = (props) => {
             });
         };
         getInteresse();
-    },[interesses]);
+    }, [interesses]);
 
     return (
         <>
-            <div className="main-participantes">
-                <h1 className="participantes">
-                    Crie um Evento De:
-                </h1>
-                <div className="user-container">
-                    <div className="user-body">
-                        <div className="editar-input">
-                            <label >Seus Interesses</label>
-                            {
-                                listaInteresseUsuario.map((interesse, index) => {
-                                    return (
-                                        <div key={index}>
-                                            <button className="btnInteresse" onClick={(e) => props.handleClickCreate(e, interesse)}>{interesse.nome}</button>
-                                        </div>
-                                    )
-                                })
-                            }
-                            <label >Esportes</label>
-                            {
-                                listaEsporte.map((interesse, index) => {
-                                    return (
-                                        <div key={index}>
-                                            <button className="btnInteresse" onClick={(e) => props.handleClickCreate(e, interesse)}>{interesse.nome}</button>
-                                        </div>
-                                    )
-                                })
-                            }
-                            <label >Jogos</label>
-                            {
-                                listaJogos.map((interesse, index) => {
-                                    return (
-                                        <div key={index}>
-                                            <button className="btnInteresse" onClick={(e) => props.handleClickCreate(e, interesse)}>{interesse.nome}</button>
-                                        </div>
-                                    )
-                                })
-                            }
-                            <label >Festa</label>
-                            {
-                                listaFesta.map((interesse, index) => {
-                                    return (
-                                        <div key={index}>
-                                            <button className="btnInteresse" onClick={(e) => props.handleClickCreate(e, interesse)}>{interesse.nome}</button>
-                                        </div>
-                                    )
-                                })
-                            }
-                        </div>
+            <div className="main-tipo">
+                <div className="tipo-title">
+                    <h1>
+                        Selecione o tipo de evento
+                    </h1>
+                </div>
+
+                <div className="tipo-container">
+                    <div className="header-tipo">
+                        <p>Seus Interesses</p>
+                        <div className="linha-tipo"></div>
                     </div>
+                    <div className="seus">
+                        {
+                            listaInteresseUsuario.map((interesse, index) => {
+                                return (
+                                    <div className="tipo-card" key={index}>
+                                        <button style={{ backgroundImage: `linear-gradient(to left, rgba(24, 28, 34, 0) 0%, rgba(24, 28, 34, 1) 100%), url(${interesse.imagem})` }} className="btnInteresse" onClick={(e) => props.handleClickCreate(e, interesse)}>{interesse.nome}</button>
+                                    </div>
+                                )
+                            })
+
+                        }
+                    </div>
+
+                    <div className="header-tipo">
+                        <p>Esportes</p>
+                        <div className="linha-tipo"></div>
+                    </div>
+                    <div className="seus">
+                        {
+                            listaEsporte.map((interesse, index) => {
+                                return (
+                                    <div className="tipo-card" key={index}>
+                                        <button style={{ backgroundImage: `linear-gradient(to left, rgba(24, 28, 34, 0) 0%, rgba(24, 28, 34, 1) 100%), url(${interesse.imagem})` }} className="btnInteresse" onClick={(e) => props.handleClickCreate(e, interesse)}>{interesse.nome}</button>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+
+                    <div className="header-tipo">
+                        <p>Jogos</p>
+                        <div className="linha-tipo"></div>
+                    </div>
+                    <div className="seus">
+                        {
+                            listaJogos.map((interesse, index) => {
+                                return (
+                                    <div className="tipo-card" key={index}>
+                                        <button style={{ backgroundImage: `linear-gradient(to left, rgba(24, 28, 34, 0) 0%, rgba(24, 28, 34, 1) 100%), url(${interesse.imagem})` }} className="btnInteresse" onClick={(e) => props.handleClickCreate(e, interesse)}>{interesse.nome}</button>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+
+                    <div className="header-tipo">
+                        <p>Festas</p>
+                        <div className="linha-tipo"></div>
+                    </div>
+                    <div className="seus">
+                        {
+                            listaFesta.map((interesse, index) => {
+                                return (
+                                    <div className="tipo-card" key={index}>
+                                        <button style={{ backgroundImage: `linear-gradient(to left, rgba(24, 28, 34, 0) 0%, rgba(24, 28, 34, 1) 100%), url(${interesse.imagem})` }} className="btnInteresse" onClick={(e) => props.handleClickCreate(e, interesse)}>{interesse.nome}</button>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+
                 </div>
             </div>
         </>
