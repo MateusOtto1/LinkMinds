@@ -58,10 +58,10 @@ const NavBar = () => {
             console.log("abrindo");
             if (bodyfalso && nav) {
                 if (window.innerWidth < 800) {
-                    bodyfalso.style.marginRight = "-60%";
+                    bodyfalso.style.marginRight = "-65%";
                 }
                 else {
-                    bodyfalso.style.marginRight = "-25%";
+                    bodyfalso.style.marginRight = "-30%";
                 }
                 bodyfalso.style.scale = "90%";
                 bodyfalso.style.height = "95vh";

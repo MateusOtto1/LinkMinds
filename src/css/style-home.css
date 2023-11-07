@@ -12,24 +12,24 @@
 #bv{
     width: 100%;
     color: rgba(78, 204, 163, 0.54);
-    font-family: Poppins;
+
     font-size: 3rem;
     font-style: italic;
-    font-weight: 700;
+    font-weight: 800;
     line-height: normal;
 
 }
 
 #nome{
     width: 15rem;
-    margin-top: -3rem;
+    margin-top: -2rem;
     color: #FFF;
-    font-family: Poppins;
+
     font-size: 3rem;
     font-style: italic;
     text-decoration: underline;
     text-decoration-color: #4ECCA3;
-    font-weight: 700;
+    font-weight:800;
 }
 
 #posts{
@@ -42,7 +42,7 @@
     margin-top: 0.5rem;
     text-align: center;
     color: #4ECCA3;
-    font-family: Poppins;
+
     font-size: 1.5rem;
     font-style: italic;
     font-weight: 700;
@@ -94,7 +94,7 @@ span{
 
 .info{
     color: #FFF;
-    font-family: Poppins;
+
     font-size: 0.75rem;
     font-style: normal;
     font-weight: 700;
@@ -104,7 +104,7 @@ span{
 .nome-card{
     margin-top: 0.7rem;
     color: #232931;
-    font-family: Poppins;
+
     font-size: 1rem;
     font-style: normal;
     font-weight: 700;
@@ -128,7 +128,7 @@ span{
     width: 16rem;
     height: 3.125rem;
     color: #181C22;
-    font-family: Poppins;
+
     font-size: 1.5rem;
     font-style: normal;
     font-weight: 700;
@@ -154,11 +154,11 @@ span{
         width: 25vw;
     }
     #nome-perfil{
-        font-size: 32px;
+        font-size: 24px;
         margin-left: 1rem;
     }
     .nav-titles{
-        font-size: 32px;
+        font-size: 24px;
     }
     .navs{
         width: 3rem;
@@ -169,15 +169,11 @@ span{
     }
     #nome{
         width: 50%;
-        margin-top: -4rem;
+        margin-top: -3rem;
         font-size: 4rem;
     }
     .card-body{
         width: 95%;   
-    }
-    #nav-perfil img{
-        width: 8rem;
-        height: 8rem;
     }
     #posts{
         grid-template-columns: 1fr 1fr;
@@ -189,9 +185,16 @@ span{
         width: 50%;
         font-size: 6rem;
     }
+    #nome-perfil{
+        font-size: 32px;
+        margin-left: 1rem;
+    }
+    .nav-titles{
+        font-size: 32px;
+    }
     #nome{
         width: 50%;
-        margin-top: -6rem;
+        margin-top: -5rem;
         font-size: 6rem;
     }
     

@@ -149,12 +149,16 @@
 .inter-title{
     background: linear-gradient(to left, rgb(24, 28, 34, 0) 0%, rgb(24, 28, 34, 1) 100%);
     line-height: 10vh;
-    
     color: #FFF;
     font-weight: 500;
     width: 100%;
     text-align: left;
     padding-left: 2vw;
+}
+
+.interesse-card, .btnInteresse{
+    font-family: 'Raleway', sans-serif;
+    animation: cardIn 1s ease-in-out;
 }
 
 .meus-posts{
@@ -310,11 +314,12 @@
 }
 
 .linha-verde{
-    width: 70%;
+    width: 80%;
     height: 1.5vh;
     background: #3e7a65;
     border-radius: 10px ;
     margin: 0 1vh;
+    animation: linha 1s ease-in-out;
 }
 
 
@@ -408,5 +413,25 @@
     .bio-text{
         font-size: 1.5vw;
         margin-top: -2.32vw;
+    }
+}
+
+@keyframes linha{
+    from{
+        width: 0;
+    }
+    to{
+        width: 80%;
+    }
+}
+
+@keyframes cardIn{
+    from{
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0px);
     }
 }
