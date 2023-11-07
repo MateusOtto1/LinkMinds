@@ -40,20 +40,23 @@ const Interesses = (props) => {
 
     return (
         <>
-            <input type="text" placeholder="Ache usuários..." className="pesquisar" value={busca} onChange={(e) => setBusca(e.target.value)} />
+            <input type="text" placeholder="Procurar usuários..." className="pesquisar" value={busca} onChange={(e) => setBusca(e.target.value)} />
             <h1 className="header-pesquisa">
                 Usuários com Interesses Semelhantes
             </h1>
-            <div className="user-container">
+            <div className="user-container-inter">
                 {Pesquisa.map((usuario, index) => {
                     if (usuario.email != email) {
                         const interessesComuns = usuario.interesses.filter((interesse) => interesses.includes(interesse));
                         if (interessesComuns.length > 0) {
                             return (
-                                <div className="user-body" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)} key={index}>
-                                    <img src={usuario.foto} alt="" />
-                                    <h1 className="username">{usuario.nome}</h1>
-                                    <button className="user-btn"><img src={seta} alt="" /></button>
+                                <div className="container-pesquisar"key={index}>
+                                    <div className="user-body" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)} >
+                                        <img src={usuario.foto} alt="" />
+                                        <h1 className="username">{usuario.nome}</h1>
+
+                                    </div>
+                                    <button className="user-btn" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)}>&gt;</button>
                                 </div>
                             )
                         }

@@ -135,17 +135,9 @@ const Criar = (props) => {
         return (
             <>
                 <div className="main-criar">
-                <div className="tipo-title">
-                    <h1>
-                        Quase lá!
-                    </h1>
-                </div>
+                <div className="criar-header" style={{ backgroundImage: `linear-gradient(to top, #181d22, transparent), url(${imagemEvento})` }}></div>
                     <div id="wrapper-criar">
-                        <div className="body-inp">
-                            <p className="inp-header">Descrição do evento</p>
-                            <p>Opcional</p>
-                            <input type="text" maxLength="100" placeholder="Digite Aqui" className="inp-criar" onChange={(e) => setDescricao(e.target.value)} />
-                        </div>
+                        
                         <div className="body-inp">
                             <p className="inp-header">Data</p>
                             <input type="date" placeholder="Digite Aqui" className="inp-criar" onChange={(e) => setDataEUA(e.target.value)} />
@@ -158,6 +150,11 @@ const Criar = (props) => {
                             <p className="inp-header">Local do evento</p>
                             <input type="text" placeholder="Digite Aqui" className="inp-criar" onChange={(e) => setLocal(e.target.value)} />
                         </div>
+                        <div className="body-inp">
+                            <p className="inp-header">Descrição do evento</p>
+                            <p>Opcional</p>
+                            <input type="text" maxLength="100" placeholder="Digite Aqui" className="inp-criar" onChange={(e) => setDescricao(e.target.value)} />
+                        </div>
                         <p className="preencha">{preencha}</p>
                         <button id="btn-criar" onClick={handleSubmit}>Criar Evento</button>
                     </div>
@@ -168,6 +165,7 @@ const Criar = (props) => {
         return (
             <>
                 <div className="main-criar">
+                <div className="criar-header" style={{ backgroundImage: `linear-gradient(to top, #181d22, transparent), url(${imagemEvento})` }}></div>
                     <h1 id="criar-header" data-text="Criar Post">Criar Post</h1>
                     <div id="wrapper-criar">
                         <div className="body-inp">

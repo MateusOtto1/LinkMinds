@@ -20,6 +20,7 @@ button, a:hover{
 
 ::-webkit-scrollbar-track {
     background: #181D22;
+    border-radius: 20px;
 }
 
 ::-webkit-scrollbar-thumb {

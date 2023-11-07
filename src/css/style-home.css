@@ -6,6 +6,7 @@
     gap: 0;
     flex-direction: column;
     height: fit-content;
+    margin-top: 4vh;
 }
 
 #bv{

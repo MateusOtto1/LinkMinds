@@ -229,6 +229,10 @@
         row-gap: 2vh;
 }
 
+.user-container-inter{
+    width: 95vw;
+}
+
 @media screen and (min-width: 1000px) {
     .inter-container {
         grid-template-columns: repeat(2, 1fr);

@@ -56,24 +56,28 @@ const NavBar = () => {
     const handleToggleNav = () => {
         if (flag === 0) {
             console.log("abrindo");
-            if (window.innerWidth < 800) {
-                bodyfalso.style.marginRight = "-60%";
+            if (bodyfalso && nav) {
+                if (window.innerWidth < 800) {
+                    bodyfalso.style.marginRight = "-60%";
+                }
+                else {
+                    bodyfalso.style.marginRight = "-25%";
+                }
+                bodyfalso.style.scale = "90%";
+                bodyfalso.style.height = "95vh";
+                bodyfalso.style.borderRadius = "15px";
+                bodyfalso.style.transition = "0.3s";
+                bodyfalso.style.cursor = "pointer";
+                nav.style.visibility = "visible";
+                nav.style.display = "flex";
+                nav.style.animation = "scaleIn 0.3s";
+                nav.style.transition = "0.3s";
+                nav.style.marginLeft = ".5rem";
+                nav.style.opacity = "100%";
+                setFlag(1);
+            } else {
+                console.error('Navbar ainda não foi renderizado');
             }
-            else {
-                bodyfalso.style.marginRight = "-25%";
-            }
-            bodyfalso.style.scale = "90%";
-            bodyfalso.style.height = "95vh";
-            bodyfalso.style.borderRadius = "15px";
-            bodyfalso.style.transition = "0.3s";
-            bodyfalso.style.cursor = "pointer";
-            nav.style.visibility = "visible";
-            nav.style.display = "flex";
-            nav.style.animation = "scaleIn 0.3s";
-            nav.style.transition = "0.3s";
-            nav.style.marginLeft = ".5rem";
-            nav.style.opacity = "100%";
-            setFlag(1);
         }
     };
 
