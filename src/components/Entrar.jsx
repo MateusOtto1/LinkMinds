@@ -9,15 +9,31 @@ const Entrar = () => {
     async function handleLoginFromGoogle() {
         await signInGoogle();
     }
-   
+
     if (!signed) {
         return (
             <>
+                <div className="gradient">
                     <div id="wrapper-login">
-                        <img src={logo} alt="" id="logo-login"/>
-                            
-                                <a id="logar" onClick = { handleLoginFromGoogle }>Entrar</a>
+                        <div className="container-text-log">
+                            <div className="conecte">
+                                <div className="line"></div>
+                                <h1>
+                                    CONECTE <br></br>
+                                    SUA CONTA
+                                </h1>
+                            </div>
+                        </div>
+                        <div className="btn-log">
+                            <a id="logar" onClick={handleLoginFromGoogle}>Entrar</a>
+                            <div className="caixa-cinza"></div>
+                            <div className="caixa-preta"></div>
+                            <div className="caixa-google"></div>
+                        </div>
+
                     </div>
+                </div>
+
             </>
         );
     }
