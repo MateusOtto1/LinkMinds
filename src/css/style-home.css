@@ -9,6 +9,10 @@
     margin-top: 4vh;
 }
 
+.main-home{
+    width: 98%;
+}
+
 #bv{
     width: 100%;
     color: rgba(78, 204, 163, 0.54);
@@ -50,7 +54,7 @@
 }
 
 .card-body{
-    width: 93%;
+    width: 100%;
     height: fit-content;
     padding: 0 0 1rem 0;
     animation: fadeIn 1s ease-in-out;

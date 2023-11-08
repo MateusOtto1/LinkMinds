@@ -13,14 +13,11 @@ const Entrar = () => {
     if (!signed) {
         return (
             <>
-                <div>
                     <div id="wrapper-login">
                         <img src={logo} alt="" id="logo-login"/>
-                            <div id="container-login">
+                            
                                 <a id="logar" onClick = { handleLoginFromGoogle }>Entrar</a>
-                            </div>
                     </div>
-                </div>
             </>
         );
     }

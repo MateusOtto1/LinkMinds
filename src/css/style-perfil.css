@@ -416,6 +416,23 @@
     }
 }
 
+@media(max-width:950px){
+    ::-webkit-scrollbar {
+        visibility: hidden;
+        display: none;
+    }
+    .inter-container{
+        height: 45vh;
+        overflow-y: scroll;
+        border-radius: 20px;
+    }
+
+    .inter-container::-webkit-scrollbar, .seus::-webkit-scrollbar{
+        visibility: visible;
+        display: block;
+    }
+}
+
 @keyframes linha{
     from{
         width: 0;

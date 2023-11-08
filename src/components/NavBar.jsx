@@ -9,7 +9,6 @@ import Bio from "./Bio";
 import Descricao from "./Descricao";
 import TipoEvento from "./TipoEvento";
 import Criar from "./Criar";
-import EventoSeguidores from "./EventoSeguidores";
 import Usuarios from "./Usuarios"
 import PerfilPesquisa from "./PerfilPesquisa";
 import Participantes from "./Participantes";
@@ -22,7 +21,6 @@ import pesquisarIcon from "../imagens/pesquisar.svg";
 import criarIcon from "../imagens/criar.svg";
 import chatsIcon from "../imagens/chats.svg";
 import perfilIcon from "../imagens/perfil.svg";
-import logo from "../imagens/logo.svg";
 import hamburger from "../imagens/hamburger.svg";
 import Cookies from "js-cookie";
 
@@ -47,7 +45,6 @@ const NavBar = () => {
     const [seguidoresPP, setSeguidoresPP] = useState(false);
     const [seguindoPP, setSeguindoPP] = useState(false);
     const [tipoEvento, setTipoEvento] = useState(false);
-    const [eventoSeguidores, setEventoSeguidores] = useState(false);
 
     const [postSelecionado, setPostSelecionado] = useState({});
     const [usuarioSelecionado, setUsuarioSelecionado] = useState({});
@@ -55,12 +52,10 @@ const NavBar = () => {
 
     const handleToggleNav = () => {
         if (flag === 0) {
-            console.log("abrindo");
             if (bodyfalso && nav) {
                 if (window.innerWidth < 800) {
                     bodyfalso.style.marginRight = "-65%";
-                }
-                else {
+                } else {
                     bodyfalso.style.marginRight = "-30%";
                 }
                 bodyfalso.style.scale = "90%";
@@ -76,14 +71,16 @@ const NavBar = () => {
                 nav.style.opacity = "100%";
                 setFlag(1);
             } else {
-                console.error('Navbar ainda não foi renderizado');
+                console.error("Navbar ainda não foi renderizado");
             }
+        } else {
+            return;
         }
     };
 
     const handleBodyClick = () => {
         if (flag === 1) {
-            setFlag(0);
+
             bodyfalso.style.cursor = "";
             nav.style.animation = "scaleOut 0.3s";
             setTimeout(function () {
@@ -93,15 +90,15 @@ const NavBar = () => {
                 bodyfalso.style.borderRadius = "";
                 nav.style.display = "";
                 nav.style.opacity = "0%";
-                nav.style.marginLeft = ""; 
+                nav.style.marginLeft = "";
                 bodyfalso.style.filter = "";
                 setTimeout(function () {
                     nav.style.visibility = "";
-                   
+
                     bodyfalso.style.height = "";
                 }, 500);
             }, 100);
-
+            setFlag(0);
         }
     };
 
@@ -114,6 +111,7 @@ const NavBar = () => {
             const response = await axios.get('https://server-link-minds.vercel.app/usuarioInfo', { headers });
             setUsuarios(response.data);
             setNome(response.data.nome);
+
         };
         getUsuario();
     }, []);
@@ -134,7 +132,6 @@ const NavBar = () => {
         setSeguindoPP(false);
         setPresencas(false);
         setInteresses(false);
-        setEventoSeguidores(false);
         handleBodyClick();
     };
     function handleClickTipoEvento() {
@@ -153,7 +150,6 @@ const NavBar = () => {
         setSeguindoPP(false);
         setPresencas(false);
         setInteresses(false);
-        setEventoSeguidores(false);
         handleBodyClick();
     };
     function handleClickCreate(e, interesse) {
@@ -174,7 +170,6 @@ const NavBar = () => {
         setSeguindoPP(false);
         setPresencas(false);
         setInteresses(false);
-        setEventoSeguidores(false);
         handleBodyClick();
     };
 
@@ -194,7 +189,6 @@ const NavBar = () => {
         setSeguidoresPP(false);
         setSeguindoPP(false);
         setInteresses(false);
-        setEventoSeguidores(false);
         handleBodyClick();
     };
 
@@ -215,7 +209,6 @@ const NavBar = () => {
         setSeguindoPP(false);
         setPresencas(false);
         setInteresses(false);
-        setEventoSeguidores(false);
         handleBodyClick();
     };
 
@@ -237,27 +230,6 @@ const NavBar = () => {
         setSeguidoresPP(false);
         setSeguindoPP(false);
         setPresencas(false);
-        setEventoSeguidores(false);
-        handleBodyClick();
-    };
-
-    function handleClickEventoSeguidores() {
-        setEventoSeguidores(true);
-        setInteresses(false);
-        setHome(false);
-        setPesquisa(false);
-        setPerfil(false);
-        setTipoEvento(false);
-        setCriar(false);
-        setDescricao(false);
-        setPerfilPesquisa(false);
-        setVerParticipantes(false);
-        setBio(false);
-        setSeguidores(false);
-        setSeguindo(false);
-        setPresencas(false);
-        setSeguidoresPP(false);
-        setSeguindoPP(false);
         handleBodyClick();
     };
 
@@ -277,7 +249,6 @@ const NavBar = () => {
         setSeguindoPP(false);
         setPresencas(false);
         setInteresses(false);
-        setEventoSeguidores(false);
         handleBodyClick();
     };
 
@@ -299,7 +270,6 @@ const NavBar = () => {
         setSeguindoPP(false);
         setPresencas(false);
         setInteresses(false);
-        setEventoSeguidores(false);
     };
 
     function handleClickPesquisaUsuario(e, usuario) {
@@ -320,7 +290,6 @@ const NavBar = () => {
         setSeguindoPP(false);
         setPresencas(false);
         setInteresses(false);
-        setEventoSeguidores(false);
     };
 
     function handleClickVerParticipantes(e, posts) {
@@ -341,7 +310,6 @@ const NavBar = () => {
         setSeguindoPP(false);
         setPresencas(false);
         setInteresses(false);
-        setEventoSeguidores(false);
     };
 
     function handleClickAlterarBio(e) {
@@ -361,7 +329,6 @@ const NavBar = () => {
         setSeguindoPP(false);
         setPresencas(false);
         setInteresses(false);
-        setEventoSeguidores(false);
     };
 
     function handleClickSeguidores(e) {
@@ -381,7 +348,6 @@ const NavBar = () => {
         setSeguindoPP(false);
         setPresencas(false);
         setInteresses(false);
-        setEventoSeguidores(false);
     };
 
     function handleClickSeguindo(e) {
@@ -401,7 +367,6 @@ const NavBar = () => {
         setSeguindoPP(false);
         setPresencas(false);
         setInteresses(false);
-        setEventoSeguidores(false);
     };
 
     function handleClickSeguidoresPP(e) {
@@ -421,7 +386,6 @@ const NavBar = () => {
         setPerfilPesquisa(false);
         setPresencas(false);
         setInteresses(false);
-        setEventoSeguidores(false);
     };
 
     function handleClickSeguindoPP(e) {
@@ -441,7 +405,6 @@ const NavBar = () => {
         setPerfilPesquisa(false);
         setPresencas(false);
         setInteresses(false);
-        setEventoSeguidores(false);
     };
 
     return (
@@ -458,7 +421,6 @@ const NavBar = () => {
                         <a className="nav-titles" onClick={handleClickTipoEvento}><img src={criarIcon} alt="" className="navs" />Criar</a>
                         <a className="nav-titles" onClick={handleClickPresencas}><img src={chatsIcon} alt="" className="navs" />Presenças</a>
                         <a className="nav-titles" onClick={handleClickInteresses}><img src={perfilIcon} alt="" className="navs" />Interesses</a>
-                        <a className="nav-titles" onClick={handleClickEventoSeguidores}><img src={perfilIcon} alt="" className="navs" />Eventos de seguidores</a>
                         <a className="nav-titles" onClick={handleClickPerfil}><img src={perfilIcon} alt="" className="navs" />Perfil</a>
                     </div>
                 </div>
@@ -469,22 +431,21 @@ const NavBar = () => {
                         </div>
                     </nav>
                     <div className="main">
-                        {home ? <Home setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} setDescricao={setDescricao} descricao={descricao} handleClickAtivaDescricao={handleClickAtivaDescricao}/> : null}
-                        {pesquisa ? <Usuarios setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} handleClickPesquisaUsuario={handleClickPesquisaUsuario} handleClickAtivaDescricao={handleClickAtivaDescricao}/> : null}
+                        {home ? <Home setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} setDescricao={setDescricao} descricao={descricao} handleClickAtivaDescricao={handleClickAtivaDescricao} /> : null}
+                        {pesquisa ? <Usuarios setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} handleClickPesquisaUsuario={handleClickPesquisaUsuario} handleClickAtivaDescricao={handleClickAtivaDescricao} /> : null}
                         {tipoEvento ? <TipoEvento handleClickCreate={handleClickCreate} interesseSelecionado={interesseSelecionado} setInteresseSelecionado={setInteresseSelecionado} /> : null}
                         {criar ? <Criar interesseSelecionado={interesseSelecionado} /> : null}
-                        {presencas ? <Presencas setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickAtivaDescricao={handleClickAtivaDescricao}/> : null}
-                        {eventoSeguidores ? <EventoSeguidores setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickAtivaDescricao={handleClickAtivaDescricao}/> : null}
-                        {perfil ? <Perfil setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickAtivaDescricao={handleClickAtivaDescricao} handleClickAlterarBio={handleClickAlterarBio} handleClickSeguidores={handleClickSeguidores} handleClickSeguindo={handleClickSeguindo}/> : null}
+                        {presencas ? <Presencas setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickAtivaDescricao={handleClickAtivaDescricao} /> : null}
+                        {perfil ? <Perfil setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickAtivaDescricao={handleClickAtivaDescricao} handleClickAlterarBio={handleClickAlterarBio} handleClickSeguidores={handleClickSeguidores} handleClickSeguindo={handleClickSeguindo} /> : null}
                         {interesses ? <Interesses setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} handleClickPesquisaUsuario={handleClickPesquisaUsuario} /> : null}
-                        {descricao ? <Descricao setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickVerParticipantes={handleClickVerParticipantes}/> : null}
+                        {descricao ? <Descricao setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickVerParticipantes={handleClickVerParticipantes} /> : null}
                         {bio ? <Bio /> : null}
-                        {perfilPesquisa ? <PerfilPesquisa setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickAtivaDescricao={handleClickAtivaDescricao} handleClickPerfil={handleClickPerfil} handleClickSeguidoresPP={handleClickSeguidoresPP} handleClickSeguindoPP={handleClickSeguindoPP}/> : null}
-                        {verParticipantes ? <Participantes setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickPesquisaUsuario={handleClickPesquisaUsuario} handleClickPerfil={handleClickPerfil}/> : null}
-                        {seguidores ? <Seguidores handleClickPesquisaUsuario={handleClickPesquisaUsuario} setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado}/> : null}
-                        {seguindo ? <Seguindo handleClickPesquisaUsuario={handleClickPesquisaUsuario} setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado}/> : null}
-                        {seguidoresPP ? <SeguidoresPP handleClickPesquisaUsuario={handleClickPesquisaUsuario} setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} handleClickPerfil={handleClickPerfil}/> : null}
-                        {seguindoPP ? <SeguindoPP handleClickPesquisaUsuario={handleClickPesquisaUsuario} setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} handleClickPerfil={handleClickPerfil}/> : null}
+                        {perfilPesquisa ? <PerfilPesquisa setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickAtivaDescricao={handleClickAtivaDescricao} handleClickPerfil={handleClickPerfil} handleClickSeguidoresPP={handleClickSeguidoresPP} handleClickSeguindoPP={handleClickSeguindoPP} /> : null}
+                        {verParticipantes ? <Participantes setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickPesquisaUsuario={handleClickPesquisaUsuario} handleClickPerfil={handleClickPerfil} /> : null}
+                        {seguidores ? <Seguidores handleClickPesquisaUsuario={handleClickPesquisaUsuario} setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} /> : null}
+                        {seguindo ? <Seguindo handleClickPesquisaUsuario={handleClickPesquisaUsuario} setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} /> : null}
+                        {seguidoresPP ? <SeguidoresPP handleClickPesquisaUsuario={handleClickPesquisaUsuario} setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} handleClickPerfil={handleClickPerfil} /> : null}
+                        {seguindoPP ? <SeguindoPP handleClickPesquisaUsuario={handleClickPesquisaUsuario} setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} handleClickPerfil={handleClickPerfil} /> : null}
                     </div>
                 </div>
 

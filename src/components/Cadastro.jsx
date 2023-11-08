@@ -75,7 +75,7 @@ const Cadastro = () => {
 
     return (
         <>
-            <div className="main-cadastro">
+            <div className="main-editar">
 
                 <h1 className="header-cadastro">Cadastro</h1>
 
@@ -98,17 +98,24 @@ const Cadastro = () => {
                     </div>
                     <div className="editar-input">
                         <label >Interesses </label>
-                        <input type="text" placeholder="Procurar Interesse..." className="pesquisar" value={pesquisaInteresse} onChange={(e) => setPesquisaInteresse(e.target.value)} />
-                        {
-                           pesquisa.map((interesse, index) => {
-                                return(
-                                    <div key={index}>
-                                        <h1>{interesse.nome}</h1>
-                                        <input type="checkbox" name="checkbox" value={interesse.nome} onChange={handleChangeInteresses}/>
-                                    </div>
-                                )
-                           })
-                        }
+                        <input type="text" placeholder="Procurar Interesse..." className="input-style" value={pesquisaInteresse} onChange={(e) => setPesquisaInteresse(e.target.value)} />
+                        <div className="inter-container inter-editar">
+                            {
+                                pesquisa.map((interesse, index) => {
+                                    return (
+
+                                        <label className="interesse-card inter-bio-cont" key={index} style={{ backgroundImage: `url(${interesse.imagem})` }}>
+                                            <input type="checkbox" name="checkbox" className="check-btn" value={interesse.nome} onChange={handleChangeInteresses} />
+                                            <p className="inter-title" >{interesse.nome}</p>
+                                        </label>
+
+
+                                    )
+                                })
+
+                            }
+                        </div>
+
                     </div>
 
                     <p className="preencha">{preencha}</p>

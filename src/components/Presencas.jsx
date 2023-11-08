@@ -35,7 +35,7 @@ const Presencas = (props) => {
             setPosts(postsPresenca);
         };
         getPosts();
-    }, [presencas.length == 0]);
+    }, [usuarios]);
 
     return (
         <>

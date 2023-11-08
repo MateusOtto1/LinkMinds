@@ -1,48 +1,6 @@
 
-
 #wrapper-login{
     width: 100vw;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 15%;
-}
-
-#logo-login{
-    width: 70vw;
-    height: fit-content;
-}
-
-#container-login{
-    padding: 0.5rem;
-    border-radius: 3.125rem;
-    border: 3px solid #1A1E24;
-    background: linear-gradient(126deg, #4ECCA3 0%, #268A69 100%);
-    box-shadow: 0px 0px 0px 3px #4ECCA3;
-}
-
-#logar{
-    color: #181C22;
-    text-align: center;
-    font-size: 1.875rem;
-    font-style: italic;
-    font-weight: 700;
-    text-decoration: none;
-    padding-left: 4rem;
-    padding-right: 4rem;
-}
-
-#logar:hover{
-    cursor: pointer;
-}
-
-@media(min-width: 900px){
-    #container-login{
-        scale: 135%;
-    }
-    #logo-login{
-        width: 30vw;
-    }
+    background: radial-gradient(circle at right bottom, #3CA187, transparent 100%);
 }
