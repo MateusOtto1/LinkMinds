@@ -250,5 +250,4 @@ h3 {
     gap: 0;
     overflow: hidden;
     box-shadow: 2px 2px 7px 0px rgba(0, 0, 0, 0.10), 10px 9px 13px 0px rgba(0, 0, 0, 0.09), 22px 20px 18px 0px rgba(0, 0, 0, 0.05), 39px 35px 21px 0px rgba(0, 0, 0, 0.01), 60px 55px 23px 0px rgba(0, 0, 0, 0.00);
-    backdrop-filter: blur(2px);
   }
