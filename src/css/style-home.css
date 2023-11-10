@@ -72,20 +72,7 @@
   align-items: center;
 }
 
-.card-top {
-  margin-top: 2vh;
-  margin-left: 1vw;
-  border-radius: 15px;
-  width: 70%;
-  height: 9vh;
-  background: #232931c2;
-  backdrop-filter: blur(15px);
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 0;
-}
+
 
 .pfp {
   margin: 3px;
@@ -142,7 +129,7 @@ span {
   transition: 0.2s ease-in-out;
   font-size: 24px;
   background-color: #232931e3;
-  backdrop-filter: blur(15px);
+
   font-weight: 700;
 }
 
@@ -244,3 +231,20 @@ h3 {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
+
+.card-top {
+    margin-top: 2vh;
+    margin-left: 1vw;
+    border-radius: 15px;
+    width: 70%;
+    height: 9vh;
+  background: rgba(35, 41, 49, 0.874);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    overflow: hidden;
+    box-shadow: 2px 2px 7px 0px rgba(0, 0, 0, 0.10), 10px 9px 13px 0px rgba(0, 0, 0, 0.09), 22px 20px 18px 0px rgba(0, 0, 0, 0.05), 39px 35px 21px 0px rgba(0, 0, 0, 0.01), 60px 55px 23px 0px rgba(0, 0, 0, 0.00);
+    backdrop-filter: blur(2px);
+  }
