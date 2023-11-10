@@ -6,7 +6,6 @@ import "../css/style-home.css";
 import Cookies from 'js-cookie';
 import { BeatLoader } from 'react-spinners';
 
-
 const Home = (props) => {
     const [posts, setPosts] = useState([]);
     const [email, setEmail] = useState('');
@@ -18,8 +17,6 @@ const Home = (props) => {
     const [postsSeguindo, setPostsSeguindo] = useState([]);
     const [postsSeguidores, setPostsSeguidores] = useState([]);
 
-
-
     useEffect(() => {
         const getUsuario = async () => {
             const token = Cookies.get('token');
@@ -30,7 +27,7 @@ const Home = (props) => {
             if (response.data) {
                 setUsuarios(response.data);
                 setEmail(response.data.email);
-                setInteresses(response.data.interesses);
+                setInteresses(await response.data.interesses);
                 setSeguindo(response.data.usuariosSeguindo);
                 setSeguidores(response.data.usuariosSeguidores);
             } else {
@@ -40,7 +37,7 @@ const Home = (props) => {
             }
         };
         getUsuario();
-    }, [interesses.length == 0]);
+    }, [!interesses]);
 
     useEffect(() => {
         const getPost = async () => {
@@ -49,7 +46,7 @@ const Home = (props) => {
                 "x-access-token": token
             }
             const response2 = await axios.get('https://server-link-minds.vercel.app/postsHome', { headers }).then((response2) => { return response2; });
-            setPosts(response2.data.reverse());
+            setPosts(await response2.data.reverse());
             if (interesses) {
                 const postsInteresses = response2.data.filter((post) => { return interesses.includes(post.evento); });
                 setPostsInteresses(postsInteresses);

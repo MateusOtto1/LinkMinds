@@ -10,6 +10,7 @@ const Criar = (props) => {
     const [dataEUA, setDataEUA] = useState('');
     const [hora, setHora] = useState('');
     const [local, setLocal] = useState('');
+    const [endereco, setEndereco] = useState('');
     const [preencha, setPreencha] = useState('');
     const [nome, setNome] = useState('');
     const [foto, setFoto] = useState('');
@@ -24,6 +25,37 @@ const Criar = (props) => {
     const [contador, setContador] = useState(0);
     const [descricao, setDescricao] = useState('');
     const [podeCriar, setPodeCriar] = useState(false);
+    const [autocomplete, setAutocomplete] = useState(null);
+
+    useEffect(() => {
+        // Carrega a API do Google Maps
+        const script = document.createElement('script');
+        script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDZ7VsqZJbfA8KEAo5HgKzz2As_HgkjO2k&libraries=places`;
+        script.async = true;
+        script.defer = true;
+        script.onload = initAutocomplete;
+        document.head.appendChild(script);
+
+        window.initAutocomplete = initAutocomplete;
+
+        return () => {
+            // Limpa a tag de script quando o componente é desmontado
+            document.head.removeChild(script);
+            delete window.initAutocomplete;
+        };
+    }, [local]);
+
+    const initAutocomplete = () => {
+        const input = document.getElementById('autocomplete');
+        const newAutocomplete = new window.google.maps.places.Autocomplete(input);
+        // Evento disparado quando um local é selecionado
+        newAutocomplete.addListener('place_changed', () => {
+            const selectedPlace = newAutocomplete.getPlace();
+            setLocal(selectedPlace.name);
+            setEndereco(selectedPlace.formatted_address);
+        });
+        setAutocomplete(newAutocomplete);
+    };
 
     useEffect(() => {
         const checkInput = async () => {
@@ -119,7 +151,7 @@ const Criar = (props) => {
             const data = `${dataBr[2]}/${dataBr[1]}/${dataBr[0]}`;
             const presenca = 0;
             const token2 = Cookies.get('token');
-            axios.post('https://server-link-minds.vercel.app/posts', { token2, email, nome, evento, tipoEvento, descricao, data, hora, local, presenca, foto, imagemEvento });
+            axios.post('https://server-link-minds.vercel.app/posts', { token2, email, nome, evento, tipoEvento, descricao, data, hora, local, endereco, presenca, foto, imagemEvento });
             navigate('/');
         }
     };
@@ -135,9 +167,9 @@ const Criar = (props) => {
         return (
             <>
                 <div className="main-criar">
-                <div className="criar-header" style={{ backgroundImage: `linear-gradient(to top, #181d22, transparent), url(${imagemEvento})` }}></div>
+                    <div className="criar-header" style={{ backgroundImage: `linear-gradient(to top, #181d22, transparent), url(${imagemEvento})` }}></div>
                     <div id="wrapper-criar">
-                        
+
                         <div className="body-inp">
                             <p className="inp-header">Data</p>
                             <input type="date" placeholder="Digite Aqui" className="inp-criar" onChange={(e) => setDataEUA(e.target.value)} />
@@ -148,7 +180,7 @@ const Criar = (props) => {
                         </div>
                         <div className="body-inp">
                             <p className="inp-header">Local do evento</p>
-                            <input type="text" placeholder="Digite Aqui" className="inp-criar" onChange={(e) => setLocal(e.target.value)} />
+                            <input type="text" id="autocomplete" className="inp-criar" placeholder="Digite o local" onChange={(e) => setLocal(e.target.value)} />
                         </div>
                         <div className="body-inp">
                             <p className="inp-header">Descrição do evento</p>
@@ -165,7 +197,7 @@ const Criar = (props) => {
         return (
             <>
                 <div className="main-criar">
-                <div className="criar-header" style={{ backgroundImage: `linear-gradient(to top, #181d22, transparent), url(${imagemEvento})` }}></div>
+                    <div className="criar-header" style={{ backgroundImage: `linear-gradient(to top, #181d22, transparent), url(${imagemEvento})` }}></div>
                     <h1 id="criar-header" data-text="Criar Post">Criar Post</h1>
                     <div id="wrapper-criar">
                         <div className="body-inp">
