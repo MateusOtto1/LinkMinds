@@ -248,13 +248,14 @@ const PerfilPesquisa = (props) => {
                                                     </p>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <button
+                                            <button
                                             className="participar"
                                             onClick={(e) => props.handleClickAtivaDescricao(e, post)}
                                         >
                                             Descrição
                                         </button>
+                                        </div>
+                                        
                                     </div>
                                 );
                             })}

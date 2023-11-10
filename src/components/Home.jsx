@@ -5,6 +5,7 @@ import { useState } from "react";
 import "../css/style-home.css";
 import Cookies from 'js-cookie';
 import { BeatLoader } from 'react-spinners';
+import { HashLoader } from 'react-spinners';
 
 const Home = (props) => {
     const [posts, setPosts] = useState([]);
@@ -79,105 +80,123 @@ const Home = (props) => {
                         <h1 className="inter-header">Eventos</h1>
                         <div className="linha-verde"></div>
                     </div>
-                    <div id="posts">
-
-                        {postsInteresses.map((post, index) => {
-                            const dia = new Date().getDate();
-                            const mes = new Date().getMonth() + 1;
-                            const ano = new Date().getFullYear();
-                            const dataPost = post.data.split('/');
-                            if (dataPost[1] >= mes && dataPost[2] >= ano) {
-                                if (post.email != email) {
-                                    return (
-                                        <div className="card-body" key={index}>
-                                            <div className="card" style={{ backgroundImage: `url(${post.imagemEvento})` }}>
-                                                <div className="card-top">
-                                                    <img src={post.foto} alt="" className="pfp" />
-                                                    <div className="textos-card">
-                                                        <p className="nome-card">{post.nome}</p>
-                                                        <p className="info">{post.evento} as <span>{post.hora} do dia {post.data}</span></p>
+                    <div id="posts" className="erro-interesse">
+                        {postsInteresses.length > 0 ? (
+                            postsInteresses.map((post, index) => {
+                                const dia = new Date().getDate();
+                                const mes = new Date().getMonth() + 1;
+                                const ano = new Date().getFullYear();
+                                const dataPost = post.data.split('/');
+                                if (dataPost[1] >= mes && dataPost[2] >= ano) {
+                                    if (post.email != email) {
+                                        return (
+                                            <div className="card-body" key={index}>
+                                                <div className="card" style={{ backgroundImage: `url(${post.imagemEvento})` }}>
+                                                    <div className="card-top">
+                                                        <img src={post.foto} alt="" className="pfp" />
+                                                        <div className="textos-card">
+                                                            <p className="nome-card">{post.nome}</p>
+                                                            <p className="info">{post.evento} as <span>{post.hora} do dia {post.data}</span></p>
+                                                        </div>
                                                     </div>
+                                                    <button className="participar" onClick={(e) => props.handleClickAtivaDescricao(e, post)}>Descrição</button>
                                                 </div>
                                             </div>
-                                            <button className="participar" onClick={(e) => props.handleClickAtivaDescricao(e, post)}>Descrição</button>
-                                        </div>
-                                    )
+                                        )
+                                    }
                                 }
-                            }
-                        })}
-
+                            })
+                        ) : (
+                            <>
+                                <HashLoader color={"#fff"} loading={true} size={45} style={{ gridColumn: "1/-1", position: "absolute", alignSelf: "center", justifySelf: "center" }} />
+                                {setTimeout(function () {
+                                    if (document.querySelector('.erro-interesse') === 0)
+                                        document.querySelector('.erro-interesse').innerHTML = "<h3>Nenhum post encontrado.</h3>";
+                                }, 4000)}
+                            </>
+                        )}
                     </div>
                     <div className="header-perfil-container">
                         <h1 className="inter-header">Seguindo</h1>
                         <div className="linha-verde"></div>
                     </div>
-                    <div id="posts">
-
-                        {postsSeguindo.map((post, index) => {
-                            const dia = new Date().getDate();
-                            const mes = new Date().getMonth() + 1;
-                            const ano = new Date().getFullYear();
-                            const dataPost = post.data.split('/');
-                            if (dataPost[1] >= mes && dataPost[2] >= ano) {
-                                if (post.email != email) {
-                                    return (
-                                        <div className="card-body" key={index}>
-                                            <div className="card" style={{ backgroundImage: `url(${post.imagemEvento})` }}>
-                                                <div className="card-top">
-                                                    <img src={post.foto} alt="" className="pfp" />
-                                                    <div className="textos-card">
-                                                        <p className="nome-card">{post.nome}</p>
-                                                        <p className="info">{post.evento} as <span>{post.hora} do dia {post.data}</span></p>
+                    <div id="posts" className="erro-seguindo">
+                        {postsSeguindo.length > 0 ? (
+                            postsSeguindo.map((post, index) => {
+                                const dataPost = post.data.split('/');
+                                const dia = new Date().getDate();
+                                const mes = new Date().getMonth() + 1;
+                                const ano = new Date().getFullYear();
+                                if (dataPost[1] >= mes && dataPost[2] >= ano) {
+                                    if (post.email != email) {
+                                        return (
+                                            <div className="card-body" key={index}>
+                                                <div className="card" style={{ backgroundImage: `url(${post.imagemEvento})` }}>
+                                                    <div className="card-top">
+                                                        <img src={post.foto} alt="" className="pfp" />
+                                                        <div className="textos-card">
+                                                            <p className="nome-card">{post.nome}</p>
+                                                            <p className="info">{post.evento} as <span>{post.hora} do dia {post.data}</span></p>
+                                                        </div>
                                                     </div>
+                                                    <button className="participar" onClick={(e) => props.handleClickAtivaDescricao(e, post)}>Descrição</button>
                                                 </div>
                                             </div>
-                                            <button className="participar" onClick={(e) => props.handleClickAtivaDescricao(e, post)}>Descrição</button>
-                                        </div>
-                                    )
+                                        )
+                                    }
                                 }
-                            } else {
-                                return (
-                                    <div></div>
-                                )
-                            }
-                        })}
-
+                            })
+                        ) : (
+                            <>
+                                <HashLoader color={"#fff"} loading={true} size={45} style={{ gridColumn: "1/-1", position: "absolute", alignSelf: "center", justifySelf: "center" }} />
+                                {setTimeout(function () {
+                                    if (document.querySelector('.erro-seguindo') === 0)
+                                        document.querySelector('.erro-seguindo').innerHTML = "<h3>Nenhum post encontrado.</h3>";
+                                }, 4000)}
+                            </>
+                        )}
                     </div>
 
                     <div className="header-perfil-container">
                         <h1 className="inter-header">Seguidores</h1>
                         <div className="linha-verde"></div>
                     </div>
-                    <div id="posts">
+                    <div id="posts" className="erro-seguidor">
 
-                        {postsSeguidores.map((post, index) => {
-                            const dia = new Date().getDate();
-                            const mes = new Date().getMonth() + 1;
-                            const ano = new Date().getFullYear();
-                            const dataPost = post.data.split('/');
-                            if (dataPost[1] >= mes && dataPost[2] >= ano) {
-                                if (post.email != email) {
-                                    return (
-                                        <div className="card-body" key={index}>
-                                            <div className="card" style={{ backgroundImage: `url(${post.imagemEvento})` }}>
-                                                <div className="card-top">
-                                                    <img src={post.foto} alt="" className="pfp" />
-                                                    <div className="textos-card">
-                                                        <p className="nome-card">{post.nome}</p>
-                                                        <p className="info">{post.evento} as <span>{post.hora} do dia {post.data}</span></p>
+                        {postsSeguidores.length > 0 ? (
+                            postsSeguidores.map((post, index) => {
+                                const dataPost = post.data.split('/');
+                                const dia = new Date().getDate();
+                                const mes = new Date().getMonth() + 1;
+                                const ano = new Date().getFullYear();
+                                if (dataPost[1] >= mes && dataPost[2] >= ano) {
+                                    if (post.email != email) {
+                                        return (
+                                            <div className="card-body" key={index}>
+                                                <div className="card" style={{ backgroundImage: `url(${post.imagemEvento})` }}>
+                                                    <div className="card-top">
+                                                        <img src={post.foto} alt="" className="pfp" />
+                                                        <div className="textos-card">
+                                                            <p className="nome-card">{post.nome}</p>
+                                                            <p className="info">{post.evento} as <span>{post.hora} do dia {post.data}</span></p>
+                                                        </div>
                                                     </div>
+                                                    <button className="participar" onClick={(e) => props.handleClickAtivaDescricao(e, post)}>Descrição</button>
                                                 </div>
                                             </div>
-                                            <button className="participar" onClick={(e) => props.handleClickAtivaDescricao(e, post)}>Descrição</button>
-                                        </div>
-                                    )
+                                        )
+                                    }
                                 }
-                            } else {
-                                return (
-                                    <div></div>
-                                )
-                            }
-                        })}
+                            })
+                        ) : (
+                            <>
+                                <HashLoader color={"#fff"} loading={true} size={45} style={{ gridColumn: "1/-1", position: "absolute", alignSelf: "center", justifySelf: "center" }} />
+                                {setTimeout(function () {
+                                    if (document.querySelector('.erro-seguidor') === 0)
+                                        document.querySelector('.erro-seguidor').innerHTML = "<h3>Nenhum post encontrado.</h3>";
+                                }, 4000)}
+                            </>
+                        )}
 
                     </div>
                 </div>

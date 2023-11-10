@@ -62,8 +62,8 @@ const Presencas = (props) => {
                                             <p className="info">{post.evento} as <span>{post.hora} do dia {post.data}</span></p>
                                         </div>
                                     </div>
-                                </div>
                                 <button className="participar" onClick={(e) => props.handleClickAtivaDescricao(e, post)}>Descrição</button>
+                                </div>
                             </div>
                         )
                     } else {

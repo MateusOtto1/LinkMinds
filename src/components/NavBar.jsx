@@ -23,6 +23,7 @@ import chatsIcon from "../imagens/chats.svg";
 import perfilIcon from "../imagens/perfil.svg";
 import hamburger from "../imagens/hamburger.svg";
 import Cookies from "js-cookie";
+import interessesIcon from "../imagens/pessoas.svg";
 
 const NavBar = () => {
     const [nome, setNome] = useState('');
@@ -420,7 +421,7 @@ const NavBar = () => {
                         <a className="nav-titles" onClick={handleClickPesquisa}><img src={pesquisarIcon} alt="" className="navs" />Pesquisar</a>
                         <a className="nav-titles" onClick={handleClickTipoEvento}><img src={criarIcon} alt="" className="navs" />Criar</a>
                         <a className="nav-titles" onClick={handleClickPresencas}><img src={chatsIcon} alt="" className="navs" />Presenças</a>
-                        <a className="nav-titles" onClick={handleClickInteresses}><img src={perfilIcon} alt="" className="navs" />Interesses</a>
+                        <a className="nav-titles" onClick={handleClickInteresses}><img src={interessesIcon} alt="" className="navs" />Interesses</a>
                         <a className="nav-titles" onClick={handleClickPerfil}><img src={perfilIcon} alt="" className="navs" />Perfil</a>
                     </div>
                 </div>

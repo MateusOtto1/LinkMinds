@@ -3,6 +3,7 @@ import axios from "axios";
 import "../css/style-pesquisa.css";
 import seta from "../imagens/seta.svg";
 import Cookies from 'js-cookie';
+import { HashLoader } from 'react-spinners';
 
 const Interesses = (props) => {
     const [usuarios, setUsuarios] = useState([]);

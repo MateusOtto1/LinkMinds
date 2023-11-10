@@ -89,7 +89,7 @@ const Perfil = (props) => {
                                 <button className="btn-seg" onClick={(e) => props.handleClickSeguindo(e)}>Seguindo</button>
                             </div>
 
-                            
+
                         </div>
 
                     </div>
@@ -145,14 +145,14 @@ const Perfil = (props) => {
                                                         </span>
                                                     </p>
                                                 </div>
-                                            </div>
+                                            </div><button
+                                                className="participar"
+                                                onClick={(e) => props.handleClickAtivaDescricao(e, post)}
+                                            >
+                                                Descrição
+                                            </button>
                                         </div>
-                                        <button
-                                            className="participar"
-                                            onClick={(e) => props.handleClickAtivaDescricao(e, post)}
-                                        >
-                                            Descrição
-                                        </button>
+
                                     </div>
                                 );
                             })}

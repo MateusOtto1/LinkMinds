@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "../css/style-pesquisa.css";
-import seta from "../imagens/seta.svg";
 import Cookies from 'js-cookie';
+import { HashLoader } from 'react-spinners';
 
 const Usuarios = (props) => {
     const [usuarios, setUsuarios] = useState([]);
@@ -74,21 +74,27 @@ const Usuarios = (props) => {
                     <div className="linha-verde"></div>
                 </div>
                 <div className="user-container">
-                    {Pesquisa.map((usuario, index) => {
-                        if (usuario.email != email) {
-                            return (
-                                <div className="container-pesquisar">
-                                    <div className="user-body" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)} key={index}>
-                                        <img src={usuario.foto} alt="" />
-                                        <h1 className="username">{usuario.nome}</h1>
+                    {Pesquisa.length > 0 ? (
+                        Pesquisa.map((usuario, index) => {
+                            if (usuario.email != email) {
+                                return (
+                                    <div className="container-pesquisar">
+                                        <div className="user-body" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)} key={index}>
+                                            <img src={usuario.foto} alt="" />
+                                            <h1 className="username">{usuario.nome}</h1>
 
-                                    </div> 
-                                    <button className="user-btn" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)}>&gt;</button>
-                                </div>
+                                        </div>
+                                        <button className="user-btn" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)}>&gt;</button>
+                                    </div>
 
-                            )
-                        }
-                    })}
+                                )
+                            }
+                        })
+                    ) : (
+                        <>
+                            <HashLoader color={"#fff"} loading={true} size={45} />
+                        </>
+                    )}
                 </div>
 
                 <div className="header-perfil-container">
@@ -96,37 +102,44 @@ const Usuarios = (props) => {
                     <div className="linha-verde"></div>
                 </div>
 
-                <div className="eventos-container">
-                    {pesquisaPost.map((post, index) => {
-                        const dia = new Date().getDate();
-                        const mes = new Date().getMonth() + 1;
-                        const ano = new Date().getFullYear();
-                        const dataPost = post.data.split('/');
-                        if (dataPost[1] >= mes && dataPost[2] >= ano) {
-                            if (post.email != email) {
-                                return (
-                                    <div className="card-body" key={index}>
-                                        <div className="card" style={{ backgroundImage: `url(${post.imagemEvento})` }}>
-                                            <div className="card-top">
-                                                <img src={post.foto} alt="" className="pfp" />
-                                                <div className="textos-card">
-                                                    <p className="nome-card">{post.nome}</p>
-                                                    <p className="info">{post.evento} as <span>{post.hora} do dia {post.data}</span></p>
+                <div className="eventos-container erro-pesquisa">
+                    {pesquisaPost.length > 0 ? (
+                        pesquisaPost.map((post, index) => {
+                            const dia = new Date().getDate();
+                            const mes = new Date().getMonth() + 1;
+                            const ano = new Date().getFullYear();
+                            const dataPost = post.data.split('/');
+                            if (dataPost[1] >= mes && dataPost[2] >= ano) {
+                                if (post.email != email) {
+                                    return (
+                                        <div className="card-body" key={index}>
+                                            <div className="card" style={{ backgroundImage: `url(${post.imagemEvento})` }}>
+                                                <div className="card-top">
+                                                    <img src={post.foto} alt="" className="pfp" />
+                                                    <div className="textos-card">
+                                                        <p className="nome-card">{post.nome}</p>
+                                                        <p className="info">{post.evento} as <span>{post.hora} do dia {post.data}</span></p>
+                                                    </div>
                                                 </div>
+                                                <button className="participar" onClick={(e) => props.handleClickAtivaDescricao(e, post)}>Descrição</button>
                                             </div>
+
                                         </div>
-                                        <button className="participar" onClick={(e) => props.handleClickAtivaDescricao(e, post)}>Descrição</button>
-                                    </div>
-                                )
+                                    )
+                                }
                             }
-                        } else {
-                            return (
-                                <div></div>
-                            )
-                        }
-                    })}
+                        })
+                    ) : (
+                        <>
+                            <HashLoader color={"#fff"} loading={true} size={45} style={{ gridColumn: "1/-1", position: "absolute", alignSelf: "center", justifySelf: "center" }} />
+                            {setTimeout(function () {
+                                if (document.querySelector('.erro-pesquisa') === 0)
+                                    document.querySelector('.erro-pesquisa').innerHTML = "<h3>Nenhum post encontrado.</h3>";
+                            }, 4000)}
+                        </>
+                    )}
                 </div>
-            </div>
+            </div >
 
         </>
     );
