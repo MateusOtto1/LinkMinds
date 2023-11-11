@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "../css/style-editar.css";
+import "../css/style-cadastro.css";
 import lapis from "../imagens/editar.svg";
 import Cookies from 'js-cookie';
 
@@ -76,30 +76,52 @@ const Bio = () => {
 
     return (
         <>
-            <div className="main-editar">
+            <div className="main-cadastro">
 
-                <img src={usuarios.foto} alt="" className="pfp-editar" />
+                <div className="cadastro">
+                    <h1 className="bv-cad">Editar perfil</h1>
+                    <h1 className="cad">Preencha os campos abaixo para editar.</h1>
+                </div>
+                <div className="cad-pic">
+                    <img src={usuarios.foto} alt="" className="pfp-cadastro" />
+                    <div className="cad-text">
+                        <h1>Esta é a sua imagem de perfil</h1>
+                        <p>Nós puxamos a imagem da sua conta Google</p>
+                    </div>
 
-                <div className="inputs-editar">
 
+                </div>
+
+                <div className="inputs-cadastro">
+                    <div className="header-tipo">
+                        <p>Apelido</p>
+                        <div className="linha-tipo"></div>
+                    </div>
                     <div className="editar-input">
-                        <label >Apelido <img src={lapis} alt="" /></label>
                         <input type="text" maxLength="10" name="nome" className="input-style" placeholder="Seu Apelido" onChange={(e) => setApelido(e.target.value)} />
                     </div>
-
+                    <div className="header-tipo">
+                        <p>Idade</p>
+                        <div className="linha-tipo"></div>
+                    </div>
                     <div className="editar-input">
-                        <label >Idade <img src={lapis} alt="" /></label>
                         <input type="number" name="idade" className="input-style" placeholder="Sua Idade" onChange={(e) => setIdade(e.target.value)} />
                     </div>
-
+                    <div className="header-tipo">
+                        <p>Bio</p>
+                        <div className="linha-tipo"></div>
+                    </div>
                     <div className="editar-input">
-                        <label>Bio <img src={lapis} alt="" /></label>
                         <textarea name="bio" maxLength="150" id="" cols="30" rows="5" className="input-style" onChange={(e) => setDescricao(e.target.value)}></textarea>
                     </div>
-
-                    <div className="editar-input">
-                        <label >Interesses </label>
-                        <input type="text" placeholder="Procurar Interesse..." className="input-style" value={pesquisaInteresse} onChange={(e) => setPesquisaInteresse(e.target.value)} />
+                    <div className="header-tipo">
+                        <p>Interesses</p>
+                        <div className="linha-tipo"></div>
+                    </div>
+                    <div className="interesse-cad-input">
+                        <div className="editar-input">
+                            <input type="text" placeholder="Procurar Interesse..." className="input-style" value={pesquisaInteresse} onChange={(e) => setPesquisaInteresse(e.target.value)} />
+                        </div>
                         <div className="inter-container inter-editar">
                             {
                                 pesquisa.map((interesse, index) => {
@@ -120,7 +142,7 @@ const Bio = () => {
                     </div>
 
                     <p className="preencha">{preencha}</p>
-                    <button className="editar-btn-confirmar" onClick={handleSubmit}>Confirmar</button>
+                    <button className="participar cad-part" onClick={handleSubmit}>Confirmar</button>
 
                 </div>
 

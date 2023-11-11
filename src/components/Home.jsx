@@ -117,7 +117,7 @@ const Home = (props) => {
                                         }
                                     }
                                     checkErroInteresse();
-                                }, 4000)}
+                                }, 400)}
                             </>
                         )}
                     </div>
@@ -162,7 +162,7 @@ const Home = (props) => {
                                         }
                                     }
                                     checkErroSeguindo();
-                                }, 4000)}
+                                }, 400)}
                             </>
                         )}
                     </div>
@@ -209,7 +209,7 @@ const Home = (props) => {
                                         }
                                     }
                                     checkErroSeguidor();
-                                }, 4000)}
+                                }, 400)}
                             </>
                         )}
 

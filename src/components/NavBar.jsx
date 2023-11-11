@@ -70,6 +70,9 @@ const NavBar = () => {
                 nav.style.transition = "0.3s";
                 nav.style.marginLeft = ".5rem";
                 nav.style.opacity = "100%";
+                setTimeout(function () {
+                    document.querySelector("#btn-hamb").style.display = "none";
+                },500)
                 setFlag(1);
             } else {
                 console.error("Navbar ainda não foi renderizado");
@@ -97,6 +100,7 @@ const NavBar = () => {
                     nav.style.visibility = "";
 
                     bodyfalso.style.height = "";
+                    document.querySelector("#btn-hamb").style.display = "";
                 }, 500);
             }, 100);
             setFlag(0);

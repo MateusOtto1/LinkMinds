@@ -111,6 +111,7 @@ nav{
     border-radius: 7px;
     margin-right: 15px;
     transition: .2s;
+    animation: fadeIn .2s ease-in-out;
 }
 
 #btn-hamb:hover{

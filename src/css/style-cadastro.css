@@ -126,17 +126,59 @@ p {
   border-color: #4ecca3;
 }
 
-.interesse-cad-input{
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2vh;
+.interesse-cad-input {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2vh;
 }
 
-.cad-part{
-    height: 7vh;
+.cad-part {
+  height: 7vh;
+}
+
+label img {
+  height: 2.5rem;
+  margin-bottom: -0.5rem;
+}
+
+.editar-btn-confirmar {
+  width: 23rem;
+  height: 4.0625rem;
+  background: linear-gradient(126deg, #4ecca3 0%, #268a69 100%);
+  border: 3px solid #3e7a65;
+  border-radius: 3.125rem;
+  box-shadow: 0px 0px 0px 3px #4ecca3;
+  display: flex;
+  margin-top: 2rem;
+  margin-bottom: 5rem;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #1b2026;
+  font-size: 2.5rem;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.check-btn {
+  opacity: 0;
+  position: absolute;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.inter-bio-cont {
+  cursor: pointer;
+}
+
+.inter-bio-cont input:checked ~ p {
+  background: url(../imagens/checked.svg);
+  background-position: right;
+  background-size: cover;
 }
 
 @media screen and (max-width: 1020px) {
@@ -177,7 +219,7 @@ p {
     align-items: flex-start;
     justify-content: flex-start;
   }
-  .pfp-cadastro{
+  .pfp-cadastro {
     height: 100%;
   }
 }
@@ -188,7 +230,7 @@ p {
     width: 90%;
     margin: 0 auto;
   }
-  
+
   .cad-pic h1 {
     font-size: 20px;
   }
