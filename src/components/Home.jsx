@@ -109,6 +109,10 @@ const Home = (props) => {
                         ) : (
                             <>
                                 <HashLoader color={"#fff"} loading={true} size={45} style={{ gridColumn: "1/-1", position: "absolute", alignSelf: "center", justifySelf: "center" }} />
+                                {setTimeout(function () {
+                                    if (document.querySelector('.erro-interesse') === 0)
+                                        document.querySelector('.erro-interesse').innerHTML = "<h3>Nenhum post encontrado.</h3>";
+                                }, 4000)}
                             </>
                         )}
                     </div>
@@ -145,7 +149,10 @@ const Home = (props) => {
                         ) : (
                             <>
                                 <HashLoader color={"#fff"} loading={true} size={45} style={{ gridColumn: "1/-1", position: "absolute", alignSelf: "center", justifySelf: "center" }} />
-
+                                {setTimeout(function () {
+                                    if (document.querySelector('.erro-seguindo') === 0)
+                                        document.querySelector('.erro-seguindo').innerHTML = "<h3>Nenhum post encontrado.</h3>";
+                                }, 4000)}
                             </>
                         )}
                     </div>
@@ -184,6 +191,10 @@ const Home = (props) => {
                         ) : (
                             <>
                                 <HashLoader color={"#fff"} loading={true} size={45} style={{ gridColumn: "1/-1", position: "absolute", alignSelf: "center", justifySelf: "center" }} />
+                                {setTimeout(function () {
+                                    if (document.querySelector('.erro-seguidor') === 0)
+                                        document.querySelector('.erro-seguidor').innerHTML = "<h3>Nenhum post encontrado.</h3>";
+                                }, 4000)}
                             </>
                         )}
 
