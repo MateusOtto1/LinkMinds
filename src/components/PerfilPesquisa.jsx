@@ -152,13 +152,13 @@ const PerfilPesquisa = (props) => {
                                 <h1 className="nome-perfil">
                                     {props.usuarioSelecionado.apelido
                                         ? props.usuarioSelecionado.apelido
-                                        : <BeatLoader color={"#fff"} loading={true} size={20} />
+                                        : <BeatLoader color={"#fff"} loading={true} size={10} />
                                     }
                                 </h1>
                                 <h2 className="idade-perfil">
                                     {props.usuarioSelecionado.idade
                                         ? props.usuarioSelecionado.idade
-                                        : <BeatLoader color={"#fff"} loading={true} size={20} />
+                                        : <BeatLoader color={"#fff"} loading={true} size={10} />
                                     } Anos
                                 </h2>
                             </div>
@@ -169,7 +169,7 @@ const PerfilPesquisa = (props) => {
                                 <span className="verde-aspas">"</span>
                                 {props.usuarioSelecionado.descricao
                                     ? props.usuarioSelecionado.descricao
-                                    : <BeatLoader color={"#fff"} loading={true} size={20} />
+                                    : <BeatLoader color={"#fff"} loading={true} size={10} />
                                 }
                                 <span className="verde-aspas">"</span>
                             </h1>

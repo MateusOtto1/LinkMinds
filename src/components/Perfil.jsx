@@ -73,7 +73,7 @@ const Perfil = (props) => {
                 <div className="wrapper-perfil-top">
 
 
-                <div className="img-perfil" style={{ backgroundImage: `url(${novaUrl})` }} onLoad={handleImageLoad}>
+                <div className="img-perfil" style={{backgroundColor: '#181c22',  backgroundImage: `url(${novaUrl})` }} onLoad={handleImageLoad}>
                     
                 </div>
 
@@ -83,11 +83,11 @@ const Perfil = (props) => {
                             <div className="top-perfil">
                                 <h1 className="nome-perfil">{usuarios.apelido
                             ? usuarios.apelido
-                            : <BeatLoader color={"#fff"} loading={true} size={20} />
+                            : <BeatLoader color={"#fff"} loading={true} size={10} />
                         }</h1>
                                 <h2 className="idade-perfil">{usuarios.idade
                             ? usuarios.idade
-                            : <BeatLoader color={"#fff"} loading={true} size={20} />
+                            : <BeatLoader color={"#fff"} loading={true} size={10} />
                         } Anos</h2>
                             </div>
                         </section>
@@ -95,7 +95,7 @@ const Perfil = (props) => {
                             <h1 className="bio-header">Bio</h1>
                             <h1 className="bio-text"><span className="verde-aspas">"</span>{usuarios.descricao
                             ? usuarios.descricao
-                            : <BeatLoader color={"#fff"} loading={true} size={20} />
+                            : <BeatLoader color={"#fff"} loading={true} size={10} />
                         }<span className="verde-aspas">"</span></h1>
                         </section>
                         <div className="btn-editar" onClick={(e) => props.handleClickAlterarBio(e)}>
