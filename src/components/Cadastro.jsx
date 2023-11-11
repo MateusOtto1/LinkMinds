@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "../css/style-editar.css";
+import "../css/style-cadastro.css";
 import Cookies from 'js-cookie';
 
 const Cadastro = () => {
@@ -26,7 +26,7 @@ const Cadastro = () => {
             setUsuarios(response.data);
             const response2 = await axios.get('https://server-link-minds.vercel.app/listaInteresse', { headers });
             setListaInteresse(response2.data);
-            if(pesquisaInteresse == ''){
+            if (pesquisaInteresse == '') {
                 setPesquisa(response2.data);
             }
         };
@@ -67,7 +67,7 @@ const Cadastro = () => {
 
     useEffect(() => {
         const pesquisaInput = async () => {
-            const interessesPesquisa = listaInteresse.filter((interesse) => interesse.nome.toLowerCase().includes(pesquisaInteresse.toLowerCase()));
+            const interessesPesquisa = listaInteresse.filter((interesse) => interesse.nome.toString().toLowerCase().includes(pesquisaInteresse.toLowerCase()));
             setPesquisa(interessesPesquisa);
         };
         pesquisaInput();
@@ -75,29 +75,50 @@ const Cadastro = () => {
 
     return (
         <>
-            <div className="main-editar">
+            <div className="main-cadastro">
 
-                <h1 className="header-cadastro">Cadastro</h1>
+                <div className="cadastro">
+                    <h1 className="bv-cad">Bem-vindo ao LinkMe!</h1>
+                    <h1 className="cad">Preencha os campos abaixo para concluir o cadastro.</h1>
+                </div>
+                <div className="cad-pic">
+                    <img src={usuarios.foto} alt="" className="pfp-cadastro" />
+                    <div className="cad-text">
+                        <h1>Esta será sua imagem de perfil</h1>
+                        <p>Nós puxamos a imagem da sua conta Google</p>
+                    </div>
 
-                <img src={usuarios.foto} alt="" className="pfp-editar" />
 
-                <div className="inputs-editar">
+                </div>
 
+                <div className="inputs-cadastro">
+                    <div className="header-tipo">
+                        <p>Apelido</p>
+                        <div className="linha-tipo"></div>
+                    </div>
                     <div className="editar-input">
-                        <label >Apelido </label>
                         <input type="text" maxLength="10" name="nome" className="input-style" placeholder="Seu Apelido" onChange={(e) => setApelido(e.target.value)} />
                     </div>
-
+                    <div className="header-tipo">
+                        <p>Idade</p>
+                        <div className="linha-tipo"></div>
+                    </div>
                     <div className="editar-input">
-                        <label >Idade </label>
                         <input type="number" name="idade" className="input-style" placeholder="Sua Idade" onChange={(e) => setIdade(e.target.value)} />
                     </div>
-                    <div className="editar-input">
-                        <label>Bio </label>
-                        <textarea name="bio" maxLength="150" id="" cols="30" rows="5" className="input-style" onChange={(e) => setDescricao(e.target.value)}></textarea>
+                    <div className="header-tipo">
+                        <p>Bio</p>
+                        <div className="linha-tipo"></div>
                     </div>
                     <div className="editar-input">
-                        <label >Interesses </label>
+                        <textarea name="bio" maxLength="150" id="" cols="30" rows="5" className="input-style" onChange={(e) => setDescricao(e.target.value)}></textarea>
+                    </div>
+                    <div className="header-tipo">
+                        <p>Interesses</p>
+                        <div className="linha-tipo"></div>
+                    </div>
+                    <div className="interesse-cad-input">
+                        
                         <input type="text" placeholder="Procurar Interesse..." className="input-style" value={pesquisaInteresse} onChange={(e) => setPesquisaInteresse(e.target.value)} />
                         <div className="inter-container inter-editar">
                             {
@@ -119,7 +140,7 @@ const Cadastro = () => {
                     </div>
 
                     <p className="preencha">{preencha}</p>
-                    <button className="editar-btn-confirmar" onClick={handleSubmit}>Confirmar</button>
+                    <button className="participar cad-part" onClick={handleSubmit}>Confirmar</button>
 
                 </div>
 

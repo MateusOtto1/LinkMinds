@@ -27,11 +27,6 @@
     margin-top: 2rem;
 }
 
-.editar-input{
-    width: 22.5rem;
-    display: flex;
-    flex-direction: column;
-}
 
 label{
     width: 100%;
@@ -40,24 +35,6 @@ label{
     font-weight: 700;
     font-style: italic;
     margin-left: 10%;
-}
-
-.editar-input{
-    width: 100%;
-}
-
-.input-style{
-    width: 80%;
-    padding: 0 1rem;
-    min-height: 3.75rem;
-    border-radius: 1.25rem;
-    border: 3px solid #3e7a65;
-    background: #232931;
-    color: #fff;
-    font-size: 1.5rem;
-    font-weight: 700;
-    outline: none;
-    margin-bottom: 1rem;
 }
 
 .input-style::placeholder{
