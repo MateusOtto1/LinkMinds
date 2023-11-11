@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../css/style-perfil.css";
 import Cookies from "js-cookie";
+import { BeatLoader } from 'react-spinners';
 
 const PerfilPesquisa = (props) => {
     const navigate = useNavigate();
@@ -149,10 +150,16 @@ const PerfilPesquisa = (props) => {
                         <section className="conteudo">
                             <div className="top-perfil">
                                 <h1 className="nome-perfil">
-                                    {props.usuarioSelecionado.apelido}
+                                    {props.usuarioSelecionado.apelido
+                                        ? props.usuarioSelecionado.apelido
+                                        : <BeatLoader color={"#fff"} loading={true} size={20} />
+                                    }
                                 </h1>
                                 <h2 className="idade-perfil">
-                                    {props.usuarioSelecionado.idade} Anos
+                                    {props.usuarioSelecionado.idade
+                                        ? props.usuarioSelecionado.idade
+                                        : <BeatLoader color={"#fff"} loading={true} size={20} />
+                                    } Anos
                                 </h2>
                             </div>
                         </section>
@@ -160,7 +167,10 @@ const PerfilPesquisa = (props) => {
                             <h1 className="bio-header">Bio</h1>
                             <h1 className="bio-text">
                                 <span className="verde-aspas">"</span>
-                                {props.usuarioSelecionado.descricao}
+                                {props.usuarioSelecionado.descricao
+                                    ? props.usuarioSelecionado.descricao
+                                    : <BeatLoader color={"#fff"} loading={true} size={20} />
+                                }
                                 <span className="verde-aspas">"</span>
                             </h1>
                         </section>
@@ -249,13 +259,13 @@ const PerfilPesquisa = (props) => {
                                                 </div>
                                             </div>
                                             <button
-                                            className="participar"
-                                            onClick={(e) => props.handleClickAtivaDescricao(e, post)}
-                                        >
-                                            Descrição
-                                        </button>
+                                                className="participar"
+                                                onClick={(e) => props.handleClickAtivaDescricao(e, post)}
+                                            >
+                                                Descrição
+                                            </button>
                                         </div>
-                                        
+
                                     </div>
                                 );
                             })}

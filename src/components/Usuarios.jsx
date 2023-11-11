@@ -133,9 +133,14 @@ const Usuarios = (props) => {
                         <>
                             <HashLoader color={"#fff"} loading={true} size={45} style={{ gridColumn: "1/-1", position: "absolute", alignSelf: "center", justifySelf: "center" }} />
                             {setTimeout(function () {
-                                if (document.querySelector('.erro-pesquisa') === 0)
-                                    document.querySelector('.erro-pesquisa').innerHTML = "<h3>Nenhum post encontrado.</h3>";
-                            }, 4000)}
+                                function checkErroPesquisa() {
+                                    const erroPesquisa = document.querySelector('.erro-pesquisa');
+                                    if (erroPesquisa && !erroPesquisa.hasChildNodes()) {
+                                        erroPesquisa.innerHTML = "<h3>Nenhum post encontrado.</h3>";
+                                    }
+                                }
+                                checkErroPesquisa();
+                            }, 400)}
                         </>
                     )}
                 </div>

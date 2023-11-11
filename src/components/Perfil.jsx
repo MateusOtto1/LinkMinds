@@ -4,6 +4,8 @@ import axios from "axios";
 import lapis from "../imagens/editar.svg";
 import "../css/style-perfil.css";
 import Cookies from 'js-cookie';
+import { HashLoader } from 'react-spinners';
+import { BeatLoader } from 'react-spinners';
 
 const Perfil = (props) => {
     const { signOut } = useContext(AuthGoogleContext);
@@ -59,24 +61,42 @@ const Perfil = (props) => {
         getPosts();
     }, [usuarios]);
 
+    const [loading, setLoading] = useState(true);
+
+                const handleImageLoad = () => {
+                    setLoading(false);
+                };
+
     return (
         <>
             <div className="main-perfil">
                 <div className="wrapper-perfil-top">
 
-                    <div className="img-perfil" style={{ backgroundImage: `url(${novaUrl})` }}></div>
+
+                <div className="img-perfil" style={{ backgroundImage: `url(${novaUrl})` }} onLoad={handleImageLoad}>
+                    
+                </div>
 
                     <div className="wrapper-perfil-left">
 
                         <section className="conteudo">
                             <div className="top-perfil">
-                                <h1 className="nome-perfil">{usuarios.apelido}</h1>
-                                <h2 className="idade-perfil">{usuarios.idade} Anos</h2>
+                                <h1 className="nome-perfil">{usuarios.apelido
+                            ? usuarios.apelido
+                            : <BeatLoader color={"#fff"} loading={true} size={20} />
+                        }</h1>
+                                <h2 className="idade-perfil">{usuarios.idade
+                            ? usuarios.idade
+                            : <BeatLoader color={"#fff"} loading={true} size={20} />
+                        } Anos</h2>
                             </div>
                         </section>
                         <section className="bio">
                             <h1 className="bio-header">Bio</h1>
-                            <h1 className="bio-text"><span className="verde-aspas">"</span>{usuarios.descricao}<span className="verde-aspas">"</span></h1>
+                            <h1 className="bio-text"><span className="verde-aspas">"</span>{usuarios.descricao
+                            ? usuarios.descricao
+                            : <BeatLoader color={"#fff"} loading={true} size={20} />
+                        }<span className="verde-aspas">"</span></h1>
                         </section>
                         <div className="btn-editar" onClick={(e) => props.handleClickAlterarBio(e)}>
                             <img src={lapis} alt="" />

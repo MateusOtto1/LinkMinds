@@ -83,7 +83,7 @@ const Bio = () => {
                     <h1 className="cad">Preencha os campos abaixo para editar.</h1>
                 </div>
                 <div className="cad-pic">
-                    <img src={usuarios.foto} alt="" className="pfp-cadastro" />
+                    <img src={usuarios.foto} alt="" loading="lazy" className="pfp-cadastro" />
                     <div className="cad-text">
                         <h1>Esta é a sua imagem de perfil</h1>
                         <p>Nós puxamos a imagem da sua conta Google</p>

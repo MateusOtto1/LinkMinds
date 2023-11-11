@@ -66,18 +66,23 @@ const Participantes = (props) => {
                     {usuariosParticipantes.map((usuario, index) => {
                         if (usuario.email == email) {
                             return (
-                                <div className="user-body" onClick={(e) => props.handleClickPerfil(e)} key={index}>
-                                    <img src={usuario.foto} alt="" />
-                                    <h1 className="username">{usuario.nome}</h1>
-                                    <button className="user-btn"><img src={seta} alt="" /></button>
+                                <div className="container-pesquisar">
+                                    <div className="user-body" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)} key={index}>
+                                        <img src={usuario.foto} alt="" />
+                                        <h1 className="username">{usuario.nome}</h1>
+
+                                    </div>
+                                    <button className="user-btn" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)}>&gt;</button>
                                 </div>
                             )
                         } else {
                             return (
-                                <div className="user-body" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)} key={index}>
-                                    <img src={usuario.foto} alt="" />
-                                    <h1 className="username">{usuario.nome}</h1>
-                                    <button className="user-btn"><img src={seta} alt="" /></button>
+                                <div className="container-pesquisar">
+                                    <div className="user-body" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)} key={index}>
+                                        <img src={usuario.foto} alt="" />
+                                        <h1 className="username">{usuario.nome}</h1>
+                                    </div>
+                                    <button className="user-btn" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)}>&gt;</button>
                                 </div>
                             )
                         }

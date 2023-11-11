@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import '../css/style-detalhes.css';
 import boneco from "../imagens/basil-user-solid.svg";
-import fotoCimol from "../imagens/rectangle-108.svg";
 import Cookies from 'js-cookie';
 
 const Descricao = (props) => {
@@ -87,13 +86,68 @@ const Descricao = (props) => {
         const local = props.postSelecionado.local;
         const nome = props.postSelecionado.nome;
         const token2 = Cookies.get('token');
-        axios.delete('https://server-link-minds.vercel.app/excluirPost', { data: { token2, evento, data, hora, local, nome }}).then(result => console.log(result)).catch(err => console.log(err));
+        axios.delete('https://server-link-minds.vercel.app/excluirPost', { data: { token2, evento, data, hora, local, nome } }).then(result => console.log(result)).catch(err => console.log(err));
         navigate('/');
     }
     return (
         <>
             <div className='main-detalhes'>
-                <header>
+
+
+                <img src={props.postSelecionado.imagemEvento} alt="" className="img-detalhes" />
+                <div className="conteudo-detalhes">
+                    <div className="header-detalhes">
+                        <h1 className="header-text-det">
+                            {props.postSelecionado.evento}
+                        </h1>
+                    </div>
+                    <div className="profile-detalhes">
+                        <img src={props.postSelecionado.foto} alt="" class="pfp-det" />
+                        <div className="profile-text-det">
+                            <p className="criadopor">Criado por</p>
+                            <h1 className="nome-det">{props.postSelecionado.nome}</h1>
+                        </div>
+                    </div>
+                    <div className="det-info">
+                        <p className="title-info">Dia e hora</p>
+                        <h1 className="text-info">{props.postSelecionado.data} <span className='verde-span'>/</span> {props.postSelecionado.hora}</h1>
+                    </div>
+                    <div class="det-info">
+                        <p className="title-info">Localização</p>
+                        <h1 className="text-info">{props.postSelecionado.local}</h1>
+                    </div>
+                    <button className="det-info btnParticipantes" onClick={(e) => props.handleClickVerParticipantes(e, posts)}>
+                        <p className="title-info">Participantes</p>
+                        <h1 className="text-info"><img src={boneco} alt="" />{presencaPost} participantes</h1>
+                    </button>
+                </div>
+
+
+
+                {
+                    meuPost == true ? <button className="participar-detalhes" onClick={handleClickExcluirPost}>Excluir evento</button> :
+                        verificaPresenca == false ? <button className="participar-detalhes" onClick={handleClickPresenca}>Marcar presença</button> : <button className="participar-detalhes" onClick={handleClickDesmarcarPresenca}>Desmarcar presença</button>
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                {/* <header>
                     <img src={props.postSelecionado.imagemEvento} alt="" className="header-img-detalhes" />
                     <h1 className="header-title-detalhes">{props.postSelecionado.evento}</h1>
                 </header>
@@ -101,9 +155,9 @@ const Descricao = (props) => {
                 <div className="detalhes-container">
                     <div className="top-detalhes">
                         <div className="foto-container">
-                             <img src={props.postSelecionado.foto} alt="" className="foto" />
+                            <img src={props.postSelecionado.foto} alt="" className="foto" />
                         </div>
-                       
+
                         <div className="top-text-detalhes">
                             <h1 className="criado">Criado por <span className="username-span">{props.postSelecionado.nome}</span></h1>
                             <h2 className="marcado">Marcado para o dia {props.postSelecionado.data} as {props.postSelecionado.hora}</h2>
@@ -122,7 +176,7 @@ const Descricao = (props) => {
                 {
                     meuPost == true ? <button className="participar-detalhes" onClick={handleClickExcluirPost}>Excluir evento</button> :
                         verificaPresenca == false ? <button className="participar-detalhes" onClick={handleClickPresenca}>Marcar presença</button> : <button className="participar-detalhes" onClick={handleClickDesmarcarPresenca}>Desmarcar presença</button>
-                }
+                } */}
             </div>
 
         </>
