@@ -110,8 +110,13 @@ const Home = (props) => {
                             <>
                                 <HashLoader color={"#fff"} loading={true} size={45} style={{ gridColumn: "1/-1", position: "absolute", alignSelf: "center", justifySelf: "center" }} />
                                 {setTimeout(function () {
-                                    if (document.querySelector('.erro-interesse') === 0)
-                                        document.querySelector('.erro-interesse').innerHTML = "<h3>Nenhum post encontrado.</h3>";
+                                    function checkErroInteresse() {
+                                        const erroInteresse = document.querySelector('.erro-interesse');
+                                        if (erroInteresse && !erroInteresse.hasChildNodes()) {
+                                            erroInteresse.innerHTML = "<h3>Nenhum post encontrado.</h3>";
+                                        }
+                                    }
+                                    checkErroInteresse();
                                 }, 4000)}
                             </>
                         )}
@@ -150,8 +155,13 @@ const Home = (props) => {
                             <>
                                 <HashLoader color={"#fff"} loading={true} size={45} style={{ gridColumn: "1/-1", position: "absolute", alignSelf: "center", justifySelf: "center" }} />
                                 {setTimeout(function () {
-                                    if (document.querySelector('.erro-seguindo') === 0)
-                                        document.querySelector('.erro-seguindo').innerHTML = "<h3>Nenhum post encontrado.</h3>";
+                                    function checkErroSeguindo() {
+                                        const erroSeguindo = document.querySelector('.erro-seguindo');
+                                        if (erroSeguindo && !erroSeguindo.hasChildNodes()) {
+                                            erroSeguindo.innerHTML = "<h3>Nenhum post encontrado.</h3>";
+                                        }
+                                    }
+                                    checkErroSeguindo();
                                 }, 4000)}
                             </>
                         )}
@@ -192,8 +202,13 @@ const Home = (props) => {
                             <>
                                 <HashLoader color={"#fff"} loading={true} size={45} style={{ gridColumn: "1/-1", position: "absolute", alignSelf: "center", justifySelf: "center" }} />
                                 {setTimeout(function () {
-                                    if (document.querySelector('.erro-seguidor') === 0)
-                                        document.querySelector('.erro-seguidor').innerHTML = "<h3>Nenhum post encontrado.</h3>";
+                                    function checkErroSeguidor() {
+                                        const erroSeguidor = document.querySelector('.erro-Seguidor');
+                                        if (erroSeguidor && !erroSeguidor.hasChildNodes()) {
+                                            erroSeguidor.innerHTML = "<h3>Nenhum post encontrado.</h3>";
+                                        }
+                                    }
+                                    checkErroSeguidor();
                                 }, 4000)}
                             </>
                         )}
