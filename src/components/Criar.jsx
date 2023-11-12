@@ -170,23 +170,38 @@ const Criar = (props) => {
                     <div className="criar-header" style={{ backgroundImage: `linear-gradient(to top, #181d22, transparent), url(${imagemEvento})` }}></div>
                     <div id="wrapper-criar">
 
-                        <div className="body-inp">
-                            <p className="inp-header">Data</p>
-                            <input type="date" placeholder="Digite Aqui" className="inp-criar" onChange={(e) => setDataEUA(e.target.value)} />
+                        <div className="header-tipo">
+                            <p>Data</p>
+                            <div className="linha-tipo"></div>
                         </div>
-                        <div className="body-inp">
-                            <p className="inp-header">Horário</p>
-                            <input type="time" placeholder="Digite Aqui" className="inp-criar" onChange={(e) => setHora(e.target.value)} />
+                        <div className="editar-input">
+                            <input type="date" placeholder="Digite Aqui" className="input-style" onChange={(e) => setDataEUA(e.target.value)} />
                         </div>
-                        <div className="body-inp">
-                            <p className="inp-header">Local do evento</p>
-                            <input type="text" id="autocomplete" className="inp-criar" placeholder="Digite o local" onChange={(e) => setLocal(e.target.value)} />
+
+                        <div className="header-tipo">
+                            <p>Horário</p>
+                            <div className="linha-tipo"></div>
                         </div>
-                        <div className="body-inp">
-                            <p className="inp-header">Descrição do evento</p>
-                            <p>Opcional</p>
-                            <input type="text" maxLength="100" placeholder="Digite Aqui" className="inp-criar" onChange={(e) => setDescricao(e.target.value)} />
+                        <div className="editar-input">
+                            <input type="time" placeholder="Digite Aqui" className="input-style" onChange={(e) => setHora(e.target.value)} />
                         </div>
+
+                        <div className="header-tipo">
+                            <p>Local</p>
+                            <div className="linha-tipo"></div>
+                        </div>
+                        <div className="editar-input">
+                            <input type="text" id="autocomplete" className="input-style" placeholder="Digite o local" onChange={(e) => setLocal(e.target.value)} />
+                        </div>
+                        
+                        <div className="header-tipo">
+                            <p>Descrição</p>
+                            <div className="linha-tipo"></div>
+                        </div>
+                        <div className="editar-input">
+                            <input type="text" maxLength="100" placeholder="Digite Aqui" className="input-style" onChange={(e) => setDescricao(e.target.value)} />
+                        </div>
+
                         <p className="preencha">{preencha}</p>
                         <button id="btn-criar" onClick={handleSubmit}>Criar Evento</button>
                     </div>

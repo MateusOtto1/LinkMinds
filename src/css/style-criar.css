@@ -1,72 +1,37 @@
 
-.inp-header {
-  color: #fff;
-  font-family: Poppins;
-  font-size: 1.875rem;
-
-  font-weight: 700;
-  line-height: normal;
-  margin-left: 0.8rem;
-}
-
-.inp-criar {
-  width: 85vw;
-  height: 3.75rem;
-  flex-shrink: 0;
-  border-radius: 1.25rem;
-  border: 3px solid #4ecca3;
-  background: #232931;
-  margin-bottom: 0.5rem;
-  outline: none;
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #fff;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  align-self: center;
-}
-
-.inp-criar::placeholder {
-  color: rgba(255, 255, 255, 0.12);
-  font-size: 1rem;
-  align-self: center;
-}
-
 #wrapper-criar {
   display: flex;
   flex-direction: column;
   margin-top: -20vh;
-  width: 100%;
+  width: 90%;
   height: 100%;
   z-index: 200;
 }
 
 #btn-criar {
   margin-top: 1rem;
-  width: 90%;
-  border-radius: 3.125rem;
-  border: 3px solid #1a1e24;
-  background: linear-gradient(126deg, #4ecca3 0%, #268a69 100%);
-  box-shadow: 0px 0px 0px 3px #4ecca3, 0px 0px 0px 0px rgba(70, 197, 170, 0.1),
-    0px 8px 19px 0px rgba(70, 197, 170, 0.1),
-    0px 34px 34px 0px rgba(70, 197, 170, 0.09),
-    0px 76px 46px 0px rgba(70, 197, 170, 0.05),
-    0px 135px 54px 0px rgba(70, 197, 170, 0.01),
-    0px 211px 59px 0px rgba(70, 197, 170, 0);
+  width: 100%;
+  border-radius: 15px;
+  background: rgba(78, 204, 163, 0.54);
   margin-bottom: 8rem;
-  height: 4.0625rem;
+  border: 0;
+  height: 10vh;
   color: #1b2026;
-  font-family: Poppins;
-  font-size: 2.2rem;
-  font-style: italic;
+  font-size: 24px;
   font-weight: 700;
+  transition: 0.5s ease-in-out;
   align-content: center;
+}
+
+#btn-criar:hover {
+  background: rgba(78, 204, 163, 0.8);
 }
 
 .preencha {
   color: #fff;
-  width: 90%;
+  width: 100%;
   text-align: center;
+  margin-top: 1vh;
 }
 
 .tipo-title {

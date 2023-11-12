@@ -290,3 +290,12 @@ nav{
     text-decoration: none;
 }
 
+input[type="date"], input[type="time"], input[type="number"] {
+    cursor: pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator, input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    margin-right: 15px;
+    scale: 1.5;
+}

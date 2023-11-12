@@ -2,6 +2,7 @@ import seta from "../imagens/seta.svg";
 import Cookies from 'js-cookie';
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { HashLoader } from 'react-spinners';
 
 const TipoEvento = (props) => {
     const [listaInteresse, setListaInteresse] = useState([]);
@@ -11,6 +12,7 @@ const TipoEvento = (props) => {
     const [listaEsporte, setListaEsporte] = useState([]);
     const [listaJogos, setListaJogos] = useState([]);
     const [listaFesta, setListaFesta] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const getUsuario = async () => {
@@ -59,6 +61,9 @@ const TipoEvento = (props) => {
                     setListaFesta((listaFesta) => [...listaFesta, interesse]);
                 }
             });
+            setTimeout(function () {
+                setLoading(false);
+            },1000)
         };
         getInteresse();
     }, [interesses]);
@@ -78,16 +83,25 @@ const TipoEvento = (props) => {
                         <div className="linha-tipo"></div>
                     </div>
                     <div className="seus">
-                        {
+                        {loading ? (
+                            <HashLoader color={"#fff"} loading={true} size={45} style={{height: "0px", width:"100%", display:"flex", alignItems:"flex-start", justifyContent:"flex-start", marginTop:"0"}} />
+                        ) : (
                             listaInteresseUsuario.map((interesse, index) => {
                                 return (
                                     <div className="tipo-card" key={index}>
-                                        <button style={{ backgroundImage: `linear-gradient(to left, rgba(24, 28, 34, 0) 0%, rgba(24, 28, 34, 1) 100%), url(${interesse.imagem})` }} className="btnInteresse" onClick={(e) => props.handleClickCreate(e, interesse)}>{interesse.nome}</button>
+                                        <button
+                                            style={{
+                                                backgroundImage: `linear-gradient(to left, rgba(24, 28, 34, 0) 0%, rgba(24, 28, 34, 1) 100%), url(${interesse.imagem})`,
+                                            }}
+                                            className="btnInteresse"
+                                            onClick={(e) => props.handleClickCreate(e, interesse)}
+                                        >
+                                            {interesse.nome}
+                                        </button>
                                     </div>
-                                )
+                                );
                             })
-
-                        }
+                        )}
                     </div>
 
                     <div className="header-tipo">

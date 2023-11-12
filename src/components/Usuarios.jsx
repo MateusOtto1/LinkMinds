@@ -68,7 +68,9 @@ const Usuarios = (props) => {
     return (
         <>
             <div className="main-pesquisa">
-                <input type="text" placeholder="O que desejas procurar?" className="pesquisar" value={busca} onChange={(e) => setBusca(e.target.value)} />
+                <div className="editar-input" style={{marginTop: "7vh"}}>
+                    <input type="text" placeholder="O que desejas procurar?" className="input-style" value={busca} onChange={(e) => setBusca(e.target.value)} />
+                </div>
                 <div className="header-perfil-container">
                     <h1 className="inter-header">Usuários</h1>
                     <div className="linha-verde"></div>

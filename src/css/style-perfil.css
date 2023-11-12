@@ -303,7 +303,7 @@
   outline: none;
   border: 2px rgba(78, 204, 163, 0.54) solid;
   width: 100%;
-  height: 5vh;
+  height: 7vh;
   background: #232931;
   color: #fff;
   font-size: 16px;
@@ -322,6 +322,12 @@
 #deslogar:hover {
   border: 4px rgba(237, 89, 89, 0.575) solid;
   color: rgba(237, 89, 89, 0.575);
+}
+
+@media(max-width: 800px) {
+  .seg-container{
+    width: 90%;
+  }
 }
 
 .btn-editar:hover {
@@ -361,7 +367,7 @@
     padding-top: 0;
   }
   .btn-seg {
-    font-size: 24px;
+    font-size: 20px;
   }
 
   .meus-posts {
@@ -421,8 +427,8 @@
     font-size: 3.5rem;
   }
   .btn-editar {
-    scale: 115%;
-    margin-top: 2rem;
+    scale: 100%;
+    margin-top: .7rem;
     background: #1c2129;
   }
   .img-perfil {
@@ -443,6 +449,7 @@
   }
   .bio-header {
     font-size: 3vw;
+
   }
   .idade-perfil {
     margin-left: 1rem;
