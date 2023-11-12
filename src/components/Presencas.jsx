@@ -3,6 +3,8 @@ import axios from "axios";
 import { useState } from "react";
 import "../css/style-home.css";
 import Cookies from 'js-cookie';
+import { BeatLoader } from 'react-spinners';
+import { HashLoader } from 'react-spinners';
 
 const Presencas = (props) => {
     const [posts, setPosts] = useState([]);
@@ -41,12 +43,58 @@ const Presencas = (props) => {
         <>
             <div id="wrapper">
                 <h1 id="bv">Presenças de</h1>
-                <h1 id="nome">{usuarios.apelido}</h1>
+                <h1 id="nome">{usuarios.apelido
+                    ? usuarios.apelido
+                    : <BeatLoader color={"#fff"} loading={true} size={20} />
+                }</h1>
             </div>
-            <h1 id="posts-recomendados">Presenças marcadas</h1>
-            <div id="posts">
+            <div className="header-perfil-container">
+                <h1 className="inter-header">Presenças</h1>
+                <div className="linha-verde"></div>
+            </div>
+            <div id="posts" className="erro-presencas">
 
-                {posts.map((post, index) => {
+                {posts.length > 0 ? (
+                    posts.map((post, index) => {
+                        const dataPost = post.data.split('/');
+                        const dia = new Date().getDate();
+                        const mes = new Date().getMonth() + 1;
+                        const ano = new Date().getFullYear();
+                        if (dataPost[1] >= mes && dataPost[2] >= ano) {
+
+                            return (
+                                <div className="card-body" key={index}>
+                                    <div className="card" style={{ backgroundImage: `url(${post.imagemEvento})` }}>
+                                        <div className="card-top">
+                                            <img src={post.foto} alt="" className="pfp" />
+                                            <div className="textos-card">
+                                                <p className="nome-card">{post.nome}</p>
+                                                <p className="info">{post.evento} as <span>{post.hora} do dia {post.data}</span></p>
+                                            </div>
+                                        </div>
+                                        <button className="participar" onClick={(e) => props.handleClickAtivaDescricao(e, post)}>Descrição</button>
+                                    </div>
+                                </div>
+                            )
+
+                        }
+                    })
+                ) : (
+                    <>
+                        <HashLoader color={"#fff"} loading={true} size={45} style={{ gridColumn: "1/-1", position: "absolute", alignSelf: "center", justifySelf: "center" }} />
+                        {setTimeout(function () {
+                            function checkErroPresencas() {
+                                const erroPresencas = document.querySelector('.erro-presencas');
+                                if (erroPresencas && !erroPresencas.hasChildNodes()) {
+                                    erroPresencas.innerHTML = "<h3>Nenhum post encontrado.</h3>";
+                                }
+                            }
+                            checkErroPresencas();
+                        }, 1000)}
+                    </>
+                )}
+
+                {/* {posts.map((post, index) => {
                     const dia = new Date().getDate();
                     const mes = new Date().getMonth() + 1;
                     const ano = new Date().getFullYear();
@@ -62,7 +110,7 @@ const Presencas = (props) => {
                                             <p className="info">{post.evento} as <span>{post.hora} do dia {post.data}</span></p>
                                         </div>
                                     </div>
-                                <button className="participar" onClick={(e) => props.handleClickAtivaDescricao(e, post)}>Descrição</button>
+                                    <button className="participar" onClick={(e) => props.handleClickAtivaDescricao(e, post)}>Descrição</button>
                                 </div>
                             </div>
                         )
@@ -71,7 +119,7 @@ const Presencas = (props) => {
                             <div></div>
                         )
                     }
-                })}
+                })} */}
 
             </div>
         </>

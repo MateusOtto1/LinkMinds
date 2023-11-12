@@ -44,9 +44,10 @@ const Seguidores = (props) => {
     return (
         <>
             <div className="main-participantes">
-                <h1 className="participantes">
-                    Seguidores
-                </h1>
+                <div className="header-perfil-container">
+                    <h1 className="inter-header">Seguidores</h1>
+                    <div className="linha-verde"></div>
+                </div>
                 <div className="user-container">
                     {usuariosSeguidores.map((usuario, index) => {
                         return (

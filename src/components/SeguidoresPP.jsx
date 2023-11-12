@@ -20,7 +20,7 @@ const SeguidoresPP = (props) => {
         };
         getUsuario();
     }, [email == '']);
-    
+
     useEffect(() => {
         const getUsuario = async () => {
             setSeguidores(props.usuarioSelecionado.usuariosSeguidores);
@@ -37,8 +37,8 @@ const SeguidoresPP = (props) => {
             }
         };
         verificaSeguidores();
-    }, [verificaSeguidores]); 
-    
+    }, [verificaSeguidores]);
+
     useEffect(() => {
         const getSeguidores = async () => {
             const token = Cookies.get('token');
@@ -57,37 +57,38 @@ const SeguidoresPP = (props) => {
             });
         };
         getSeguidores();
-    },[seguidores]);
+    }, [seguidores]);
 
     return (
         <>
             <div className="main-participantes">
-                <h1 className="participantes">
-                    Seguidores
-                </h1>
+                <div className="header-perfil-container">
+                    <h1 className="inter-header">Seguidores</h1>
+                    <div className="linha-verde"></div>
+                </div>
                 <div className="user-container">
                     {usuariosSeguidores.map((usuario, index) => {
                         if (usuario.email == email) {
                             return (
                                 <div className="container-pesquisar">
-                                <div className="user-body" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)} key={index}>
-                                    <img src={usuario.foto} alt="" />
-                                    <h1 className="username">{usuario.nome}</h1>
+                                    <div className="user-body" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)} key={index}>
+                                        <img src={usuario.foto} alt="" />
+                                        <h1 className="username">{usuario.nome}</h1>
 
+                                    </div>
+                                    <button className="user-btn" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)}>&gt;</button>
                                 </div>
-                                <button className="user-btn" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)}>&gt;</button>
-                            </div>
                             )
                         } else {
                             return (
                                 <div className="container-pesquisar">
-                                <div className="user-body" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)} key={index}>
-                                    <img src={usuario.foto} alt="" />
-                                    <h1 className="username">{usuario.nome}</h1>
+                                    <div className="user-body" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)} key={index}>
+                                        <img src={usuario.foto} alt="" />
+                                        <h1 className="username">{usuario.nome}</h1>
 
+                                    </div>
+                                    <button className="user-btn" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)}>&gt;</button>
                                 </div>
-                                <button className="user-btn" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)}>&gt;</button>
-                            </div>
                             )
                         }
                     })}

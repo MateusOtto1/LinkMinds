@@ -44,10 +44,10 @@ const Seguindo = (props) => {
     return (
         <>
             <div className="main-participantes">
-            <div className="header-perfil-container">
-                          <h1 className="inter-header">Seguindo</h1>  
-                          <div className="linha-verde"></div>
-                        </div>
+                <div className="header-perfil-container">
+                    <h1 className="inter-header">Seguindo</h1>
+                    <div className="linha-verde"></div>
+                </div>
                 <div className="user-container-seg">
                     {usuariosSeguindo.map((usuario, index) => {
                         return (

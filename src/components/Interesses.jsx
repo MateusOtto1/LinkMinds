@@ -29,7 +29,7 @@ const Interesses = (props) => {
             }
         };
         getEmail();
-    },[email == '']);
+    }, [email == '']);
 
     useEffect(() => {
         const pesquisaInput = async () => {
@@ -41,28 +41,34 @@ const Interesses = (props) => {
 
     return (
         <>
-            <input type="text" placeholder="Procurar usuários..." className="pesquisar" value={busca} onChange={(e) => setBusca(e.target.value)} />
-            <h1 className="header-pesquisa">
-                Usuários com Interesses Semelhantes
-            </h1>
-            <div className="user-container-inter">
-                {Pesquisa.map((usuario, index) => {
-                    if (usuario.email != email) {
-                        const interessesComuns = usuario.interesses.filter((interesse) => interesses.includes(interesse));
-                        if (interessesComuns.length > 0) {
-                            return (
-                                <div className="container-pesquisar"key={index}>
-                                    <div className="user-body" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)} >
-                                        <img src={usuario.foto} alt="" />
-                                        <h1 className="username">{usuario.nome}</h1>
+            <div className="tipo-container">
 
+
+                <div className="editar-input" style={{ marginTop: "7vh" }}>
+                    <input type="text" placeholder="Procurar usuários..." className="input-style" value={busca} onChange={(e) => setBusca(e.target.value)} />
+                </div>
+                <h1 className="header-pesquisa">
+                    Usuários com Interesses Semelhantes
+                </h1>
+                <div className="main-participantes">
+                    {Pesquisa.map((usuario, index) => {
+                        if (usuario.email != email) {
+                            const interessesComuns = usuario.interesses.filter((interesse) => interesses.includes(interesse));
+                            if (interessesComuns.length > 0) {
+                                return (
+                                    <div className="container-pesquisar">
+                                        <div className="user-body" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)} key={index}>
+                                            <img src={usuario.foto} alt="" />
+                                            <h1 className="username">{usuario.nome}</h1>
+
+                                        </div>
+                                        <button className="user-btn" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)}>&gt;</button>
                                     </div>
-                                    <button className="user-btn" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)}>&gt;</button>
-                                </div>
-                            )
+                                )
+                            }
                         }
-                    }
-                })}
+                    })}
+                </div>
             </div>
         </>
     );
