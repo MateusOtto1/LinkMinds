@@ -8,7 +8,7 @@
   z-index: 200;
 }
 
-#btn-criar {
+.btn-criar {
   margin-top: 1rem;
   width: 100%;
   border-radius: 15px;
@@ -23,7 +23,7 @@
   align-content: center;
 }
 
-#btn-criar:hover {
+.btn-criar:hover {
   background: rgba(78, 204, 163, 0.8);
 }
 

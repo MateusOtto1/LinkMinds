@@ -193,7 +193,7 @@ const Criar = (props) => {
                         <div className="editar-input">
                             <input type="text" id="autocomplete" className="input-style" placeholder="Digite o local" onChange={(e) => setLocal(e.target.value)} />
                         </div>
-                        
+
                         <div className="header-tipo">
                             <p>Descrição</p>
                             <div className="linha-tipo"></div>
@@ -229,7 +229,7 @@ const Criar = (props) => {
                             <input type="time" placeholder="Digite Aqui" className="inp-criar" onChange={(e) => setHora(e.target.value)} />
                         </div>
                         <p className="preencha">{preencha}</p>
-                        <button id="btn-criar" onClick={handleSubmit}>Criar Evento</button>
+                        <button className="btn-criar" onClick={handleSubmit}>Criar Evento</button>
                     </div>
                 </div>
             </>

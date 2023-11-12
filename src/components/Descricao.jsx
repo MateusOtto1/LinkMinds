@@ -92,9 +92,7 @@ const Descricao = (props) => {
     return (
         <>
             <div className='main-detalhes'>
-
-
-                <img src={props.postSelecionado.imagemEvento} alt="" className="img-detalhes" />
+                <div style={{ backgroundImage: `linear-gradient(to top, #181d22, transparent), url(${props.postSelecionado.imagemEvento})` }} className="img-detalhes" />
                 <div className="conteudo-detalhes">
                     <div className="header-detalhes">
                         <h1 className="header-text-det">
@@ -120,14 +118,15 @@ const Descricao = (props) => {
                         <p className="title-info">Participantes</p>
                         <h1 className="text-info"><img src={boneco} alt="" />{presencaPost} participantes</h1>
                     </button>
+                    {
+                        meuPost == true ? <button className="btn-criar" onClick={handleClickExcluirPost}>Excluir evento</button> :
+                            verificaPresenca == false ? <button className="btn-criar" onClick={handleClickPresenca}>Marcar presença</button> : <button className="btn-criar" onClick={handleClickDesmarcarPresenca}>Desmarcar presença</button>
+                    }
                 </div>
 
 
 
-                {
-                    meuPost == true ? <button className="participar-detalhes" onClick={handleClickExcluirPost}>Excluir evento</button> :
-                        verificaPresenca == false ? <button className="participar-detalhes" onClick={handleClickPresenca}>Marcar presença</button> : <button className="participar-detalhes" onClick={handleClickDesmarcarPresenca}>Desmarcar presença</button>
-                }
+
 
 
 
