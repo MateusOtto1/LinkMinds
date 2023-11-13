@@ -9,7 +9,7 @@
 }
 
 .main-detalhes {
-  min-height: 110vh;
+  min-height: 100vh;
   padding-bottom: 5vh;
 }
 
@@ -108,9 +108,7 @@ main {
 
 .text-info {
   font-size: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 90%;
 }
 
 .det-info {
@@ -132,6 +130,36 @@ main {
 
 .btnParticipantes:hover {
   border-color: rgba(78, 204, 163, 0.54);
+}
+
+.locale-info{
+  height: fit-content;
+  padding: 25px 0;
+  gap: .2rem;
+}
+
+.linha-sep{
+  width: 90%;
+  border-radius: 15px;
+  height: 7px;
+  background: #4ECCA3;
+}
+
+@media(max-width:400px){
+  .title-info,
+  .criadopor{
+    font-size: 16px;
+  }
+  .text-info{
+    font-size: 20px;
+  }
+}
+
+@media(max-width:800px){
+  .pfp-det{
+    position: relative;
+    margin: 0;
+  }
 }
 
 @media(min-width: 900px){

@@ -23,6 +23,7 @@ export const AuthGoogleProvider = ({ children }) => {
   useEffect(()=>{
     const loadStorage = async () => {
       const tokenCookie = Cookies.get('token');
+      const email = Cookies.get('email');
       const token2 = tokenCookie;
       if(token2){
         axios.put('https://server-link-minds.vercel.app/token', { email, token2 }).then(result => result).catch(err => console.log(err));
@@ -47,10 +48,12 @@ export const AuthGoogleProvider = ({ children }) => {
         const foto = user.photoURL;
         setFoto(foto);
         Cookies.set('token', token);
+        Cookies.set('email', email);
         setTimeout(() => {
           const cookie = Cookies.get("token");
           if (cookie) {
             Cookies.remove("token");
+            Cookies.remove("email");
           }
         }, 259200000);
         const token2 = token;
@@ -70,6 +73,7 @@ export const AuthGoogleProvider = ({ children }) => {
       setUser(null);
       setToken('');
       Cookies.remove('token');
+      Cookies.remove('email');
     }).catch((error) => {
       console.log(error);
     });

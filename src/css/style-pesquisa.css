@@ -143,6 +143,7 @@
     align-items: center;
     justify-content: center;
     margin-top: 1rem;
+    transition: .2s ease-in-out;
 }
 
 .user-body img{
@@ -151,6 +152,12 @@
     height: 10vh;
     object-fit: cover;
     margin:auto 0;
+    
+}
+
+.user-body:hover{
+    scale: 1.01;
+    cursor: pointer;
 }
 
 .username{

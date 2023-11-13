@@ -110,9 +110,14 @@ const Descricao = (props) => {
                         <p className="title-info">Dia e hora</p>
                         <h1 className="text-info">{props.postSelecionado.data} <span className='verde-span'>/</span> {props.postSelecionado.hora}</h1>
                     </div>
-                    <div class="det-info">
+                    <div class="det-info locale-info">
                         <p className="title-info">Localização</p>
                         <h1 className="text-info">{props.postSelecionado.local}</h1>
+                        <div className="linha-sep"></div>
+                        <h1 className="text-info">{props.postSelecionado.endereco}</h1>
+                    </div>
+                    <div className="det-info">
+                        
                     </div>
                     <button className="det-info btnParticipantes" onClick={(e) => props.handleClickVerParticipantes(e, posts)}>
                         <p className="title-info">Participantes</p>
