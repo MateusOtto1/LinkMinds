@@ -203,7 +203,7 @@ const Criar = (props) => {
                         </div>
 
                         <p className="preencha">{preencha}</p>
-                        <button id="btn-criar" onClick={handleSubmit}>Criar Evento</button>
+                        <button className="btn-criar" onClick={handleSubmit}>Criar Evento</button>
                     </div>
                 </div>
             </>

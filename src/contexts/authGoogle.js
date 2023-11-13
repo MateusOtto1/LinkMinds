@@ -28,7 +28,7 @@ export const AuthGoogleProvider = ({ children }) => {
       }
     };
     loadStorage();
-  }, [])
+  }, [!token]);
 
   function signInGoogle() {
     signInWithPopup(auth, provider)

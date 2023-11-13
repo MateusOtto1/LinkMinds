@@ -68,12 +68,12 @@ const Participantes = (props) => {
                         if (usuario.email == email) {
                             return (
                                 <div className="container-pesquisar">
-                                    <div className="user-body" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)} key={index}>
+                                    <div className="user-body" onClick={(e) => props.handleClickPerfil(e, usuario)} key={index}>
                                         <img src={usuario.foto} alt="" />
                                         <h1 className="username">{usuario.nome}</h1>
 
                                     </div>
-                                    <button className="user-btn" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)}>&gt;</button>
+                                    
                                 </div>
                             )
                         } else {
@@ -84,7 +84,7 @@ const Participantes = (props) => {
                                         <h1 className="username">{usuario.nome}</h1>
 
                                     </div>
-                                    <button className="user-btn" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)}>&gt;</button>
+                                    
                                 </div>
                             )
                         }

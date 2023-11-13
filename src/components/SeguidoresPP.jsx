@@ -70,24 +70,24 @@ const SeguidoresPP = (props) => {
                     {usuariosSeguidores.map((usuario, index) => {
                         if (usuario.email == email) {
                             return (
-                                <div className="container-pesquisar">
-                                    <div className="user-body" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)} key={index}>
+                                <div className="container-pesquisar" key={index}>
+                                    <div className="user-body" onClick={(e) => props.handleClickPerfil(e, usuario)}>
                                         <img src={usuario.foto} alt="" />
                                         <h1 className="username">{usuario.nome}</h1>
 
                                     </div>
-                                    <button className="user-btn" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)}>&gt;</button>
+                                    
                                 </div>
                             )
                         } else {
                             return (
-                                <div className="container-pesquisar">
-                                    <div className="user-body" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)} key={index}>
+                                <div className="container-pesquisar" key={index}>
+                                    <div className="user-body" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)}>
                                         <img src={usuario.foto} alt="" />
                                         <h1 className="username">{usuario.nome}</h1>
 
                                     </div>
-                                    <button className="user-btn" onClick={(e) => props.handleClickPesquisaUsuario(e, usuario)}>&gt;</button>
+                                    
                                 </div>
                             )
                         }

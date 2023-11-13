@@ -180,8 +180,6 @@ const Perfil = (props) => {
                         </div>
                     </section>
                 </div>
-
-
             </div>
 
         </>
