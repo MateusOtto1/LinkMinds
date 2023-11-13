@@ -213,21 +213,31 @@ const Criar = (props) => {
             <>
                 <div className="main-criar">
                     <div className="criar-header" style={{ backgroundImage: `linear-gradient(to top, #181d22, transparent), url(${imagemEvento})` }}></div>
-                    <h1 id="criar-header" data-text="Criar Post">Criar Post</h1>
                     <div id="wrapper-criar">
-                        <div className="body-inp">
-                            <p className="inp-header">Descrição do evento</p>
-                            <p>Opcional</p>
-                            <input type="text" placeholder="Digite Aqui" className="inp-criar" onChange={(e) => setDescricao(e.target.value)} />
+
+                        <div className="header-tipo">
+                            <p>Data</p>
+                            <div className="linha-tipo"></div>
                         </div>
-                        <div className="body-inp">
-                            <p className="inp-header">Data</p>
-                            <input type="date" placeholder="Digite Aqui" className="inp-criar" onChange={(e) => setDataEUA(e.target.value)} />
+                        <div className="editar-input">
+                            <input type="date" placeholder="Digite Aqui" className="input-style" onChange={(e) => setDataEUA(e.target.value)} />
                         </div>
-                        <div className="body-inp">
-                            <p className="inp-header">Horário</p>
-                            <input type="time" placeholder="Digite Aqui" className="inp-criar" onChange={(e) => setHora(e.target.value)} />
+
+                        <div className="header-tipo">
+                            <p>Horário</p>
+                            <div className="linha-tipo"></div>
                         </div>
+                        <div className="editar-input">
+                            <input type="time" placeholder="Digite Aqui" className="input-style" onChange={(e) => setHora(e.target.value)} />
+                        </div>
+                        <div className="header-tipo">
+                            <p>Descrição</p>
+                            <div className="linha-tipo"></div>
+                        </div>
+                        <div className="editar-input">
+                            <input type="text" maxLength="100" placeholder="Digite Aqui" className="input-style" onChange={(e) => setDescricao(e.target.value)} />
+                        </div>
+
                         <p className="preencha">{preencha}</p>
                         <button className="btn-criar" onClick={handleSubmit}>Criar Evento</button>
                     </div>

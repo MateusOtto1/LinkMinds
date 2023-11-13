@@ -116,8 +116,9 @@ const Descricao = (props) => {
                         <div className="linha-sep"></div>
                         <h1 className="text-info">{props.postSelecionado.endereco}</h1>
                     </div>
-                    <div className="det-info">
-                        
+                    <div className="det-info desc">
+                        <p className="title-info">Descrição</p>
+                        <h1 className="text-info">{props.postSelecionado.descricao}</h1>
                     </div>
                     <button className="det-info btnParticipantes" onClick={(e) => props.handleClickVerParticipantes(e, posts)}>
                         <p className="title-info">Participantes</p>

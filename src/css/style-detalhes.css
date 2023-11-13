@@ -145,6 +145,11 @@ main {
   background: #4ECCA3;
 }
 
+.desc{
+  height: fit-content;
+  padding: 25px 0;
+}
+
 @media(max-width:400px){
   .title-info,
   .criadopor{
