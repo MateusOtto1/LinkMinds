@@ -21,10 +21,12 @@ export const AuthGoogleProvider = ({ children }) => {
   const [descricao, setDescricao] = useState('');
 
   useEffect(()=>{
-    const loadStorage = ()=>{
-      const tokenStorage = Cookies.get('token');
-      if(tokenStorage){
-        setToken(tokenStorage);
+    const loadStorage = async () => {
+      const tokenCookie = Cookies.get('token');
+      const token2 = tokenCookie;
+      if(token2){
+        axios.put('https://server-link-minds.vercel.app/token', { email, token2 }).then(result => result).catch(err => console.log(err));
+        setToken(token2);
       }
     };
     loadStorage();

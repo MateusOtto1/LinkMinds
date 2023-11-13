@@ -72,7 +72,7 @@ main {
   background: #4ecca3;
   color: #181c22;
   font-style: italic;
-  font-size: 20px;
+  font-size: 16px;
   display: flex;
   align-items: center;
   border-radius: 15px;
@@ -96,21 +96,21 @@ main {
   border-radius: 15px;
   aspect-ratio: 1/1;
   height: 13vh;
-  margin: 0;
+  position: absolute;
 }
 
 .criadopor,
 .title-info {
   margin-top: -17px;
-  font-size: 20px;
+  font-size: 16px;
+  line-height: normal;
 }
 
 .text-info {
-  font-size: 32px;
+  font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5vw;
 }
 
 .det-info {
@@ -132,4 +132,14 @@ main {
 
 .btnParticipantes:hover {
   border-color: rgba(78, 204, 163, 0.54);
+}
+
+@media(min-width: 900px){
+  .title-info,
+  .criadopor{
+    font-size: 20px;
+  }
+  .text-info{
+    font-size: 24px;
+  }
 }
