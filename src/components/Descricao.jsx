@@ -13,6 +13,7 @@ const Descricao = (props) => {
     const [posts, setPosts] = useState([]);
     const [presencaPost, setPresencaPost] = useState('');
     const [meuPost, setMeuPost] = useState([false]);
+    const [usuario, setUsuario] = useState({});
 
     useEffect(() => {
         const getUsuario = async () => {
@@ -47,6 +48,23 @@ const Descricao = (props) => {
         };
         getPostPresenca();
     });
+
+    useEffect(() => {
+        const getUsuarioSelecionado = async () => {
+            const token = Cookies.get("token");
+            const email = props.postSelecionado.email;
+            const headers = {
+                "x-access-token": token,
+                email: email,
+            };
+            const response = await axios.get(
+                "https://server-link-minds.vercel.app/usuarioSelecionado",
+                { headers }
+            );
+            setUsuario(response.data);
+        };
+        getUsuarioSelecionado();
+    }, [usuario.length == 0]);
 
     function handleClickPresenca() {
         const presenca = presencaPost + 1;
@@ -89,6 +107,7 @@ const Descricao = (props) => {
         axios.delete('https://server-link-minds.vercel.app/excluirPost', { data: { token2, evento, data, hora, local, nome } }).then(result => console.log(result)).catch(err => console.log(err));
         navigate('/');
     }
+
     return (
         <>
             <div className='main-detalhes'>
@@ -99,7 +118,7 @@ const Descricao = (props) => {
                             {props.postSelecionado.evento}
                         </h1>
                     </div>
-                    <div className="profile-detalhes">
+                    <div className="profile-detalhes" onClick={(e) => props.postSelecionado.email === emailUsuariosPresenca ? props.handleClickPerfil(e) : props.handleClickPesquisaUsuario(e, usuario)}>
                         <img src={props.postSelecionado.foto} alt="" class="pfp-det" />
                         <div className="profile-text-det">
                             <p className="criadopor">Criado por</p>
@@ -110,12 +129,14 @@ const Descricao = (props) => {
                         <p className="title-info">Dia e hora</p>
                         <h1 className="text-info">{props.postSelecionado.data} <span className='verde-span'>/</span> {props.postSelecionado.hora}</h1>
                     </div>
-                    <div class="det-info locale-info">
-                        <p className="title-info">Localização</p>
-                        <h1 className="text-info">{props.postSelecionado.local}</h1>
-                        <div className="linha-sep"></div>
-                        <h1 className="text-info">{props.postSelecionado.endereco}</h1>
-                    </div>
+                    {props.postSelecionado.local !== "" && (
+                        <div class="det-info locale-info">
+                            <p className="title-info">Localização</p>
+                            <h1 className="text-info">{props.postSelecionado.local}</h1>
+                            <div className="linha-sep"></div>
+                            <h1 className="text-info">{props.postSelecionado.endereco}</h1>
+                        </div>
+                    )}
                     <div className="det-info desc">
                         <p className="title-info">Descrição</p>
                         <h1 className="text-info">{props.postSelecionado.descricao}</h1>
@@ -129,59 +150,6 @@ const Descricao = (props) => {
                             verificaPresenca == false ? <button className="btn-criar" onClick={handleClickPresenca}>Marcar presença</button> : <button className="btn-criar" onClick={handleClickDesmarcarPresenca}>Desmarcar presença</button>
                     }
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                {/* <header>
-                    <img src={props.postSelecionado.imagemEvento} alt="" className="header-img-detalhes" />
-                    <h1 className="header-title-detalhes">{props.postSelecionado.evento}</h1>
-                </header>
-
-                <div className="detalhes-container">
-                    <div className="top-detalhes">
-                        <div className="foto-container">
-                            <img src={props.postSelecionado.foto} alt="" className="foto" />
-                        </div>
-
-                        <div className="top-text-detalhes">
-                            <h1 className="criado">Criado por <span className="username-span">{props.postSelecionado.nome}</span></h1>
-                            <h2 className="marcado">Marcado para o dia {props.postSelecionado.data} as {props.postSelecionado.hora}</h2>
-                            <h2 className="participantes-top"><img src={boneco} alt="" />{presencaPost} participantes</h2>
-                        </div>
-                    </div>
-                    <div className="local-detalhes">
-                        <h1 className="localizacao">LOCALIZAÇÃO</h1>
-                        <img src={fotoCimol} alt="" className="local-img" />
-                        <h1 className="nome-local">{props.postSelecionado.local}</h1>
-                    </div>
-                </div>
-
-                <button className="btnParticipantes" onClick={(e) => props.handleClickVerParticipantes(e, posts)}>Ver Participantes</button>
-
-                {
-                    meuPost == true ? <button className="participar-detalhes" onClick={handleClickExcluirPost}>Excluir evento</button> :
-                        verificaPresenca == false ? <button className="participar-detalhes" onClick={handleClickPresenca}>Marcar presença</button> : <button className="participar-detalhes" onClick={handleClickDesmarcarPresenca}>Desmarcar presença</button>
-                } */}
             </div>
 
         </>

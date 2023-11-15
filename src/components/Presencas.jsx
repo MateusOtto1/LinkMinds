@@ -61,7 +61,6 @@ const Presencas = (props) => {
                         const mes = new Date().getMonth() + 1;
                         const ano = new Date().getFullYear();
                         if (dataPost[1] >= mes && dataPost[2] >= ano) {
-
                             return (
                                 <div className="card-body" key={index}>
                                     <div className="card" style={{ backgroundImage: `url(${post.imagemEvento})` }}>

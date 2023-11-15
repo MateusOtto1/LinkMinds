@@ -58,7 +58,7 @@ const Usuarios = (props) => {
     useEffect(() => {
         const pesquisaInput = async () => {
             const usuariosPesquisa = usuarios.filter((usuario) => usuario.nome.toLowerCase().includes(busca.toLowerCase()));
-            const postsPesquisa = posts.filter((post) => post.evento.toLowerCase().includes(busca.toLowerCase()));
+            const postsPesquisa = posts.filter((post) => post.evento.toLowerCase().includes(busca.toLowerCase()) || post.local.toLowerCase().includes(busca.toLowerCase()) || post.nome.toLowerCase().includes(busca.toLowerCase()));
             setPesquisa(usuariosPesquisa);
             setPesquisaPost(postsPesquisa);
         };

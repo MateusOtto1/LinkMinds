@@ -202,7 +202,7 @@ const Criar = (props) => {
                             <input type="text" maxLength="100" placeholder="Digite Aqui" className="input-style" onChange={(e) => setDescricao(e.target.value)} />
                         </div>
 
-                        <p className="preencha">{preencha}</p>
+                        {preencha && <p className="preencha">{preencha}</p>}
                         <button className="btn-criar" onClick={handleSubmit}>Criar Evento</button>
                     </div>
                 </div>
@@ -238,7 +238,7 @@ const Criar = (props) => {
                             <input type="text" maxLength="100" placeholder="Digite Aqui" className="input-style" onChange={(e) => setDescricao(e.target.value)} />
                         </div>
 
-                        <p className="preencha">{preencha}</p>
+                        {preencha && <p className="preencha">{preencha}</p>}
                         <button className="btn-criar" onClick={handleSubmit}>Criar Evento</button>
                     </div>
                 </div>

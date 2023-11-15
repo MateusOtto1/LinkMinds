@@ -7,13 +7,14 @@ import Cookies from 'js-cookie';
 const Cadastro = () => {
     const [apelido, setApelido] = useState('');
     const [idade, setIdade] = useState('');
-    const [interesses, setInteresses] = useState([]);
     const [descricao, setDescricao] = useState('');
     const [preencha, setPreencha] = useState('');
+    const [discord, setDiscord] = useState('');
     const [usuarios, setUsuarios] = useState({});
     const [listaInteresse, setListaInteresse] = useState([]);
-    const [pesquisaInteresse, setPesquisaInteresse] = useState([]);
+    const [pesquisaInteresse, setPesquisaInteresse] = useState('');
     const [pesquisa, setPesquisa] = useState([]);
+    const [interessesSelecionados, setInteressesSelecionados] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -26,7 +27,7 @@ const Cadastro = () => {
             setUsuarios(response.data);
             const response2 = await axios.get('https://server-link-minds.vercel.app/listaInteresse', { headers });
             setListaInteresse(response2.data);
-            if (pesquisaInteresse == '') {
+            if (pesquisaInteresse === '') {
                 setPesquisa(response2.data);
             }
         };
@@ -35,43 +36,53 @@ const Cadastro = () => {
 
     useEffect(() => {
         const checkInput = async () => {
-            if (apelido == '' || idade == '' || interesses == '' || descricao == '') {
+            if (apelido === '' || idade === '' || interessesSelecionados.length === 0 || descricao === '') {
                 setPreencha('Preencha todos os campos');
             } else {
                 setPreencha('');
             }
         };
         checkInput();
-    }, [apelido, idade, interesses, descricao]);
+    }, [apelido, idade, interessesSelecionados, descricao, discord]);
 
     const handleChangeInteresses = (e) => {
         const valorCheckbox = e.target.value;
-        const indice = interesses.indexOf(valorCheckbox);
         if (e.target.checked) {
-            setInteresses([...interesses, valorCheckbox]);
+            setInteressesSelecionados([...interessesSelecionados, valorCheckbox]);
         } else {
-            setInteresses(interesses.filter((item) => item !== valorCheckbox));
+            setInteressesSelecionados(interessesSelecionados.filter((item) => item !== valorCheckbox));
         }
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (apelido == '' || idade == '' || interesses.length == 0 || descricao == '') {
-            setPreencha('Preencha todos os campos');
-        } else {
-            const token2 = Cookies.get('token');
-            await axios.put('https://server-link-minds.vercel.app/usuario', { token2, apelido, idade, interesses, descricao }).then(result => console.log(result)).catch(err => console.log(err));
-            navigate('/');
-        }
+    const handlePesquisaInteresse = (e) => {
+        const pesquisa = e.target.value;
+        setPesquisaInteresse(pesquisa);
     };
 
+    const handleBlurPesquisa = () => {
+        if (pesquisaInteresse === '') {
+            setPesquisa(listaInteresse);
+        }
+    };
+    
     useEffect(() => {
         const pesquisaInput = async () => {
             const interessesPesquisa = listaInteresse.filter((interesse) => interesse.nome.toString().toLowerCase().includes(pesquisaInteresse.toLowerCase()));
             setPesquisa(interessesPesquisa);
         };
         pesquisaInput();
-    }, [pesquisaInteresse]);
+    }, [pesquisaInteresse, listaInteresse]);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (apelido === '' || idade === '' || interessesSelecionados.length === 0 || descricao === '') {
+            setPreencha('Preencha todos os campos');
+        } else {
+            const token2 = Cookies.get('token');
+            await axios.put('https://server-link-minds.vercel.app/usuario', { token2, apelido, idade, interesses: interessesSelecionados, descricao, discord }).then(result => console.log(result)).catch(err => console.log(err));
+            navigate('/');
+        }
+    };
 
     return (
         <>
@@ -107,6 +118,13 @@ const Cadastro = () => {
                         <input type="number" name="idade" className="input-style" placeholder="Sua Idade" onChange={(e) => setIdade(e.target.value)} />
                     </div>
                     <div className="header-tipo">
+                        <p>Discord</p>
+                        <div className="linha-tipo"></div>
+                    </div>
+                    <div className="editar-input">
+                        <input type="text" maxLength="10" name="discord" className="input-style" placeholder="Seu Discord" onChange={(e) => setDiscord(e.target.value)} />
+                    </div>
+                    <div className="header-tipo">
                         <p>Bio</p>
                         <div className="linha-tipo"></div>
                     </div>
@@ -118,28 +136,25 @@ const Cadastro = () => {
                         <div className="linha-tipo"></div>
                     </div>
                     <div className="interesse-cad-input">
-                        
-                        <input type="text" placeholder="Procurar Interesse..." className="input-style" value={pesquisaInteresse} onChange={(e) => setPesquisaInteresse(e.target.value)} />
+                    <div className="editar-input">
+                        <input type="text" placeholder="Procurar Interesse..." className="input-style" value={pesquisaInteresse} onChange={handlePesquisaInteresse} onBlur={handleBlurPesquisa} />
+                    </div>
                         <div className="inter-container inter-editar">
                             {
                                 pesquisa.map((interesse, index) => {
+                                    const isChecked = interessesSelecionados.includes(interesse.nome);
                                     return (
-
                                         <label className="interesse-card inter-bio-cont" key={index} style={{ backgroundImage: `url(${interesse.imagem})` }}>
-                                            <input type="checkbox" name="checkbox" className="check-btn" value={interesse.nome} onChange={handleChangeInteresses} />
+                                            <input type="checkbox" name="checkbox" className="check-btn" value={interesse.nome} checked={isChecked} onChange={handleChangeInteresses} />
                                             <p className="inter-title" >{interesse.nome}</p>
                                         </label>
-
-
                                     )
                                 })
-
                             }
                         </div>
 
                     </div>
-
-                    <p className="preencha">{preencha}</p>
+                    {preencha && <p className="preencha">{preencha}</p>}
                     <button className="participar cad-part" onClick={handleSubmit}>Confirmar</button>
 
                 </div>
@@ -147,6 +162,5 @@ const Cadastro = () => {
             </div>
         </>
     );
-
 }
 export default Cadastro;
