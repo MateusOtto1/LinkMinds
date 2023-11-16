@@ -90,6 +90,13 @@ main {
   display: flex;
   flex-direction: row;
   align-items: center;
+  transition: .2s ease-in-out;
+}
+
+.profile-detalhes:hover{
+  background: #1a1f29;
+  cursor: pointer;
+  scale: 105%;
 }
 
 .pfp-det {

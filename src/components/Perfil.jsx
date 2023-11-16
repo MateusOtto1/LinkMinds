@@ -6,6 +6,7 @@ import "../css/style-perfil.css";
 import Cookies from 'js-cookie';
 import { HashLoader } from 'react-spinners';
 import { BeatLoader } from 'react-spinners';
+import Discord from "../imagens/discord.png";
 
 const Perfil = (props) => {
     const { signOut } = useContext(AuthGoogleContext);
@@ -63,9 +64,9 @@ const Perfil = (props) => {
 
     const [loading, setLoading] = useState(true);
 
-                const handleImageLoad = () => {
-                    setLoading(false);
-                };
+    const handleImageLoad = () => {
+        setLoading(false);
+    };
 
     return (
         <>
@@ -73,51 +74,53 @@ const Perfil = (props) => {
                 <div className="wrapper-perfil-top">
 
 
-                <div className="img-perfil" style={{backgroundColor: '#181c22',  backgroundImage: `url(${novaUrl})` }} onLoad={handleImageLoad}>
-                    
-                </div>
+                    <div className="img-perfil" style={{ backgroundColor: '#181c22', backgroundImage: `url(${novaUrl})` }} onLoad={handleImageLoad}>
+
+                    </div>
 
                     <div className="wrapper-perfil-left">
 
                         <section className="conteudo">
                             <div className="top-perfil">
                                 <h1 className="nome-perfil">{usuarios.apelido
-                            ? usuarios.apelido
-                            : <BeatLoader color={"#fff"} loading={true} size={10} />
-                        }</h1>
+                                    ? usuarios.apelido
+                                    : <BeatLoader color={"#fff"} loading={true} size={10} />
+                                }</h1>
                                 <h2 className="idade-perfil">{usuarios.idade
-                            ? usuarios.idade
-                            : <BeatLoader color={"#fff"} loading={true} size={10} />
-                        } Anos</h2>
+                                    ? usuarios.idade
+                                    : <BeatLoader color={"#fff"} loading={true} size={10} />
+                                } Anos</h2>
                             </div>
                         </section>
                         <section className="bio">
                             <h1 className="bio-header">Bio</h1>
                             <h1 className="bio-text"><span className="verde-aspas">"</span>{usuarios.descricao
-                            ? usuarios.descricao
-                            : <BeatLoader color={"#fff"} loading={true} size={10} />
-                        }<span className="verde-aspas">"</span></h1>
-                        </section>
-                        <div className="btn-editar" onClick={(e) => props.handleClickAlterarBio(e)}>
-                            <img src={lapis} alt="" />
-                            <button className="btn">Editar Perfil</button>
-                        </div>
-                        <div className="seg-container">
-                            <button className="btn-seg" id="deslogar" onClick={signOut}>Deslogar</button>
-                            <div className="seg-c-2">
-                                <button className="btn-seg" onClick={(e) => props.handleClickSeguidores(e)}>Seguidores</button>
-                                <button className="btn-seg" onClick={(e) => props.handleClickSeguindo(e)}>Seguindo</button>
+                                ? usuarios.descricao
+                                : <BeatLoader color={"#fff"} loading={true} size={10} />
+                            }<span className="verde-aspas">"</span></h1>
+                            <div className="seg-container">
+                                {usuarios.discord ? <div className="dc"><img src={Discord} alt="" /><p>{usuarios.discord}</p></div> : null}
+                                <div className="seg-c-2">
+                                    <button className="btn-seg" onClick={(e) => props.handleClickSeguidores(e)}>Seguidores</button>
+                                    <button className="btn-seg" onClick={(e) => props.handleClickSeguindo(e)}>Seguindo</button>
+                                </div>
+                                <div className="seg-c-2" onClick={(e) => props.handleClickAlterarBio(e)}>
+                                    <img src={lapis} className="lapis" />
+                                    <button className="btn-seg">Editar Perfil</button>
+                                </div>
                             </div>
-
-
-                        </div>
+                        </section>
 
                     </div>
 
 
+
                 </div>
 
+
+
                 <div className="wrapper-perfil-bottom">
+
                     <section className="meus-interesses">
                         <div className="header-perfil-container">
                             <h1 className="inter-header">Interesses</h1>
@@ -179,7 +182,11 @@ const Perfil = (props) => {
 
                         </div>
                     </section>
+                    
                 </div>
+                <div className="seg-container">
+                        <button className="btn-seg" id="deslogar" onClick={signOut}>Deslogar</button>
+                    </div>
             </div>
 
         </>

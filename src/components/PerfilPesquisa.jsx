@@ -4,6 +4,7 @@ import axios from "axios";
 import "../css/style-perfil.css";
 import Cookies from "js-cookie";
 import { BeatLoader } from 'react-spinners';
+import Discord from "../imagens/discord.png";
 
 const PerfilPesquisa = (props) => {
     const navigate = useNavigate();
@@ -175,6 +176,7 @@ const PerfilPesquisa = (props) => {
                             </h1>
                         </section>
                         <div className="seg-container">
+                        {props.usuarioSelecionado.discord ? <div className="dc"><img src={Discord} alt="" /><p>{props.usuarioSelecionado.discord}</p></div> : null}
                             {verificaSeguir ? (
                                 <button
                                     className="btn-seg"

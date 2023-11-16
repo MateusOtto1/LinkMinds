@@ -92,40 +92,6 @@
   text-decoration: none;
 }
 
-.btn-editar {
-  margin-top: 1rem;
-  display: flex;
-  width: 15.5625rem;
-  cursor: pointer;
-  border-radius: 1.5625rem;
-  background: #232931;
-  transition: 0.2s ease-in-out;
-}
-
-.btn-editar img {
-  margin-left: 0;
-  height: 100%;
-}
-
-.btn {
-  border: none;
-  margin-right: 0;
-  width: 11.5625rem;
-  text-align: center;
-  border-radius: 1.5625rem;
-  background: #393e46;
-  align-items: center;
-  padding: 0.2rem;
-  display: flex;
-  color: #fff;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  font-weight: 700;
-  text-decoration: underline;
-  text-decoration-color: #4ecca3;
-}
-
 .meus-interesses {
   width: 100%;
   margin-top: 1rem;
@@ -253,6 +219,7 @@
 .inter-container {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
+  justify-content: start;
   width: 100%;
   row-gap: 2vh;
 }
@@ -280,7 +247,7 @@
 }
 
 .seg-container {
-  width: 70%;
+  width: 90%;
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
@@ -316,6 +283,12 @@
   color: #4ecca3;
   border: 4px #4ecca3 solid;
 }
+.lapis{
+  border-radius: 15px;
+  background: #4ecca294;
+  height: 6vh;
+  padding: 5px;
+}
 #deslogar {
   border: 2px rgba(163, 66, 66, 0.575) solid;
 }
@@ -324,15 +297,36 @@
   color: rgba(237, 89, 89, 0.575);
 }
 
-@media(max-width: 800px) {
-  .seg-container{
-    width: 90%;
-  }
+.dc{
+  width: 100%;
+  height: 7vh;
+  color: #fff;
+  font-weight: 700;
+  font-size: 20px;
+  border-radius: 15px;
+  background: linear-gradient(77deg, #5662F6 0%, #2A408B 42.71%, #1E3870 64.81%, #102D4E 94.26%);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  transition: .2s ease-in-out;
+}
+.dc img{
+  height: 90%;
+  margin: 0;
+  margin-left: 15px;
 }
 
-.btn-editar:hover {
-  background: #4ecca3;
-  box-shadow: 0px 0px 15px 0px rgba(78, 204, 163, 0.5);
+.dc:hover{
+  scale: 105%;
+  box-shadow: 0px 10px 33px 0px rgba(86, 98, 246, 0.17);
+}
+
+@media (max-width: 800px) {
+  .seg-container {
+    width: 90%;
+  }
 }
 
 .header-perfil-container {
@@ -408,7 +402,7 @@
       63px 167px 107px 0px rgba(35, 41, 49, 0.05),
       111px 297px 127px 0px rgba(35, 41, 49, 0.01),
       174px 464px 139px 0px rgba(35, 41, 49, 0);
-    height: 50vh;
+    height: 55vh;
     margin-top: 0;
   }
   .wrapper-perfil-bottom {
@@ -426,15 +420,9 @@
   .inter-header {
     font-size: 3.5rem;
   }
-  .btn-editar {
-    scale: 100%;
-    margin-top: .7rem;
-    background: #1c2129;
-  }
   .img-perfil {
     flex: 1;
-    width: 50vw;
-    aspect-ratio: 1 / 1;
+    height: 55vh;
     border-radius: 1.875rem;
     box-shadow: 0px 0px 0px 0px rgba(35, 41, 49, 0.1),
       7px 19px 44px 0px rgba(35, 41, 49, 0.1),
@@ -442,14 +430,12 @@
       63px 167px 107px 0px rgba(35, 41, 49, 0.05),
       111px 297px 127px 0px rgba(35, 41, 49, 0.01),
       174px 464px 139px 0px rgba(35, 41, 49, 0);
-    width: fit-content;
   }
   .nome-perfil {
     font-size: 3vw;
   }
   .bio-header {
     font-size: 3vw;
-
   }
   .idade-perfil {
     margin-left: 1rem;
@@ -480,6 +466,7 @@
 
   .inter-container::-webkit-scrollbar,
   .user-container::-webkit-scrollbar,
+  #posts::-webkit-scrollbar,
   .seus::-webkit-scrollbar {
     visibility: visible;
     display: block;

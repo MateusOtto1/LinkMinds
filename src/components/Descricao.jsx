@@ -146,8 +146,8 @@ const Descricao = (props) => {
                         <h1 className="text-info"><img src={boneco} alt="" />{presencaPost} participantes</h1>
                     </button>
                     {
-                        meuPost == true ? <button className="btn-criar" onClick={handleClickExcluirPost}>Excluir evento</button> :
-                            verificaPresenca == false ? <button className="btn-criar" onClick={handleClickPresenca}>Marcar presença</button> : <button className="btn-criar" onClick={handleClickDesmarcarPresenca}>Desmarcar presença</button>
+                        meuPost == true ? <button className="btn-criar post-btn" onClick={handleClickExcluirPost}>Excluir evento</button> :
+                            verificaPresenca == false ? <button className="btn-criar post-btn" onClick={handleClickPresenca}>Marcar presença</button> : <button className="btn-criar post-btn" onClick={handleClickDesmarcarPresenca}>Desmarcar presença</button>
                     }
                 </div>
             </div>

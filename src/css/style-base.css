@@ -285,6 +285,13 @@ nav{
     }
 }
 
+@media(min-width: 800px) and (max-width: 1500px){
+    #navdentro{
+        margin-top: 0;
+        scale: .9;
+    }
+}
+
 .verde-span{
     color: #4ECCA3;
     text-decoration: none;
