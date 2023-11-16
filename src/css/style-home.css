@@ -65,7 +65,7 @@
 }
 
 .card {
-  height: 55vh;
+  height: 45vh;
   background-size: cover;
   background-position: center;
   border-radius: 15px;
@@ -155,10 +155,6 @@ h3 {
 }
 
 @media (max-width: 500px) {
-  .card-top {
-    width: 90%;
-    margin: 2vh auto;
-  }
   .participar {
     height: 8vh;
     font-size: 20px;
@@ -166,7 +162,6 @@ h3 {
 }
 @media (max-width: 340px) {
   .card-top {
-    width: 100%;
     margin: 0 0;
   }
   .nome-card {
@@ -240,10 +235,9 @@ h3 {
 }
 
 .card-top {
-  margin-top: 15px;
-  margin-left: 15px;
+  margin: 15px;
   border-radius: 15px;
-  width: 80%;
+  width: 100%;
   height: 14vh;
   background: rgba(35, 41, 49, 0.874);
   display: flex;
