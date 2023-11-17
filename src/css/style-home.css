@@ -77,7 +77,7 @@
 }
 
 .pfp {
-  margin: 3px;
+  margin-left: 15px;
   border-radius: 15px;
   height: 10vh;
   flex: 1;
@@ -237,7 +237,6 @@ h3 {
   margin-left: 0;
   border-radius: 15px;
   width: 100%;
-  padding: 0 10px;
   height: 14vh;
   background: rgba(35, 41, 49, 0.874);
   display: flex;
