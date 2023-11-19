@@ -8,7 +8,7 @@ import Cookies from 'js-cookie';
 const Descricao = (props) => {
     const navigate = useNavigate();
     const [emailUsuariosPresenca, setEmailUsuariosPresenca] = useState('');
-    const [verificaPresenca, setVerificaPresenca] = useState([false]);
+    const [verificaPresenca, setVerificaPresenca] = useState(false);
     const [usuarioPosts, setUsuarioPosts] = useState([]);
     const [posts, setPosts] = useState([]);
     const [presencaPost, setPresencaPost] = useState('');
@@ -46,7 +46,7 @@ const Descricao = (props) => {
             } else {
                 setMeuPost(false);
             }
-            await usuarioPosts.find((post) => post == emailUsuariosPresenca) ? setVerificaPresenca(true) : setVerificaPresenca(false);
+            usuarioPosts.find((post) => post == emailUsuariosPresenca) ? setVerificaPresenca(true) : setVerificaPresenca(false);
         };
         getPostPresenca();
     });
@@ -68,8 +68,8 @@ const Descricao = (props) => {
         getUsuarioSelecionado();
     }, [usuario.length == 0]);
 
-    async function handleClickPresenca() {
-        if (await verificaPresenca == false) {
+    function handleClickPresenca() {
+        if (verificaPresenca == false) {
             const presenca = presencaPost + 1;
             const evento = props.postSelecionado.evento;
             const data = props.postSelecionado.data;
@@ -85,8 +85,8 @@ const Descricao = (props) => {
         }
     };
 
-    async function handleClickDesmarcarPresenca() {
-        if (await verificaPresenca == true) {
+    function handleClickDesmarcarPresenca() {
+        if (verificaPresenca == true) {
             const presenca = presencaPost - 1;
             const evento = props.postSelecionado.evento;
             const data = props.postSelecionado.data;
@@ -155,7 +155,7 @@ const Descricao = (props) => {
                     </button>
                     {
                         meuPost == true ? <button className="btn-criar post-btn" onClick={handleClickExcluirPost}>Excluir evento</button> :
-                            verificaPresenca == false ? <button className="btn-criar post-btn" onClick={handleClickPresenca}>Marcar presença</button> : <button className="btn-criar post-btn" onClick={handleClickDesmarcarPresenca}>Desmarcar presença</button>
+                            verificaPresenca == true ? <button className="btn-criar post-btn" onClick={handleClickDesmarcarPresenca}>Desmarcar presença</button> : <button className="btn-criar post-btn" onClick={handleClickPresenca}>Marcar presença</button>
                     }
                 </div>
             </div>
