@@ -101,15 +101,18 @@ const PerfilPesquisa = (props) => {
         axios.put("https://server-link-minds.vercel.app/seguindo", {
             token2,
             email,
-            usuariosSeguindo,
+            usuariosSeguindo
         });
-
+        const nome = usuario.nome;
         const usuariosSeguidores = props.usuarioSelecionado.usuariosSeguidores;
+        const apelido = props.usuarioSelecionado.apelido;
         usuariosSeguidores.push(email);
-        axios.put("https://server-link-minds.vercel.app/seguidores", {
+        axios.put("https://server-link-minds.vercel.app/seguir", {
             token2,
             usuarioSelecionadoEmail,
             usuariosSeguidores,
+            nome,
+            apelido
         });
         navigate("/");
     };
@@ -124,7 +127,7 @@ const PerfilPesquisa = (props) => {
         axios.put("https://server-link-minds.vercel.app/seguindo", {
             token2,
             email,
-            usuariosSeguindo,
+            usuariosSeguindo
         });
 
         const usuariosSeguidores = props.usuarioSelecionado.usuariosSeguidores;
@@ -133,7 +136,7 @@ const PerfilPesquisa = (props) => {
         axios.put("https://server-link-minds.vercel.app/seguidores", {
             token2,
             usuarioSelecionadoEmail,
-            usuariosSeguidores,
+            usuariosSeguidores
         });
         navigate("/");
     };
