@@ -66,35 +66,41 @@ const Descricao = (props) => {
         getUsuarioSelecionado();
     }, [usuario.length == 0]);
 
-    function handleClickPresenca() {
-        const presenca = presencaPost + 1;
-        const evento = props.postSelecionado.evento;
-        const data = props.postSelecionado.data;
-        const hora = props.postSelecionado.hora;
-        const local = props.postSelecionado.local;
-        const nome = props.postSelecionado.nome;
-        const usuariosPresenca = props.postSelecionado.usuariosPresenca;
-        usuariosPresenca.push(emailUsuariosPresenca);
-        const token2 = Cookies.get('token');
-        axios.put('https://server-link-minds.vercel.app/postsPresenca', { token2, presenca, evento, data, hora, local, nome, usuariosPresenca }).then(result => console.log(result)).catch(err => console.log(err));
-        navigate('/');
+    async function handleClickPresenca() {
+        if (await verificaPresenca == false) {
+            const presenca = presencaPost + 1;
+            const evento = props.postSelecionado.evento;
+            const data = props.postSelecionado.data;
+            const hora = props.postSelecionado.hora;
+            const local = props.postSelecionado.local;
+            const nome = props.postSelecionado.nome;
+            const email = props.postSelecionado.email;
+            const usuariosPresenca = props.postSelecionado.usuariosPresenca;
+            usuariosPresenca.push(emailUsuariosPresenca);
+            const token2 = Cookies.get('token');
+            axios.put('https://server-link-minds.vercel.app/postsMarcarPresenca', { token2, presenca, evento, data, hora, local, nome, usuariosPresenca, email }).then(result => console.log(result)).catch(err => console.log(err));
+            navigate('/');
+        }
     };
 
-    function handleClickDesmarcarPresenca() {
-        const presenca = presencaPost - 1;
-        const evento = props.postSelecionado.evento;
-        const data = props.postSelecionado.data;
-        const hora = props.postSelecionado.hora;
-        const local = props.postSelecionado.local;
-        const nome = props.postSelecionado.nome;
-        const usuariosPresenca = props.postSelecionado.usuariosPresenca;
-        const index = usuariosPresenca.indexOf(emailUsuariosPresenca);
-        if (index > -1) {
-            usuariosPresenca.splice(index, 1);
+    async function handleClickDesmarcarPresenca() {
+        if (await verificaPresenca == true) {
+            const presenca = presencaPost - 1;
+            const evento = props.postSelecionado.evento;
+            const data = props.postSelecionado.data;
+            const hora = props.postSelecionado.hora;
+            const local = props.postSelecionado.local;
+            const nome = props.postSelecionado.nome;
+            const email = props.postSelecionado.email;
+            const usuariosPresenca = props.postSelecionado.usuariosPresenca;
+            const index = usuariosPresenca.indexOf(emailUsuariosPresenca);
+            if (index > -1) {
+                usuariosPresenca.splice(index, 1);
+            }
+            const token2 = Cookies.get('token');
+            axios.put('https://server-link-minds.vercel.app/postsDesmarcarPresenca', { token2, presenca, evento, data, hora, local, nome, usuariosPresenca, email }).then(result => console.log(result)).catch(err => console.log(err));
+            navigate('/');
         }
-        const token2 = Cookies.get('token');
-        axios.put('https://server-link-minds.vercel.app/postsPresenca', { token2, presenca, evento, data, hora, local, nome, usuariosPresenca }).then(result => console.log(result)).catch(err => console.log(err));
-        navigate('/');
     }
 
     function handleClickExcluirPost() {

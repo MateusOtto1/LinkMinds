@@ -1,5 +1,6 @@
 import "../css/style-base.css";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Perfil from "./Perfil";
 import Home from "./Home";
@@ -46,6 +47,7 @@ const NavBar = () => {
     const [seguidoresPP, setSeguidoresPP] = useState(false);
     const [seguindoPP, setSeguindoPP] = useState(false);
     const [tipoEvento, setTipoEvento] = useState(false);
+    const navigate = useNavigate();
 
     const [postSelecionado, setPostSelecionado] = useState({});
     const [usuarioSelecionado, setUsuarioSelecionado] = useState({});
@@ -115,11 +117,13 @@ const NavBar = () => {
             }
             const response = await axios.get('https://server-link-minds.vercel.app/usuarioInfo', { headers });
             setUsuarios(response.data);
-            setNome(response.data.nome);
-
+            setNome(usuarios.nome);
+            if(usuarios.apelido == ""){
+                navigate('/Cadastro');
+            }
         };
         getUsuario();
-    }, []);
+    }, [nome == '']);
 
     function handleClickHome() {
         setHome(true);

@@ -125,7 +125,7 @@ const Bio = () => {
                         <div className="linha-tipo"></div>
                     </div>
                     <div className="editar-input">
-                        <input type="text" maxLength="10" name="discord" className="input-style" defaultValue={usuarios.discord} placeholder="Seu Discord" onChange={(e) => setDiscord(e.target.value)} />
+                        <input type="text" maxLength="20" name="discord" className="input-style" defaultValue={usuarios.discord} placeholder="Seu Discord" onChange={(e) => setDiscord(e.target.value)} />
                     </div>
                     <div className="header-tipo">
                         <p>Bio</p>

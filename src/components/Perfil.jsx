@@ -112,12 +112,7 @@ const Perfil = (props) => {
                         </section>
 
                     </div>
-
-
-
                 </div>
-
-
 
                 <div className="wrapper-perfil-bottom">
 

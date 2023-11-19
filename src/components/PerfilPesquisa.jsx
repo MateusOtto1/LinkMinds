@@ -176,7 +176,7 @@ const PerfilPesquisa = (props) => {
                             </h1>
                         </section>
                         <div className="seg-container">
-                        {props.usuarioSelecionado.discord ? <div className="dc"><img src={Discord} alt="" /><p>{props.usuarioSelecionado.discord}</p></div> : null}
+                        {props.usuarioSelecionado.discord ? <div className="dc" onClick={() => window.open(`https://discord.com/users/${props.usuarioSelecionado.discord}, '_blank'`)} ><img src={Discord} alt="" /><p>{props.usuarioSelecionado.discord}</p></div> : null}
                             {verificaSeguir ? (
                                 <button
                                     className="btn-seg"
