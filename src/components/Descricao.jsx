@@ -66,8 +66,8 @@ const Descricao = (props) => {
         getUsuarioSelecionado();
     }, [usuario.length == 0]);
 
-    async function handleClickPresenca() {
-        if (await verificaPresenca == false) {
+    function handleClickPresenca() {
+        if (verificaPresenca == false) {
             const presenca = presencaPost + 1;
             const evento = props.postSelecionado.evento;
             const data = props.postSelecionado.data;
@@ -83,8 +83,8 @@ const Descricao = (props) => {
         }
     };
 
-    async function handleClickDesmarcarPresenca() {
-        if (await verificaPresenca == true) {
+    function handleClickDesmarcarPresenca() {
+        if (verificaPresenca == true) {
             const presenca = presencaPost - 1;
             const evento = props.postSelecionado.evento;
             const data = props.postSelecionado.data;
