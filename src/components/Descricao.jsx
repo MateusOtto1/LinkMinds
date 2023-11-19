@@ -46,7 +46,7 @@ const Descricao = (props) => {
             } else {
                 setMeuPost(false);
             }
-            usuarioPosts.find((post) => post == emailUsuariosPresenca) ? setVerificaPresenca(true) : setVerificaPresenca(false);
+            await usuarioPosts.find((post) => post == emailUsuariosPresenca) ? setVerificaPresenca(true) : setVerificaPresenca(false);
         };
         getPostPresenca();
     });
@@ -68,8 +68,8 @@ const Descricao = (props) => {
         getUsuarioSelecionado();
     }, [usuario.length == 0]);
 
-    function handleClickPresenca() {
-        if (verificaPresenca == false) {
+    async function handleClickPresenca() {
+        if (await verificaPresenca == false) {
             const presenca = presencaPost + 1;
             const evento = props.postSelecionado.evento;
             const data = props.postSelecionado.data;
@@ -85,8 +85,8 @@ const Descricao = (props) => {
         }
     };
 
-    function handleClickDesmarcarPresenca() {
-        if (verificaPresenca == true) {
+    async function handleClickDesmarcarPresenca() {
+        if (await verificaPresenca == true) {
             const presenca = presencaPost - 1;
             const evento = props.postSelecionado.evento;
             const data = props.postSelecionado.data;
