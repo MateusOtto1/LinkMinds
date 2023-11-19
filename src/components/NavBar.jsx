@@ -53,10 +53,11 @@ const NavBar = () => {
     const [usuarioSelecionado, setUsuarioSelecionado] = useState({});
     const [interesseSelecionado, setInteresseSelecionado] = useState({});
 
+
     const handleToggleNav = () => {
         if (flag === 0) {
             if (bodyfalso && nav) {
-                if (window.innerWidth < 800) {
+                if (window.innerWidth < 800 || isiPhone()) {
                     bodyfalso.style.marginRight = "-65%";
                 } else {
                     bodyfalso.style.marginRight = "-30%";
@@ -109,6 +110,14 @@ const NavBar = () => {
         }
     };
 
+    const isiPhone = () => {
+        return (
+            /iPhone/i.test(navigator.userAgent) ||
+            /iPad/i.test(navigator.userAgent) ||
+            /iPod/i.test(navigator.userAgent)
+        );
+    };
+
     useEffect(() => {
         const getUsuario = async () => {
             const token = Cookies.get('token');
@@ -153,6 +162,7 @@ const NavBar = () => {
         setPerfilPesquisa(false);
         setVerParticipantes(false);
         setBio(false);
+
         setSeguidores(false);
         setSeguindo(false);
         setSeguidoresPP(false);
