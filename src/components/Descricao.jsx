@@ -14,6 +14,7 @@ const Descricao = (props) => {
     const [presencaPost, setPresencaPost] = useState('');
     const [meuPost, setMeuPost] = useState([false]);
     const [usuario, setUsuario] = useState({});
+    const [nomeUsuario, setNomeUsuario] = useState('');
 
     useEffect(() => {
         const getUsuario = async () => {
@@ -23,9 +24,10 @@ const Descricao = (props) => {
             }
             const response = await axios.get('https://server-link-minds.vercel.app/usuarioInfo', { headers });
             setEmailUsuariosPresenca(response.data.email);
+            setNomeUsuario(response.data.nome);
         };
         getUsuario();
-    }, [emailUsuariosPresenca == '']);
+    }, [emailUsuariosPresenca == '' && nomeUsuario == '']);
 
     useEffect(() => {
         const getPostPresenca = async () => {
@@ -78,7 +80,7 @@ const Descricao = (props) => {
             const usuariosPresenca = props.postSelecionado.usuariosPresenca;
             usuariosPresenca.push(emailUsuariosPresenca);
             const token2 = Cookies.get('token');
-            axios.put('https://server-link-minds.vercel.app/postsMarcarPresenca', { token2, presenca, evento, data, hora, local, nome, usuariosPresenca, email }).then(result => console.log(result)).catch(err => console.log(err));
+            axios.put('https://server-link-minds.vercel.app/postsMarcarPresenca', { token2, presenca, evento, data, hora, local, nome, usuariosPresenca, email, nomeUsuario }).then(result => console.log(result)).catch(err => console.log(err));
             navigate('/');
         }
     };
