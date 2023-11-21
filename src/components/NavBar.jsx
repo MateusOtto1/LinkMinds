@@ -57,12 +57,12 @@ const NavBar = () => {
     const handleToggleNav = () => {
         if (flag === 0) {
             if (bodyfalso && nav) {
-                if (window.innerWidth < 800 || isiPhone()) {
+                if (window.innerWidth < 800 || window.matchMedia('(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)').matches) {
                     bodyfalso.style.marginRight = "-65%";
                 } else {
                     bodyfalso.style.marginRight = "-30%";
                 }
-                bodyfalso.style.scale = "90%";
+                bodyfalso.style.transform = "scale(0.9)";
                 bodyfalso.style.height = "95vh";
                 bodyfalso.style.borderRadius = "15px";
                 bodyfalso.style.transition = "0.3s";
@@ -77,22 +77,19 @@ const NavBar = () => {
                     document.querySelector("#btn-hamb").style.display = "none";
                 },500)
                 setFlag(1);
-            } else {
-                console.error("Navbar ainda não foi renderizado");
             }
         } else {
             return;
         }
     };
-
+    
     const handleBodyClick = () => {
         if (flag === 1) {
-
             bodyfalso.style.cursor = "";
             nav.style.animation = "scaleOut 0.3s";
             setTimeout(function () {
                 bodyfalso.style.boxShadow = "";
-                bodyfalso.style.scale = "";
+                bodyfalso.style.transform = "";
                 bodyfalso.style.marginRight = "";
                 bodyfalso.style.borderRadius = "";
                 nav.style.display = "";
@@ -101,7 +98,6 @@ const NavBar = () => {
                 bodyfalso.style.filter = "";
                 setTimeout(function () {
                     nav.style.visibility = "";
-
                     bodyfalso.style.height = "";
                     document.querySelector("#btn-hamb").style.display = "";
                 }, 500);
