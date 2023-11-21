@@ -57,7 +57,7 @@ const NavBar = () => {
     const handleToggleNav = () => {
         if (flag === 0) {
             if (bodyfalso && nav) {
-                if (window.innerWidth < 800 || isiPhone()) {
+                if (window.innerWidth < 800) {
                     bodyfalso.style.marginRight = "-65%";
                 } else {
                     bodyfalso.style.marginRight = "-30%";
@@ -75,7 +75,7 @@ const NavBar = () => {
                 nav.style.opacity = "100%";
                 setTimeout(function () {
                     document.querySelector("#btn-hamb").style.display = "none";
-                },500)
+                }, 500)
                 setFlag(1);
             } else {
                 console.error("Navbar ainda não foi renderizado");
@@ -110,14 +110,6 @@ const NavBar = () => {
         }
     };
 
-    const isiPhone = () => {
-        return (
-            /iPhone/i.test(navigator.userAgent) ||
-            /iPad/i.test(navigator.userAgent) ||
-            /iPod/i.test(navigator.userAgent)
-        );
-    };
-
     useEffect(() => {
         const getUsuario = async () => {
             const token = Cookies.get('token');
@@ -127,12 +119,12 @@ const NavBar = () => {
             const response = await axios.get('https://server-link-minds.vercel.app/usuarioInfo', { headers });
             setUsuarios(response.data);
             setNome(usuarios.nome);
-            if(usuarios.apelido == ""){
+            if (usuarios.apelido == "") {
                 navigate('/Cadastro');
             }
         };
         getUsuario();
-    }, [nome == '']);
+    }, [nome == '' && usuarios.apelido == '']);
 
     function handleClickHome() {
         setHome(true);
@@ -425,51 +417,55 @@ const NavBar = () => {
         setPresencas(false);
         setInteresses(false);
     };
-
-    return (
-        <>
-            <div id="body">
-                <div id="navdentro">
-                    <div id="nav-perfil">
-                        <img src={usuarios.foto} alt="" />
-                        <h1 id="nome-perfil">{nome}</h1>
-                    </div>
-                    <div id="nav-imgs">
-                        <a className="nav-titles" onClick={handleClickHome}><img src={homeIcon} alt="" className="navs" />Home</a>
-                        <a className="nav-titles" onClick={handleClickPesquisa}><img src={pesquisarIcon} alt="" className="navs" />Pesquisar</a>
-                        <a className="nav-titles" onClick={handleClickTipoEvento}><img src={criarIcon} alt="" className="navs" />Criar</a>
-                        <a className="nav-titles" onClick={handleClickPresencas}><img src={chatsIcon} alt="" className="navs" />Presenças</a>
-                        <a className="nav-titles" onClick={handleClickInteresses}><img src={interessesIcon} alt="" className="navs" />Interesses</a>
-                        <a className="nav-titles" onClick={handleClickPerfil}><img src={perfilIcon} alt="" className="navs" />Perfil</a>
-                    </div>
-                </div>
-                <div id="bodyfalso" onClick={handleBodyClick}>
-                    <nav id="navbar">
-                        <div id="botao">
-                            <button id="btn-hamb" onClick={handleToggleNav}><img src={hamburger} alt="" id="hamb" /></button>
+    if (usuarios.apelido == "") {
+        navigate('/Cadastro');
+    } else {
+        return (
+            <>
+                <div id="body">
+                    <div id="navdentro">
+                        <div id="nav-perfil">
+                            <img src={usuarios.foto} alt="" />
+                            <h1 id="nome-perfil">{nome}</h1>
                         </div>
-                    </nav>
-                    <div className="main">
-                        {home ? <Home setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} setDescricao={setDescricao} descricao={descricao} handleClickAtivaDescricao={handleClickAtivaDescricao}/> : null}
-                        {pesquisa ? <Usuarios setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} handleClickPesquisaUsuario={handleClickPesquisaUsuario} handleClickAtivaDescricao={handleClickAtivaDescricao} /> : null}
-                        {tipoEvento ? <TipoEvento handleClickCreate={handleClickCreate} interesseSelecionado={interesseSelecionado} setInteresseSelecionado={setInteresseSelecionado} /> : null}
-                        {criar ? <Criar interesseSelecionado={interesseSelecionado} /> : null}
-                        {presencas ? <Presencas setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickAtivaDescricao={handleClickAtivaDescricao} /> : null}
-                        {perfil ? <Perfil setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickAtivaDescricao={handleClickAtivaDescricao} handleClickAlterarBio={handleClickAlterarBio} handleClickSeguidores={handleClickSeguidores} handleClickSeguindo={handleClickSeguindo} /> : null}
-                        {interesses ? <Interesses setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} handleClickPesquisaUsuario={handleClickPesquisaUsuario} /> : null}
-                        {descricao ? <Descricao setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickVerParticipantes={handleClickVerParticipantes} handleClickPesquisaUsuario={handleClickPesquisaUsuario} handleClickPerfil={handleClickPerfil}/> : null}
-                        {bio ? <Bio /> : null}
-                        {perfilPesquisa ? <PerfilPesquisa setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickAtivaDescricao={handleClickAtivaDescricao} handleClickPerfil={handleClickPerfil} handleClickSeguidoresPP={handleClickSeguidoresPP} handleClickSeguindoPP={handleClickSeguindoPP} /> : null}
-                        {verParticipantes ? <Participantes setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickPesquisaUsuario={handleClickPesquisaUsuario} handleClickPerfil={handleClickPerfil} /> : null}
-                        {seguidores ? <Seguidores handleClickPesquisaUsuario={handleClickPesquisaUsuario} setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} /> : null}
-                        {seguindo ? <Seguindo handleClickPesquisaUsuario={handleClickPesquisaUsuario} setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} /> : null}
-                        {seguidoresPP ? <SeguidoresPP handleClickPesquisaUsuario={handleClickPesquisaUsuario} setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} handleClickPerfil={handleClickPerfil} /> : null}
-                        {seguindoPP ? <SeguindoPP handleClickPesquisaUsuario={handleClickPesquisaUsuario} setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} handleClickPerfil={handleClickPerfil} /> : null}
+                        <div id="nav-imgs">
+                            <a className="nav-titles" onClick={handleClickHome}><img src={homeIcon} alt="" className="navs" />Home</a>
+                            <a className="nav-titles" onClick={handleClickPesquisa}><img src={pesquisarIcon} alt="" className="navs" />Pesquisar</a>
+                            <a className="nav-titles" onClick={handleClickTipoEvento}><img src={criarIcon} alt="" className="navs" />Criar</a>
+                            <a className="nav-titles" onClick={handleClickPresencas}><img src={chatsIcon} alt="" className="navs" />Presenças</a>
+                            <a className="nav-titles" onClick={handleClickInteresses}><img src={interessesIcon} alt="" className="navs" />Interesses</a>
+                            <a className="nav-titles" onClick={handleClickPerfil}><img src={perfilIcon} alt="" className="navs" />Perfil</a>
+                        </div>
                     </div>
-                </div>
+                    <div id="bodyfalso" onClick={handleBodyClick}>
+                        <nav id="navbar">
+                            <div id="botao">
+                                <button id="btn-hamb" onClick={handleToggleNav}><img src={hamburger} alt="" id="hamb" /></button>
+                            </div>
+                        </nav>
+                        <div className="main">
+                            {home ? <Home setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} setDescricao={setDescricao} descricao={descricao} handleClickAtivaDescricao={handleClickAtivaDescricao} /> : null}
+                            {pesquisa ? <Usuarios setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} handleClickPesquisaUsuario={handleClickPesquisaUsuario} handleClickAtivaDescricao={handleClickAtivaDescricao} /> : null}
+                            {tipoEvento ? <TipoEvento handleClickCreate={handleClickCreate} interesseSelecionado={interesseSelecionado} setInteresseSelecionado={setInteresseSelecionado} /> : null}
+                            {criar ? <Criar interesseSelecionado={interesseSelecionado} /> : null}
+                            {presencas ? <Presencas setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickAtivaDescricao={handleClickAtivaDescricao} /> : null}
+                            {perfil ? <Perfil setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickAtivaDescricao={handleClickAtivaDescricao} handleClickAlterarBio={handleClickAlterarBio} handleClickSeguidores={handleClickSeguidores} handleClickSeguindo={handleClickSeguindo} /> : null}
+                            {interesses ? <Interesses setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} handleClickPesquisaUsuario={handleClickPesquisaUsuario} /> : null}
+                            {descricao ? <Descricao setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickVerParticipantes={handleClickVerParticipantes} handleClickPesquisaUsuario={handleClickPesquisaUsuario} handleClickPerfil={handleClickPerfil} /> : null}
+                            {bio ? <Bio /> : null}
+                            {perfilPesquisa ? <PerfilPesquisa setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickAtivaDescricao={handleClickAtivaDescricao} handleClickPerfil={handleClickPerfil} handleClickSeguidoresPP={handleClickSeguidoresPP} handleClickSeguindoPP={handleClickSeguindoPP} /> : null}
+                            {verParticipantes ? <Participantes setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} setPostSelecionado={setPostSelecionado} postSelecionado={postSelecionado} handleClickPesquisaUsuario={handleClickPesquisaUsuario} handleClickPerfil={handleClickPerfil} /> : null}
+                            {seguidores ? <Seguidores handleClickPesquisaUsuario={handleClickPesquisaUsuario} setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} /> : null}
+                            {seguindo ? <Seguindo handleClickPesquisaUsuario={handleClickPesquisaUsuario} setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} /> : null}
+                            {seguidoresPP ? <SeguidoresPP handleClickPesquisaUsuario={handleClickPesquisaUsuario} setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} handleClickPerfil={handleClickPerfil} /> : null}
+                            {seguindoPP ? <SeguindoPP handleClickPesquisaUsuario={handleClickPesquisaUsuario} setUsuarioSelecionado={setUsuarioSelecionado} usuarioSelecionado={usuarioSelecionado} handleClickPerfil={handleClickPerfil} /> : null}
+                        </div>
+                    </div>
 
-            </div>
-        </>
-    )
+                </div>
+            </>
+        )
+    }
+
 }
 export default NavBar;
