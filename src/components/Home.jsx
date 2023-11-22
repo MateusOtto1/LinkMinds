@@ -58,7 +58,7 @@ const Home = (props) => {
             setPostsSeguidores(postsSeguidores);
         };
         getPost();
-    }, [interesses]);
+    }, [interesses || postsSeguindo.length == 0 || postsSeguidores.length == 0]);
 
     if (usuarios.apelido == "") {
         return <Navigate to="/Cadastro" />
