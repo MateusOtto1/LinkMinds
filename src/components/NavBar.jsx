@@ -130,13 +130,13 @@ const NavBar = () => {
                 "x-access-token": token
             }
             const response = await axios.get('https://server-link-minds.vercel.app/usuarioInfo', { headers });
-            setCadastro(response.data);
-            if (response.data.apelido == '') {
+            setCadastro(await response.data);
+            if (await response.data.apelido == '') {
                 navigate('/Cadastro');
             }
         };
         getCadastro();
-    }, []);
+    }, [cadastro.apelido == '']);
 
     function handleClickHome() {
         setHome(true);
