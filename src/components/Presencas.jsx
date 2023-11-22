@@ -21,7 +21,7 @@ const Presencas = (props) => {
             setUsuarios(response.data);
         };
         getUsuario();
-    }, [usuarios.length == 0]);
+    }, [!usuarios]);
 
     useEffect(() => {
         const getPosts = async () => {
