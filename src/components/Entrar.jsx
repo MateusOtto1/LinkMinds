@@ -40,7 +40,7 @@ const Entrar = () => {
         );
     }
     else {
-        return <Navigate to="/TesteCadastro" />;
+        return <Navigate to="/Cadastro" />;
     }
 }
 export default Entrar;

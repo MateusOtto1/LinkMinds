@@ -24,7 +24,7 @@ const Cadastro = () => {
                 "x-access-token": token
             }
             const response = await axios.get('https://server-link-minds.vercel.app/usuarioInfo', { headers });
-            setUsuarios(response.data);
+            setUsuarios(await response.data);
             const response2 = await axios.get('https://server-link-minds.vercel.app/listaInteresse', { headers });
             setListaInteresse(response2.data);
             if (pesquisaInteresse === '') {
@@ -83,7 +83,7 @@ const Cadastro = () => {
             navigate('/');
         }
     };
-    if (usuarios.apelido != null && usuarios.apelido != '' && usuarios.apelido != undefined) {
+    if (usuarios.apelido != "") {
         navigate('/LinkMinds');
     } else {
         return (
