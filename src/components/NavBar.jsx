@@ -29,7 +29,6 @@ import interessesIcon from "../imagens/pessoas.svg";
 const NavBar = () => {
     const [nome, setNome] = useState('');
     const [usuarios, setUsuarios] = useState({});
-    const [cadastro, setCadastro] = useState({});
     const [flag, setFlag] = useState(0);
     const bodyfalso = document.getElementById("bodyfalso");
     const nav = document.getElementById("navdentro");
@@ -116,27 +115,12 @@ const NavBar = () => {
             const response = await axios.get('https://server-link-minds.vercel.app/usuarioInfo', { headers });
             setUsuarios(response.data);
             setNome(usuarios.nome);
-            if (response.data.apelido == "") {
+            if (usuarios.apelido == "") {
                 navigate('/Cadastro');
             }
         };
         getUsuario();
     }, [nome == '']);
-
-    useEffect(() => {
-        const getCadastro = async () => {
-            const token = Cookies.get('token');
-            const headers = {
-                "x-access-token": token
-            }
-            const response = await axios.get('https://server-link-minds.vercel.app/usuarioInfo', { headers });
-            setCadastro(response.data);
-            if (cadastro.apelido == "") {
-                navigate('/Cadastro');
-            }
-        };
-        getCadastro();
-    });
 
     function handleClickHome() {
         setHome(true);

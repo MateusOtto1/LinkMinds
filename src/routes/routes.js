@@ -4,6 +4,7 @@ import { PrivateRoutes } from ".";
 import Entrar from "../components/Entrar";
 import NavBar from "../components/NavBar";
 import Cadastro from "../components/Cadastro";
+import TesteCadastro from "../components/TesteCadastro";
 
 export const AppRoutes = () => {
 
@@ -12,11 +13,14 @@ export const AppRoutes = () => {
       <Fragment>
         <Routes>
           <Route path="/" element={<Entrar />} />
-          <Route path="/LinkMinds" element={<PrivateRoutes />}>
-            <Route path="/LinkMinds" element={<NavBar />} />
-          </Route>
+          <Route path="/TesteCadastro" element={<PrivateRoutes />}>
+            <Route path="/TesteCadastro" element={<TesteCadastro />} />
+          </Route>         
           <Route path="/Cadastro" element={<PrivateRoutes />}>
             <Route path="/Cadastro" element={<Cadastro />} />
+          </Route>
+          <Route path="/LinkMinds" element={<PrivateRoutes />}>
+            <Route path="/LinkMinds" element={<NavBar />} />
           </Route>
         </Routes>
       </Fragment>
