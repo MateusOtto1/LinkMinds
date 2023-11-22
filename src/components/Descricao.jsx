@@ -127,7 +127,7 @@ const Descricao = (props) => {
                         </h1>
                     </div>
                     <div className="profile-detalhes" onClick={(e) => props.postSelecionado.email === emailUsuariosPresenca ? props.handleClickPerfil(e) : props.handleClickPesquisaUsuario(e, usuario)}>
-                        <img src={props.postSelecionado.foto} alt="" class="pfp-det" />
+                        <img src={props.postSelecionado.foto} alt="" className="pfp-det" />
                         <div className="profile-text-det">
                             <p className="criadopor">Criado por</p>
                             <h1 className="nome-det">{props.postSelecionado.nome}</h1>
@@ -138,7 +138,7 @@ const Descricao = (props) => {
                         <h1 className="text-info">{props.postSelecionado.data} <span className='verde-span'>/</span> {props.postSelecionado.hora}</h1>
                     </div>
                     {props.postSelecionado.local !== "" && (
-                        <div class="det-info locale-info">
+                        <div className="det-info locale-info">
                             <p className="title-info">Localização</p>
                             <h1 className="text-info">{props.postSelecionado.local}</h1>
                             <div className="linha-sep"></div>

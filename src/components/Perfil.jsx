@@ -98,7 +98,10 @@ const Perfil = (props) => {
                                 ? usuarios.descricao
                                 : <BeatLoader color={"#fff"} loading={true} size={10} />
                             }<span className="verde-aspas">"</span></h1>
-                            <div className="seg-container">
+                            
+                        </section>
+
+                        <div className="seg-container">
                                 {usuarios.discord ? <div className="dc"><img src={Discord} alt="" /><p>{usuarios.discord}</p></div> : null}
                                 <div className="seg-c-2">
                                     <button className="btn-seg" onClick={(e) => props.handleClickSeguidores(e)}>Seguidores</button>
@@ -109,7 +112,6 @@ const Perfil = (props) => {
                                     <button className="btn-seg">Editar Perfil</button>
                                 </div>
                             </div>
-                        </section>
 
                     </div>
                 </div>
@@ -152,7 +154,7 @@ const Perfil = (props) => {
                                             className="card"
                                             style={{ backgroundImage: `url(${post.imagemEvento})` }}
                                         >
-                                            <div className="card-top">
+                                            <div className="card-top" onClick={(e) => props.handleClickAtivaDescricao(e, post)}>
                                                 <img src={post.foto} alt="" className="pfp" />
                                                 <div className="textos-card">
                                                     <p className="nome-card">{post.nome}</p>

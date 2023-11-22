@@ -115,7 +115,7 @@ const Usuarios = (props) => {
                                     return (
                                         <div className="card-body" key={index}>
                                             <div className="card" style={{ backgroundImage: `url(${post.imagemEvento})` }}>
-                                                <div className="card-top">
+                                                <div className="card-top" onClick={(e) => props.handleClickAtivaDescricao(e, post)}>
                                                     <img src={post.foto} alt="" className="pfp" />
                                                     <div className="textos-card">
                                                         <p className="nome-card">{post.nome}</p>
