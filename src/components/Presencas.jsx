@@ -19,6 +19,7 @@ const Presencas = (props) => {
             }
             const response = await axios.get('https://server-link-minds.vercel.app/usuarioInfo', { headers });
             setUsuarios(response.data);
+            console.log(usuarios);
         };
         getUsuario();
     }, [!usuarios]);
@@ -37,7 +38,7 @@ const Presencas = (props) => {
             setPosts(postsPresenca);
         };
         getPosts();
-    }, [usuarios]);
+    }, [usuarios && posts]);
 
     return (
         <>
