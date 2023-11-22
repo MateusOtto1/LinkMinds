@@ -115,7 +115,7 @@ const Cadastro = () => {
                         <div className="linha-tipo"></div>
                     </div>
                     <div className="editar-input">
-                        <input type="number" name="idade" className="input-style" placeholder="Sua Idade" onChange={(e) => setIdade(e.target.value)} />
+                        <input type="number" maxLength="2" name="idade" className="input-style" placeholder="Sua Idade" onChange={(e) => setIdade(e.target.value)} />
                     </div>
                     <div className="header-tipo">
                         <p>Discord</p>
