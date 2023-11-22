@@ -11,7 +11,6 @@ const Cadastro = () => {
     const [preencha, setPreencha] = useState('');
     const [discord, setDiscord] = useState('');
     const [usuarios, setUsuarios] = useState({});
-    const [foto, setFoto] = useState('');
     const [listaInteresse, setListaInteresse] = useState([]);
     const [pesquisaInteresse, setPesquisaInteresse] = useState('');
     const [pesquisa, setPesquisa] = useState([]);
@@ -25,8 +24,7 @@ const Cadastro = () => {
                 "x-access-token": token
             }
             const response = await axios.get('https://server-link-minds.vercel.app/usuarioInfo', { headers });
-            setUsuarios(response.data);
-            setFoto(response.data.foto);
+            setUsuarios(await response.data);
             const response2 = await axios.get('https://server-link-minds.vercel.app/listaInteresse', { headers });
             setListaInteresse(response2.data);
             if (pesquisaInteresse === '') {
@@ -34,7 +32,7 @@ const Cadastro = () => {
             }
         };
         getUsuario();
-    }, [!usuarios && !listaInteresse && !foto]);
+    }, [!usuarios && !listaInteresse]);
 
     useEffect(() => {
         const checkInput = async () => {
@@ -97,7 +95,7 @@ const Cadastro = () => {
                         <h1 className="cad">Preencha os campos abaixo para concluir o cadastro.</h1>
                     </div>
                     <div className="cad-pic">
-                        <img src={foto} alt="" className="pfp-cadastro" />
+                        <img src={usuarios.foto} alt="" className="pfp-cadastro" />
                         <div className="cad-text">
                             <h1>Esta será sua imagem de perfil</h1>
                             <p>Nós puxamos a imagem da sua conta Google</p>
