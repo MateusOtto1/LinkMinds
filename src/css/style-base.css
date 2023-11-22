@@ -70,9 +70,10 @@ body{
     overflow: hidden;
     z-index: 1;
     top: 0;
-    margin-right: 0%;
+    right: 0vw;
     background: linear-gradient(221deg, #232931 -0.32%, #181D22 57.41%);
     width: 100vw;
+    position: relative;
     min-height: 100vh;
 }
 

@@ -58,9 +58,9 @@ const NavBar = () => {
         if (flag === 0) {
             if (bodyfalso && nav) {
                 if (window.innerWidth < 800 || window.matchMedia('(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)').matches) {
-                    bodyfalso.style.marginRight = "-65%";
+                    bodyfalso.style.right = "-65vw";
                 } else {
-                    bodyfalso.style.marginRight = "-30%";
+                    bodyfalso.style.right = "-30vw";
                 }
                 bodyfalso.style.transform = "scale(0.9)";
                 bodyfalso.style.height = "95vh";
@@ -90,7 +90,7 @@ const NavBar = () => {
             setTimeout(function () {
                 bodyfalso.style.boxShadow = "";
                 bodyfalso.style.transform = "";
-                bodyfalso.style.marginRight = "";
+                bodyfalso.style.right = "";
                 bodyfalso.style.borderRadius = "";
                 nav.style.display = "";
                 nav.style.opacity = "0%";
