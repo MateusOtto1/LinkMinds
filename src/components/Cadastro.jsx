@@ -25,6 +25,9 @@ const Cadastro = () => {
             }
             const response = await axios.get('https://server-link-minds.vercel.app/usuarioInfo', { headers });
             setUsuarios(await response.data);
+            if(response.data.apelido != null && response.data.apelido != '' && response.data.apelido != undefined){
+                navigate('/LinkMinds');
+            }
             const response2 = await axios.get('https://server-link-minds.vercel.app/listaInteresse', { headers });
             setListaInteresse(response2.data);
             if (pesquisaInteresse === '') {
