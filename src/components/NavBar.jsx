@@ -47,6 +47,7 @@ const NavBar = () => {
     const [seguidoresPP, setSeguidoresPP] = useState(false);
     const [seguindoPP, setSeguindoPP] = useState(false);
     const [tipoEvento, setTipoEvento] = useState(false);
+    const Linkme = "Linkme";
     const navigate = useNavigate();
 
     const [postSelecionado, setPostSelecionado] = useState({});
