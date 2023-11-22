@@ -136,7 +136,7 @@ const NavBar = () => {
             }
         };
         getCadastro();
-    }, [cadastro.apelido == '']);
+    }, []);
 
     function handleClickHome() {
         setHome(true);
