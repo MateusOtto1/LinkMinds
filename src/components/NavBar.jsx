@@ -115,7 +115,7 @@ const NavBar = () => {
             const response = await axios.get('https://server-link-minds.vercel.app/usuarioInfo', { headers });
             setUsuarios(response.data);
             setNome(usuarios.nome);
-            if (usuarios.apelido == "") {
+            if (response.data.apelido == "") {
                 navigate('/Cadastro');
             }
         };
