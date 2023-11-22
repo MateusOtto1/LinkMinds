@@ -32,7 +32,7 @@ const Cadastro = () => {
             }
         };
         getUsuario();
-    }, []);
+    }, [!usuarios && !listaInteresse]);
 
     useEffect(() => {
         const checkInput = async () => {
