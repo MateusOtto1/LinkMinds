@@ -40,7 +40,7 @@ const Entrar = () => {
         );
     }
     else {
-        return <Navigate to="/Cadastro" />;
+        return <Navigate to="/LinkMinds" />;
     }
 }
 export default Entrar;

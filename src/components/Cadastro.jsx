@@ -28,6 +28,9 @@ const Cadastro = () => {
             if(response.data.apelido != null && response.data.apelido != '' && response.data.apelido != undefined){
                 navigate('/LinkMinds');
             }
+            if(response.data.msg == 'Erro ao buscar!'){
+                window.location.reload();
+            }
             const response2 = await axios.get('https://server-link-minds.vercel.app/listaInteresse', { headers });
             setListaInteresse(response2.data);
             if (pesquisaInteresse === '') {
@@ -83,7 +86,7 @@ const Cadastro = () => {
         } else {
             const token2 = Cookies.get('token');
             await axios.put('https://server-link-minds.vercel.app/usuario', { token2, apelido, idade, interesses: interessesSelecionados, descricao, discord }).then(result => console.log(result)).catch(err => console.log(err));
-            navigate('/');
+            navigate('/LinkMinds');
         }
     };
     if (usuarios.apelido != null && usuarios.apelido != '' && usuarios.apelido != undefined) {
